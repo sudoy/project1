@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>売上登録｜物品売上管理システム</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/yamamoto.css" rel="stylesheet">
+	</head>
+	<body>
+		
+	<!--ヘッダー-->
+	<nav class="navbar navbar-default">
+		<div class="container-field">
+
+			<!--画面が小さくなったときのやつ-->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<!--システム名-->
+			<div class="navbar-header">
+				<a class="navbar-brand">物品売上管理システム</a>
+			</div>
+
+			<!--リンク-->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<!--押した場所にclass="active"をつける？-->
+				<ul class="nav navbar-nav">
+					<li><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
+					<li class="active"><a href="S0010.html">売上登録</a></li>
+					<li><a href="S0020.html">売上検索</a></li>
+					<li><a href="S0030.html">アカウント登録</a></li>
+					<li><a href="S0040.html">アカウント検索</a></li>
+				</ul>
+
+				<!--ログアウト-->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">ログアウト</a></li>
+				</ul>
+
+			</div><!--div class="collapse navbar-collapse"-->
+		</div>
+	</nav><!--ヘッダーここまで-->
+		<!-- メッセージ表示 -->
+		<div class="container">
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong> 成功しました！</strong><br>
+				<ul>
+					<li>成功メッセージ</li>
+				</ul>
+			</div>
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong> エラーが発生しました！</strong><br>
+				<ul>
+					<li>エラーメッセージ</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 売上登録システム表示 -->
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<h1>売上登録</h1>
+			</div>
+		</div>
+		<div class="container">
+			<!-- form -->
+			<form class="form-horizontal" action="#">
+			
+				<!-- 販売日 -->
+				<div class="form-group">
+					<label for="saleDate" class="col-xs-3 textright textdown">販売日 <span class="badge">必須</span></label>
+					<div class="col-xs-2">
+						<input type="text" class="form-control" id="saleDate" value="2015/1/15">
+					</div>
+				</div>
+				
+				<!-- 担当 -->
+				<div class="form-group">
+					<label for="accountId" class="col-xs-3 textright textdown">担当 <span class="badge">必須</span></label>
+					<div class="col-xs-5">
+						<select class="form-control" id="accountId">
+							<option value="">選択してください</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 商品カテゴリー -->
+				<div class="form-group">
+					<label for="categoryId" class="col-xs-3 textright textdown">商品カテゴリー <span class="badge">必須</span></label>
+					<div class="col-xs-5">
+						<select class="form-control" id="categoryId">
+							<option value="">選択してください</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 商品名 -->
+				<div class="form-group">
+					<label for="tradeName" class="col-xs-3 textright textdown">商品名 <span class="badge">必須</span></label>
+					<div class="col-xs-5">
+						<input type="text" class="form-control" id="tradeName" value="" placeholder="商品名">
+					</div>
+				</div>
+				
+				<!-- 単価 -->
+				<div class="form-group">
+					<label for="unit_price" class="col-xs-3 textright textdown">単価 <span class="badge">必須</span></label>
+					<div class="col-xs-2">
+						<input type="text" class="form-control textright" id="formGroup" value="" placeholder="単価">
+					</div>
+				</div>
+				
+				<!-- 個数 -->
+				<div class="form-group">
+					<label for="saleNumber" class="col-xs-3 textright textdown">個数 <span class="badge">必須</span></label>
+					<div class="col-xs-2">
+						<input type="text" class="form-control textright" id="saleNumber" value="" placeholder="個数">
+					</div>
+				</div>
+				
+				<!-- 備考 -->
+				<div class="form-group">
+					<label for="note" class="col-xs-3 textright textdown">備考</label>
+					<div class="col-xs-5">
+						<textarea class="form-control" rows="5" id="note" placeholder="詳細"></textarea>
+					</div>
+				</div>
+				
+				<!-- Submit -->
+				<div class="form-group">
+					<div class="col-xs-8 col-xs-offset-4">
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 登　録</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--/container-fluid-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
