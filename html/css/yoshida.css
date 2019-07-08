@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-body{
+.pass{
 	background-color:#eee;
 }
 
@@ -9,12 +9,12 @@ body{
 	
 }
 
-h2{
+.midasi2{
 	text-align:center;
 	
 }
 
-h3{
+.midasi3{
 	text-align:left;
 	margin-left:10px;
 }
@@ -25,4 +25,8 @@ h3{
 
 .col-md-4{
 	width:30%;
+}
+
+control-label{
+	text-align:left;
 }
