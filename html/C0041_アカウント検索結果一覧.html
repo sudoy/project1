@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ダッシュボード｜物品売上管理システム</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/suzuki.css">
+</head>
+<body>
+
+<!--ヘッダー-->
+<nav class="navbar navbar-default">
+	<div class="container-field">
+
+		<!--画面が小さくなったときのやつ-->
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+
+		<!--システム名-->
+		<div class="navbar-header">
+			<a class="navbar-brand">物品売上管理システム</a>
+		</div>
+
+		<!--リンク-->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+			<!--押した場所にclass="active"をつける？-->
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
+				<li><a href="S0010.html">売上登録</a></li>
+				<li><a href="S0020.html">売上検索</a></li>
+				<li><a href="S0030.html">アカウント登録</a></li>
+				<li><a href="S0040.html">アカウント検索</a></li>
+			</ul>
+
+			<!--ログアウト-->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">ログアウト</a></li>
+			</ul>
+
+		</div><!--div class="collapse navbar-collapse"-->
+
+	</div><!--class="container-field"-->
+</nav><!--ヘッダーここまで-->
+
+
+<!--アカウント検索結果一覧-->
+<div class="container">
+	<h2>アカウント検索結果一覧</h2>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th class="col-sm-2">操作</th>
+				<th class="col-sm-1 text-right">No </th>
+				<th class="col-sm-2">氏名</th>
+				<th class="col-sm-3">メールアドレス</th>
+				<th class="col-sm-3">権限</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a type="button" class="btn btn-primary" href="S0042.html">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+					</a>
+					<a type="button" class="btn btn-danger" href="S0042.html">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+					</a>
+				</td>
+				<td class="text-right">1　</td><!--右寄せになりすぎるためとりあえずスペース入れてる-->
+				<td>イチロー</td>
+				<td>ichiro@sak.com</td>
+				<td>アカウント登録</td>
+			</tr>
+			<tr>
+				<td>
+					<a type="button" class="btn btn-primary" href="S0042.html">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+					</a>
+					<a type="button" class="btn btn-danger" href="S0042.html">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+					</a>
+				</td>
+				<td class="text-right">2　</td>
+				<td>ダルビッシュ　有</td>
+				<td>yu.drvish@sak.com</td>
+				<td>売上登録/アカウント登録</td>
+			</tr>
+			<tr>
+				<td>
+					<a type="button" class="btn btn-primary" href="S0042.html">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+					</a>
+					<a type="button" class="btn btn-danger" href="S0042.html">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+					</a>
+				</td>
+				<td class="text-right">3　</td>
+				<td>田中　将大</td>
+				<td>masahiro.tanaka@sak.com</td>
+				<td>売上登録/アカウント登録</td>
+			</tr>
+			<tr>
+				<td>
+					<a type="button" class="btn btn-primary" href="S0042.html">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+					</a>
+					<a type="button" class="btn btn-danger" href="S0042.html">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+					</a>
+				</td>
+				<td class="text-right">4　</td>
+				<td>松坂　大輔</td>
+				<td>daisuke.matsuzaka@sak.com</td>
+				<td>権限なし</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div><!--class="container-field"-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
