@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>アカウント登録確認|物品売上管理システム</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="">
+</head>
+<body>
+	
+ 	
+	<h2 class="col-sm-offset-1">アカウントを登録してよろしいですか？</h2>
+		
+		
+	<form class="form-horizontal">
+ 		 <div class="form-group">
+   			 <label for="inputEmail3" class="col-sm-offset-1 col-sm-2  control-label">氏名
+   			 <span class="label label-default date">必須</span>
+    		 </label>
+    			<div class="col-sm-2">
+      				<input type="text" class="form-control" name="name" value="イチロー" placeholder="氏名">
+    			</div>
+  		</div>
+  		
+  		<div class="form-group">
+   			 <label for="inputEmail3" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス
+   			 <span class="label label-default date">必須</span>
+    		 </label>
+    			<div class="col-sm-2">
+      				<input type="text" class="form-control" name="mail" value="iciro@saku.com" placeholder="メールアドレス">
+    			</div>
+  		</div>
+  		
+  		<div class="form-group">
+   			 <label for="inputEmail3" class="col-sm-offset-1 col-sm-2  control-label">パスワード
+   			 <span class="label label-default date">必須</span>
+    		 </label>
+    			<div class="col-sm-2">
+      				<input type="password" class="form-control" name="password" value="00000000" placeholder="パスワード">
+    			</div>
+  		</div>
+  		
+  		<div class="form-group">
+   			 <label for="inputEmail3" class="col-sm-offset-1 col-sm-2  control-label">パスワード(確認)
+   			 <span class="label label-default date">必須</span>
+    		 </label>
+    			<div class="col-sm-2">
+      				<input type="password" class="form-control" name="password" value="00000000" placeholder="パスワード(確認)">
+    			</div>
+  		</div>
+  
+  		<div class="form-group">
+    		<label for="inputPassword3" class="col-sm-offset-1 col-sm-2 control-label">売上登録権限</label>
+   			<div class="col-sm-4" id="radio">
+    			<label class="radio-inline">
+ 					<input type="radio" name="authority" id="inlineRadio1" value="option1" checked>権限なし
+				</label>
+				
+				<label class="radio-inline">
+  					<input type="radio" name="authority" id="inlineRadio2" value="option2">権限あり
+				</label>
+    		</div>
+  		</div>
+  		
+  		<div class="form-group">
+    		<label for="inputPassword3" class="col-sm-offset-1 col-sm-2 control-label">アカウント登録権限</label>
+   			<div class="col-sm-4" id="radio">
+    			<label class="radio-inline">
+ 					<input type="radio" name="authority" id="inlineRadio1" value="option1" checked>権限なし
+				</label>
+				
+				<label class="radio-inline">
+  					<input type="radio" name="authority" id="inlineRadio2" value="option2">権限あり
+				</label>
+    		</div>
+  		</div>
+  		
+		<div class="form-group">
+    		<div class="col-sm-offset-3 col-sm-4">
+    			<button type="button" class="btn btn-primary">
+    			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    			OK</button>
+    			<button type="button" class="btn btn-default">キャンセル</button>
+			</div>
+		</div>
+  
+  	</form>
+	</div><!-- container -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
