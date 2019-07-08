@@ -9,7 +9,7 @@
 		<link href="css/yamamoto.css" rel="stylesheet">
 	</head>
 	<body>
-		
+
 	<!--ヘッダー-->
 	<nav class="navbar navbar-default">
 		<div class="container-field">
@@ -64,7 +64,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<!-- 売上登録システム表示 -->
 		<div class="col-xs-12">
 			<div class="col-xs-12">
@@ -74,67 +74,67 @@
 		<div class="container">
 			<!-- form -->
 			<form class="form-horizontal" action="#">
-			
+
 				<!-- 販売日 -->
 				<div class="form-group">
 					<label for="saleDate" class="col-xs-3 textright textdown">販売日 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="saleDate" value="2015/1/15">
+						<input type="text" class="form-control" id="saleDate" name="saleDate" value="2015/1/15">
 					</div>
 				</div>
-				
+
 				<!-- 担当 -->
 				<div class="form-group">
 					<label for="accountId" class="col-xs-3 textright textdown">担当 <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<select class="form-control" id="accountId">
+						<select class="form-control" id="accountId" name="accountId">
 							<option value="">選択してください</option>
 						</select>
 					</div>
 				</div>
-				
+
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
 					<label for="categoryId" class="col-xs-3 textright textdown">商品カテゴリー <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<select class="form-control" id="categoryId">
+						<select class="form-control" id="categoryId" name="categoryId">
 							<option value="">選択してください</option>
 						</select>
 					</div>
 				</div>
-				
+
 				<!-- 商品名 -->
 				<div class="form-group">
 					<label for="tradeName" class="col-xs-3 textright textdown">商品名 <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<input type="text" class="form-control" id="tradeName" value="" placeholder="商品名">
+						<input type="text" class="form-control" id="tradeName" name="tradeName" value="" placeholder="商品名">
 					</div>
 				</div>
-				
+
 				<!-- 単価 -->
 				<div class="form-group">
 					<label for="unit_price" class="col-xs-3 textright textdown">単価 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="formGroup" value="" placeholder="単価">
+						<input type="text" class="form-control textright" id="formGroup" name="formGroup" value="" placeholder="単価">
 					</div>
 				</div>
-				
+
 				<!-- 個数 -->
 				<div class="form-group">
 					<label for="saleNumber" class="col-xs-3 textright textdown">個数 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="saleNumber" value="" placeholder="個数">
+						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="" placeholder="個数">
 					</div>
 				</div>
-				
+
 				<!-- 備考 -->
 				<div class="form-group">
 					<label for="note" class="col-xs-3 textright textdown">備考</label>
 					<div class="col-xs-5">
-						<textarea class="form-control" rows="5" id="note" placeholder="詳細"></textarea>
+						<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細"></textarea>
 					</div>
 				</div>
-				
+
 				<!-- Submit -->
 				<div class="form-group">
 					<div class="col-xs-8 col-xs-offset-4">
