@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <!-- ヘッダー -->
-<jsp:include page="_header.jsp"><jsp:param name="page" value="" /></jsp:include>
+<jsp:include page="_header.jsp">
+	<jsp:param name="page" value="" />
+	<jsp:param name="current" value="" />
+</jsp:include>
 
 <!-- メッセージ -->
 <jsp:include page="_message.jsp" />
