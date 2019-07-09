@@ -37,20 +37,20 @@ public class C0010Servlet extends HttpServlet {
 
 		C0010Service c10s = new C0010Service();
 		AccountForm account =c10s.checkDB(mail, password);
+		HttpSession session = req.getSession();
 
 		// 名前が空白なら該当データ無し→エラー
 		if(account.getName().equals("")) {
 			error.add("メールアドレス、パスワードを正しく入力して下さい。");
 			req.setAttribute("error",error);
 			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
+			session.invalidate();
 			return;
 		}
 
 		// sessionにAccountFormを代入後ダッシュボードにリダイレクト
-		HttpSession session = req.getSession();
 		session.setAttribute("account", account);
 		resp.sendRedirect("C0020.html");
-		session.invalidate();
 	}
 	/**
 	 * 入力チェックメソッド
