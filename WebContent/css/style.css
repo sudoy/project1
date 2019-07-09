@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+/*吉田*/
+.pass{
+	background-color:#eee;
+}
+
+.headmargin{
+	margin-top:50px;
+
+}
+
+.midasi2{
+	text-align:center;
+
+}
+
+.midasi3{
+	text-align:left;
+	margin-left:10px;
+}
+
+.topmargin{
+	margin-top:10px;
+}
+
+.widthform{
+	width:30%;
+}
+
+/*鈴木*/
+*{
+	font-family: 'メイリオ', Meiryo,sans-serif;
+}
+
+.padding-off{
+	padding: 0;
+}
+
+.up-color{
+	color: green;
+}
+
+.down-color{
+	color: red;
+}
+
+.table-border-top{
+	border-top: 2px solid #ddd;
+}
+/*山本*/
+.bold{font-weight:bold;}
+.textdown{padding:9px 15px 0px 0px;}
+.bm20{margin-bottom:20px;}
+.check{font-size:28px;}
+.normal{font-weight:normal;}
+
