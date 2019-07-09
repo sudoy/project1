@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.services.C0010Service;
@@ -24,6 +25,7 @@ public class C0010Servlet extends HttpServlet {
 		String mail = req.getParameter("mail");
 		String password = req.getParameter("password");
 
+		// 入力チェック
 		List<String> error = validate(mail, password);
 		if(0<error.size()) {
 			req.setAttribute("error",error);
@@ -41,8 +43,19 @@ public class C0010Servlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
 			return;
 		}
+
+		// sessionにAccountFormを代入後ダッシュボードにリダイレクト
+		HttpSession session = req.getSession();
+		session.setAttribute("account", account);
 		resp.sendRedirect("C0020.html");
 	}
+	/**
+	 * 入力チェックメソッド
+	 * @param mail 入力されたmail
+	 * @param password 入力されたpassword
+	 * @return List(String)型
+	 * 入力に問題があればエラーメッセージがaddされる。
+	 */
 	private List<String> validate(String mail,String password) {
 		List<String> error = new ArrayList<>();
 		if(mail==null||mail.equals("")) {
