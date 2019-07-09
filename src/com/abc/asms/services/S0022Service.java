@@ -34,7 +34,6 @@ public class S0022Service { //売上詳細表示のサービス
 			ps.setString(1, saleId);
 			rs = ps.executeQuery();
 			rs.next();
-			System.out.println(ps);
 
 			//update.jspに渡すform用意
 			String saleDate = rs.getString("s.sale_date");
@@ -46,7 +45,6 @@ public class S0022Service { //売上詳細表示のサービス
 			String note = rs.getString("s.note");
 
 			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber, note);
-			System.out.println("test:" + name);
 
 		}catch(Exception e){
 			e.printStackTrace();
