@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- ヘッダー -->
-<jsp:include page="_header.jsp"><jsp:param name="page" value="ログイン画面" /></jsp:include>
+<jsp:include page="_header.jsp"><jsp:param name="page" value="" /></jsp:include>
 
 <!-- メッセージ -->
 <jsp:include page="_header.jsp" />
