@@ -1,5 +1,7 @@
 package com.abc.asms.filters;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -28,14 +30,22 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+		// 飛んできたPathの取得
 		String target = ((HttpServletRequest) req).getServletPath();
 		HttpSession session = ((HttpServletRequest) req).getSession();
 		AccountForm account = (AccountForm) session.getAttribute("account");
+
+		// ログイン状態とpathの関係チェック
 		if(account!=null&&target.equals("/C0010.html")) {
+			// ログイン済みでC0010にアクセス
 			((HttpServletResponse)resp).sendRedirect("C0020.html");
 			return;
 		}
 		if(account==null&&!target.equals("/C0010.html")){
+			// 未ログインでC0010以外にアクセス
+			List<String> error = new ArrayList<>();
+			error.add("ログインして下さい。");
+			session.setAttribute("error", error);
 			((HttpServletResponse)resp).sendRedirect("C0010.html");
 			return;
 		}
