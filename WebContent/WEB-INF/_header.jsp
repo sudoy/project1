@@ -42,7 +42,7 @@
 
 			<!--ログアウト-->
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">ログアウト</a></li>
+				<li><a href="C0030.html">ログアウト</a></li>
 			</ul>
 
 		</div><!--div class="collapse navbar-collapse"-->
