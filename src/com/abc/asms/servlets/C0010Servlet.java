@@ -19,6 +19,8 @@ public class C0010Servlet extends HttpServlet {
 @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
+	HttpSession session =req.getSession();
+	session.invalidate();
 	}
 @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +50,7 @@ public class C0010Servlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.setAttribute("account", account);
 		resp.sendRedirect("C0020.html");
+		session.invalidate();
 	}
 	/**
 	 * 入力チェックメソッド
