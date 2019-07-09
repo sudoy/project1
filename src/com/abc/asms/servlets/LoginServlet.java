@@ -1,4 +1,4 @@
-package com.abc.asms.Servlets;
+package com.abc.asms.servlets;
 
 import javax.servlet.http.HttpServlet;
 
