@@ -16,3 +16,6 @@
 	color: red;
 }
 
+.table-border-top{
+	border-top: 2px solid #ddd;
+}
