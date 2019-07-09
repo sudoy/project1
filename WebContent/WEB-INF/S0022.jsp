@@ -1,20 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!-- ヘッダー -->
-<jsp:include page="_header.jsp"><jsp:param name="page" value="売上詳細表示" /></jsp:include>
+<jsp:include page="_header.jsp">
+	<jsp:param name="page" value="売上詳細表示" />
+</jsp:include>
 
 <!-- 売上登録システム表示 -->
 <div class="container">
 	<h1>売上詳細表示</h1>
 	<!-- form -->
-	<form class="form-horizontal" action="S0023.html">
+	<form class="form-horizontal" action="S0023.html" method="post">
 
 		<!-- 販売日 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">販売日</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">2015/1/15</label>
+				<label class="textdown normal">${form.saleDate}</label>
 			</div>
 		</div>
 
@@ -22,7 +23,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">担当</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">イチロー</label>
+				<label class="textdown normal">${form.name}</label>
 			</div>
 		</div>
 
@@ -30,7 +31,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">商品カテゴリー</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">食料品</label>
+				<label class="textdown normal">${form.categoryName}</label>
 			</div>
 
 		</div>
@@ -39,7 +40,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">商品名</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">からあげ弁当</label>
+				<label class="textdown normal">${form.tradeName}</label>
 			</div>
 		</div>
 
@@ -47,7 +48,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">単価</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">540</label>
+				<label class="text-right textdown normal">${form.unitPrice}</label>
 			</div>
 		</div>
 
@@ -55,7 +56,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">個数</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">3</label>
+				<label class="text-right textdown normal">${form.saleNumber}</label>
 			</div>
 		</div>
 
@@ -63,7 +64,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">小計</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">1,350</label>
+				<label class="text-right textdown normal">${form.unitPrice * form.saleNumber}</label>
 			</div>
 		</div>
 
@@ -71,7 +72,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">備考</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">今日からの新製品</label>
+				<label class="textdown normal">${form.note}</label>
 			</div>
 		</div>
 
