@@ -10,22 +10,22 @@ INSERT into accounts(name,mail,password,authority)
 values('Admin','admin@mail.tokyosystem.co.jp',MD5('0000'),'10');
 
 INSERT into accounts(name,mail,password,authority) 
-values('‹g“cˆÀ’','yoshida.yasutaka@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('å‰ç”°å®‰å´‡','yoshida.yasutaka@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 INSERT into accounts(name,mail,password,authority) 
-values('—é–Ø‰Ô•ä','suzuki.kaho@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('éˆ´æœ¨èŠ±ç©‚','suzuki.kaho@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 INSERT into accounts(name,mail,password,authority) 
-values('R–{—³–ç','yamamoto.tatsuya@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('å±±æœ¬ç«œä¹Ÿ','yamamoto.tatsuya@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 INSERT into accounts(name,mail,password,authority) 
-values('ˆî“c–œ•ä','inada.maho@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('ç¨²ç”°ä¸‡ç©‚','inada.maho@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 INSERT into accounts(name,mail,password,authority) 
-values('¬—ÑÊ‰Ä','kobayashi.ayaka@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('å°æ—å½©å¤','kobayashi.ayaka@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 INSERT into accounts(name,mail,password,authority) 
-values('“¡ƒm–ØË^','fujinoki.syoma@mail.tokyosystem.co.jp',MD5('0000'),'1');
+values('è—¤ãƒæœ¨ç¥¥çœŸ','fujinoki.syoma@mail.tokyosystem.co.jp',MD5('0000'),'1');
 
 
 

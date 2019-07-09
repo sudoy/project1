@@ -11,99 +11,99 @@ CREATE table sales(
 
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','1','22','‚ ‚¯‚Ú‚ÌwV’†‰ØŠX ‚ ‚¨‚èàu‚ß‚ÌÄ“Øàu”Ñx 450gX12‘Ü','4500','10');
+values('2019-06-01','1','22','ã‚ã‘ã¼ã®ã€æ–°ä¸­è¯è¡— ã‚ãŠã‚Šç‚’ã‚ã®ç„¼è±šç‚’é£¯ã€ 450gX12è¢‹','4500','10');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','1','22','‹Æ–±—p ƒjƒbƒXƒC ‚¦‚Ñ ƒtƒŠƒbƒ^[‘å 1kg —â“€H•i ƒGƒr ‚Ì ƒtƒŠƒbƒ^[','3417','15');
+values('2019-06-01','1','22','æ¥­å‹™ç”¨ ãƒ‹ãƒƒã‚¹ã‚¤ ãˆã³ ãƒ•ãƒªãƒƒã‚¿ãƒ¼å¤§ 1kg å†·å‡é£Ÿå“ ã‚¨ãƒ“ ã® ãƒ•ãƒªãƒƒã‚¿ãƒ¼','3417','15');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','1','22','“V‚Õ‚ç —â“€H•iyƒIƒNƒ‰“÷‹l‚ß“V 50ŒÂ“ü‚èz‹Æ–±—p ‘yØ','2700','1000');
-
-
-
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','2','7','–¾¡‰® ƒˆ–I–¨ g‚¢‚«‚èƒ^ƒCƒv (15g~5–{)~48ŒÂ','10143','5');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','2','7','Š”®‰ïĞƒ_ƒCƒVƒ‡[ ƒ_ƒCƒVƒ‡[ ‚Ì‚İ‚â‚·‚¢‘å”á—t“üÂ`4TŠÔ84g~10ŒÂ','8684','1');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','2','7','‘‘¾˜O SIPƒ}ƒe’ƒOŠpTB 20P~12ŒÂ','3159','10');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','2','7','X‰i ŠÃğ<‚µ‚å‚¤‚ª> 190g~30–{','3137','2');
-
-
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','3','3','“ú´ ƒJƒbƒvƒk[ƒhƒ‹ ƒV[ƒt[ƒhƒk[ƒhƒ‹ 75g~20ŒÂ','2664','150');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-01','3','3','‚»‚Î‚ÌÀi–kŠC“¹Yj/1kg TOMIZ/cuoca(•xàV¤“X)','2200','4');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-03','3','3','ƒRƒRƒAƒpƒEƒ_[iƒIƒ‰ƒ“ƒ_Y—L–¼ƒuƒ‰ƒ“ƒhg—pj / 500g TOMIZ/cuoca(•xàV¤“X)','1361','105');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-03','3','3','t‚æ—ö / 3kg TOMIZ/cuoca(•xàV¤“X) ','1318','51');
-
-
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-03','4','9','ƒTƒ“ƒgƒŠ[Šp•r‚T‚k‹Æ–±—p‚S–{“ü‚è‚PƒP[ƒX','31980','1');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-03','4','9','”Ä’‘ ˆê”ÔD 25“x 1800ml','1820','14');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-03','4','9','The Essence ƒVƒ“ƒOƒ‹ƒ‚ƒ‹ƒgƒEƒCƒXƒL[ Rèö—­Š ƒs[ƒeƒbƒhƒ‚ƒ‹ƒg 500ml','75000','3');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-04','4','9','ŒÃ®—L‹@Œ´ğ ‚ÈT‚± –{ŠiˆğÄ’‘ 37“x ê—p–Ø” •t‚« 1800ml~4–{','95740','1');
+values('2019-06-01','1','22','å¤©ã·ã‚‰ å†·å‡é£Ÿå“ã€ã‚ªã‚¯ãƒ©è‚‰è©°ã‚å¤© 50å€‹å…¥ã‚Šã€‘æ¥­å‹™ç”¨ æƒ£èœ','2700','1000');
 
 
 
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','5','10','’†“ú–{•X“œ ”’ƒ}[ƒN ƒƒbƒNA 1kg','409','500');
+values('2019-06-01','2','7','æ˜æ²»å±‹ ç´”ç²‹èœ‚èœœ ä½¿ã„ãã‚Šã‚¿ã‚¤ãƒ— (15gÃ—5æœ¬)Ã—48å€‹','10143','5');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','5','10','’†“ú–{•X“œ ‘YŒ´—¿ ƒƒbƒN 1kg','537','21');
+values('2019-06-01','2','7','æ ªå¼ä¼šç¤¾ãƒ€ã‚¤ã‚·ãƒ§ãƒ¼ ãƒ€ã‚¤ã‚·ãƒ§ãƒ¼ ã®ã¿ã‚„ã™ã„å¤§éº¦è‹¥è‘‰å…¥é’æ±4é€±é–“84gÃ—10å€‹','8684','1');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','5','10','ƒAƒEƒŠ[ƒm ƒAƒCƒXƒNƒŠ[ƒ€ ƒoƒjƒ‰ 8ŒÂ“ü‚è','3129','10');
+values('2019-06-01','2','7','å›½å¤ªæ¥¼ SIPãƒãƒ†èŒ¶ä¸‰è§’TB 20PÃ—12å€‹','3159','10');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','5','10','ƒRƒGƒ“ƒUƒCƒ€Q10”z‡ƒmƒ“ƒVƒ…ƒK[’áƒJƒƒŠ[ƒAƒCƒXuƒLƒ…[ƒgv8ŒÂƒZƒbƒg','3860','10');
-
-
-
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','6','10','‘ål‚Ì‚Ğ‚Æ‚Æ‚«ƒŒƒfƒB[ƒ{[ƒfƒ“ƒ`ƒ‡ƒRƒiƒbƒcƒo[ 80ml','96','1200');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','6','10','‘ål‚Ì‚Ğ‚Æ‚Æ‚«ƒŒƒfƒB[ƒ{[ƒfƒ“ƒXƒgƒƒxƒŠ[ƒo[ 80ml','96','900');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','6','10','ƒ\ƒt ƒoƒjƒ‰ Ôé“û‹Æ','91','1250');
-
-INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','6','10',']èƒOƒŠƒR y“œ¿50% ƒIƒt¦z ƒXƒiƒI SUNAO ƒ`ƒ‡ƒRƒNƒ‰ƒ“ƒ`','137','12');
-
-
+values('2019-06-01','2','7','æ£®æ°¸ ç”˜é…’<ã—ã‚‡ã†ãŒ> 190gÃ—30æœ¬','3137','2');
 
 
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','7','1','‚©‚É•—–¡‚©‚Ü‚Ú‚± 15–{~3” ƒZƒbƒg','4290','42');
+values('2019-06-01','3','3','æ—¥æ¸… ã‚«ãƒƒãƒ—ãƒŒãƒ¼ãƒ‰ãƒ« ã‚·ãƒ¼ãƒ•ãƒ¼ãƒ‰ãƒŒãƒ¼ãƒ‰ãƒ« 75gÃ—20å€‹','2664','150');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','7','1','•l‰Y…Y ‚Ù‚½‚é‚¢‚©‘fŠ± 45”ö~2‘Ü','2160','21');
+values('2019-06-01','3','3','ãã°ã®å®Ÿï¼ˆåŒ—æµ·é“ç”£ï¼‰/1kg TOMIZ/cuoca(å¯Œæ¾¤å•†åº—)','2200','4');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','7','1','y¬j…Yz“Á‘å–³“ª ŠJ‚«ÈƒzƒbƒP 5–‡','2750','582');
+values('2019-06-03','3','3','ã‚³ã‚³ã‚¢ãƒ‘ã‚¦ãƒ€ãƒ¼ï¼ˆã‚ªãƒ©ãƒ³ãƒ€ç”£æœ‰åãƒ–ãƒ©ãƒ³ãƒ‰ä½¿ç”¨ï¼‰ / 500g TOMIZ/cuoca(å¯Œæ¾¤å•†åº—)','1361','105');
 
 INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
-values('2019-06-05','7','1','ìŒû…Y “Á‘å‘Y ‚¤‚È‚¬ ‚ÌŠ—Ä‚«i170gj5”öƒZƒbƒgiƒ^ƒŒAR£•t‚«)','16600','231');
+values('2019-06-03','3','3','æ˜¥ã‚ˆæ‹ / 3kg TOMIZ/cuoca(å¯Œæ¾¤å•†åº—) ','1318','51');
+
+
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-03','4','9','ã‚µãƒ³ãƒˆãƒªãƒ¼è§’ç“¶ï¼•ï¼¬æ¥­å‹™ç”¨ï¼”æœ¬å…¥ã‚Šï¼‘ã‚±ãƒ¼ã‚¹','31980','1');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-03','4','9','éº¦ç„¼é… ä¸€ç•ªæœ­ 25åº¦ 1800ml','1820','14');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-03','4','9','The Essence ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ«ãƒˆã‚¦ã‚¤ã‚¹ã‚­ãƒ¼ å±±å´è’¸æºœæ‰€ ãƒ”ãƒ¼ãƒ†ãƒƒãƒ‰ãƒ¢ãƒ«ãƒˆ 500ml','75000','3');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-04','4','9','å¤å¼æœ‰æ©ŸåŸé…’ ãªã‚ã“ æœ¬æ ¼èŠ‹ç„¼é… 37åº¦ å°‚ç”¨æœ¨ç®±ä»˜ã 1800mlÃ—4æœ¬','95740','1');
+
+
+
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','5','10','ä¸­æ—¥æœ¬æ°·ç³– ç™½ãƒãƒ¼ã‚¯ ãƒ­ãƒƒã‚¯A 1kg','409','500');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','5','10','ä¸­æ—¥æœ¬æ°·ç³– å›½ç”£åŸæ–™ ãƒ­ãƒƒã‚¯ 1kg','537','21');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','5','10','ã‚¢ã‚¦ãƒªãƒ¼ãƒ ã‚¢ã‚¤ã‚¹ã‚¯ãƒªãƒ¼ãƒ  ãƒãƒ‹ãƒ© 8å€‹å…¥ã‚Š','3129','10');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','5','10','ã‚³ã‚¨ãƒ³ã‚¶ã‚¤ãƒ Q10é…åˆãƒãƒ³ã‚·ãƒ¥ã‚¬ãƒ¼ä½ã‚«ãƒ­ãƒªãƒ¼ã‚¢ã‚¤ã‚¹ã€Œã‚­ãƒ¥ãƒ¼ãƒˆã€8å€‹ã‚»ãƒƒãƒˆ','3860','10');
+
+
+
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','6','10','å¤§äººã®ã²ã¨ã¨ããƒ¬ãƒ‡ã‚£ãƒ¼ãƒœãƒ¼ãƒ‡ãƒ³ãƒãƒ§ã‚³ãƒŠãƒƒãƒ„ãƒãƒ¼ 80ml','96','1200');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','6','10','å¤§äººã®ã²ã¨ã¨ããƒ¬ãƒ‡ã‚£ãƒ¼ãƒœãƒ¼ãƒ‡ãƒ³ã‚¹ãƒˆãƒ­ãƒ™ãƒªãƒ¼ãƒãƒ¼ 80ml','96','900');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','6','10','ã‚½ãƒ• ãƒãƒ‹ãƒ© èµ¤åŸä¹³æ¥­','91','1250');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','6','10','æ±Ÿå´ã‚°ãƒªã‚³ ã€ç³–è³ª50% ã‚ªãƒ•â€»ã€‘ ã‚¹ãƒŠã‚ª SUNAO ãƒãƒ§ã‚³ã‚¯ãƒ©ãƒ³ãƒ','137','12');
+
+
+
+
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','7','1','ã‹ã«é¢¨å‘³ã‹ã¾ã¼ã“ 15æœ¬Ã—3ç®±ã‚»ãƒƒãƒˆ','4290','42');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','7','1','æµœæµ¦æ°´ç”£ ã»ãŸã‚‹ã„ã‹ç´ å¹² 45å°¾Ã—2è¢‹','2160','21');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','7','1','ã€å°é‡æ°´ç”£ã€‘ç‰¹å¤§ç„¡é ­ é–‹ãç¸ãƒ›ãƒƒã‚± 5æš','2750','582');
+
+INSERT into sales(sale_date,account_id,category_id,trade_name,unit_price,sale_number) 
+values('2019-06-05','7','1','å·å£æ°´ç”£ ç‰¹å¤§å›½ç”£ ã†ãªã ã®è’²ç„¼ãï¼ˆ170gï¼‰5å°¾ã‚»ãƒƒãƒˆï¼ˆã‚¿ãƒ¬ã€å±±æ¤’ä»˜ã)','16600','231');

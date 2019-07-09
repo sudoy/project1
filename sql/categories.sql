@@ -6,67 +6,67 @@ CREATE table categories(
 
 
 INSERT into categories(category_name,active_flg) 
-values('…YE’{YE”_Y‰ÁH•i','1');
+values('æ°´ç”£ãƒ»ç•œç”£ãƒ»è¾²ç”£åŠ å·¥å“','1');
 
 INSERT into categories(category_name,active_flg) 
-values('¶‘NEƒ`ƒ‹ƒhE—â“€H•i','1');
+values('ç”Ÿé®®ãƒ»ãƒãƒ«ãƒ‰ãƒ»å†·å‡é£Ÿå“','1');
 
 INSERT into categories(category_name,active_flg) 
-values('“û–û»•iE’²–¡—¿E’²–¡H•i','1');
+values('ä¹³æ²¹è£½å“ãƒ»èª¿å‘³æ–™ãƒ»èª¿å‘³é£Ÿå“','1');
 
 INSERT into categories(category_name,active_flg) 
-values('–Ë—Ş','1');
+values('éººé¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('ƒX[ƒv—Ş','1');
+values('ã‚¹ãƒ¼ãƒ—é¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('‰Ùq—Ş','1');
+values('è“å­é¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('šnDˆù—¿','1');
+values('å—œå¥½é£²æ–™','1');
 
 INSERT into categories(category_name,active_flg) 
-values('ˆù—¿','1');
+values('é£²æ–™','1');
 
 INSERT into categories(category_name,active_flg) 
-values('ğ—Ş','1');
+values('é…’é¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('•XEƒAƒCƒXƒNƒŠ[ƒ€—Ş','1');
+values('æ°·ãƒ»ã‚¢ã‚¤ã‚¹ã‚¯ãƒªãƒ¼ãƒ é¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('ƒfƒU[ƒg—Ş','1');
+values('ãƒ‡ã‚¶ãƒ¼ãƒˆé¡','1');
 
 INSERT into categories(category_name,active_flg) 
-values('Œ’NƒTƒ|[ƒg','1');
+values('å¥åº·ã‚µãƒãƒ¼ãƒˆ','1');
 
 INSERT into categories(category_name,active_flg) 
-values('‰»Ï•i','1');
+values('åŒ–ç²§å“','1');
 
 INSERT into categories(category_name,active_flg) 
-values('ƒgƒCƒŒƒ^ƒŠ[','1');
+values('ãƒˆã‚¤ãƒ¬ã‚¿ãƒªãƒ¼','1');
 
 INSERT into categories(category_name,active_flg) 
-values('•¶‹ïE•§‹ïEG‰İ','1');
+values('æ–‡å…·ãƒ»ä»å…·ãƒ»é›‘è²¨','1');
 
 INSERT into categories(category_name,active_flg) 
-values('‚½‚Î‚±','1');
+values('ãŸã°ã“','1');
 
 INSERT into categories(category_name,active_flg) 
-values('…Y','0');
+values('æ°´ç”£','0');
 
 INSERT into categories(category_name,active_flg) 
-values('’{Y','0');
+values('ç•œç”£','0');
 
 INSERT into categories(category_name,active_flg) 
-values('”_Y‰ÁH•i','0');
+values('è¾²ç”£åŠ å·¥å“','0');
 
 INSERT into categories(category_name,active_flg) 
-values('¶‘N','0');
+values('ç”Ÿé®®','0');
 
 INSERT into categories(category_name,active_flg) 
-values('ƒ`ƒ‹ƒh','0');
+values('ãƒãƒ«ãƒ‰','0');
 
 INSERT into categories(category_name,active_flg) 
-values('—â“€H•i','0');
+values('å†·å‡é£Ÿå“','0');
