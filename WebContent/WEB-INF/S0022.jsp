@@ -4,6 +4,7 @@
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
 	<jsp:param name="page" value="売上詳細表示" />
+	<jsp:param name="current" value="売上検索" />
 </jsp:include>
 
 <!-- 売上登録システム表示 -->
