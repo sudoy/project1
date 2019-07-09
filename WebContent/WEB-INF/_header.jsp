@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,6 +13,7 @@
 <body>
 
 <!--ヘッダー-->
+<c:if test="${not empty account}">
 <nav class="navbar navbar-default">
 	<div class="container-field">
 
@@ -47,4 +49,5 @@
 
 		</div><!--div class="collapse navbar-collapse"-->
 	</div>
-</nav><!--ヘッダーここまで-->
+</nav>
+</c:if><!--ヘッダーここまで-->
