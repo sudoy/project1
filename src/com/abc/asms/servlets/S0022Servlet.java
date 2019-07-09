@@ -1,8 +1,6 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +19,8 @@ public class S0022Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//ログインチェック
-		HttpSession session = req.getSession();
-		if(session.getAttribute("account") == null) {
-			List<String> error = new ArrayList<String>();
-			error.add("ログインして下さい。");
-			session.setAttribute("error", error);
-			resp.sendRedirect("C0010.html");
-			return;
-		}
-
 		//権限チェック 売上登録権限があるかどうか
+		HttpSession session = req.getSession();
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority == 1 || salesAuthority == 11) {
