@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.abc.asms.forms.AccountForm;
+import com.abc.asms.services.C0010Service;
+
 @WebServlet("/C0010.html")
 public class C0010Servlet extends HttpServlet {
 @Override
@@ -20,12 +23,25 @@ public class C0010Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mail = req.getParameter("mail");
 		String password = req.getParameter("password");
+
 		List<String> error = validate(mail, password);
 		if(0<error.size()) {
 			req.setAttribute("error",error);
 			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
 			return;
 		}
+
+		C0010Service c10s = new C0010Service();
+		AccountForm account =c10s.checkDB(mail, password);
+
+		// 名前が空白なら該当データ無し→エラー
+		if(account.getName().equals("")) {
+			error.add("メールアドレス、パスワードを正しく入力して下さい。");
+			req.setAttribute("error",error);
+			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
+			return;
+		}
+		resp.sendRedirect("C0020.html");
 	}
 	private List<String> validate(String mail,String password) {
 		List<String> error = new ArrayList<>();
