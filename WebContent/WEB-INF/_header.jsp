@@ -34,7 +34,7 @@
 		<!--リンク-->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-			<!--押した場所にclass="active"をつける--><%--表示中の機能？を<jsp:param>で--%>
+			<%--押した場所にclass="active"をつける→表示中の機能？を<jsp:param>で--%>
 			<ul class="nav navbar-nav">
 				<li ${HTMLUtils.createHeaderClass('ダッシュボード',param.current)}><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
 				<li ${HTMLUtils.createHeaderClass('売上登録',param.current)}><a href="S0010.html">売上登録</a></li>
