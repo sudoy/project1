@@ -17,6 +17,7 @@ public class S0022Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		//List<String> error = new ArrayList<String>();
 		//ログインチェック エラーで遷移
 
 		//権限チェック setAする
@@ -25,9 +26,16 @@ public class S0022Servlet extends HttpServlet {
 
 		//id取得(idが空だったらエラーで戻る?）
 		String saleId = req.getParameter("saleId");
+		saleId = "11";
+//		if(saleId.equals("")) {
+//			error.add("エラー");
+//			resp.sendRedirect("");
+//			return;
+//		}
 
 		//idからformを取得
 		S0022Form form = new S0022Service().findSaleDetail(saleId);
+		System.out.println(saleId);
 
 		//formをjspに渡す
 		req.setAttribute("form", form);
