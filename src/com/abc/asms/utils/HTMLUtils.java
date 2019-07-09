@@ -1,5 +1,7 @@
 package com.abc.asms.utils;
 
+import java.time.LocalDate;
+
 public class HTMLUtils {
 
 
@@ -7,7 +9,11 @@ public class HTMLUtils {
 
 		String date = saleDate;
 		if(saleDate != null) {
-			date = saleDate.replace("-", "/");
+			LocalDate ld = LocalDate.parse(date);
+			int year = ld.getYear();
+			int month = ld.getMonthValue();
+			int day = ld.getDayOfMonth();
+			date = year + "/" + month + "/" + day;
 		}
 
 		return date;
