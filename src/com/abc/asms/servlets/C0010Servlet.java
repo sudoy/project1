@@ -22,7 +22,6 @@ public class C0010Servlet extends HttpServlet {
 		String password = req.getParameter("password");
 		List<String> error = validate(mail, password);
 		if(0<error.size()) {
-			System.out.println("a");
 			req.setAttribute("error",error);
 			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
 			return;
@@ -30,14 +29,14 @@ public class C0010Servlet extends HttpServlet {
 	}
 	private List<String> validate(String mail,String password) {
 		List<String> error = new ArrayList<>();
-		if(mail==null) {
+		if(mail==null||mail.equals("")) {
 			error.add("メールアドレスを入力して下さい。");
 		}else if(100<mail.length()){
 			error.add("メールアドレスが長すぎます。");
 		}else if(!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")){
 			error.add("メールアドレスを正しく入力して下さい。");
 		}
-		if(password==null) {
+		if(password==null||password.equals("")) {
 			error.add("パスワードが未入力です。");
 		}else if(30<password.length()){
 			error.add("パスワードが長すぎます。");
