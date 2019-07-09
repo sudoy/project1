@@ -5,7 +5,7 @@
 <jsp:include page="_header.jsp"><jsp:param name="page" value="" /></jsp:include>
 
 <!-- メッセージ -->
-<jsp:include page="_header.jsp" />
+<jsp:include page="_message.jsp" />
 
 
 <!--フッター-->
