@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.SaleConditionalForm;
 import com.abc.asms.services.S0020Service;
 
 @WebServlet("/S0020.html")
@@ -53,10 +54,11 @@ public class S0020Servlet extends HttpServlet {
 		List<String> error = validate(date);
 		if(error.size()==0) {
 			// エラーがない時
-
-			int length = S20S.checkListSize(date, accountId, categoryId, tradeName, note);
+			SaleConditionalForm scf = new SaleConditionalForm(date, accountId, categoryId, tradeName, note);
+			int length = S20S.checkListSize(scf);
 			if(length!=0) {
 				// 該当データが存在しているとき
+				session.setAttribute("SaleConditional", scf);
 				resp.sendRedirect("S0021.html"); // 検索一覧へ
 				return;
 			}else {

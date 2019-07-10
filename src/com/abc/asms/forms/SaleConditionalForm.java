@@ -1,12 +1,13 @@
 package com.abc.asms.forms;
 
-public class S0020Form {
+public class SaleConditionalForm {
 	String[] date;
 	String accountId;
 	String[] categoryId;
 	String tradeName;
 	String note;
-	public S0020Form(String[] date, String accountId, String[] categoryId, String tradeName, String note) {
+
+	public SaleConditionalForm(String[] date, String accountId, String[] categoryId, String tradeName, String note) {
 		super();
 		this.date = date;
 		this.accountId = accountId;
@@ -14,6 +15,7 @@ public class S0020Form {
 		this.tradeName = tradeName;
 		this.note = note;
 	}
+
 	public String[] getDate() {
 		return date;
 	}

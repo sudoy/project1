@@ -4,83 +4,53 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 
+import com.abc.asms.forms.S0021Form;
 import com.abc.asms.forms.SaleConditionalForm;
 import com.abc.asms.utils.DBUtils;
 
-public class S0020Service {
+public class S0021Service {
 
-	public Map<Integer, String> getMap(String idName,String getName,String tableName) throws ServletException {
-
+	public List<S0021Form> getDB(SaleConditionalForm scf) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		Map<Integer, String> map = new HashMap<Integer, String>();
-		try{
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//SQL
-			sql = "SELECT "+idName+","+getName+" FROM "+tableName+" ORDER BY ?";
-			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
-			ps.setString(1,idName);
-			rs = ps.executeQuery();
-
-			while(rs.next()) {
-				int id = rs.getInt(idName);
-				String name = rs.getString(getName);
-				map.put(id, name);
-			}
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return map;
-	}
-
-	public int checkListSize(SaleConditionalForm scf) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = null;
-		ResultSet rs = null;
-		int length = 0;
 		String[] date = scf.getDate();
 		String accountId = scf.getAccountId();
 		String[] categoryId = scf.getCategoryId();
 		String tradeName = scf.getTradeName();
 		String note = scf.getNote();
 		List<Object> holder = new ArrayList<>();
+		List<S0021Form> list = new ArrayList<>();
 		try{
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT count(sale_id) FROM sales where 1=1 ";
+			sql = "SELECT s.sale_id,s.sale_date"
+					+ ",(SELECT a.name FROM accounts a WHERE s.account_id = a.account_id) AS name"
+					+ ",(SELECT c.category_name FROM categories c WHERE s.category_id = c.category_id) AS category_name"
+					+ ",s.trade_name,s.unit_price,s.sale_number "
+					+ "FROM sales s WHERE 1=1 ";
 
 			if(!date[0].equals("")) {
-				sql += "AND sale_date >= ? ";
+				sql += "AND s.sale_date >= ? ";
 				holder.add(date[0]);
 			}
 			if(!date[1].equals("")) {
-				sql += "AND sale_date <= ? ";
+				sql += "AND s.sale_date <= ? ";
 				holder.add(date[1]);
 			}
 			if(accountId!=null&&!accountId.equals("")) {
-				sql += "AND account_id = ? ";
+				sql += "AND s.account_id = ? ";
 				holder.add(accountId);
 			}
 			if(categoryId!=null) {
-				sql += "AND category_id in(-1";
+				sql += "AND s.category_id in(-1";
 				for(String cId:categoryId) {
 					sql +=",?";
 					holder.add(cId);
@@ -88,11 +58,11 @@ public class S0020Service {
 				sql += ") ";
 			}
 			if(tradeName!=null&&!tradeName.equals("")) {
-				sql += "AND trade_name like ? ";
+				sql += "AND s.trade_name like ? ";
 				holder.add("%"+tradeName+"%");
 			}
 			if(note!=null&&!note.equals("")) {
-				sql += "AND note like ? ";
+				sql += "AND s.note like ? ";
 				holder.add("%"+note+"%");
 			}
 			//SELECT命令の準備・実行
@@ -102,14 +72,23 @@ public class S0020Service {
 			}
 			rs = ps.executeQuery();
 
-			rs.next();
-			length = rs.getInt("count(sale_id)");
+			while(rs.next()) {
+				int saleId = rs.getInt("s.sale_id");
+				String getDate = DBUtils.dateFormat(rs.getString("s.sale_date"));
+				String accountName = rs.getString("name");
+				String categoryName = rs.getString("category_name");
+				String getTtradeName = rs.getString("s.trade_name");
+				int unitPrice = rs.getInt("s.unit_price");
+				int saleNumber = rs.getInt("s.sale_number");
+				list.add(new S0021Form(saleId, getDate, accountName, categoryName, getTtradeName, unitPrice, saleNumber));
+			}
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			DBUtils.close(con, ps, rs);
 		}
-		return length;
+
+		return list;
 	}
 }

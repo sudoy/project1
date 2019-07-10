@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -77,6 +81,23 @@ public class DBUtils {
 				if(r != null){ r.close(); }
 			}catch(Exception e) {}
 		}
+	}
+	/**
+	 * sqlのDate型の文字列(yyyy-MM-dd)を文字列(yyyy/M/d)に変換するメソッドです
+	 * @param sqlDate sqlから出力されるDateの文字列
+	 * @return 問題がなければ(yyyy/M/d)の文字列
+	 */
+	public static String dateFormat(String sqlDate) {
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format2 = new SimpleDateFormat("yyyy/M/d");
+		format1.setLenient(false);
+		try {
+			Date date = format1.parse(sqlDate);
+			return format2.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return sqlDate; // ここに来たらエラーです。
 	}
 
 }
