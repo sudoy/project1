@@ -1,6 +1,7 @@
 package com.abc.asms.utils;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class HTMLUtils {
 
@@ -60,6 +61,22 @@ public class HTMLUtils {
 		}else {
 			return "checked";
 		}
-
+	}
+	/**
+	 * listの中身を正規表現で一致したら"errorMessage"を返す
+	 * 一致しなければ""(空文字)を返す。
+	 * @param error	 エラー文
+	 * @param matches 比較する正規表現
+	 * @return "errorMessage" 又は ""
+	 */
+	public static String errorMessage(List<String> error,String matches) {
+		if(error!=null&&0<error.size()) {
+			for(String text:error) {
+				if(text.matches(matches)) {
+					return "errorMessage";
+				}
+			}
+		}
+		return "";
 	}
 }
