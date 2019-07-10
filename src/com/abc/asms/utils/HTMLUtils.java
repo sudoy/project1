@@ -8,7 +8,7 @@ public class HTMLUtils {
 	public static String dateFormat(String saleDate) {
 
 		String date = saleDate;
-		if(saleDate != null) {
+		if(saleDate != null && !saleDate.isEmpty()) {
 			LocalDate ld = LocalDate.parse(date);
 			int year = ld.getYear();
 			int month = ld.getMonthValue();
