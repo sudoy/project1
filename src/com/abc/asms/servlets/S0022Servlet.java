@@ -30,7 +30,6 @@ public class S0022Servlet extends HttpServlet {
 
 		//id取得
 		String saleId = req.getParameter("saleId");
-		saleId = "1";
 
 		//idからformを取得
 		S0022Form form = new S0022Service().findSaleDetail(saleId);
