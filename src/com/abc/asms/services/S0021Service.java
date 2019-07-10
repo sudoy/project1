@@ -65,6 +65,7 @@ public class S0021Service {
 				sql += "AND s.note like ? ";
 				holder.add("%"+note+"%");
 			}
+			sql += "ORDER BY s.sale_id";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			for(int i = 0;i<holder.size();i++) {
