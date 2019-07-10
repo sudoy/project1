@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
 	<jsp:param name="page" value="売上条件検索" />
@@ -37,7 +38,7 @@
 						<select class="form-control" id="accountId" name="accountId">
 							<option value="">選択してください</option>
 <c:forEach var="account" items="${accountMap}">
-							<option value="${account.key}">${account.value}</option>
+							<option value="${account.key}" ${HTMLUtils.writeSelected(account.key,accountId)}>${account.value}</option>
 </c:forEach>
 						</select>
 					</div>
@@ -48,7 +49,7 @@
 					<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 					<div class="col-xs-5">
 <c:forEach var="category" items="${categoryMap}">
-							<label class="normal"><input type="checkbox" name="categoryId" value="${category.key}" checked="checked">${category.value}</label>&nbsp;
+							<label class="normal"><input type="checkbox" name="categoryId" value="${category.key}" ${HTMLUtils.writeChecked(category.key,categoryId)}>${category.value}</label>&nbsp;
 </c:forEach>
 					</div>
 				</div>
