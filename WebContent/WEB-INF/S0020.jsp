@@ -13,7 +13,7 @@
 
 <!-- 売上登録システム表示 -->
 		<div class="container">
-			<h1>売上登録</h1>
+			<h1>売上条件検索</h1>
 			<!-- form -->
 			<form class="form-horizontal" action="S0020.html" method="POST">
 
@@ -21,13 +21,15 @@
 				<div class="form-group">
 					<label class="col-xs-3 text-right control-label">販売日</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control errorMessage" id="startsaleDate" name="saleDate1" value="${saleDate1}">
+						<input type="text" class="form-control ${HTMLUtils.errorMessage(error,'開始日')}"
+						id="startsaleDate" name="saleDate1" value="${saleDate1}">
 					</div>
 					<div class="col-xs-1 text-center control-label">
 						～
 					</div>
 					<div class="col-xs-2">
-						<input type="text" class="form-control errorMessage" id="endsaleDate" name="saleDate2" value="${saleDate2}">
+						<input type="text" class="form-control ${HTMLUtils.errorMessage(error,'終了日')}"
+						id="endsaleDate" name="saleDate2" value="${saleDate2}">
 					</div>
 				</div>
 

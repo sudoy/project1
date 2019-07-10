@@ -86,7 +86,7 @@ public class S0020Servlet extends HttpServlet {
 		Date date1 = null ;
 		Date date2 = null;
 		if(date==null||date.length!=2) {
-			error.add("販売日の入力が間違っています");
+			error.add("入力形式が間違っています");
 		}else {
 			DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 			try {

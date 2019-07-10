@@ -63,16 +63,16 @@ public class HTMLUtils {
 		}
 	}
 	/**
-	 * listの中身を正規表現で一致したら"errorMessage"を返す
+	 * listの中身の文字列と検索文字列が一致したら"errorMessage"を返す
 	 * 一致しなければ""(空文字)を返す。
 	 * @param error	 エラー文
-	 * @param matches 比較する正規表現
+	 * @param matches 検索する文字列
 	 * @return "errorMessage" 又は ""
 	 */
 	public static String errorMessage(List<String> error,String matches) {
 		if(error!=null&&0<error.size()) {
 			for(String text:error) {
-				if(text.matches(matches)) {
+				if(text.indexOf(matches)!=-1) {
 					return "errorMessage";
 				}
 			}
