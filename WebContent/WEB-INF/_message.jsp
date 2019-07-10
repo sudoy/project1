@@ -12,16 +12,20 @@ error
 <c:if test="${!empty(success)}">
 			<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong> 成功しました！</strong><br>
+				<h4 class="margin-off"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					<strong> 成功しました！</strong><br>
+				</h4><br>
 				<c:forEach var="suc" items="${success}">
 					<li>${suc}</li>
 				</c:forEach>
 			</div>
 </c:if>
 <c:if test="${!empty(error)}">
-			<div class="alert alert-warning alert-dismissible" role="alert">
+			<div class="alert alert-danger alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong> エラーが発生しました！</strong><br>
+				<h4 class="margin-off"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<strong> エラーが発生しました！</strong>
+				</h4><br>
 				<ul>
 				<c:forEach var="err" items="${error}">
 					<li>${err}</li>

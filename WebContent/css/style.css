@@ -36,6 +36,9 @@
 .padding-off{
 	padding: 0;
 }
+.margin-off{
+	margin: 0;
+}
 
 .up-color{
 	color: green;
