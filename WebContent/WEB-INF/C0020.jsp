@@ -34,13 +34,29 @@
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>前月比</h5></div>
-			<div class="panel-body text-center up-color">
-				<c:if test="${1 <= ratio}">
-					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>120.00％
+
+				<c:if test="${1 <= (salemonth / salelastmonth) && salelastmonth != 0}">
+					<div class="panel-body text-center up-color">
+					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+					<fmt:formatNumber value="${salemonth / salelastmonth}" type="PERCENT" maxFractionDigits="2"/>
+					</div>
+				</c:if>
+
+				<c:if test="${(salemonth / salelastmonth) < 1}">
+					<div class="panel-body text-center down-color">
+					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+					<fmt:formatNumber value="${salemonth / salelastmonth}" type="PERCENT" maxFractionDigits="2"/>
+					</div>
+				</c:if>
+
+				<c:if test="${salelastmonth == 0 && 1 <= salemonth}">
+					<div class="panel-body text-center">
+					99999.99%
+					</div>
 				</c:if>
 
 				<!--前月比下がっているとき→ class="panel-body text-center down-color" class="glyphicon glyphicon-arrow-down"-->
-			</div>
+
 		</div>
 	</div>
 
@@ -64,23 +80,17 @@
 			</thead>
 			<tbody>
 
-			<c:forEach var="f" items="${findList}" varStatus="i">
+			<c:forEach var="f" items="${findList}">
 				<tr>
 
-					<td>${i.count}</td>
+					<td>${f.saleId}</td>
 					<td>${f.saleDate}</td>
 					<td>${f.categoryName}</td>
 					<td>${f.tradeName}</td>
 
-					<c:set var="unitPrice" value="${f.unitPrice}" />
-					<td><fmt:formatNumber value="${unitPrice}" pattern="#,##0"/></td>
-
-					<c:set var="saleNumber" value="${f.saleNumber}" />
-					<td><fmt:formatNumber value="${saleNumber}" pattern="#,##0"/></td>
-
-					<c:set var="subtotal" value="${f.subtotal}" />
-					<td><fmt:formatNumber value="${subtotal}" pattern="#,##0"/></td>
-
+					<td><fmt:formatNumber value="${f.unitPrice}" pattern="#,##0"/></td>
+					<td><fmt:formatNumber value="${f.saleNumber}" pattern="#,##0"/></td>
+					<td><fmt:formatNumber value="${f.subtotal}" pattern="#,##0"/></td>
 
 				</tr>
 			</c:forEach>
@@ -88,7 +98,6 @@
 				<tr>
 					<td colspan="5"></td>
 					<th>合計</th>
-					<c:set var="total" value="${total}" />
 					<td><fmt:formatNumber value="${total}" pattern="#,##0"/></td>
 				</tr>
 			</tbody>

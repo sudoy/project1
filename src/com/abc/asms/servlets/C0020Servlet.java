@@ -2,6 +2,8 @@ package com.abc.asms.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.AccountForm;
+import com.abc.asms.forms.C0020Form;
+import com.abc.asms.services.C0020Service;
+
 
 @WebServlet("/C0020.html")
 public class C0020Servlet extends HttpServlet {
@@ -17,47 +23,46 @@ public class C0020Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		//ログインしたメールアドレスをsessionで取得
+		//ログインした情報からidを取得
 		HttpSession session = req.getSession();
+		AccountForm account = (AccountForm) session.getAttribute("account");
+		int accountId = account.getAccountId();
 
-		//日付情報を取得
+		//今日と先月の同じ日を取得
 		LocalDate date = LocalDate.now();
-		LocalDate lastmonth = date.minusMonths(1);
+		LocalDate beforedate = date.minusMonths(1);
 
-//		Connection con = null;
-//		PreparedStatement ps = null;
-//		String sql = null;
-//		ResultSet rs = null;
-//		try{
-//
-//			//DBと接続する
-//			con = com.abc.asms.utils.DBUtils.getConnection();
-//			sql = "SELECT id,name,detail,priority,timelimit FROM asms ORDER BY id";
-//			ps = con.prepareStatement(sql);
-//			rs = ps.executeQuery();
-//
-//
-//
-//			//DBの値の取り出し
-//			while(rs.next()){
-//				String id = rs.getString("id");
-//
-//
-//				//DBの値をセットする
-//
-//			}
-//
-//			//値をServletに送信
-//
-//
-//		}catch(Exception e){
-//			throw new ServletException(e);
-//		}finally{
-//			try{
-//				com.abc.asms.utils.DBUtils.close(con, ps, rs);
-//			}catch (Exception e){}
-//
-//		}
+
+		//jspへ送る変数とServiceを用意
+		List<C0020Form> findList = new ArrayList<>();
+		C0020Service service = new C0020Service();
+
+
+		//今月と先月(数字)
+		int monthval = date.getMonthValue();
+		int lastmonthval = beforedate.getMonthValue();
+
+
+		//今月と先月の全体売り上げ
+		int salemonth = service.findAllsale(date);
+		int salelastmonth = service.findAllsale(beforedate);
+
+
+		//個人の売り上げ合計
+		int total = service.findSale(accountId, date);
+
+
+		//個人の売上リスト
+		findList = service.find(accountId, date);
+
+
+		req.setAttribute("lastmonthval", lastmonthval);
+		req.setAttribute("monthval", monthval);
+		req.setAttribute("account", account);
+		req.setAttribute("salemonth", salemonth);
+		req.setAttribute("salelastmonth", salelastmonth);
+		req.setAttribute("findList", findList);
+		req.setAttribute("total", total);
 
 
 		getServletContext().getRequestDispatcher("/WEB-INF/C0020.jsp").forward(req, resp);
