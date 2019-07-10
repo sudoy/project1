@@ -21,13 +21,13 @@
 				<div class="form-group">
 					<label class="col-xs-3 text-right control-label">販売日</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="startsaleDate" name="saleDate1" value="${saleDate1}">
+						<input type="text" class="form-control errorMessage" id="startsaleDate" name="saleDate1" value="${saleDate1}">
 					</div>
 					<div class="col-xs-1 text-center control-label">
 						～
 					</div>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="endsaleDate" name="saleDate2" value="${saleDate2}">
+						<input type="text" class="form-control errorMessage" id="endsaleDate" name="saleDate2" value="${saleDate2}">
 					</div>
 				</div>
 
