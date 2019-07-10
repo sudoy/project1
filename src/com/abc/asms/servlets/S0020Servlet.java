@@ -21,13 +21,20 @@ public class S0020Servlet extends HttpServlet {
 @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	S0020Service S20S = new S0020Service();
+
+	// 現在の日時の取得と設定
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy'/'M'/'d");
 	req.setAttribute("saleDate1",sdf.format(date));
 	req.setAttribute("saleDate2",sdf.format(date));
+
+	// 担当の取得と設定
 	req.setAttribute("accountMap", S20S.getMap("account_id","name","accounts"));
+
+	// カテゴリの取得と設定
 	req.setAttribute("categoryMap", S20S.getMap("category_id","category_name","categories"));
 	getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
+
 	HttpSession session =req.getSession();
 	session.setAttribute("error", "");
 	}
@@ -35,44 +42,41 @@ public class S0020Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String date1 = req.getParameter("saleDate1");
-		req.setAttribute("saleDate1",date1);
 		String date2 = req.getParameter("saleDate2");
-		req.setAttribute("saleDate2",date2);
 		String[] date = {date1,date2};
 		String accountId = req.getParameter("accountId");
-		req.setAttribute("accountId",accountId);
 		String categoryId[] = req.getParameterValues("categoryId");
-		req.setAttribute("categoryId",categoryId);
 		String tradeName = req.getParameter("tradeName");
-		req.setAttribute("tradeName",tradeName);
 		String note = req.getParameter("note");
-		req.setAttribute("note",note);
 		S0020Service S20S = new S0020Service();
-		req.setAttribute("accountMap", S20S.getMap("account_id","name","accounts"));
-		req.setAttribute("categoryMap", S20S.getMap("category_id","category_name","categories"));
 		// 入力チェック
 		List<String> error = validate(date);
-		if(0<error.size()) {
-			session.setAttribute("error",error);
-			getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
-			session.setAttribute("error", "");
-			return;
+		if(error.size()==0) {
+			// エラーがない時
+
+			int length = S20S.checkListSize(date, accountId, categoryId, tradeName, note);
+			if(length!=0) {
+				// 該当データが存在しているとき
+				resp.sendRedirect("S0021.html"); // 検索一覧へ
+				return;
+			}else {
+				// 該当データが存在していないとき
+				error.add("検索結果はありません。");
+			}
 		}
+		//エラー時処理 入力を返す
+		req.setAttribute("saleDate1",date1);
+		req.setAttribute("saleDate2",date2);
+		req.setAttribute("accountId",accountId);
+		req.setAttribute("categoryId",categoryId);
+		req.setAttribute("tradeName",tradeName);
+		req.setAttribute("note",note);
+		req.setAttribute("accountMap", S20S.getMap("account_id","name","accounts"));
+		req.setAttribute("categoryMap", S20S.getMap("category_id","category_name","categories"));
+		session.setAttribute("error",error);
 
-		int length = S20S.checkListSize(date, accountId, categoryId, tradeName, note);
-
-
-
-		// lengthが0なら該当データ無し→エラー
-		if(length==0) {
-			error.add("検索結果はありません。");
-			session.setAttribute("error",error);
-			getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
-			session.setAttribute("error", "");
-			return;
-		}
-
-		resp.sendRedirect("S0021.html");
+		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
+		session.setAttribute("error", "");
 	}
 
 	private List<String> validate(String[] date) {
