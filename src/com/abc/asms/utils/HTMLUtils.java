@@ -4,18 +4,19 @@ import java.time.LocalDate;
 
 public class HTMLUtils {
 
-
+	//日付をyyyy/m/d形式にする。日付ではない場合そのまま返す。
 	public static String dateFormat(String saleDate) {
 
 		String date = saleDate;
 		if(saleDate != null && !saleDate.isEmpty()) {
-			LocalDate ld = LocalDate.parse(date);
-			int year = ld.getYear();
-			int month = ld.getMonthValue();
-			int day = ld.getDayOfMonth();
-			date = year + "/" + month + "/" + day;
+			try {
+				LocalDate ld = LocalDate.parse(date);
+				int year = ld.getYear();
+				int month = ld.getMonthValue();
+				int day = ld.getDayOfMonth();
+				date = year + "/" + month + "/" + day;
+			} catch (Exception e) {}
 		}
-
 		return date;
 	}
 
