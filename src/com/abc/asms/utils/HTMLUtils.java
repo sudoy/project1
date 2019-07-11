@@ -96,7 +96,14 @@ public class HTMLUtils {
 		}
 		return "";
 	}
-
+	/**
+	 * Authorityのcheck属性の設定メソッドです
+	 * @param now 現在のinputタグの値(all,no,yes)
+	 * @param authority saleAuthority又はaccountAuthorityのパラメータ値
+	 * @return authorityとnowが一致した時 か、<br>
+	 * nowがallかつauthrityが指定以外の値の時(初期と例外時)<br>
+	 * "checked"の出力、それ以外は空文字
+	 */
 	public static String checkedAuthority(String now,String authority){
 		if (authority==null) {authority="";}
 		if(authority.equals(now)) {
