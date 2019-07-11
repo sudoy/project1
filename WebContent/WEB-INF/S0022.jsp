@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.abc.asms.utils.HTMLUtils" %>
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -51,7 +52,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">単価</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">${form.unitPrice}</label>
+				<label class="text-right textdown normal"><fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/></label>
 			</div>
 		</div>
 
@@ -59,7 +60,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">個数</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">${form.saleNumber}</label>
+				<label class="text-right textdown normal"><fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/></label>
 			</div>
 		</div>
 
@@ -67,7 +68,9 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">小計</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal">${form.unitPrice * form.saleNumber}</label>
+				<label class="text-right textdown normal">
+					<fmt:formatNumber value="${form.unitPrice * form.saleNumber}" pattern="#,##0"/>
+				</label>
 			</div>
 		</div>
 

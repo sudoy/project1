@@ -21,13 +21,9 @@ public class S0023Service {
 	public S0023Form findSaleDetail(String saleId) throws ServletException {
 
 		Connection con = null;
-		PreparedStatement ps1 = null;
-		PreparedStatement ps2 = null;
-		PreparedStatement ps3 = null;
+		PreparedStatement ps = null;
 		String sql = null;
-		ResultSet rs1 = null;
-		ResultSet rs2 = null;
-		ResultSet rs3 = null;
+		ResultSet rs = null;
 		S0023Form form = null;
 
 		try{
@@ -39,55 +35,79 @@ public class S0023Service {
 					+ "FROM sales "
 					+ "WHERE sale_id = ?";
 			//SELECT命令の準備・実行
-			ps1 = con.prepareStatement(sql);
-			ps1.setString(1, saleId);
-			rs1 = ps1.executeQuery();
-			rs1.next();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, saleId);
+			rs = ps.executeQuery();
+			rs.next();
 
 			//update.jspに渡すform用意、値をセット
 			form = new S0023Form();
-			form.setSaleId(rs1.getString("sale_id"));
-			form.setSaleDate(rs1.getString("sale_date"));
-			form.setAccountId(rs1.getString("account_id"));
-			form.setCategoryId(rs1.getString("category_id"));
-			form.setTradeName(rs1.getString("trade_name"));
-			form.setUnitPrice(rs1.getString("unit_price"));
-			form.setSaleNumber(rs1.getString("sale_number"));
-			form.setNote(rs1.getString("note"));
+			form.setSaleId(rs.getString("sale_id"));
+			form.setSaleDate(rs.getString("sale_date"));
+			form.setAccountId(rs.getString("account_id"));
+			form.setCategoryId(rs.getString("category_id"));
+			form.setTradeName(rs.getString("trade_name"));
+			form.setUnitPrice(rs.getString("unit_price"));
+			form.setSaleNumber(rs.getString("sale_number"));
+			form.setNote(rs.getString("note"));
 
 			//SQL…アカウント名とidのリスト
-			sql = "SELECT account_id,name FROM accounts";
-			//SELECT命令の準備・実行
-			ps2 = con.prepareStatement(sql);
-			rs2 = ps2.executeQuery();
-			//Formにリストをセット
-			Map<String,String> accountList = new HashMap<>();
-			while(rs2.next()) {
-				accountList.put(rs2.getString("account_id"), rs2.getString("name"));
-			}
+			Map<String,String> accountList = getMap("account");
 			form.setAccountList(accountList);
 
 			//SQL…カテゴリー名とidのリスト
-			sql = "SELECT category_id,category_name FROM categories";
-			//SELECT命令の準備・実行
-			ps3 = con.prepareStatement(sql);
-			rs3 = ps3.executeQuery();
-			//Formにリストをセット
-			Map<String,String> categoryList = new HashMap<>();
-			while(rs3.next()) {
-				categoryList.put(rs3.getString("category_id"), rs3.getString("category_name"));
-			}
+			Map<String,String> categoryList = getMap("category");
 			form.setCategoryList(categoryList);
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			DBUtils.close(con, ps1, rs1);
-			DBUtils.close(ps2, rs2);
-			DBUtils.close(ps3, rs3);
+			DBUtils.close(con, ps, rs);
 		}
 
 		return form;
+	}
+
+	public Map<String,String> getMap(String mapName){
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		Map<String,String> map = new HashMap<>();
+		try {
+
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			if(mapName.equals("account")) {
+				//SQL…アカウント名とidのリスト
+				sql = "SELECT account_id,name FROM accounts";
+				//SELECT命令の準備・実行
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				//Map作成
+				while(rs.next()) {
+					map.put(rs.getString("account_id"), rs.getString("name"));
+				}
+			}else if(mapName.equals("category")) {
+				//SQL…カテゴリー名とidのリスト
+				sql = "SELECT category_id,category_name FROM categories";
+				//SELECT命令の準備・実行
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				//Map作成
+				while(rs.next()) {
+					map.put(rs.getString("category_id"), rs.getString("category_name"));
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+		return map;
 	}
 
 	public List<String> validation(S0023Form form){
@@ -111,9 +131,10 @@ public class S0023Service {
 			}else {
 				if(form.getSaleDate().matches("^[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}$")) {
 					try {
-						DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/M/d").withResolverStyle(ResolverStyle.STRICT);
+						DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu/M/d").withResolverStyle(ResolverStyle.STRICT);
 						LocalDate.parse(form.getSaleDate(),f);
 					} catch (Exception e) {
+						e.printStackTrace();
 						error.add("入力した日付が不正です。");
 					}
 				}else {
