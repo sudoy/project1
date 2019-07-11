@@ -22,16 +22,16 @@
 
 				<!-- 販売日 -->
 				<div class="form-group">
-					<label class="col-xs-3 text-right control-label">販売日</label>
+					<label class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'販売日')}">販売日</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control ${HTMLUtils.errorMessage(error,'開始日')}"
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'開始日')}"
 						id="startsaleDate" name="saleDate1" value="${saleDate1}">
 					</div>
 					<div class="col-xs-1 text-center control-label">
 						～
 					</div>
 					<div class="col-xs-2">
-						<input type="text" class="form-control ${HTMLUtils.errorMessage(error,'終了日')}"
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'終了日')}"
 						id="endsaleDate" name="saleDate2" value="${saleDate2}">
 					</div>
 				</div>

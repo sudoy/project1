@@ -26,31 +26,26 @@ public class C0010Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mail = req.getParameter("mail");
 		String password = req.getParameter("password");
-
+		HttpSession session = req.getSession();
 		// 入力チェック
 		List<String> error = validate(mail, password);
-		if(0<error.size()) {
-			req.setAttribute("error",error);
-			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
-			return;
-		}
-
-		C0010Service c10s = new C0010Service();
-		AccountForm account =c10s.checkDB(mail, password);
-		HttpSession session = req.getSession();
-
-		// 名前が空白なら該当データ無し→エラー
-		if(account.getName().equals("")) {
+		if(error.size()==0) {
+			C0010Service c10s = new C0010Service();
+			AccountForm account =c10s.checkDB(mail, password);
+			// 名前が空白なら該当データ無し→エラー
+			if(!account.getName().equals("")) {
+				// sessionにAccountFormを代入後ダッシュボードにリダイレクト
+				session.setAttribute("account", account);
+				resp.sendRedirect("C0020.html");
+				return;
+			}
 			error.add("メールアドレス、パスワードを正しく入力して下さい。");
-			req.setAttribute("error",error);
-			getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
-			session.invalidate();
-			return;
 		}
-
-		// sessionにAccountFormを代入後ダッシュボードにリダイレクト
-		session.setAttribute("account", account);
-		resp.sendRedirect("C0020.html");
+		req.setAttribute("mail", mail);
+		req.setAttribute("password", password);
+		session.setAttribute("error",error);
+		getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
+		session.invalidate();
 	}
 	/**
 	 * 入力チェックメソッド

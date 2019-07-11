@@ -24,10 +24,10 @@
 				</div>
 				<div class="col-md-4 col-md-offset-4 widthform">
 					<div class="form-group">
-						<input type="text" class="form-control ${HTMLUtils.errorMessage(error,'メールアドレス')}"
-						name="mail" placeholder="メールアドレス" value="">
-						<input type="password" class="form-control ${HTMLUtils.errorMessage(error,'パスワード')}"
-						name="password" placeholder="パスワード" value="">
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
+						name="mail" placeholder="メールアドレス" value="${mail}">
+						<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}"
+						name="password" placeholder="パスワード" value="${password}">
 						<button type="submit" class="btn btn-primary btn-lg btn-block topmargin">ログイン</button>
 						<a href="C00.html">パスワードを忘れた方はこちらから</a>
 					</div>
