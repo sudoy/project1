@@ -63,7 +63,11 @@ public class S0041Service {
 
 		return list;
 	}
-
+	/**
+	 * authorityの値を対応する文字列に変換するメソッド
+	 * @param authority [11,10,1,0]のいずれか
+	 * @return HTMLに出力される文字
+	 */
 	public String setAuthority(String authority) {
 		switch (authority) {
 		case "0":

@@ -51,22 +51,27 @@ public class S0020Servlet extends HttpServlet {
 		String tradeName = req.getParameter("tradeName");
 		String note = req.getParameter("note");
 		S0020Service S20S = new S0020Service();
+
 		// 入力チェック
 		List<String> error = validate(date);
 		if (error.size() == 0) {
+
 			// エラーがない時
 			SaleConditionalForm scf = new SaleConditionalForm(date, accountId, categoryId, tradeName, note);
 			int length = S20S.checkListSize(scf);
 			if (length != 0) {
+
 				// 該当データが存在しているとき
 				session.setAttribute("SaleConditional", scf);
 				resp.sendRedirect("S0021.html"); // 検索一覧へ
 				return;
 			} else {
+
 				// 該当データが存在していないとき
 				error.add("検索結果はありません。");
 			}
 		}
+
 		//エラー時処理 入力を返す
 		req.setAttribute("saleDate1", date1);
 		req.setAttribute("saleDate2", date2);

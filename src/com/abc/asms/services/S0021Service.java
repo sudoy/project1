@@ -27,6 +27,7 @@ public class S0021Service {
 		List<Object> holder = new ArrayList<>();
 		List<S0021Form> list = new ArrayList<>();
 		try {
+
 			//データベース接続
 			con = DBUtils.getConnection();
 
@@ -66,6 +67,7 @@ public class S0021Service {
 				holder.add("%" + note + "%");
 			}
 			sql += "ORDER BY s.sale_id";
+
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			for (int i = 0; i < holder.size(); i++) {

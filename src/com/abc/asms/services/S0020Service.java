@@ -61,6 +61,7 @@ public class S0020Service {
 		String note = scf.getNote();
 		List<Object> holder = new ArrayList<>();
 		try {
+
 			//データベース接続
 			con = DBUtils.getConnection();
 
@@ -95,6 +96,7 @@ public class S0020Service {
 				sql += "AND note like ? ";
 				holder.add("%" + note + "%");
 			}
+
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			for (int i = 0; i < holder.size(); i++) {

@@ -18,9 +18,13 @@ public class S0041Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		S0041Service S41S = new S0041Service();
 		HttpSession session = req.getSession();
+
+		// 検索条件のセッションが存在しているか
 		if (session.getAttribute("AccountConditional") == null) {
 			resp.sendRedirect("S0040.html");
+			return;
 		}
+
 		AccountConditionalForm acf = (AccountConditionalForm) session.getAttribute("AccountConditional");
 		req.setAttribute("list", S41S.getDB(acf));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0041.jsp").forward(req, resp);

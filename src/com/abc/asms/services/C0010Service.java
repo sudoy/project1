@@ -27,12 +27,13 @@ public class C0010Service extends HttpServlet {
 		String name = "";
 		int authority = -1;
 		AccountForm account = new AccountForm(-1, "", 0);
-		//DBに追加
 		try {
 			con = DBUtils.getConnection();
+
 			// select文
 			sql = "SELECT account_id,name,authority FROM accounts "
 					+ "WHERE mail = ? AND password = MD5(?)";
+
 			ps = con.prepareStatement(sql);
 			ps.setString(1, mail);
 			ps.setString(2, password);

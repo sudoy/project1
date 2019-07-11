@@ -17,11 +17,15 @@ public class S0021Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		S0021Service S21S = new S0021Service();
+
+		// 検索条件のセッションが存在しているか
 		if (session.getAttribute("SaleConditional") == null) {
 			resp.sendRedirect("S0020.html");
+			return;
 		}
+
 		SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");
-		S0021Service S21S = new S0021Service();
 		req.setAttribute("list", S21S.getDB(scf));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0021.jsp").forward(req, resp);
 	}
