@@ -19,7 +19,7 @@
 						<h2 class="midasi2">物品売上管理システム</h2>
 					</div>
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-8 col-md-offset-2">
 					<!-- メッセージ -->
 					<jsp:include page="_message.jsp" />
 				</div>

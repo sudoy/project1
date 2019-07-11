@@ -11,12 +11,8 @@
 <!--アカウント検索条件入力-->
 <div class="container">
 	<h1>アカウント検索</h1>
-</div>
-
-<!-- メッセージ -->
-<jsp:include page="_message.jsp" />
-
-<div class="container">
+	<!-- メッセージ -->
+	<jsp:include page="_message.jsp" />
 	<form class="form-horizontal" method="post" action="S0040.html">
 
 		<!-- 氏名 -->
