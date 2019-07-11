@@ -44,9 +44,11 @@ public class C0020Servlet extends HttpServlet {
 
 
 		//今月と先月の全体売り上げ
-		int salemonth = service.findAllsale(date);
-		int salelastmonth = service.findAllsale(beforedate);
+		double salemonth = service.findAllsale(date);
+		double salelastmonth = service.findAllsale(beforedate);
 
+		//今月と先月の売り上げ比率
+		double percent = salemonth / salelastmonth;
 
 		//個人の売り上げ合計
 		int total = service.findSale(accountId, date);
@@ -59,6 +61,7 @@ public class C0020Servlet extends HttpServlet {
 		req.setAttribute("lastmonthval", lastmonthval);
 		req.setAttribute("monthval", monthval);
 		req.setAttribute("account", account);
+		req.setAttribute("percent", percent);
 		req.setAttribute("salemonth", salemonth);
 		req.setAttribute("salelastmonth", salelastmonth);
 		req.setAttribute("findList", findList);
