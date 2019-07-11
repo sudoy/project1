@@ -5,7 +5,11 @@ import java.util.List;
 
 public class HTMLUtils {
 
-	//日付をyyyy/m/d形式にする。日付ではない場合そのまま返す。
+	/**
+	 * 日付をyyyy/m/d形式にする。日付ではない場合そのまま返す。
+	 * @param saleDate ex."2019/02/03"
+	 * @return date ex."2019/2/3"
+	 */
 	public static String dateFormat(String saleDate) {
 
 		String date = saleDate;
@@ -112,5 +116,18 @@ public class HTMLUtils {
 			return "checked";
 		}
 		return "";
+	}
+
+	/**数字の場合はカンマ区切りに、そうでない場合はそのまま返す。
+	 * @param num 数字の文字列
+	 * @return num カンマ区切りの数字
+	 */
+	public static String numberFormat(String num) {
+
+		if(num != null && num.matches("^[0-9]+$")) {
+			return String.format("%,3d", Integer.parseInt(num));
+		}else {
+			return num;
+		}
 	}
 }

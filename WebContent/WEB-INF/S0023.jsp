@@ -27,7 +27,7 @@
 					販売日 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control ${HTMLUtils.errorFlame(error,'販売日')}"
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}"
 					id="saleDate" name="saleDate" value="${HTMLUtils.dateFormat(form.saleDate)}">
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 					担当 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-5">
-					<select class="form-control ${HTMLUtils.errorFlame(error,'担当')}" id="accountId" name="accountId">
+					<select class="form-control ${HTMLUtils.errorFrame(error,'担当')}" id="accountId" name="accountId">
 					<c:forEach var="account" items="${form.accountList}">
 						<option value="${account.key}"${HTMLUtils.writeSelected(account.key,form.accountId)}>${account.value}</option>
 					</c:forEach>
@@ -52,7 +52,7 @@
 					商品カテゴリー <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-5">
-					<select class="form-control ${HTMLUtils.errorFlame(error,'カテゴリー')}" id="categoryId" name="categoryId">
+					<select class="form-control ${HTMLUtils.errorFrame(error,'カテゴリー')}" id="categoryId" name="categoryId">
 					<c:forEach var="category" items="${form.categoryList}">
 						<option value="${category.key}"${HTMLUtils.writeSelected(category.key,form.categoryId)}>
 							${category.value}
@@ -68,7 +68,7 @@
 					商品名 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-5">
-					<input type="text" class="form-control ${HTMLUtils.errorFlame(error,'商品名')}"
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'商品名')}"
 					id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名">
 				</div>
 			</div>
@@ -79,8 +79,8 @@
 					単価 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFlame(error,'単価')}"
-					id="unitPrice" name="unitPrice" value="<fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/>" placeholder="単価">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}"
+					id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価">
 				</div>
 			</div>
 
@@ -90,8 +90,8 @@
 					個数 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFlame(error,'個数')}"
-					id="saleNumber" name="saleNumber" value="<fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/>" placeholder="個数">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}"
+					id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数">
 				</div>
 			</div>
 
@@ -99,7 +99,7 @@
 			<div class="form-group">
 				<label for="note" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'備考')}">備考</label>
 				<div class="col-xs-5">
-					<textarea class="form-control ${HTMLUtils.errorFlame(error,'備考')}" rows="5" id="note" name="note" placeholder="詳細">${form.note}</textarea>
+					<textarea class="form-control ${HTMLUtils.errorFrame(error,'備考')}" rows="5" id="note" name="note" placeholder="詳細">${form.note}</textarea>
 				</div>
 			</div>
 

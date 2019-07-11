@@ -32,7 +32,7 @@
 				<label for="accountId" class="col-xs-3 text-right textdown">担当</label>
 				<div class="col-xs-5">
 					<select class="form-control" id="accountId" name="accountId" disabled>
-						<option value="${form.accountId}">${form.accountName}</option>
+						<option value="${form.accountId}">${form.name}</option>
 					</select>
 				</div>
 			</div>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.S0024Form;
+import com.abc.asms.services.S0024Service;
 
 @WebServlet("/S0024.html")
 public class S0024Servlet extends HttpServlet {
@@ -38,12 +39,15 @@ public class S0024Servlet extends HttpServlet {
 		form.setSaleId(req.getParameter("saleId"));
 		form.setSaleDate(req.getParameter("saleDate"));
 		form.setAccountId(req.getParameter("accountId"));
+		form.setName(new S0024Service().getName(form.getAccountId()));
 		form.setCategoryId(req.getParameter("categoryId"));
+		form.setCategoryName(new S0024Service().getCategoryName(form.getCategoryId()));
 		form.setTradeName(URLDecoder.decode(req.getParameter("tradeName"), "UTF-8"));
 		form.setUnitPrice(Integer.valueOf(req.getParameter("unitPrice")));
 		form.setSaleNumber(Integer.valueOf(req.getParameter("saleNumber")));
 		form.setNote(URLDecoder.decode(req.getParameter("note"), "UTF-8"));
 		form.setInput();
+
 		req.setAttribute("form", form);
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0024.jsp").forward(req, resp);

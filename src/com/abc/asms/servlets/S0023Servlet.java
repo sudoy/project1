@@ -45,6 +45,9 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form.setUnitPrice(req.getParameter("unitPrice"));
 			form.setSaleNumber(req.getParameter("saleNumber"));
 			form.setNote(req.getParameter("note"));
+			S0023Service s = new S0023Service();
+			form.setAccountList(s.getMap("account"));
+			form.setCategoryList(s.getMap("category"));
 		}else {
 			//詳細画面から移動してきたとき
 			//id取得
@@ -89,7 +92,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		List<String> error = new S0023Service().validation(form);
 
 
-		if(error.isEmpty()) {//エラーリストがない→確認画面へ値を渡して移動
+		if(error.isEmpty()) {
+			//エラーリストがない→確認画面へ値を渡して移動
 			String input = "saleId=" + form.getSaleId()
 			+ "&saleDate=" + form.getSaleDate()
 			+ "&accountId=" + form.getAccountId()
@@ -99,7 +103,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			+ "&saleNumber=" + form.getSaleNumber()
 			+ "&note=" + URLEncoder.encode(form.getNote(), "UTF-8");
 			resp.sendRedirect("S0024.html?" + input);
-		}else {//エラーリストがある→jspへformを渡して再表示、エラーメッセージ渡して表示、jspへ移動
+		}else {
+			//エラーリストがある→jspへformを渡して再表示、エラーメッセージ渡して表示、jspへ移動
 			S0023Service s = new S0023Service();
 			form.setAccountList(s.getMap("account"));
 			form.setCategoryList(s.getMap("category"));

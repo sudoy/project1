@@ -5,7 +5,7 @@ public class S0024Form {
 	private String saleId;
 	private String saleDate;
 	private String accountId;
-	private String accountName;
+	private String name;
 	private String categoryId;
 	private String categoryName;
 	private String tradeName;
@@ -42,12 +42,12 @@ public class S0024Form {
 		this.accountId = accountId;
 	}
 
-	public String getAccountName() {
-		return accountName;
+	public String getName() {
+		return name;
 	}
 
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCategoryId() {
