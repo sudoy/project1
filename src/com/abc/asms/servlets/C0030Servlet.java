@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 @WebServlet("/C0030.html")
 public class C0030Servlet extends HttpServlet {
-@Override
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		if(session.getAttribute("account")!=null) {
+		if (session.getAttribute("account") != null) {
 			session.invalidate();
 			session = req.getSession();
 			session.setAttribute("success", "ログアウトしました。");

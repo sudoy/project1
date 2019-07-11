@@ -26,7 +26,7 @@ public class S0021Service {
 		String note = scf.getNote();
 		List<Object> holder = new ArrayList<>();
 		List<S0021Form> list = new ArrayList<>();
-		try{
+		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
@@ -37,43 +37,43 @@ public class S0021Service {
 					+ ",s.trade_name,s.unit_price,s.sale_number "
 					+ "FROM sales s WHERE 1=1 ";
 
-			if(!date[0].equals("")) {
+			if (!date[0].equals("")) {
 				sql += "AND s.sale_date >= ? ";
 				holder.add(date[0]);
 			}
-			if(!date[1].equals("")) {
+			if (!date[1].equals("")) {
 				sql += "AND s.sale_date <= ? ";
 				holder.add(date[1]);
 			}
-			if(accountId!=null&&!accountId.equals("")) {
+			if (accountId != null && !accountId.equals("")) {
 				sql += "AND s.account_id = ? ";
 				holder.add(accountId);
 			}
-			if(categoryId!=null) {
+			if (categoryId != null) {
 				sql += "AND s.category_id in(-1";
-				for(String cId:categoryId) {
-					sql +=",?";
+				for (String cId : categoryId) {
+					sql += ",?";
 					holder.add(cId);
 				}
 				sql += ") ";
 			}
-			if(tradeName!=null&&!tradeName.equals("")) {
+			if (tradeName != null && !tradeName.equals("")) {
 				sql += "AND s.trade_name like ? ";
-				holder.add("%"+tradeName+"%");
+				holder.add("%" + tradeName + "%");
 			}
-			if(note!=null&&!note.equals("")) {
+			if (note != null && !note.equals("")) {
 				sql += "AND s.note like ? ";
-				holder.add("%"+note+"%");
+				holder.add("%" + note + "%");
 			}
 			sql += "ORDER BY s.sale_id";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
-			for(int i = 0;i<holder.size();i++) {
-				ps.setObject(i+1, holder.get(i));
+			for (int i = 0; i < holder.size(); i++) {
+				ps.setObject(i + 1, holder.get(i));
 			}
 			rs = ps.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				int saleId = rs.getInt("s.sale_id");
 				String getDate = DBUtils.dateFormat(rs.getString("s.sale_date"));
 				String accountName = rs.getString("name");
@@ -81,12 +81,13 @@ public class S0021Service {
 				String getTtradeName = rs.getString("s.trade_name");
 				int unitPrice = rs.getInt("s.unit_price");
 				int saleNumber = rs.getInt("s.sale_number");
-				list.add(new S0021Form(saleId, getDate, accountName, categoryName, getTtradeName, unitPrice, saleNumber));
+				list.add(new S0021Form(saleId, getDate, accountName, categoryName, getTtradeName, unitPrice,
+						saleNumber));
 			}
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(con, ps, rs);
 		}
 

@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import com.abc.asms.forms.AccountForm;
+import com.abc.asms.utils.DBUtils;
 
 public class C0010Service extends HttpServlet {
 	/**
@@ -17,7 +18,7 @@ public class C0010Service extends HttpServlet {
 	 * @return 名前or空文字
 	 * @throws ServletException
 	 */
-	public AccountForm checkDB(String mail,String password) throws ServletException {
+	public AccountForm checkDB(String mail, String password) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -27,8 +28,8 @@ public class C0010Service extends HttpServlet {
 		int authority = -1;
 		AccountForm account = new AccountForm(-1, "", 0);
 		//DBに追加
-		try{
-			con = com.abc.asms.utils.DBUtils.getConnection();
+		try {
+			con = DBUtils.getConnection();
 			// select文
 			sql = "SELECT account_id,name,authority FROM accounts "
 					+ "WHERE mail = ? AND password = MD5(?)";
@@ -36,17 +37,17 @@ public class C0010Service extends HttpServlet {
 			ps.setString(1, mail);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				accountId = rs.getInt("account_id");
 				name = rs.getString("name");
 				authority = rs.getInt("authority");
 				account = new AccountForm(accountId, name, authority);
 			}
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			throw new ServletException(e);
-		}finally{
-			com.abc.asms.utils.DBUtils.close(con, ps, rs);
+		} finally {
+			DBUtils.close(con, ps, rs);
 		}
 		return account;
 	}

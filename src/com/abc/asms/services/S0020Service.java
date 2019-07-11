@@ -15,33 +15,33 @@ import com.abc.asms.utils.DBUtils;
 
 public class S0020Service {
 
-	public Map<Integer, String> getMap(String idName,String getName,String tableName) throws ServletException {
+	public Map<Integer, String> getMap(String idName, String getName, String tableName) throws ServletException {
 
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
 		Map<Integer, String> map = new HashMap<Integer, String>();
-		try{
+		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT "+idName+","+getName+" FROM "+tableName+" ORDER BY ?";
+			sql = "SELECT " + idName + "," + getName + " FROM " + tableName + " ORDER BY ?";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
-			ps.setString(1,idName);
+			ps.setString(1, idName);
 			rs = ps.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				int id = rs.getInt(idName);
 				String name = rs.getString(getName);
 				map.put(id, name);
 			}
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(con, ps, rs);
 		}
 
@@ -60,54 +60,54 @@ public class S0020Service {
 		String tradeName = scf.getTradeName();
 		String note = scf.getNote();
 		List<Object> holder = new ArrayList<>();
-		try{
+		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
 			sql = "SELECT count(sale_id) FROM sales where 1=1 ";
 
-			if(!date[0].equals("")) {
+			if (!date[0].equals("")) {
 				sql += "AND sale_date >= ? ";
 				holder.add(date[0]);
 			}
-			if(!date[1].equals("")) {
+			if (!date[1].equals("")) {
 				sql += "AND sale_date <= ? ";
 				holder.add(date[1]);
 			}
-			if(accountId!=null&&!accountId.equals("")) {
+			if (accountId != null && !accountId.equals("")) {
 				sql += "AND account_id = ? ";
 				holder.add(accountId);
 			}
-			if(categoryId!=null) {
+			if (categoryId != null) {
 				sql += "AND category_id in(-1";
-				for(String cId:categoryId) {
-					sql +=",?";
+				for (String cId : categoryId) {
+					sql += ",?";
 					holder.add(cId);
 				}
 				sql += ") ";
 			}
-			if(tradeName!=null&&!tradeName.equals("")) {
+			if (tradeName != null && !tradeName.equals("")) {
 				sql += "AND trade_name like ? ";
-				holder.add("%"+tradeName+"%");
+				holder.add("%" + tradeName + "%");
 			}
-			if(note!=null&&!note.equals("")) {
+			if (note != null && !note.equals("")) {
 				sql += "AND note like ? ";
-				holder.add("%"+note+"%");
+				holder.add("%" + note + "%");
 			}
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
-			for(int i = 0;i<holder.size();i++) {
-				ps.setObject(i+1, holder.get(i));
+			for (int i = 0; i < holder.size(); i++) {
+				ps.setObject(i + 1, holder.get(i));
 			}
 			rs = ps.executeQuery();
 
 			rs.next();
 			length = rs.getInt("count(sale_id)");
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(con, ps, rs);
 		}
 		return length;

@@ -14,12 +14,15 @@ import com.abc.asms.services.S0021Service;
 
 @WebServlet("/S0021.html")
 public class S0021Servlet extends HttpServlet {
-@Override
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	HttpSession session = req.getSession();
-	SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");
-	S0021Service S21S = new S0021Service();
-	req.setAttribute("list", S21S.getDB(scf));
-	getServletContext().getRequestDispatcher("/WEB-INF/S0021.jsp").forward(req, resp);
+		HttpSession session = req.getSession();
+		if (session.getAttribute("SaleConditional") == null) {
+			resp.sendRedirect("S0020.html");
+		}
+		SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");
+		S0021Service S21S = new S0021Service();
+		req.setAttribute("list", S21S.getDB(scf));
+		getServletContext().getRequestDispatcher("/WEB-INF/S0021.jsp").forward(req, resp);
 	}
 }

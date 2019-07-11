@@ -4,8 +4,8 @@
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
-	<jsp:param name="page" value="" />
-	<jsp:param name="current" value="" />
+	<jsp:param name="page" value="アカウント検索" />
+	<jsp:param name="current" value="アカウント検索" />
 </jsp:include>
 
 <!--アカウント検索条件入力-->
