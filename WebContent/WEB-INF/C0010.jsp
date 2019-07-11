@@ -3,9 +3,10 @@
 <%@ page import="com.abc.asms.utils.HTMLUtils" %>
 
 <!-- ヘッダー -->
-<jsp:include page="_header.jsp"><jsp:param name="page" value="ログイン画面" /></jsp:include>
-
-
+<jsp:include page="_header.jsp">
+<jsp:param name="page" value="ログイン画面" />
+<jsp:param name="bgc" value="bgg" />
+</jsp:include>
 
 	<div class="container">
 

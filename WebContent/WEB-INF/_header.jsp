@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="${param.bgc}">
 
 <!--ヘッダー-->
 <c:if test="${not empty account}">
