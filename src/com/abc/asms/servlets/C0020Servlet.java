@@ -69,6 +69,7 @@ public class C0020Servlet extends HttpServlet {
 
 
 		getServletContext().getRequestDispatcher("/WEB-INF/C0020.jsp").forward(req, resp);
+
 	}
 
 

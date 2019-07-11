@@ -6,11 +6,13 @@
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
 	<jsp:param name="page" value="ダッシュボード" />
+	<jsp:param name="current" value="ダッシュボード" />
 </jsp:include>
 
 
 <!--ダッシュボード-->
 <div class="container">
+
 	<h1>ダッシュボード</h1>
 
 	<!--合計売上-->
