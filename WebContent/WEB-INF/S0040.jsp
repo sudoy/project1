@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -38,9 +39,9 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">売上登録権限</label>
 			<div class="col-sm-5">
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="all" checked>全て</label>
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="no">権限なし</label>
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="yes">権限あり</label>
+					<label class="radio-inline"><input type="radio" name="salesAuthority" value="all" ${HTMLUtils.checkedAuthority('all',salesAuthority)}>全て</label>
+					<label class="radio-inline"><input type="radio" name="salesAuthority" value="no" ${HTMLUtils.checkedAuthority('no',salesAuthority)}>権限なし</label>
+					<label class="radio-inline"><input type="radio" name="salesAuthority" value="yes" ${HTMLUtils.checkedAuthority('yes',salesAuthority)}>権限あり</label>
 			</div>
 		</div>
 
@@ -48,9 +49,9 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">アカウント登録権限</label>
 			<div class="col-sm-5">
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="all" checked>全て</label>
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="no">権限なし</label>
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="yes">権限あり</label>
+					<label class="radio-inline"><input type="radio" name="accountAuthority" value="all" ${HTMLUtils.checkedAuthority('all',salesAuthority)}>全て</label>
+					<label class="radio-inline"><input type="radio" name="accountAuthority" value="no" ${HTMLUtils.checkedAuthority('no',salesAuthority)}>権限なし</label>
+					<label class="radio-inline"><input type="radio" name="accountAuthority" value="yes" ${HTMLUtils.checkedAuthority('yes',salesAuthority)}>権限あり</label>
 			</div>
 		</div>
 

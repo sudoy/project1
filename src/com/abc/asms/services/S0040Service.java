@@ -43,7 +43,6 @@ public class S0040Service {
 			for(int i = 0;i<holder.size();i++) {
 				ps.setObject(i+1, holder.get(i));
 			}
-			System.out.println(ps);
 			rs = ps.executeQuery();
 
 			rs.next();

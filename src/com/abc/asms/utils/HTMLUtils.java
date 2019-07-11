@@ -101,7 +101,7 @@ public class HTMLUtils {
 		if (authority==null) {authority="";}
 		if(authority.equals(now)) {
 			return "checked";
-		}else if(!(authority.equals("all")||authority.equals("yes")||authority.equals("no"))) {
+		}else if(now.equals("all")&&!(authority.equals("all")||authority.equals("yes")||authority.equals("no"))) {
 			return "checked";
 		}
 		return "";
