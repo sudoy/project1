@@ -13,9 +13,11 @@ public class C0030Servlet extends HttpServlet {
 @Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		session.invalidate();
-		session = req.getSession();
-		session.setAttribute("success", "ログアウトしました。");
+		if(session.getAttribute("account")!=null) {
+			session.invalidate();
+			session = req.getSession();
+			session.setAttribute("success", "ログアウトしました。");
+		}
 		resp.sendRedirect("C0010.html");
 	}
 }

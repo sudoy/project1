@@ -8,12 +8,15 @@
 	<jsp:param name="current" value="売上検索" />
 </jsp:include>
 
-<!-- メッセージ -->
-<jsp:include page="_message.jsp" />
+
 
 <!-- 売上登録システム表示 -->
 		<div class="container">
-			<h1>売上条件検索</h1>
+			<h1>売上検索条件入力</h1>
+		</div>
+		<!-- メッセージ -->
+		<jsp:include page="_message.jsp" />
+		<div class="container">
 			<!-- form -->
 			<form class="form-horizontal" action="S0020.html" method="POST">
 
