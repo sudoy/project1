@@ -57,4 +57,5 @@
 .bm20{margin-bottom:20px;}
 .check{font-size:28px;}
 .normal{font-weight:normal;}
-.errorMessage{border:1px #a94442 solid;color:#a94442}
+.errorMessage{color:#a94442;}
+.errorFlame{border:1px #a94442 solid;}

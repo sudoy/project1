@@ -79,4 +79,21 @@ public class HTMLUtils {
 		}
 		return "";
 	}
+	/**
+	 * listの中身の文字列と検索文字列が一致したら"errorFlame"を返す
+	 * 一致しなければ""(空文字)を返す。
+	 * @param error	 エラー文
+	 * @param matches 検索する文字列
+	 * @return "errorFlame" 又は ""
+	 */
+	public static String errorFlame(List<String> error,String matches) {
+		if(error!=null&&0<error.size()) {
+			for(String text:error) {
+				if(text.indexOf(matches)!=-1) {
+					return "errorFlame";
+				}
+			}
+		}
+		return "";
+	}
 }
