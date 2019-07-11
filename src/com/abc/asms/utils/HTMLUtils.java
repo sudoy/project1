@@ -125,7 +125,7 @@ public class HTMLUtils {
 	public static String numberFormat(String num) {
 
 		if(num != null && num.matches("^[0-9]+$")) {
-			return String.format("%,3d", Integer.parseInt(num));
+			return String.format("%,d", Integer.parseInt(num));
 		}else {
 			return num;
 		}

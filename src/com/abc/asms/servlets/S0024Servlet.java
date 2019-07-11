@@ -56,9 +56,38 @@ public class S0024Servlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//更新
+		//権限チェック 売上登録権限がなかったらダッシュボードへ
+		HttpSession session = req.getSession();
+		AccountForm account = (AccountForm) session.getAttribute("account");
+		int salesAuthority = account.getAuthority();
+		if(salesAuthority != 1 && salesAuthority != 11) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
-		//編集画面へ戻る
+		//入力情報取得
+		S0024Form form = new S0024Form();
+		form.setSaleId(req.getParameter("saleId"));
+		form.setSaleDate(req.getParameter("saleDate"));
+		form.setAccountId(req.getParameter("accountId"));
+		form.setCategoryId(req.getParameter("categoryId"));
+		form.setTradeName(req.getParameter("tradeName"));
+		form.setUnitPrice(Integer.valueOf(req.getParameter("unitPrice")));
+		form.setSaleNumber(Integer.valueOf(req.getParameter("saleNumber")));
+		form.setNote(req.getParameter("note"));
+
+		//更新
+		new S0024Service().update(form);
+
+		//成功メッセージ
+		List<String> success = new ArrayList<>();
+		success.add("No"+ form.getSaleId() +"の売上を更新しました。");
+		session.setAttribute("success", success);
+
+		//検索結果一覧へ戻る
 		resp.sendRedirect("S0021.html");
 	}
 }

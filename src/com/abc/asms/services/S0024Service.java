@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.abc.asms.forms.S0024Form;
 import com.abc.asms.utils.DBUtils;
 
 public class S0024Service {
@@ -64,5 +65,45 @@ public class S0024Service {
 			DBUtils.close(con, ps, rs);
 		}
 		return categoryName;
+	}
+
+	public void update(S0024Form form) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		try{
+			//データベース接続
+	        con = DBUtils.getConnection();
+
+	        //sql
+			sql = "UPDATE sales SET sale_date = ?, account_id = ?, category_id = ?, trade_name = ?, unit_price = ?, sale_number = ?, note = ? "
+					+ "WHERE sale_id = ?";
+			ps = con.prepareStatement(sql);
+
+			//ポストデータの内容をセット
+			ps.setString(1, form.getSaleDate());
+			ps.setString(2, form.getAccountId());
+			ps.setString(3, form.getCategoryId());
+			ps.setString(4, form.getTradeName());
+			ps.setInt(5, form.getUnitPrice());
+			ps.setInt(6, form.getSaleNumber());
+			//詳細が空欄の場合
+			String note = form.getNote();
+			if(note.equals("")) {
+				note = null;
+			}
+			ps.setString(7, note);
+			ps.setString(8, form.getSaleId());
+
+			//UPDATE命令を実行
+			ps.executeUpdate();
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps);
+		}
+
 	}
 }
