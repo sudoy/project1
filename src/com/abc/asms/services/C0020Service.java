@@ -118,7 +118,7 @@ public class C0020Service {
 		}
 	}
 
-	public int findAllsale (LocalDate date) throws ServletException{
+	public double findAllsale (LocalDate date) throws ServletException{
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -144,7 +144,7 @@ public class C0020Service {
 
 			//DBの値の取り出し
 			rs.next();
-			int allsale = rs.getInt("allsale");
+			double allsale = rs.getDouble("allsale");
 
 			//値をServletに送信
 			return allsale;

@@ -18,7 +18,6 @@
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>前月（${lastmonthval}月）の売上合計</h5></div>
-			<c:set var="salelastmonth" value="${salelastmonth}" />
 			<div class="panel-body text-center"><fmt:formatNumber value="${salelastmonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
@@ -26,7 +25,6 @@
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>今月（${monthval}月）の売上合計</h5></div>
-			<c:set var="salemonth" value="${salemonth}" />
 			<div class="panel-body text-center"><fmt:formatNumber value="${salemonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
@@ -35,17 +33,17 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>前月比</h5></div>
 
-				<c:if test="${1 <= (salemonth / salelastmonth) && salelastmonth != 0}">
+				<c:if test="${1 <= percent && salelastmonth != 0}">
 					<div class="panel-body text-center up-color">
 					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-					<fmt:formatNumber value="${salemonth / salelastmonth}" type="PERCENT" maxFractionDigits="2"/>
+					<fmt:formatNumber value="${percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
-				<c:if test="${(salemonth / salelastmonth) < 1}">
+				<c:if test="${percent < 1}">
 					<div class="panel-body text-center down-color">
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-					<fmt:formatNumber value="${salemonth / salelastmonth}" type="PERCENT" maxFractionDigits="2"/>
+					<fmt:formatNumber value="${percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
