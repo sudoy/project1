@@ -47,7 +47,8 @@
 				<div class="col-xs-5">&nbsp;
 					<c:forEach var="category" items="${form.categoryMap}">
 						<label class="radio-inline">
-							<input type="radio" name="categoryId" value="${category.key}" <c:if test="${category.key == form.categoryId}">checked</c:if> disabled>${HTMLUtils.XSS(category.value)}
+							<input type="radio" name="categoryId" value="${category.key}" ${HTMLUtils.writeChecked(category.key,form.categoryId)} disabled>
+							${HTMLUtils.XSS(category.value)}
 						</label>
 					</c:forEach>
 					<input type="hidden" name="categoryId" value="${form.categoryId}">
