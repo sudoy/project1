@@ -43,15 +43,15 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">売上登録権限</label>
 			<div class="col-sm-5">
-				<label class="radio-inline"><input type="radio"
-					name="salesAuthority" value="all"
-					${HTMLUtils.checkedAuthority('all',salesAuthority)}>全て</label> <label
-					class="radio-inline"><input type="radio"
-					name="salesAuthority" value="no"
-					${HTMLUtils.checkedAuthority('no',salesAuthority)}>権限なし</label> <label
-					class="radio-inline"><input type="radio"
-					name="salesAuthority" value="yes"
-					${HTMLUtils.checkedAuthority('yes',salesAuthority)}>権限あり</label>
+				<label class="radio-inline">
+				<input type="radio"name="salesAuthority" value="all"${HTMLUtils.checkedAuthority('all',salesAuthority)}>全て
+				</label>
+				<label class="radio-inline">
+				<input type="radio" name="salesAuthority" value="no" ${HTMLUtils.checkedAuthority('no',salesAuthority)}>権限なし
+				</label>
+				<label class="radio-inline">
+				<input type="radio" name="salesAuthority" value="yes" ${HTMLUtils.checkedAuthority('yes',salesAuthority)}>権限あり
+				</label>
 			</div>
 		</div>
 

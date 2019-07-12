@@ -100,4 +100,23 @@ public class DBUtils {
 		return sqlDate; // ここに来たらエラーです。
 	}
 
+	/**
+	 * authorityの値を対応する文字列に変換するメソッド
+	 * @param authority [11,10,1,0]のいずれか
+	 * @return HTMLに出力される文字
+	 */
+	public static String setAuthority(String authority) {
+		switch (authority) {
+		case "0":
+			return "権限なし";
+		case "1":
+			return "売上登録";
+		case "10":
+			return "アカウント登録";
+		case "11":
+			return "売上登録/アカウント登録";
+		default:
+			return "エラー";
+		}
+	}
 }

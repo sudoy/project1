@@ -42,13 +42,15 @@
 				<td>${HTMLUtils.XSS(saleData.accountName)}</td>
 				<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
 				<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
-				<td class="text-right"><fmt:formatNumber
-						value="${saleData.unitPrice}" pattern="#,##0" /></td>
-				<td class="text-right"><fmt:formatNumber
-						value="${saleData.saleNumber}" pattern="#,##0" /></td>
-				<td class="text-right"><fmt:formatNumber
-						value="${saleData.unitPrice * saleData.saleNumber}"
-						pattern="#,##0" /></td>
+				<td class="text-right">
+				<fmt:formatNumber value="${saleData.unitPrice}" pattern="#,##0" />
+				</td>
+				<td class="text-right">
+				<fmt:formatNumber value="${saleData.saleNumber}" pattern="#,##0" />
+				</td>
+				<td class="text-right">
+				<fmt:formatNumber value="${saleData.unitPrice * saleData.saleNumber}" pattern="#,##0" />
+				</td>
 			</tr>
 </c:forEach>
 		</tbody>

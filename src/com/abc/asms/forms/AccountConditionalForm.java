@@ -3,12 +3,14 @@ package com.abc.asms.forms;
 public class AccountConditionalForm {
 	String name;
 	String mail;
-	String authority;
-	public AccountConditionalForm(String name, String mail, String authority) {
+	String accountAuthority;
+	String salesAuthority;
+	public AccountConditionalForm(String name, String mail, String accountAuthority, String salesAuthority) {
 		super();
 		this.name = name;
 		this.mail = mail;
-		this.authority = authority;
+		this.accountAuthority = accountAuthority;
+		this.salesAuthority = salesAuthority;
 	}
 	public String getName() {
 		return name;
@@ -22,11 +24,17 @@ public class AccountConditionalForm {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getAuthority() {
-		return authority;
+	public String getAccountAuthority() {
+		return accountAuthority;
 	}
-	public void setAuthority(String authority) {
-		this.authority = authority;
+	public void setAccountAuthority(String accountAuthority) {
+		this.accountAuthority = accountAuthority;
+	}
+	public String getSalesAuthority() {
+		return salesAuthority;
+	}
+	public void setSalesAuthority(String salesAuthority) {
+		this.salesAuthority = salesAuthority;
 	}
 
 }
