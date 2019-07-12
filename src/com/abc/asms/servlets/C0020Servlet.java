@@ -70,6 +70,8 @@ public class C0020Servlet extends HttpServlet {
 
 		getServletContext().getRequestDispatcher("/WEB-INF/C0020.jsp").forward(req, resp);
 
+		session.setAttribute("success", null);
+		session.setAttribute("error", null);
 	}
 
 

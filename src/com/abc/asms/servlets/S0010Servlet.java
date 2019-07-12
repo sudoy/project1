@@ -86,9 +86,9 @@ public class S0010Servlet extends HttpServlet {
 		//validationチェック
 		error = validation(form);
 
-		//関連チェック
-		error.add(service.accountCheck(form));
-		error.add(service.categoryCheck(form));
+//		//関連チェック
+//		error.add(service.accountCheck(form));
+//		error.add(service.categoryCheck(form));
 
 		//エラーメッセージがなければページ遷移
 		if(error.isEmpty()) {

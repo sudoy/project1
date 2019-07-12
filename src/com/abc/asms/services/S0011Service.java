@@ -2,6 +2,7 @@ package com.abc.asms.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 
@@ -23,12 +24,14 @@ public class S0011Service {
 		return subtotal;
 	}
 
-	public void insert(EntrySaleDataForm form) throws ServletException {
+	public int insert(EntrySaleDataForm form) throws ServletException {
 
 		//EntryServletで使用
 		Connection con = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		String sql = null;
+		int id = 0 ;
 
 		try{
 			//DBへinsert
@@ -45,10 +48,11 @@ public class S0011Service {
 			ps.setString(5, form.getUnitPrice());
 			ps.setString(6, form.getSaleNumber());
 			ps.setString(7, form.getNote());
-
-			System.out.println(ps);
-
 			ps.executeUpdate();
+
+			rs = con.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
+			rs.next();
+			id = rs.getInt("LAST_INSERT_ID()");
 
 		}catch(Exception e){
 			throw new ServletException(e);
@@ -56,10 +60,10 @@ public class S0011Service {
 		}finally{
 
 			try{
-				DBUtils.close(con, ps);
+				DBUtils.close(con, ps, rs);
 			}catch(Exception e){}
 		}
+		return id;
 	}
-
 
 }

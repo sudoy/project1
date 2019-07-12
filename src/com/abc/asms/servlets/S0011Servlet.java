@@ -43,15 +43,16 @@ public class S0011Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
+		int id = 0;
 
 		EntrySaleDataForm form = (EntrySaleDataForm) session.getAttribute("form");
 
 		//insert開始
 		S0011Service service = new S0011Service();
-		service.insert(form);
+		id = service.insert(form);
 
 		//成功メッセージ
-		session.setAttribute("success", "No99の売上を登録しました。");
+		session.setAttribute("success", "No" + id + "の売上を登録しました。");
 		resp.sendRedirect("S0010.html");
 
 	}
