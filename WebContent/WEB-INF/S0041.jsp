@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -35,8 +36,8 @@
 </c:if>
 				</td>
 				<td class="text-right">${accountList.account_id}</td>
-				<td>${accountList.name}</td>
-				<td>${accountList.mail}</td>
+				<td>${HTMLUtils.XSS(accountList.name)}</td>
+				<td>${HTMLUtils.XSS(accountList.mail)}</td>
 				<td>${accountList.authority}</td>
 			</tr>
 </c:forEach>

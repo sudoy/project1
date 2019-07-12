@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -39,9 +40,9 @@
 				</td>
 				<td class="text-right">${saleData.saleId}</td>
 				<td>${saleData.date}</td>
-				<td>${saleData.accountName}</td>
-				<td>${saleData.categoryName}</td>
-				<td>${saleData.tradeName}</td>
+				<td>${HTMLUtils.XSS(saleData.accountName)}</td>
+				<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
+				<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
 				<td class="text-right"><fmt:formatNumber value="${saleData.unitPrice}" pattern="#,##0"/></td>
 				<td class="text-right"><fmt:formatNumber value="${saleData.saleNumber}" pattern="#,##0"/></td>
 				<td class="text-right"><fmt:formatNumber value="${saleData.unitPrice * saleData.saleNumber}" pattern="#,##0"/></td>
