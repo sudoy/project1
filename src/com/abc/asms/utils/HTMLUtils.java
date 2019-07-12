@@ -130,4 +130,19 @@ public class HTMLUtils {
 			return num;
 		}
 	}
+
+	/**
+	 * XSS(クロスサイトスクリプティング)対策の置換処理
+	 * [&,<,>,',"]をそれぞれのエスケープに置換する
+	 * @param text 置換前の文字列
+	 * @return XSS対策の置換処理後の文字列
+	 */
+	public String XSS(String text) {
+		text = text.replace("&", "&amp;");
+		text = text.replace("<", "&lt;");
+		text = text.replace(">", "&gt;");
+		text = text.replace("'", "&#39");
+		return text.replace("\"", "&quot;");
+
+	}
 }
