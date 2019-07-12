@@ -19,3 +19,22 @@
 .table-border-top{
 	border-top: 2px solid #ddd;
 }
+
+/*吉田(仕様変更)*/
+.right-btn{
+	text-align:right;
+}
+
+.left-btn{
+	text-align:left;
+
+}
+
+.center-cal{
+	text-align:center;
+}
+
+
+.dashtitle{
+	text-align:center;
+}

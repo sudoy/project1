@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.S0010Form;
 import com.abc.asms.services.S0010Service;
+import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0010.html")
 public class S0010Servlet extends HttpServlet {
@@ -37,7 +38,9 @@ public class S0010Servlet extends HttpServlet {
 
 
 		//登録画面に必要な値を取得
-		LocalDate saleDate = LocalDate.now();
+		LocalDate date = LocalDate.now();
+		String saleDate = DBUtils.dateFormat(date.toString());
+
 
 		//登録画面に必要な値をServiceから取得
 		List<S0010Form> categoryList = new ArrayList<>();
@@ -61,9 +64,6 @@ public class S0010Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		List<S0010Form> categoryList = new ArrayList<>();
-		List<S0010Form> accountList = new ArrayList<>();
-
 
 		//jspで入力された値を取得
 		String saleDate = (String) req.getParameter("saleDate");
@@ -80,12 +80,6 @@ public class S0010Servlet extends HttpServlet {
 		List<String>  error = new ArrayList<>();
 
 		error = service.validation(form);
-
-		//selectのoptionをsessionでセット
-		categoryList = (List<S0010Form>) session.getAttribute("categoryList");
-		accountList = (List<S0010Form>) session.getAttribute("accountList");
-		session.setAttribute("categoryList",categoryList);
-		session.setAttribute("accountList", accountList);
 
 		//エラーメッセージがなければページ遷移
 		if(error.isEmpty()) {
