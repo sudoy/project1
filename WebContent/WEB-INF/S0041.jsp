@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.abc.asms.utils.HTMLUtils" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -28,10 +28,10 @@
 				<td>
 <c:if test="${10 <= account.authority}">
 					<a class="btn btn-primary" href="S0042.html">
-						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
 					</a>
 					<a class="btn btn-danger" href="S0044.html">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
 					</a>
 </c:if>
 				</td>
@@ -44,7 +44,8 @@
 		</tbody>
 	</table>
 
-</div><!--class="container"-->
+</div>
+<!--class="container"-->
 
 <!--フッター-->
 <jsp:include page="_footer.jsp" />
