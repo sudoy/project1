@@ -1,5 +1,7 @@
 package com.abc.asms.forms;
 
+import java.util.Map;
+
 public class S0024Form {
 
 	private String saleId;
@@ -14,6 +16,7 @@ public class S0024Form {
 	private String note;
 	private String input;
 	private String subtotal;
+	private Map<Integer,String> categoryMap;
 
 	public S0024Form() {
 		super();
@@ -122,6 +125,14 @@ public class S0024Form {
 	public void setSubtotal() {
 		int st = Integer.valueOf(getUnitPrice()) * Integer.valueOf(getSaleNumber());
 		this.subtotal = String.valueOf(st);
+	}
+
+	public Map<Integer,String> getCategoryMap() {
+		return categoryMap;
+	}
+
+	public void setCategoryMap(Map<Integer,String> categoryMap) {
+		this.categoryMap = categoryMap;
 	}
 
 }

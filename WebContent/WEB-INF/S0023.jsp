@@ -39,8 +39,8 @@
 				</label>
 				<div class="col-xs-5">
 					<select class="form-control ${HTMLUtils.errorFrame(error,'担当')}" id="accountId" name="accountId">
-					<c:forEach var="account" items="${form.accountList}">
-						<option value="${account.key}"${HTMLUtils.writeSelected(account.key,form.accountId)}>${account.value}</option>
+					<c:forEach var="account" items="${form.accountMap}">
+						<option value="${account.key}"<c:if test="${account.key == form.accountId}">selected</c:if>>${HTMLUtils.XSS(account.value)}</option>
 					</c:forEach>
 					</select>
 				</div>
@@ -51,14 +51,13 @@
 				<label for="categoryId" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'カテゴリー')}">
 					商品カテゴリー <span class="badge">必須</span>
 				</label>
-				<div class="col-xs-5">
-					<select class="form-control ${HTMLUtils.errorFrame(error,'カテゴリー')}" id="categoryId" name="categoryId">
-					<c:forEach var="category" items="${form.categoryList}">
-						<option value="${category.key}"${HTMLUtils.writeSelected(category.key,form.categoryId)}>
-							${category.value}
-						</option>
+				<div class="col-xs-5">&nbsp;
+					<c:forEach var="category" items="${form.categoryMap}">
+						<label class="radio-inline">
+							<input type="radio" name="categoryId" value="${category.key}"
+							<c:if test="${category.key == form.categoryId}">checked</c:if>>${HTMLUtils.XSS(category.value)}
+						</label>
 					</c:forEach>
-					</select>
 				</div>
 			</div>
 
