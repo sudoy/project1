@@ -15,7 +15,7 @@
 		<jsp:include page="_message.jsp" />
 
 		<!-- form -->
-		<form class="form-horizontal" action="S0021.html">
+		<form class="form-horizontal" action="S0024.html" method="post">
 			<%--更新時の確認用で渡すsaleId --%>
 			<input type="hidden" name="saleId" value="${form.saleId}">
 
@@ -24,6 +24,7 @@
 				<label for="saleDate" class="col-xs-3 text-right textdown">販売日</label>
 				<div class="col-xs-2">
 					<input type="text" class="form-control" id="saleDate" name="saleDate" value="${form.saleDate}" disabled>
+					<input type="hidden" name="saleDate" value="${form.saleDate}">
 				</div>
 			</div>
 
@@ -34,6 +35,7 @@
 					<select class="form-control" id="accountId" name="accountId" disabled>
 						<option value="${form.accountId}">${form.name}</option>
 					</select>
+					<input type="hidden" name="accountId" value="${form.accountId}">
 				</div>
 			</div>
 
@@ -44,6 +46,7 @@
 					<select class="form-control" id="categoryId" name="categoryId" disabled>
 						<option value="${form.categoryId}">${form.categoryName}</option>
 					</select>
+					<input type="hidden" name="categoryId" value="${form.categoryId}">
 				</div>
 			</div>
 
@@ -52,6 +55,7 @@
 				<label for="tradeName" class="col-xs-3 text-right textdown">商品名</label>
 				<div class="col-xs-5">
 					<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled>
+					<input type="hidden" name="tradeName" value="${form.tradeName}">
 				</div>
 			</div>
 
@@ -61,6 +65,7 @@
 				<div class="col-xs-2">
 					<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice"
 					value="<fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/>" placeholder="単価" disabled>
+					<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 				</div>
 			</div>
 
@@ -70,6 +75,7 @@
 				<div class="col-xs-2">
 					<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber"
 					value="<fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/>" placeholder="個数" disabled>
+					<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 				</div>
 			</div>
 
@@ -78,7 +84,7 @@
 				<label class="col-xs-3 text-right textdown">小計</label>
 				<div class="col-xs-2">
 					<input type="text" class="form-control text-right" value="<fmt:formatNumber
-					value="${form.saleNumber * form.unitPrice}" pattern="#,##0"/>" placeholder="小計" disabled>
+					value="${form.subtotal}" pattern="#,##0"/>" placeholder="小計" disabled>
 				</div>
 			</div>
 
@@ -87,6 +93,7 @@
 				<label for="note" class="col-xs-3 text-right textdown">備考</label>
 				<div class="col-xs-5">
 					<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細" disabled>${form.note}</textarea>
+					<input type="hidden" name="note" value="${form.note}">
 				</div>
 			</div>
 

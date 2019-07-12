@@ -86,8 +86,8 @@ public class S0024Service {
 			ps.setString(2, form.getAccountId());
 			ps.setString(3, form.getCategoryId());
 			ps.setString(4, form.getTradeName());
-			ps.setInt(5, form.getUnitPrice());
-			ps.setInt(6, form.getSaleNumber());
+			ps.setString(5, form.getUnitPrice());
+			ps.setString(6, form.getSaleNumber());
 			//詳細が空欄の場合
 			String note = form.getNote();
 			if(note.equals("")) {

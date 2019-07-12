@@ -42,11 +42,20 @@ public class S0024Servlet extends HttpServlet {
 		form.setName(new S0024Service().getName(form.getAccountId()));
 		form.setCategoryId(req.getParameter("categoryId"));
 		form.setCategoryName(new S0024Service().getCategoryName(form.getCategoryId()));
-		form.setTradeName(URLDecoder.decode(req.getParameter("tradeName"), "UTF-8"));
-		form.setUnitPrice(Integer.valueOf(req.getParameter("unitPrice")));
-		form.setSaleNumber(Integer.valueOf(req.getParameter("saleNumber")));
-		form.setNote(URLDecoder.decode(req.getParameter("note"), "UTF-8"));
+		if(req.getParameter("tradeName") != null) {
+			form.setTradeName(URLDecoder.decode(req.getParameter("tradeName"), "UTF-8"));
+		}else {
+			form.setTradeName(req.getParameter("tradeName"));
+		}
+		form.setUnitPrice(req.getParameter("unitPrice"));
+		form.setSaleNumber(req.getParameter("saleNumber"));
+		if(req.getParameter("note") != null) {
+			form.setNote(URLDecoder.decode(req.getParameter("note"), "UTF-8"));
+		}else {
+			form.setNote(req.getParameter("note"));
+		}
 		form.setInput();
+		form.setSubtotal();
 
 		req.setAttribute("form", form);
 
@@ -75,8 +84,8 @@ public class S0024Servlet extends HttpServlet {
 		form.setAccountId(req.getParameter("accountId"));
 		form.setCategoryId(req.getParameter("categoryId"));
 		form.setTradeName(req.getParameter("tradeName"));
-		form.setUnitPrice(Integer.valueOf(req.getParameter("unitPrice")));
-		form.setSaleNumber(Integer.valueOf(req.getParameter("saleNumber")));
+		form.setUnitPrice(req.getParameter("unitPrice"));
+		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
 
 		//更新

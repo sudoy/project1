@@ -84,9 +84,10 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		form.setAccountId(req.getParameter("accountId"));
 		form.setCategoryId(req.getParameter("categoryId"));
 		form.setTradeName(req.getParameter("tradeName"));
-		form.setUnitPrice(req.getParameter("unitPrice").replace(",", ""));
-		form.setSaleNumber(req.getParameter("saleNumber").replace(",", ""));
+		form.setUnitPrice(replaceC(req.getParameter("unitPrice")));
+		form.setSaleNumber(replaceC(req.getParameter("saleNumber")));
 		form.setNote(req.getParameter("note"));
+		if(form.getNote() == null) { form.setNote(""); }
 
 		//バリデーションチェック
 		List<String> error = new S0023Service().validation(form);
@@ -113,5 +114,13 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			getServletContext().getRequestDispatcher("/WEB-INF/S0023.jsp").forward(req, resp);
 		}
 
+	}
+
+	public String replaceC(String num) {
+
+		if(num != null && num.matches("^[0-9]+(,[0-9]+)*$")) {
+			return num.replace(",", "");
+		}
+		return num;
 	}
 }

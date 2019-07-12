@@ -126,7 +126,7 @@ public class S0023Service {
 			con = DBUtils.getConnection();
 
 			//販売日必須入力、形式
-			if(form.getSaleDate().isEmpty()) {
+			if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
 				error.add("販売日を入力して下さい。");
 			}else {
 				if(form.getSaleDate().matches("^[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}$")) {
@@ -171,14 +171,14 @@ public class S0023Service {
 			}
 
 			//商品名必須入力、長さ(バイト数)
-			if(form.getTradeName().isEmpty()) {
+			if(form.getTradeName() == null || form.getTradeName().isEmpty()) {
 				error.add("商品名を入力して下さい。");
 			}else if(101 <= form.getTradeName().getBytes("UTF-8").length) {
 				error.add("商品名が長すぎます。");
 			}
 
 			//単価必須入力、形式、長さ(バイト数)
-			if(form.getUnitPrice().isEmpty()) {
+			if(form.getUnitPrice() == null || form.getUnitPrice().isEmpty()) {
 				error.add("単価を入力して下さい。");
 			}else if(!form.getUnitPrice().matches("^[1-9][0-9]*$")) {
 				error.add("単価を正しく入力して下さい。");
@@ -187,7 +187,7 @@ public class S0023Service {
 			}
 
 			//個数必須入力、形式、長さ(バイト数)
-			if(form.getSaleNumber().isEmpty()) {
+			if(form.getSaleNumber() == null || form.getSaleNumber().isEmpty()) {
 				error.add("個数を入力して下さい。");
 			}else if(!form.getSaleNumber().matches("^[1-9][0-9]*$")) {
 				error.add("個数を正しく入力して下さい。");

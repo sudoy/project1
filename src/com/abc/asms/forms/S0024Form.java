@@ -9,10 +9,11 @@ public class S0024Form {
 	private String categoryId;
 	private String categoryName;
 	private String tradeName;
-	private int unitPrice;
-	private int saleNumber;
+	private String unitPrice;
+	private String saleNumber;
 	private String note;
 	private String input;
+	private String subtotal;
 
 	public S0024Form() {
 		super();
@@ -66,22 +67,6 @@ public class S0024Form {
 		this.tradeName = tradeName;
 	}
 
-	public int getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(int unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-	public int getSaleNumber() {
-		return saleNumber;
-	}
-
-	public void setSaleNumber(int saleNumber) {
-		this.saleNumber = saleNumber;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -112,6 +97,31 @@ public class S0024Form {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public String getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(String unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public String getSaleNumber() {
+		return saleNumber;
+	}
+
+	public void setSaleNumber(String saleNumber) {
+		this.saleNumber = saleNumber;
+	}
+
+	public String getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal() {
+		int st = Integer.valueOf(getUnitPrice()) * Integer.valueOf(getSaleNumber());
+		this.subtotal = String.valueOf(st);
 	}
 
 }
