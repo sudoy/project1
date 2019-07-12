@@ -17,21 +17,25 @@
 
 		<!-- 氏名 -->
 		<div class="form-group">
-			<label for="name" class="col-xs-3 text-right control-label">氏名
+			<label for="name"
+				class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'氏名')}">氏名
 				<span class="badge">部分一致</span>
 			</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="name" name="name"
-					placeholder="氏名" value="${name}">
+				<input type="text"
+					class="form-control  ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
+					name="name" placeholder="氏名" value="${name}">
 			</div>
 		</div>
 
 		<!-- メールアドレス -->
 		<div class="form-group">
-			<label for="mail" class="col-xs-3 text-right control-label">メールアドレス</label>
+			<label for="mail"
+				class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'メールアドレス')}">メールアドレス</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="mail" name="mail"
-					placeholder="メールアドレス" value="${mail}">
+				<input type="text"
+					class="form-control  ${HTMLUtils.errorFrame(error,'メールアドレス')}"
+					id="mail" name="mail" placeholder="メールアドレス" value="${mail}">
 			</div>
 		</div>
 

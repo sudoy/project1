@@ -46,23 +46,23 @@ public class S0021Service {
 				sql += "AND s.sale_date <= ? ";
 				holder.add(date[1]);
 			}
-			if (accountId != null && !accountId.equals("")) {
+			if (!accountId.equals("")) {
 				sql += "AND s.account_id = ? ";
 				holder.add(accountId);
 			}
 			if (categoryId != null) {
-				sql += "AND s.category_id in(-1";
+				sql += "AND s.category_id in('false'";
 				for (String cId : categoryId) {
 					sql += ",?";
 					holder.add(cId);
 				}
 				sql += ") ";
 			}
-			if (tradeName != null && !tradeName.equals("")) {
+			if (!tradeName.equals("")) {
 				sql += "AND s.trade_name like ? ";
 				holder.add("%" + tradeName + "%");
 			}
-			if (note != null && !note.equals("")) {
+			if (!note.equals("")) {
 				sql += "AND s.note like ? ";
 				holder.add("%" + note + "%");
 			}

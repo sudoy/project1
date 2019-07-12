@@ -1,7 +1,6 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -27,15 +26,15 @@ public class S0040Servlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		S0040Service S40S = new S0040Service();
 		String name = (String) req.getParameter("name");
 		String mail = (String) req.getParameter("mail");
 		String salesAuthority = (String) req.getParameter("salesAuthority");
 		String accountAuthority = (String) req.getParameter("accountAuthority");
-		List<String> error = validate(name, mail);
+		List<String> error = S40S.validate(name, mail, salesAuthority, accountAuthority);
 		// 入力チェック
 		if (error.size() == 0) {
 			// エラーなし
-			S0040Service S40S = new S0040Service();
 			String authority = S40S.setAuthority(salesAuthority, accountAuthority);
 			AccountConditionalForm acf = new AccountConditionalForm(name, mail, authority);
 			// データ一致件数チェック
@@ -56,27 +55,4 @@ public class S0040Servlet extends HttpServlet {
 		session.setAttribute("error", null);
 	}
 
-	/**
-	 * 入力チェックメソッド
-	 * @param mail 入力されたmail
-	 * @param password 入力されたpassword
-	 * @return List(String)型
-	 * 入力に問題があればエラーメッセージがaddされる。
-	 */
-	private List<String> validate(String name, String mail) {
-		List<String> error = new ArrayList<>();
-		if (name != null && !name.equals("")) {
-			if (20 < name.length()) {
-				error.add("氏名の指定が長すぎます。");
-			}
-		}
-		if (mail != null && !mail.equals("")) {
-			if (100 < mail.length()) {
-				error.add("メールアドレスの指定が長すぎます。");
-			} else if (!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
-				error.add("エラーメッセージ：メールアドレスの形式が誤っています。");
-			}
-		}
-		return error;
-	}
 }

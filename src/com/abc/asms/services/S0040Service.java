@@ -27,11 +27,11 @@ public class S0040Service {
 			//SQL
 			sql = "SELECT count(account_id) FROM accounts where 1=1 ";
 
-			if (name != null && !name.equals("")) {
+			if (!name.equals("")) {
 				sql += "AND name LIKE ? ";
 				holder.add("%" + name + "%");
 			}
-			if (mail != null && !mail.equals("")) {
+			if (!mail.equals("")) {
 				sql += "AND mail = ? ";
 				holder.add(mail);
 			}
@@ -86,5 +86,31 @@ public class S0040Service {
 			break;
 		}
 		return Authority + "$";
+	}
+
+	/**
+	 * 入力チェックメソッド
+	 * @param name 入力されたname
+	 * @param mail 入力されたmail
+	 * @param salesAuthority 入力されたsakesAuthority
+	 * @param accountAuthority 入力されたaccountAuthority
+	 * @return エラーメッセージ
+	 */
+	public List<String> validate(String name, String mail, String salesAuthority, String accountAuthority) {
+		List<String> error = new ArrayList<>();
+		if (name == null || mail == null || salesAuthority == null || accountAuthority == null) {
+			error.add("バリデーションエラー");
+		} else {
+			if (20 < name.length()) {
+				error.add("氏名の指定が長すぎます。");
+			}
+			if (100 < mail.length()) {
+				error.add("メールアドレスの指定が長すぎます。");
+			}
+			if (!mail.equals("")&&!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
+				error.add("メールアドレスの形式が誤っています。");
+			}
+		}
+		return error;
 	}
 }

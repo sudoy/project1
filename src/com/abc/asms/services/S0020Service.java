@@ -3,7 +3,10 @@ package com.abc.asms.services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +79,12 @@ public class S0020Service {
 				sql += "AND sale_date <= ? ";
 				holder.add(date[1]);
 			}
-			if (accountId != null && !accountId.equals("")) {
+			if (!accountId.equals("")) {
 				sql += "AND account_id = ? ";
 				holder.add(accountId);
 			}
 			if (categoryId != null) {
-				sql += "AND category_id in(-1";
+				sql += "AND category_id in('false'";
 				for (String cId : categoryId) {
 					sql += ",?";
 					holder.add(cId);
@@ -113,5 +116,48 @@ public class S0020Service {
 			DBUtils.close(con, ps, rs);
 		}
 		return length;
+	}
+
+	/**
+	 * 入力チェック
+	 * @param date 入力された日付
+	 * @param accountId 入力されたaccountId
+	 * @param tradeName 入力されたtradeName
+	 * @param note 入力されたnote
+	 * @return エラーメッセージ
+	 */
+	public List<String> validate(String[] date, String accountId, String tradeName, String note) {
+		List<String> error = new ArrayList<>();
+		Date date1 = null;
+		Date date2 = null;
+		if (date == null || date.length != 2 || accountId == null || tradeName == null || note == null) {
+			error.add("バリデーションエラー");
+		} else {
+			DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+			try {
+				if (!date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+					throw new Exception();
+				}
+				format.setLenient(false);
+				date1 = format.parse(date[0]);
+			} catch (Exception e) {
+				error.add("販売日（検索開始日）を正しく入力して下さい。");
+			}
+			try {
+				if (!date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+					throw new Exception();
+				}
+				format.setLenient(false);
+				date2 = format.parse(date[1]);
+			} catch (Exception e) {
+				error.add("販売日（検索終了日）を正しく入力して下さい。");
+			}
+		}
+		if (error.size() == 0) {
+			if (date2.before(date1)) {
+				error.add("販売日（検索開始日）が販売日（検索終了日）より後の日付となっています。");
+			}
+		}
+		return error;
 	}
 }

@@ -1,9 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class S0020Servlet extends HttpServlet {
 		S0020Service S20S = new S0020Service();
 
 		// 入力チェック
-		List<String> error = validate(date);
+		List<String> error = S20S.validate(date, accountId, tradeName, note);
 		if (error.size() == 0) {
 
 			// エラーがない時
@@ -86,40 +84,5 @@ public class S0020Servlet extends HttpServlet {
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
 		session.setAttribute("error", null);
-	}
-
-	private List<String> validate(String[] date) {
-		List<String> error = new ArrayList<>();
-		Date date1 = null;
-		Date date2 = null;
-		if (date == null || date.length != 2) {
-			error.add("入力形式が間違っています");
-		} else {
-			DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-			try {
-				if (!date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
-					throw new Exception();
-				}
-				format.setLenient(false);
-				date1 = format.parse(date[0]);
-			} catch (Exception e) {
-				error.add("販売日（検索開始日）を正しく入力して下さい。");
-			}
-			try {
-				if (!date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
-					throw new Exception();
-				}
-				format.setLenient(false);
-				date2 = format.parse(date[1]);
-			} catch (Exception e) {
-				error.add("販売日（検索終了日）を正しく入力して下さい。");
-			}
-		}
-		if (error.size() == 0) {
-			if (date2.before(date1)) {
-				error.add("販売日（検索開始日）が販売日（検索終了日）より後の日付となっています。");
-			}
-		}
-		return error;
 	}
 }

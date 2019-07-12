@@ -28,10 +28,10 @@
 			<tr class="table-border-top">
 				<td>
 <c:if test="${10 <= account.authority}">
-					<a class="btn btn-primary" href="S0042.html">
+					<a class="btn btn-primary" href="S0042.html?accountId=${accountList.account_id}">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
 					</a>
-					<a class="btn btn-danger" href="S0044.html">
+					<a class="btn btn-danger" href="S0044.html?accountId=${accountList.account_id}">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
 					</a>
 </c:if>

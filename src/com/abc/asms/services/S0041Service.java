@@ -29,11 +29,11 @@ public class S0041Service {
 			//SQL
 			sql = "SELECT account_id,name,mail,authority FROM accounts where 1=1 ";
 
-			if (name != null && !name.equals("")) {
+			if (!name.equals("")) {
 				sql += "AND name LIKE ? ";
 				holder.add("%" + name + "%");
 			}
-			if (mail != null && !mail.equals("")) {
+			if (!mail.equals("")) {
 				sql += "AND mail = ? ";
 				holder.add(mail);
 			}
