@@ -11,7 +11,8 @@
 
 <div class="container">
 	<h1>アカウント検索結果一覧</h1>
-
+	<!-- メッセージ -->
+	<jsp:include page="_message.jsp" />
 	<table class="table table-hover table-border-top">
 		<thead>
 			<tr>

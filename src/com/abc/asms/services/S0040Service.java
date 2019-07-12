@@ -20,18 +20,18 @@ public class S0040Service {
 		String mail = acf.getMail();
 		String authority = acf.getAuthority();
 		List<Object> holder = new ArrayList<>();
-		try{
+		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
 			sql = "SELECT count(account_id) FROM accounts where 1=1 ";
 
-			if(name!=null&&!name.equals("")) {
+			if (name != null && !name.equals("")) {
 				sql += "AND name LIKE ? ";
-				holder.add("%"+name+"%");
+				holder.add("%" + name + "%");
 			}
-			if(mail!=null&&!mail.equals("")) {
+			if (mail != null && !mail.equals("")) {
 				sql += "AND mail = ? ";
 				holder.add(mail);
 			}
@@ -40,17 +40,17 @@ public class S0040Service {
 
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
-			for(int i = 0;i<holder.size();i++) {
-				ps.setObject(i+1, holder.get(i));
+			for (int i = 0; i < holder.size(); i++) {
+				ps.setObject(i + 1, holder.get(i));
 			}
 			rs = ps.executeQuery();
 
 			rs.next();
 			length = rs.getInt("count(account_id)");
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(con, ps, rs);
 		}
 		return length;
@@ -58,22 +58,31 @@ public class S0040Service {
 
 	public String setAuthority(String salesAuthority, String accountAuthority) {
 		String Authority = "^";
-		if (salesAuthority==null) {salesAuthority="";}
-		if (accountAuthority==null) {accountAuthority="";}
+		if (salesAuthority == null) {
+			salesAuthority = "";
+		}
+		if (accountAuthority == null) {
+			accountAuthority = "";
+		}
 		switch (accountAuthority) {
-		case "yes":Authority+="1";
+		case "yes":
+			Authority += "1";
 			break;
 		case "no":
 			break;
-		default:Authority+="1?";
+		default:
+			Authority += "1?";
 			break;
 		}
 		switch (salesAuthority) {
-		case "yes":Authority+="1";
+		case "yes":
+			Authority += "1";
 			break;
-		case "no":Authority+="0";
+		case "no":
+			Authority += "0";
 			break;
-		default:Authority+="(1|0)";
+		default:
+			Authority += "(1|0)";
 			break;
 		}
 		return Authority + "$";

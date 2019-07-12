@@ -22,18 +22,18 @@ public class S0041Service {
 		String authority = acf.getAuthority();
 		List<Object> holder = new ArrayList<>();
 		List<S0041Form> list = new ArrayList<>();
-		try{
+		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
 			sql = "SELECT account_id,name,mail,authority FROM accounts where 1=1 ";
 
-			if(name!=null&&!name.equals("")) {
+			if (name != null && !name.equals("")) {
 				sql += "AND name LIKE ? ";
-				holder.add("%"+name+"%");
+				holder.add("%" + name + "%");
 			}
-			if(mail!=null&&!mail.equals("")) {
+			if (mail != null && !mail.equals("")) {
 				sql += "AND mail = ? ";
 				holder.add(mail);
 			}
@@ -42,12 +42,12 @@ public class S0041Service {
 
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
-			for(int i = 0;i<holder.size();i++) {
-				ps.setObject(i+1, holder.get(i));
+			for (int i = 0; i < holder.size(); i++) {
+				ps.setObject(i + 1, holder.get(i));
 			}
 			rs = ps.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				String account_id = rs.getString("account_id");
 				String getName = rs.getString("name");
 				String getMail = rs.getString("mail");
@@ -55,14 +55,15 @@ public class S0041Service {
 				list.add(new S0041Form(account_id, getName, getMail, getAuthority));
 			}
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(con, ps, rs);
 		}
 
 		return list;
 	}
+
 	/**
 	 * authorityの値を対応する文字列に変換するメソッド
 	 * @param authority [11,10,1,0]のいずれか

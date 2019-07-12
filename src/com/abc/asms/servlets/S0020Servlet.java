@@ -37,7 +37,8 @@ public class S0020Servlet extends HttpServlet {
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
 
 		HttpSession session = req.getSession();
-		session.setAttribute("error", "");
+		session.setAttribute("error", null);
+		session.setAttribute("success", null);
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class S0020Servlet extends HttpServlet {
 		session.setAttribute("error", error);
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
-		session.setAttribute("error", "");
+		session.setAttribute("error", null);
 	}
 
 	private List<String> validate(String[] date) {

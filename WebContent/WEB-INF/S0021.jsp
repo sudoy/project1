@@ -10,12 +10,12 @@
 	<jsp:param name="current" value="売上検索" />
 </jsp:include>
 
-<!-- メッセージ -->
-<jsp:include page="_message.jsp" />
+
 
 <div class="container">
 	<h1>売上検索結果表示</h1>
-
+	<!-- メッセージ -->
+	<jsp:include page="_message.jsp" />
 	<table class="table table-hover table-border-top">
 		<thead>
 			<tr>
