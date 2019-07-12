@@ -182,4 +182,19 @@ public class HTMLUtils {
 		}
 		return "";
 	}
+
+	/**
+	 * writeSelectedのオーバーロード
+	 * @param val タグのvalue値(int)
+	 * @param form 受け取った値
+	 * @return "selected" または ""
+	 */
+	public static String writeSelected(int val,String form) {
+		if(form != null && form.matches("^[0-9]+$")) {
+			if(Integer.valueOf(form) == val){
+				return "selected";
+			}
+		}
+		return "";
+	}
 }

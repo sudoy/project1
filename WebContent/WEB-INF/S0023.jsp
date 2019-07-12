@@ -39,7 +39,7 @@
 				<div class="col-xs-5">
 					<select class="form-control ${HTMLUtils.errorFrame(error,'担当')}" id="accountId" name="accountId">
 					<c:forEach var="account" items="${form.accountMap}">
-						<option value="${account.key}"<c:if test="${account.key == form.accountId}">selected</c:if>>${HTMLUtils.XSS(account.value)}</option>
+						<option value="${account.key}" ${HTMLUtils.writeSelected(account.key,form.accountId)}>${HTMLUtils.XSS(account.value)}</option>
 					</c:forEach>
 					</select>
 				</div>
@@ -53,7 +53,7 @@
 				<div class="col-xs-5">&nbsp;
 					<c:forEach var="category" items="${form.categoryMap}">
 						<label class="radio-inline">
-							<input type="radio" name="categoryId" value="${category.key}" <c:if test="${category.key == form.categoryId}">checked</c:if>>
+							<input type="radio" name="categoryId" value="${category.key}" ${HTMLUtils.writeChecked(category.key,form.categoryId)}>
 							${HTMLUtils.XSS(category.value)}
 						</label>
 					</c:forEach>
