@@ -91,6 +91,41 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 
 	public List<String> validation(S0042Form form){
 
+		List<String> error = new ArrayList<>();
+
+		try {
+
+			//氏名必須入力、長さ(バイト数)
+			if(form.getName() == null || form.getName().isEmpty()) {
+				error.add("氏名を入力して下さい。");
+			}else if(21 <= form.getName().getBytes("UTF-8").length) {
+				error.add("氏名が長すぎます。");
+			}
+
+			//メールアドレス必須入力、長さ(バイト数)、形式
+			if(form.getMail() == null || form.getMail().isEmpty()) {
+				error.add("メールアドレスを入力して下さい。");
+			}else if(101 <= form.getMail().getBytes("UTF-8").length) {
+				error.add("メールアドレスが長すぎます。");
+			}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\\\.[a-zA-Z0-9._-]*$")) {
+				error.add("メールアドレスの形式が誤っています。");
+			}
+
+			//パスワード長さ(バイト数)、一致
+			if(form.getInputPass() != null) {
+				if(31 <= form.getInputPass().getBytes("UTF-8").length) {
+					error.add("パスワードが長すぎます。");
+				}else if(!form.getInputPass().equals(form.getInputPass2())) {
+					error.add("パスワードとパスワード（確認）が一致していません。");
+				}
+			}
+
+
+		} catch (Exception e) {
+			error.add("エラーが発生しました。");
+		}
+
+
 		return null;
 	}
 }
