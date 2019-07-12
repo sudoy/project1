@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -55,22 +55,16 @@
 				<div class="form-group">
 					<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<select class="form-control" id="categoryId" name="categoryId">
-							<option value="">選択してください</option>
 
-							<c:forEach var="c" items="${categoryList}">
+						<c:forEach var="c" items="${categoryList}">
+							<c:if test="${c.categoryId == form.categoryId}">
+								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${c.categoryName}</label>
+							</c:if>
+							<c:if test="${c.categoryId != form.categoryId}">
+								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}">${c.categoryName}</label>
+							</c:if>
+						</c:forEach>
 
-								<c:if test="${c.categoryId == form.categoryId}">
-									<option value="${c.categoryId}" selected>${c.categoryName}</option>
-								</c:if>
-
-								<c:if test="${c.categoryId != form.categoryId}">
-									<option value="${c.categoryId}">${c.categoryName}</option>
-								</c:if>
-
-							</c:forEach>
-
-						</select>
 					</div>
 				</div>
 
