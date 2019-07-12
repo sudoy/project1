@@ -39,7 +39,7 @@
 				<div class="col-xs-5">
 					<select class="form-control ${HTMLUtils.errorFrame(error,'担当')}" id="accountId" name="accountId">
 					<c:forEach var="account" items="${form.accountMap}">
-						<option value="${account.key}"<c:if test="${account.key == form.accountId}">selected</c:if>>${HTMLUtils.XSS(account.value)}</option>
+						<option value="${account.key}" ${HTMLUtils.writeSelected(account.key,form.accountId)}>${HTMLUtils.XSS(account.value)}</option>
 					</c:forEach>
 					</select>
 				</div>

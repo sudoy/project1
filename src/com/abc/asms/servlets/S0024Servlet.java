@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.S0024Form;
-import com.abc.asms.services.S0023Service;
 import com.abc.asms.services.S0024Service;
 
 @WebServlet("/S0024.html")
@@ -60,7 +59,7 @@ public class S0024Servlet extends HttpServlet {
 		}
 		form.setInput();
 		form.setSubtotal();
-		S0023Service s = new S0023Service();
+		S0024Service s = new S0024Service();
 		form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
 
 		//JSPへ
@@ -100,11 +99,13 @@ public class S0024Servlet extends HttpServlet {
 
 		if(error.isEmpty()) {
 			//更新
-			new S0024Service().update(form);
-			//成功メッセージ
-			List<String> success = new ArrayList<>();
-			success.add("No"+ form.getSaleId() +"の売上を更新しました。");
-			session.setAttribute("success", success);
+			int cnt = new S0024Service().update(form);
+			if(cnt == 1) {
+				//成功メッセージ
+				List<String> success = new ArrayList<>();
+				success.add("No"+ form.getSaleId() +"の売上を更新しました。");
+				session.setAttribute("success", success);
+			}
 		}else {
 			//エラーメッセージ
 			error.add("No"+ form.getSaleId() +"の売上の更新ができませんでした。");
@@ -118,7 +119,7 @@ public class S0024Servlet extends HttpServlet {
 	public List<String> validation(S0024Form form){
 
 		List<String> error = new ArrayList<>();
-		S0023Service s = new S0023Service();
+		S0024Service s = new S0024Service();
 
 		try {
 
