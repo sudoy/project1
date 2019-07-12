@@ -12,8 +12,21 @@ public class S0023Form {
 	private String unitPrice;
 	private String saleNumber;
 	private String note;
-	private Map<String,String> accountList;
-	private Map<String,String> categoryList;
+	private Map<Integer,String> accountMap;
+	private Map<Integer,String> categoryMap;
+
+	public S0023Form(String saleId, String saleDate, String accountId, String categoryId, String tradeName,
+			String unitPrice, String saleNumber, String note) {
+		super();
+		this.saleId = saleId;
+		this.saleDate = saleDate;
+		this.accountId = accountId;
+		this.categoryId = categoryId;
+		this.tradeName = tradeName;
+		this.unitPrice = unitPrice;
+		this.saleNumber = saleNumber;
+		this.note = note;
+	}
 
 	public S0023Form() {
 		super();
@@ -67,17 +80,21 @@ public class S0023Form {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Map<String, String> getAccountList() {
-		return accountList;
+
+	public Map<Integer,String> getAccountMap() {
+		return accountMap;
 	}
-	public void setAccountList(Map<String, String> accountList) {
-		this.accountList = accountList;
+
+	public void setAccountMap(Map<Integer,String> accountMap) {
+		this.accountMap = accountMap;
 	}
-	public Map<String, String> getCategoryList() {
-		return categoryList;
+
+	public Map<Integer,String> getCategoryMap() {
+		return categoryMap;
 	}
-	public void setCategoryList(Map<String, String> categoryList) {
-		this.categoryList = categoryList;
+
+	public void setCategoryMap(Map<Integer,String> categoryMap) {
+		this.categoryMap = categoryMap;
 	}
 
 }

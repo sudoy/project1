@@ -46,8 +46,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form.setSaleNumber(req.getParameter("saleNumber"));
 			form.setNote(req.getParameter("note"));
 			S0023Service s = new S0023Service();
-			form.setAccountList(s.getMap("account"));
-			form.setCategoryList(s.getMap("category"));
+			form.setAccountMap(s.getAccountMap());
+			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
 		}else {
 			//詳細画面から移動してきたとき
 			//id取得
@@ -107,8 +107,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}else {
 			//エラーリストがある→jspへformを渡して再表示、エラーメッセージ渡して表示、jspへ移動
 			S0023Service s = new S0023Service();
-			form.setAccountList(s.getMap("account"));
-			form.setCategoryList(s.getMap("category"));
+			form.setAccountMap(s.getAccountMap());
+			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
 			req.setAttribute("form", form);
 			req.setAttribute("error", error);
 			getServletContext().getRequestDispatcher("/WEB-INF/S0023.jsp").forward(req, resp);

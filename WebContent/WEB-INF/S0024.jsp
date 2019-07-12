@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
 	<jsp:param name="page" value="売上詳細編集確認" />
@@ -33,7 +35,7 @@
 				<label for="accountId" class="col-xs-3 text-right textdown">担当</label>
 				<div class="col-xs-5">
 					<select class="form-control" id="accountId" name="accountId" disabled>
-						<option value="${form.accountId}">${form.name}</option>
+						<option value="${form.accountId}">${HTMLUtils.XSS(form.name)}</option>
 					</select>
 					<input type="hidden" name="accountId" value="${form.accountId}">
 				</div>
@@ -42,10 +44,13 @@
 			<!-- 商品カテゴリー -->
 			<div class="form-group">
 				<label for="categoryId" class="col-xs-3 text-right textdown">商品カテゴリー</label>
-				<div class="col-xs-5">
-					<select class="form-control" id="categoryId" name="categoryId" disabled>
-						<option value="${form.categoryId}">${form.categoryName}</option>
-					</select>
+				<div class="col-xs-5">&nbsp;
+					<c:forEach var="category" items="${form.categoryMap}">
+						<label class="radio-inline">
+							<input type="radio" name="categoryId" value="${category.key}"
+							<c:if test="${category.key == form.categoryId}">checked</c:if> disabled>${HTMLUtils.XSS(category.value)}
+						</label>
+					</c:forEach>
 					<input type="hidden" name="categoryId" value="${form.categoryId}">
 				</div>
 			</div>
@@ -64,7 +69,7 @@
 				<label for="unitPrice" class="col-xs-3 text-right textdown">単価</label>
 				<div class="col-xs-2">
 					<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice"
-					value="<fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/>" placeholder="単価" disabled>
+					value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
 					<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 				</div>
 			</div>
@@ -74,7 +79,7 @@
 				<label for="saleNumber" class="col-xs-3 text-right textdown">個数</label>
 				<div class="col-xs-2">
 					<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber"
-					value="<fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/>" placeholder="個数" disabled>
+					value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
 					<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 				</div>
 			</div>
@@ -83,8 +88,7 @@
 			<div class="form-group">
 				<label class="col-xs-3 text-right textdown">小計</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right" value="<fmt:formatNumber
-					value="${form.subtotal}" pattern="#,##0"/>" placeholder="小計" disabled>
+					<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計" disabled>
 				</div>
 			</div>
 

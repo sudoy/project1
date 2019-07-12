@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 
@@ -52,12 +52,12 @@ public class S0023Service {
 			form.setNote(rs.getString("note"));
 
 			//SQL…アカウント名とidのリスト
-			Map<String,String> accountList = getMap("account");
-			form.setAccountList(accountList);
+			Map<Integer,String> accountMap = getAccountMap();
+			form.setAccountMap(accountMap);
 
 			//SQL…カテゴリー名とidのリスト
-			Map<String,String> categoryList = getMap("category");
-			form.setCategoryList(categoryList);
+			Map<Integer,String> categoryMap = getCategoryMap(form.getCategoryId());
+			form.setCategoryMap(categoryMap);
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -68,38 +68,26 @@ public class S0023Service {
 		return form;
 	}
 
-	public Map<String,String> getMap(String mapName){
+	public Map<Integer,String> getAccountMap(){
 
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		Map<String,String> map = new HashMap<>();
+		Map<Integer,String> map = new TreeMap<>();
 		try {
 
 			//データベース接続
 			con = DBUtils.getConnection();
 
-			if(mapName.equals("account")) {
-				//SQL…アカウント名とidのリスト
-				sql = "SELECT account_id,name FROM accounts";
-				//SELECT命令の準備・実行
-				ps = con.prepareStatement(sql);
-				rs = ps.executeQuery();
-				//Map作成
-				while(rs.next()) {
-					map.put(rs.getString("account_id"), rs.getString("name"));
-				}
-			}else if(mapName.equals("category")) {
-				//SQL…カテゴリー名とidのリスト
-				sql = "SELECT category_id,category_name FROM categories";
-				//SELECT命令の準備・実行
-				ps = con.prepareStatement(sql);
-				rs = ps.executeQuery();
-				//Map作成
-				while(rs.next()) {
-					map.put(rs.getString("category_id"), rs.getString("category_name"));
-				}
+			//SQL…アカウント名とidのリスト
+			sql = "SELECT account_id,name FROM accounts ORDER BY account_id";
+			//SELECT命令の準備・実行
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			//Map作成
+			while(rs.next()) {
+				map.put(rs.getInt("account_id"), rs.getString("name"));
 			}
 
 		} catch (Exception e) {
@@ -109,6 +97,38 @@ public class S0023Service {
 		}
 		return map;
 	}
+
+	public Map<Integer,String> getCategoryMap(String categoryId){
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		Map<Integer,String> map = new TreeMap<>();
+		try {
+
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL…カテゴリー名とidのリスト
+			sql = "SELECT category_id,category_name FROM categories WHERE active_flg = 1 OR category_id = ? ORDER BY category_id";
+			//SELECT命令の準備・実行
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			//Map作成
+			while(rs.next()) {
+				map.put(rs.getInt("category_id"), rs.getString("category_name"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+		return map;
+	}
+
 
 	public List<String> validation(S0023Form form){
 
