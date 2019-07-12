@@ -27,8 +27,7 @@
 					販売日 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}"
-					id="saleDate" name="saleDate" value="${HTMLUtils.dateFormat(form.saleDate)}">
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}" id="saleDate" name="saleDate" value="${HTMLUtils.dateFormat(form.saleDate)}">
 				</div>
 			</div>
 
@@ -54,8 +53,8 @@
 				<div class="col-xs-5">&nbsp;
 					<c:forEach var="category" items="${form.categoryMap}">
 						<label class="radio-inline">
-							<input type="radio" name="categoryId" value="${category.key}"
-							<c:if test="${category.key == form.categoryId}">checked</c:if>>${HTMLUtils.XSS(category.value)}
+							<input type="radio" name="categoryId" value="${category.key}" <c:if test="${category.key == form.categoryId}">checked</c:if>>
+							${HTMLUtils.XSS(category.value)}
 						</label>
 					</c:forEach>
 				</div>
@@ -67,8 +66,7 @@
 					商品名 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-5">
-					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'商品名')}"
-					id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名">
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'商品名')}" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名">
 				</div>
 			</div>
 
@@ -78,8 +76,7 @@
 					単価 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}"
-					id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価">
 				</div>
 			</div>
 
@@ -89,8 +86,7 @@
 					個数 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}"
-					id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数">
 				</div>
 			</div>
 

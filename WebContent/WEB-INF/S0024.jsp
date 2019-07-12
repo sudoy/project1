@@ -47,8 +47,7 @@
 				<div class="col-xs-5">&nbsp;
 					<c:forEach var="category" items="${form.categoryMap}">
 						<label class="radio-inline">
-							<input type="radio" name="categoryId" value="${category.key}"
-							<c:if test="${category.key == form.categoryId}">checked</c:if> disabled>${HTMLUtils.XSS(category.value)}
+							<input type="radio" name="categoryId" value="${category.key}" <c:if test="${category.key == form.categoryId}">checked</c:if> disabled>${HTMLUtils.XSS(category.value)}
 						</label>
 					</c:forEach>
 					<input type="hidden" name="categoryId" value="${form.categoryId}">
@@ -68,8 +67,7 @@
 			<div class="form-group">
 				<label for="unitPrice" class="col-xs-3 text-right textdown">単価</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice"
-					value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
+					<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
 					<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 				</div>
 			</div>
@@ -78,8 +76,7 @@
 			<div class="form-group">
 				<label for="saleNumber" class="col-xs-3 text-right textdown">個数</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber"
-					value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
+					<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
 					<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 				</div>
 			</div>

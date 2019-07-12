@@ -7,8 +7,8 @@ public class HTMLUtils {
 
 	/**
 	 * 日付をyyyy/m/d形式にする。日付ではない場合そのまま返す。
-	 * @param saleDate ex."2019/02/03"
-	 * @return date ex."2019/2/3"
+	 * @param saleDate
+	 * @return date ex."2019/2/3" または引数のまま
 	 */
 	public static String dateFormat(String saleDate) {
 
@@ -25,6 +25,12 @@ public class HTMLUtils {
 		return date;
 	}
 
+	/**
+	 * _header.jspのリンクにactiveのクラスを付けるメソッド
+	 * @param buttonName リンクの種類
+	 * @param current 現在開いているページの種類
+	 * @return クラス または ""
+	 */
 	public static String createHeaderClass(String buttonName, String current) {
 
 		if(buttonName.equals(current)) {
@@ -118,9 +124,10 @@ public class HTMLUtils {
 		return "";
 	}
 
-	/**数字の場合はカンマ区切りに、そうでない場合はそのまま返す。
+	/**
+	 * 数字の場合はカンマ区切りに、そうでない場合はそのまま返す。
 	 * @param num 数字の文字列
-	 * @return num カンマ区切りの数字
+	 * @return カンマ区切りの数字 または引数のまま
 	 */
 	public static String numberFormat(String num) {
 
@@ -144,5 +151,35 @@ public class HTMLUtils {
 		text = text.replace("'", "&#39;");
 		return text.replace("\"", "&quot;");
 
+	}
+
+	/**
+	 * writeCheckedのオーバーロード
+	 * @param val タグのvalue値
+	 * @param form 受け取った値
+	 * @return "checked" または ""
+	 */
+	public static String writeChecked(String val,String form) {
+		if(form != null) {
+			if(form.equals(val)){
+				return "checked";
+			}
+		}
+		return "";
+	}
+
+	/**
+	 * writeCheckedのオーバーロード
+	 * @param val タグのvalue値(int)
+	 * @param form 受け取った値
+	 * @return "checked" または ""
+	 */
+	public static String writeChecked(int val,String form) {
+		if(form != null && form.matches("^[0-9]+$")) {
+			if(Integer.valueOf(form) == val){
+				return "checked";
+			}
+		}
+		return "";
 	}
 }

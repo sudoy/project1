@@ -35,7 +35,7 @@ public class S0022Service { //売上詳細表示のサービス
 			rs = ps.executeQuery();
 			rs.next();
 
-			//update.jspに渡すform用意
+			//jspに渡すform用意
 			String saleDate = rs.getString("s.sale_date");
 			String name = rs.getString("a.name");
 			String categoryName = rs.getString("c.category_name");
