@@ -26,7 +26,7 @@ public class C0010Service extends HttpServlet {
 		int accountId = -1;
 		String name = "";
 		int authority = -1;
-		AccountForm account = new AccountForm(-1, "", 0);
+		AccountForm account = new AccountForm(-1, null, 0);
 		try {
 			con = DBUtils.getConnection();
 

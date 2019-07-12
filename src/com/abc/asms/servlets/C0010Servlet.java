@@ -34,7 +34,7 @@ public class C0010Servlet extends HttpServlet {
 			C0010Service c10s = new C0010Service();
 			AccountForm account = c10s.checkDB(mail, password);
 			// 名前が空白なら該当データ無し→エラー
-			if (!account.getName().equals("")) {
+			if (!(account.getName()==null)) {
 				// sessionにAccountFormを代入後ダッシュボードにリダイレクト
 				session.setAttribute("account", account);
 				resp.sendRedirect("C0020.html");
