@@ -17,7 +17,6 @@ public class S0021Service {
 	public List<S0021Form> getDB(SaleConditionalForm scf) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = null;
 		ResultSet rs = null;
 		String[] date = scf.getDate();
 		String accountId = scf.getAccountId();
@@ -26,50 +25,51 @@ public class S0021Service {
 		String note = scf.getNote();
 		List<Object> holder = new ArrayList<>();
 		List<S0021Form> list = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
 		try {
 
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT s.sale_id,s.sale_date"
-					+ ",(SELECT a.name FROM accounts a WHERE s.account_id = a.account_id) AS name"
-					+ ",(SELECT c.category_name FROM categories c WHERE s.category_id = c.category_id) AS category_name"
-					+ ",s.trade_name,s.unit_price,s.sale_number "
-					+ "FROM sales s WHERE 1=1 ";
+			sql.append("SELECT s.sale_id,s.sale_date");
+			sql.append(",(SELECT a.name FROM accounts a WHERE s.account_id = a.account_id) AS name");
+			sql.append(",(SELECT c.category_name FROM categories c WHERE s.category_id = c.category_id) AS category_name");
+			sql.append(",s.trade_name,s.unit_price,s.sale_number ");
+			sql.append("FROM sales s WHERE 1=1 ");
 
 			if (!date[0].equals("")) {
-				sql += "AND s.sale_date >= ? ";
+				sql.append("AND s.sale_date >= ? ");
 				holder.add(date[0]);
 			}
 			if (!date[1].equals("")) {
-				sql += "AND s.sale_date <= ? ";
+				sql.append("AND s.sale_date <= ? ");
 				holder.add(date[1]);
 			}
 			if (!accountId.equals("")) {
-				sql += "AND s.account_id = ? ";
+				sql.append("AND s.account_id = ? ");
 				holder.add(accountId);
 			}
 			if (categoryId != null) {
-				sql += "AND s.category_id in('false'";
+				sql.append("AND s.category_id in('false'");
 				for (String cId : categoryId) {
-					sql += ",?";
+					sql.append(",?");
 					holder.add(cId);
 				}
-				sql += ") ";
+				sql.append(") ");
 			}
 			if (!tradeName.equals("")) {
-				sql += "AND s.trade_name like ? ";
+				sql.append("AND s.trade_name like ? ");
 				holder.add("%" + tradeName + "%");
 			}
 			if (!note.equals("")) {
-				sql += "AND s.note like ? ";
+				sql.append("AND s.note like ? ");
 				holder.add("%" + note + "%");
 			}
-			sql += "ORDER BY s.sale_id";
+			sql.append("ORDER BY s.sale_id");
 
 			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql.toString());
 			for (int i = 0; i < holder.size(); i++) {
 				ps.setObject(i + 1, holder.get(i));
 			}

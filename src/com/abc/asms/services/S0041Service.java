@@ -15,33 +15,43 @@ public class S0041Service {
 	public List<S0041Form> getDB(AccountConditionalForm acf) {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = null;
 		ResultSet rs = null;
 		String name = acf.getName();
 		String mail = acf.getMail();
-
+		String accountAuthority = acf.getAccountAuthority();
+		String salesAuthority = acf.getSalesAuthority();
 		List<Object> holder = new ArrayList<>();
 		List<S0041Form> list = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
 		try {
 			//データベース接続
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT account_id,name,mail,authority FROM accounts where 1=1 ";
+			sql.append("SELECT account_id,name,mail,authority FROM accounts where 1=1 ");
 
 			if (!name.equals("")) {
-				sql += "AND name LIKE ? ";
+				sql.append("AND name LIKE ? ");
 				holder.add("%" + name + "%");
 			}
 			if (!mail.equals("")) {
-				sql += "AND mail = ? ";
+				sql.append("AND mail = ? ");
 				holder.add(mail);
 			}
-			sql += "AND authority REGEXP ? ORDER BY account_id";
-			holder.add(authority);
+			if(accountAuthority.equals("yes")) {
+				sql.append("AND authority >= 10 ");
+			}else if(accountAuthority.equals("no")) {
+				sql.append("AND authority < 10 ");
+			}
+			if(salesAuthority.equals("yes")) {
+				sql.append("AND authority % 2 = 1 ");
+			}else if(salesAuthority.equals("no")) {
+				sql.append("AND authority % 2 = 0 ");
+			}
+			sql.append("ORDER BY account_id");
 
 			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql.toString());
 			for (int i = 0; i < holder.size(); i++) {
 				ps.setObject(i + 1, holder.get(i));
 			}

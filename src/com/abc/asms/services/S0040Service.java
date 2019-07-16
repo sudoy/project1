@@ -21,29 +21,6 @@ public class S0040Service {
 		String salesAuthority = acf.getSalesAuthority();
 		List<Object> holder = new ArrayList<>();
 		StringBuilder sql = new StringBuilder();
-		String Authority = "^";
-		switch (accountAuthority) {
-		case "yes":
-			Authority += "1";
-			break;
-		case "no":
-			break;
-		default:
-			Authority += "1?";
-			break;
-		}
-		switch (salesAuthority) {
-		case "yes":
-			Authority += "1";
-			break;
-		case "no":
-			Authority += "0";
-			break;
-		default:
-			Authority += "(1|0)";
-			break;
-		}
-		Authority += "$";
 		try {
 			//データベース接続
 			con = DBUtils.getConnection();
@@ -59,8 +36,17 @@ public class S0040Service {
 				sql.append("AND mail = ? ");
 				holder.add(mail);
 			}
-			sql.append("AND authority REGEXP ? ");
-			holder.add(Authority);
+			if(accountAuthority.equals("yes")) {
+				sql.append("AND authority >= 10 ");
+			}else if(accountAuthority.equals("no")) {
+				sql.append("AND authority < 10 ");
+			}
+			if(salesAuthority.equals("yes")) {
+				sql.append("AND authority % 2 = 1 ");
+			}else if(salesAuthority.equals("no")) {
+				sql.append("AND authority % 2 = 0 ");
+			}
+
 
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql.toString());

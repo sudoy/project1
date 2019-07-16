@@ -60,7 +60,7 @@ public class HTMLUtils {
 	 * @param list 配列の値
 	 * @return "checked"又は""(空文字)
 	 */
-	public static String writeChecked(String now,String[] list) {
+	public static String writtenChecked(String now,String[] list) {
 		if(list!=null) {
 			for(String c:list) {
 				if(c.equals(now)){
