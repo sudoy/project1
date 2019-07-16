@@ -73,6 +73,10 @@
 	text-align:center;
 }
 
+.entryradio{
+	margin-left:0px !important;
+}
+
 /*山本*/
 .bold{font-weight:bold;}
 .textdown{padding:9px 15px 0px 0px;}

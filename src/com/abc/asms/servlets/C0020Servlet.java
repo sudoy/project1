@@ -28,17 +28,30 @@ public class C0020Servlet extends HttpServlet {
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int accountId = account.getAccountId();
 
-		//jspへ送る変数とServiceを用意
+		//変数とServiceを用意
 		List<C0020Form> findList = new ArrayList<>();
 		C0020Service service = new C0020Service();
+		LocalDate date;
+		LocalDate beforedate;
 
-		//今日と先月の同じ日を取得
-		LocalDate date = LocalDate.now();
-		LocalDate beforedate = date.minusMonths(1);
+		//今日と先月の日付を取得
+
+		//ダッシュボードのボタンを押したとき
+		if(req.getParameter("button") != null) {
+			String button = req.getParameter("button");
+			String getdate = req.getParameter("date");
+
+			date = service.date(button, getdate);
+			beforedate = date.minusMonths(1);
+
+		//ログインしてきたとき(1回目)
+		}else{
+			date = LocalDate.now();
+			beforedate = date.minusMonths(1);
+		}
 
 
-		//今月と先月(数字)
-		int monthval = date.getMonthValue();
+		//年、月の情報を取得
 		int lastmonthval = beforedate.getMonthValue();
 
 
@@ -57,7 +70,7 @@ public class C0020Servlet extends HttpServlet {
 		findList = service.find(accountId, date);
 
 		//formへ代入
-		C0020Form form = new C0020Form(monthval,lastmonthval,salemonth,salelastmonth,percent,total);
+		C0020Form form = new C0020Form(date,lastmonthval,salemonth,salelastmonth,percent,total);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);

@@ -13,7 +13,51 @@
 <!--ダッシュボード-->
 <div class="container">
 
-	<h1>ダッシュボード</h1>
+	<h1 class="dashtitle">ダッシュボード</h1>
+
+	<!--仕様変更箇所-->
+	<nav aria-label="Page navigation">
+ 		<div class="col-sm-4 left-btn">
+    		<ul class="pagination">
+    			<li>
+     		 		<a href="C0020.html?button=lastyear&date=${form.date}" aria-label="Previous">
+        			<span aria-hidden="true">&laquo;</span>
+        			前年
+      				</a>
+      			</li>
+      			<li>
+     		 		<a href="C0020.html?button=lastmonth&date=${form.date}" aria-label="Previous">
+        			<span aria-hidden="true">&laquo;</span>
+        			前月
+      				</a>
+    			</li>
+    		</ul>
+    	</div>
+
+    	<div class="col-sm-4 center-cal">
+
+    		<h2>${form.date.getYear()}年${form.date.getMonthValue()}月</h2>
+
+   		</div>
+
+   		<div class="col-sm-4 right-btn">
+   			<ul class="pagination">
+   				<li>
+    				<a href="C0020.html?button=nextmonth&date=${form.date}" aria-label="Next">
+      				翌月
+        			<span aria-hidden="true">&raquo;</span>
+      				</a>
+      			</li>
+
+      			<li>
+      				<a href="C0020.html?button=nextyear&date=${form.date}" aria-label="Next">
+      				翌年
+        			<span aria-hidden="true">&raquo;</span>
+      				</a>
+      			</li>
+      		</ul>
+      	</div>
+	</nav>
 
 	<!--合計売上-->
 	<!--前月-->

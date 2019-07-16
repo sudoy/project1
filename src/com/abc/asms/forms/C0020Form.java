@@ -1,5 +1,7 @@
 package com.abc.asms.forms;
 
+import java.time.LocalDate;
+
 public class C0020Form {
 
 
@@ -12,22 +14,38 @@ public class C0020Form {
 	private int subtotal;
 
 	private int monthval;
+	private int yearval;
 	private int lastmonthval;
 	private double salemonth;
 	private double salelastmonth;
 	private double percent;
 	private int total;
+	private LocalDate date;
 
-	public C0020Form(int monthval, int lastmonthval, double salemonth, double salelastmonth, double percent,
+
+	public C0020Form(LocalDate date, int lastmonthval, double salemonth, double salelastmonth, double percent,
 			int total) {
 		super();
-		this.monthval = monthval;
+		this.date = date;
 		this.lastmonthval = lastmonthval;
 		this.salemonth = salemonth;
 		this.salelastmonth = salelastmonth;
 		this.percent = percent;
 		this.total = total;
 	}
+
+	public C0020Form(int monthval, int yearval, int lastmonthval, double salemonth, double salelastmonth,
+			double percent, int total) {
+		super();
+		this.monthval = monthval;
+		this.yearval = yearval;
+		this.lastmonthval = lastmonthval;
+		this.salemonth = salemonth;
+		this.salelastmonth = salelastmonth;
+		this.percent = percent;
+		this.total = total;
+	}
+
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
 			int subtotal) {
@@ -160,5 +178,23 @@ public class C0020Form {
 	public void setSubtotal(int subtotal) {
 		this.subtotal = subtotal;
 	}
+
+	public int getYearval() {
+		return yearval;
+	}
+
+	public void setYearval(int yearval) {
+		this.yearval = yearval;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+
 
 }

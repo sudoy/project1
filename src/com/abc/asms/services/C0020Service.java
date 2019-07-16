@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +158,32 @@ public class C0020Service {
 			}catch (Exception e){}
 
 		}
+	}
+
+	public LocalDate date (String button,String getdate) {
+
+		LocalDate date = LocalDate.parse(getdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+		try {
+
+			if(button.equals("lastmonth")) {
+				return date.minusMonths(1);
+
+			}else if(button.equals("lastyear")) {
+				return date.minusYears(1);
+
+			}else if(button.equals("nextmonth")) {
+				return date.plusMonths(1);
+
+			}else {
+				return date.plusYears(1);
+
+			}
+
+		}catch(Exception e) {
+			return LocalDate.now();
+		}
+
 	}
 
 

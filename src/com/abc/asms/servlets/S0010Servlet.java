@@ -27,8 +27,8 @@ public class S0010Servlet extends HttpServlet {
 
 		HttpSession session = req.getSession();
 
+		//権限チェック
 		AccountForm account = (AccountForm) session.getAttribute("account");
-
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority != 1 && salesAuthority != 11) {
 
