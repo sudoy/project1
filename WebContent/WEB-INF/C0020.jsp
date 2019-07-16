@@ -19,15 +19,15 @@
 	<!--前月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月（${lastmonthval}月）の売上合計</h5></div>
-			<div class="panel-body text-center"><fmt:formatNumber value="${salelastmonth}" pattern="#,##0"/>円</div>
+			<div class="panel-heading"><h5>前月（${form.lastmonthval}月）の売上合計</h5></div>
+			<div class="panel-body text-center"><fmt:formatNumber value="${form.salelastmonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
 	<!--今月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>今月（${monthval}月）の売上合計</h5></div>
-			<div class="panel-body text-center"><fmt:formatNumber value="${salemonth}" pattern="#,##0"/>円</div>
+			<div class="panel-heading"><h5>今月（${form.monthval}月）の売上合計</h5></div>
+			<div class="panel-body text-center"><fmt:formatNumber value="${form.salemonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
 	<!--前月比-->
@@ -35,21 +35,21 @@
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>前月比</h5></div>
 
-				<c:if test="${1 <= percent && salelastmonth != 0}">
+				<c:if test="${1 <= form.percent && form.salelastmonth != 0}">
 					<div class="panel-body text-center up-color">
 					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-					<fmt:formatNumber value="${percent}" type="PERCENT" maxFractionDigits="2"/>
+					<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
-				<c:if test="${percent < 1}">
+				<c:if test="${form.percent < 1}">
 					<div class="panel-body text-center down-color">
 					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-					<fmt:formatNumber value="${percent}" type="PERCENT" maxFractionDigits="2"/>
+					<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
-				<c:if test="${salelastmonth == 0 && 1 <= salemonth}">
+				<c:if test="${form.salelastmonth == 0 && 1 <= form.salemonth}">
 					<div class="panel-body text-center">
 					99999.99%
 					</div>
@@ -98,7 +98,7 @@
 				<tr>
 					<td colspan="5"></td>
 					<th>合計</th>
-					<td><fmt:formatNumber value="${total}" pattern="#,##0"/></td>
+					<td><fmt:formatNumber value="${form.total}" pattern="#,##0"/></td>
 				</tr>
 			</tbody>
 		</table>

@@ -13,6 +13,16 @@ public class EntrySaleDataForm {
 	private String active_flg;
 	private String name;
 
+	private String subtotal;
+
+	public String getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(String subtotal) {
+		this.subtotal = subtotal;
+	}
+
 	public EntrySaleDataForm(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
 			String saleNumber, String note) {
 		super();
@@ -37,6 +47,10 @@ public class EntrySaleDataForm {
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.active_flg = active_flg;
+	}
+
+	public EntrySaleDataForm() {
+
 	}
 
 	public String getSaleDate() {

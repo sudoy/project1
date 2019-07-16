@@ -11,6 +11,24 @@ public class C0020Form {
 	private int saleNumber;
 	private int subtotal;
 
+	private int monthval;
+	private int lastmonthval;
+	private double salemonth;
+	private double salelastmonth;
+	private double percent;
+	private int total;
+
+	public C0020Form(int monthval, int lastmonthval, double salemonth, double salelastmonth, double percent,
+			int total) {
+		super();
+		this.monthval = monthval;
+		this.lastmonthval = lastmonthval;
+		this.salemonth = salemonth;
+		this.salelastmonth = salelastmonth;
+		this.percent = percent;
+		this.total = total;
+	}
+
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
 			int subtotal) {
 		super();
@@ -27,6 +45,53 @@ public class C0020Form {
 
 	}
 
+	public int getMonthval() {
+		return monthval;
+	}
+
+	public void setMonthval(int monthval) {
+		this.monthval = monthval;
+	}
+
+	public int getLastmonthval() {
+		return lastmonthval;
+	}
+
+	public void setLastmonthval(int lastmonthval) {
+		this.lastmonthval = lastmonthval;
+	}
+
+	public double getSalemonth() {
+		return salemonth;
+	}
+
+	public void setSalemonth(double salemonth) {
+		this.salemonth = salemonth;
+	}
+
+	public double getSalelastmonth() {
+		return salelastmonth;
+	}
+
+	public void setSalelastmonth(double salelastmonth) {
+		this.salelastmonth = salelastmonth;
+	}
+
+	public double getPercent() {
+		return percent;
+	}
+
+	public void setPercent(double percent) {
+		this.percent = percent;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
 	public int getSaleId() {
 		return saleId;
@@ -36,21 +101,6 @@ public class C0020Form {
 	public void setSaleId(int saleId) {
 		this.saleId = saleId;
 	}
-
-
-
-	public C0020Form(String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
-			int subtotal, int saleId) {
-		super();
-		this.saleDate = saleDate;
-		this.categoryName = categoryName;
-		this.tradeName = tradeName;
-		this.unitPrice = unitPrice;
-		this.saleNumber = saleNumber;
-		this.subtotal = subtotal;
-		this.saleId = saleId;
-	}
-
 
 	public String getSaleDate() {
 		return saleDate;
@@ -110,9 +160,5 @@ public class C0020Form {
 	public void setSubtotal(int subtotal) {
 		this.subtotal = subtotal;
 	}
-
-
-
-
 
 }

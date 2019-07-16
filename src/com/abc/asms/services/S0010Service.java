@@ -34,6 +34,7 @@ public class S0010Service {
 				String categoryName = rs.getString("category_name");
 				String activeFlg = rs.getString("active_flg");
 
+
 				EntrySaleDataForm form = new EntrySaleDataForm(categoryId,categoryName,activeFlg);
 				categoryList.add(form);
 			}
@@ -110,6 +111,8 @@ public class S0010Service {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, form.getAccountId());
 			rs = ps.executeQuery();
+
+			//アカウントの関連チェック
 			rs.next();
 			if(rs.getInt("cnt") != 1) {
 				error = "アカウントテーブルに存在しません。";
@@ -134,15 +137,16 @@ public class S0010Service {
 
 		try {
 
-			//テーブル存在チェック
+
 			con = DBUtils.getConnection();
 
 			sql = "SELECT count(category_id) as cnt FROM categories WHERE category_id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, form.getCategoryId());
 			rs = ps.executeQuery();
-			rs.next();
 
+			//テーブル存在チェック
+			rs.next();
 			if(rs.getInt("cnt") != 1) {
 				error = "商品カテゴリーテーブルに存在しません。";
 			}

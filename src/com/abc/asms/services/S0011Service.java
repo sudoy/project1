@@ -50,6 +50,7 @@ public class S0011Service {
 			ps.setString(7, form.getNote());
 			ps.executeUpdate();
 
+			//insertした直後にIDを取得
 			rs = con.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
 			rs.next();
 			id = rs.getInt("LAST_INSERT_ID()");

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -32,7 +33,7 @@
 							<c:forEach var="a" items="${accountList}">
 
 								<c:if test="${a.accountId == form.accountId}">
-									<option value="${a.accountId}" selected>${a.name}</option>
+									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
 								</c:if>
 
 							</c:forEach>
@@ -49,7 +50,7 @@
 
 						<c:forEach var="c" items="${categoryList}">
 							<c:if test="${c.categoryId == form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${c.categoryName}</label>
+								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
 						</c:forEach>
 
@@ -84,7 +85,7 @@
 				<div class="form-group">
 					<label class="col-xs-3 textright control-label">小計</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" value="${subtotal}" placeholder="小計" disabled>
+						<input type="text" class="form-control textright" value="${form.subtotal}" placeholder="小計" disabled>
 					</div>
 				</div>
 
@@ -100,7 +101,7 @@
 				<div class="form-group">
 					<div class="col-xs-8 col-xs-offset-4">
 						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ</button>
-						<a class="btn btn-default" href="S0010.html" role="button">キャンセル</a>
+						<a class="btn btn-default" href="S0010.html?cancel=1" role="button">キャンセル</a>
 					</div>
 				</div>
 			</form>

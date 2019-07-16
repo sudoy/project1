@@ -50,11 +50,20 @@ public class S0010Servlet extends HttpServlet {
 		List<EntrySaleDataForm> accountList = new ArrayList<>();
 		S0010Service service = new S0010Service();
 
+		EntrySaleDataForm form = new EntrySaleDataForm();
+
+		//キャンセルで戻ったときの値の保持
+		if(req.getParameter("cancel") != null) {
+			form = (EntrySaleDataForm) session.getAttribute("form");
+		}
+
+
 		categoryList = service.findCategory();
 		accountList = service.findAccount();
+		form.setSaleDate(saleDate);
 
 		//jspへ送信して表示
-		req.setAttribute("saleDate", saleDate);
+		req.setAttribute("form", form);
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("accountList", accountList);
 
@@ -80,15 +89,10 @@ public class S0010Servlet extends HttpServlet {
 
 		//formに代入してvalidationメソッドへ通す
 		EntrySaleDataForm form = new EntrySaleDataForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
-		S0010Service service = new S0010Service();
 		List<String>  error = new ArrayList<>();
 
 		//validationチェック
 		error = validation(form);
-
-//		//関連チェック
-//		error.add(service.accountCheck(form));
-//		error.add(service.categoryCheck(form));
 
 		//エラーメッセージがなければページ遷移
 		if(error.isEmpty()) {
@@ -108,11 +112,12 @@ public class S0010Servlet extends HttpServlet {
 	}
 
 	public List<String> validation(EntrySaleDataForm form){
-
+		S0010Service service = new S0010Service();
 		List<String> error = new ArrayList<>();
 
 		try {
 
+			//日付チェック
 			if(form.getSaleDate().isEmpty()) {
 				error.add("販売日を入力して下さい。");
 			}else {
@@ -129,7 +134,7 @@ public class S0010Servlet extends HttpServlet {
 				}
 			}
 
-			if(form.getAccountId() == null) {
+			if(form.getAccountId().isEmpty()) {
 				error.add("担当が未選択です。");
 			}
 
@@ -166,6 +171,17 @@ public class S0010Servlet extends HttpServlet {
 			if(401 <= form.getNote().getBytes("UTF-8").length) {
 				error.add("備考が長すぎます。");
 			}
+
+			//関連チェック
+			if(!(service.accountCheck(form).isEmpty())) {
+				error.add(service.accountCheck(form));
+			}
+
+			if(!(service.categoryCheck(form).isEmpty())) {
+				error.add(service.categoryCheck(form));
+			}
+
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			error.add("バリデーションエラー");

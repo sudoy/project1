@@ -28,14 +28,13 @@ public class C0020Servlet extends HttpServlet {
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int accountId = account.getAccountId();
 
-		//今日と先月の同じ日を取得
-		LocalDate date = LocalDate.now();
-		LocalDate beforedate = date.minusMonths(1);
-
-
 		//jspへ送る変数とServiceを用意
 		List<C0020Form> findList = new ArrayList<>();
 		C0020Service service = new C0020Service();
+
+		//今日と先月の同じ日を取得
+		LocalDate date = LocalDate.now();
+		LocalDate beforedate = date.minusMonths(1);
 
 
 		//今月と先月(数字)
@@ -57,15 +56,13 @@ public class C0020Servlet extends HttpServlet {
 		//個人の売上リスト
 		findList = service.find(accountId, date);
 
+		//formへ代入
+		C0020Form form = new C0020Form(monthval,lastmonthval,salemonth,salelastmonth,percent,total);
 
-		req.setAttribute("lastmonthval", lastmonthval);
-		req.setAttribute("monthval", monthval);
+		//formをjspへ送信
+		req.setAttribute("form", form);
 		req.setAttribute("account", account);
-		req.setAttribute("percent", percent);
-		req.setAttribute("salemonth", salemonth);
-		req.setAttribute("salelastmonth", salelastmonth);
 		req.setAttribute("findList", findList);
-		req.setAttribute("total", total);
 
 
 		getServletContext().getRequestDispatcher("/WEB-INF/C0020.jsp").forward(req, resp);

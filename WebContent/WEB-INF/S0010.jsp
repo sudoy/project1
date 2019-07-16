@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -22,27 +22,27 @@
 
 				<!-- 販売日 -->
 				<div class="form-group">
-					<label for="saleDate" class="col-xs-3 text-right control-label">販売日 <span class="badge">必須</span></label>
+					<label for="saleDate" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'販売日')}">販売日 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control" id="saleDate" name="saleDate" value="${saleDate}">
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}" id="saleDate" name="saleDate" value="${form.saleDate}">
 					</div>
 				</div>
 
 				<!-- 担当 -->
 				<div class="form-group">
-					<label for="accountId" class="col-xs-3 text-right control-label">担当 <span class="badge">必須</span></label>
+					<label for="accountId" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'担当')}">担当 <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<select class="form-control" id="accountId" name="accountId">
+						<select class="form-control ${HTMLUtils.errorFrame(error,'担当')}" id="accountId" name="accountId">
 							<option value="">選択してください</option>
 
 							<c:forEach var="a" items="${accountList}">
 
 								<c:if test="${a.accountId == form.accountId}">
-									<option value="${a.accountId}" selected>${a.name}</option>
+									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
 								</c:if>
 
 								<c:if test="${a.accountId != form.accountId}">
-									<option value="${a.accountId}">${a.name}</option>
+									<option value="${a.accountId}">${HTMLUtils.XSS(a.name)}</option>
 								</c:if>
 
 							</c:forEach>
@@ -53,15 +53,15 @@
 
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー <span class="badge">必須</span></label>
+					<label for="categoryId" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'商品カテゴリー')}">商品カテゴリー <span class="badge">必須</span></label>
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
 							<c:if test="${c.categoryId == form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${c.categoryName}</label>
+								<label class="radio-inline ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
 							<c:if test="${c.categoryId != form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}">${c.categoryName}</label>
+								<label class="radio-inline ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}">${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
 						</c:forEach>
 
@@ -70,25 +70,25 @@
 
 				<!-- 商品名 -->
 				<div class="form-group">
-					<label for="tradeName" class="col-xs-3 text-right control-label">商品名 <span class="badge">必須</span></label>
+					<label for="tradeName" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'商品名')}">商品名 <span class="badge">必須</span></label>
 					<div class="col-xs-5">
-						<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名">
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'商品名')}" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名">
 					</div>
 				</div>
 
 				<!-- 単価 -->
 				<div class="form-group">
-					<label for="unitPrice" class="col-xs-3 text-right control-label">単価 <span class="badge">必須</span></label>
+					<label for="unitPrice" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'単価')}">単価 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice" value="${form.unitPrice}" placeholder="単価">
+						<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}" id="unitPrice" name="unitPrice" value="${form.unitPrice}" placeholder="単価">
 					</div>
 				</div>
 
 				<!-- 個数 -->
 				<div class="form-group">
-					<label for="saleNumber" class="col-xs-3 text-right control-label">個数 <span class="badge">必須</span></label>
+					<label for="saleNumber" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'個数')}">個数 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber" value="${form.saleNumber}" placeholder="個数">
+						<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}" id="saleNumber" name="saleNumber" value="${form.saleNumber}" placeholder="個数">
 					</div>
 				</div>
 
