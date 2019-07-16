@@ -27,7 +27,7 @@
 					class="form-control ${HTMLUtils.errorFrame(error,'開始日')}"
 					id="startsaleDate" name="saleDate1" value="${form.saleDate1}">
 			</div>
-			<div class="col-xs-1 text-center control-label">～</div>
+			<div class="col-xs-1 text-center tmargin">～</div>
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'終了日')}"
