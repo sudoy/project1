@@ -36,6 +36,10 @@
 									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
 								</c:if>
 
+								<c:if test="${a.accountId != form.accountId}">
+									<option value="${a.accountId}">${HTMLUtils.XSS(a.name)}</option>
+								</c:if>
+
 							</c:forEach>
 
 						</select>
@@ -51,11 +55,11 @@
 						<c:forEach var="c" items="${categoryList}">
 
 							<c:if test="${c.categoryId == form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" disabled checked>${HTMLUtils.XSS(c.categoryName)}</label>
+								<label class="radio-inline entryradio"><input type="radio" name="categoryId" value="${c.categoryId}" disabled checked>${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
 
 							<c:if test="${c.categoryId != form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" disabled>${HTMLUtils.XSS(c.categoryName)}</label>
+								<label class="radio-inline entryradio"><input type="radio" name="categoryId" value="${c.categoryId}" disabled>${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
 
 						</c:forEach>
