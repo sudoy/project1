@@ -18,10 +18,7 @@ import com.abc.asms.services.S0040Service;
 public class S0040Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
 		getServletContext().getRequestDispatcher("/WEB-INF/S0040.jsp").forward(req, resp);
-		session.setAttribute("error", null);
-		session.setAttribute("success", null);
 	}
 
 	@Override
@@ -49,7 +46,6 @@ public class S0040Servlet extends HttpServlet {
 		req.setAttribute("acf", acf);
 		session.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0040.jsp").forward(req, resp);
-		session.setAttribute("error", null);
 	}
 
 	/**

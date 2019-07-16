@@ -24,7 +24,6 @@ public class MessageFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		chain.doFilter(req, resp);
-		System.out.println(((HttpServletResponse) resp).getStatus());
 		if(((HttpServletResponse) resp).getStatus()==200) {
 			HttpSession session = ((HttpServletRequest) req).getSession();
 			session.setAttribute("error", null);

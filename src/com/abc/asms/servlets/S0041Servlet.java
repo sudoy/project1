@@ -28,7 +28,5 @@ public class S0041Servlet extends HttpServlet {
 		AccountConditionalForm acf = (AccountConditionalForm) session.getAttribute("AccountConditional");
 		req.setAttribute("list", S41S.getDB(acf));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0041.jsp").forward(req, resp);
-		session.setAttribute("error", null);
-		session.setAttribute("success", null);
 	}
 }

@@ -38,9 +38,6 @@ public class S0020Servlet extends HttpServlet {
 
 		req.setAttribute("form", new S0020Form(saleDate1, saleDate2, null, null, null, null, accountMap, categoryMap));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
-		HttpSession session = req.getSession();
-		session.setAttribute("error", null);
-		session.setAttribute("success", null);
 	}
 
 	@Override
@@ -83,7 +80,6 @@ public class S0020Servlet extends HttpServlet {
 		session.setAttribute("error", error);
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
-		session.setAttribute("error", null);
 	}
 	/**
 	 * 入力チェック

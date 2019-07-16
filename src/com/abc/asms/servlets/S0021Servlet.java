@@ -28,7 +28,5 @@ public class S0021Servlet extends HttpServlet {
 		SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");
 		req.setAttribute("list", S21S.getDB(scf));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0021.jsp").forward(req, resp);
-		session.setAttribute("error", null);
-		session.setAttribute("success", null);
 	}
 }
