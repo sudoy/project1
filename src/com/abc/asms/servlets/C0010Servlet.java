@@ -20,8 +20,6 @@ public class C0010Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
-		HttpSession session = req.getSession();
-		session.invalidate();
 	}
 
 	@Override
@@ -48,7 +46,6 @@ public class C0010Servlet extends HttpServlet {
 		req.setAttribute("form", C10F);
 		session.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
-		session.invalidate();
 	}
 
 	/**

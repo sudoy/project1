@@ -8,9 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
-public class testFilter implements Filter {
+public class MessageFilter implements Filter {
 
 	@Override
 	public void destroy() {
@@ -21,6 +24,12 @@ public class testFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		chain.doFilter(req, resp);
+		System.out.println(((HttpServletResponse) resp).getStatus());
+		if(((HttpServletResponse) resp).getStatus()==200) {
+			HttpSession session = ((HttpServletRequest) req).getSession();
+			session.setAttribute("error", null);
+			session.setAttribute("success", null);
+		}
 	}
 
 	@Override
