@@ -37,6 +37,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			return;
 		}
 
+		//form用意
 		S0023Form form = new S0023Form();
 		if(req.getParameter("cancel") != null) {
 			//確認画面からキャンセルで戻ってきたとき
@@ -52,10 +53,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form.setAccountMap(s.getAccountMap());
 			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
 		}else {
-			//詳細画面から移動してきたとき
-			//id取得
+			//詳細画面から移動してきたとき…idからformを取得
 			String saleId = req.getParameter("saleId");
-			//idからformを取得	…該当データと、アカウント名(id)、カテゴリ名(id)のリスト
 			form = new S0023Service().findSaleDetail(saleId);
 		}
 
@@ -108,7 +107,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
 			resp.sendRedirect("S0024.html?" + input);
 		}else {
-			//エラーリストがある→jspへformを渡して再表示、エラーメッセージ渡して表示、jspへ移動
+			//エラーリストがある→jspへform、エラーメッセージ渡してjspへ移動
 			S0023Service s = new S0023Service();
 			form.setAccountMap(s.getAccountMap());
 			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
