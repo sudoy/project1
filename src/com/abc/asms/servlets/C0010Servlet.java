@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
+import com.abc.asms.forms.C0010Form;
 import com.abc.asms.services.C0010Service;
 
 @WebServlet("/C0010.html")
@@ -33,17 +34,18 @@ public class C0010Servlet extends HttpServlet {
 		if (error.size() == 0) {
 			C0010Service c10s = new C0010Service();
 			AccountForm account = c10s.checkDB(mail, password);
-			// 名前が空白なら該当データ無し→エラー
+			// 名前がnullではない→一致している
 			if (!(account.getName()==null)) {
 				// sessionにAccountFormを代入後ダッシュボードにリダイレクト
 				session.setAttribute("account", account);
 				resp.sendRedirect("C0020.html");
 				return;
 			}
+			// 名前がnullなら該当データ無し→エラー
 			error.add("メールアドレス、パスワードを正しく入力して下さい。");
 		}
-		req.setAttribute("mail", mail);
-		req.setAttribute("password", password);
+		C0010Form C10F = new C0010Form(mail, password);
+		req.setAttribute("form", C10F);
 		session.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
 		session.invalidate();
