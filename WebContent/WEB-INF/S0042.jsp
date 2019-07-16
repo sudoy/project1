@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils" %>
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
 	<jsp:param name="page" value="アカウント編集" />
 	<jsp:param name="current" value="アカウント検索" />
 </jsp:include>
 
-<!-- アカウント編集 -->
-<div class="container">
+	<!-- アカウント編集 -->
+	<div class="container">
 		<h1>アカウント編集</h1>
 
 		<!-- メッセージ -->
@@ -19,54 +20,54 @@
 
 			<!-- 氏名 -->
 			<div class="form-group">
-				 <label for="name" class="col-sm-offset-1 col-sm-2  control-label">氏名
+				 <label for="name" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'氏名')}">氏名
 				 <span class="badge">必須</span>
 	    		 </label>
 				 <div class="col-sm-4">
-					<input type="text" class="form-control" id="name" name="name" value="${form.name}" placeholder="氏名">
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'氏名')}" id="name" name="name" value="${form.name}" placeholder="氏名">
 				 </div>
 			</div>
 
 			<!-- メールアドレス -->
 			<div class="form-group">
-				 <label for="mail" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス
+				 <label for="mail" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'メールアドレス')}">メールアドレス
 				 <span class="badge">必須</span>
 	    		 </label>
 				 <div class="col-sm-4">
-					<input type="text" class="form-control" id="mail" name="mail" value="${form.mail}" placeholder="メールアドレス">
+					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}" id="mail" name="mail" value="${form.mail}" placeholder="メールアドレス">
 				 </div>
 			</div>
 
 			<!-- パスワード -->
 			<div class="form-group">
-				 <label for="password1" class="col-sm-offset-1 col-sm-2  control-label">パスワード
+				 <label for="password1" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'パスワード')}">パスワード
 
 	    		 </label>
 				 <div class="col-sm-4">
-					<input type="password" class="form-control" id="password1" name="inputPass" value="${form.inputPass}" placeholder="パスワード">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}" id="password1" name="inputPass" value="${form.inputPass}" placeholder="パスワード">
 				 </div>
 			</div>
 
 			<!-- パスワード(確認) -->
 			<div class="form-group">
-				 <label for="password2" class="col-sm-offset-1 col-sm-2  control-label">パスワード(確認)
+				 <label for="password2" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'(確認)')}">パスワード(確認)
 
 	    		 </label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password2" name="inputPass2" value="${form.inputPass2}" placeholder="パスワード(確認)">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'(確認)')}" id="password2" name="inputPass2" value="${form.inputPass2}" placeholder="パスワード(確認)">
 				</div>
 			</div>
 
 			<!-- 売上登録権限 -->
 			<div class="form-group">
-				<label class="col-xs-3 text-right control-label">売上登録権限 <span class="badge">必須</span></label>
+				<label class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'売上')}">売上登録権限 <span class="badge">必須</span></label>
 				<div class="col-sm-3">
-						<label class="radio-inline">
-							<input type="radio" name="salesAuthority" value="no" <c:if test="${form.salesAuthority == 'no'}">checked</c:if>>
+						<label class="radio-inline ${HTMLUtils.errorMessage(error,'売上')}">
+							<input type="radio" name="salesAuthority" value="no" ${HTMLUtils.writeChecked('no',form.salesAuthority)}>
 							権限なし
 						</label>
-						<label class="radio-inline">
-							<input type="radio" name="salesAuthority" value="yes" <c:if test="${form.salesAuthority == 'yes'}">checked</c:if>>
+						<label class="radio-inline ${HTMLUtils.errorMessage(error,'売上')}">
+							<input type="radio" name="salesAuthority" value="yes" ${HTMLUtils.writeChecked('yes',form.salesAuthority)}>
 							権限あり
 						</label>
 				</div>
@@ -74,14 +75,14 @@
 
 			<!-- アカウント登録権限 -->
 			<div class="form-group">
-				<label class="col-xs-3 text-right control-label">アカウント登録権限 <span class="badge">必須</span></label>
+				<label class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'アカウント')}">アカウント登録権限 <span class="badge">必須</span></label>
 				<div class="col-sm-3">
-						<label class="radio-inline">
-							<input type="radio" name="accountAuthority" value="no" <c:if test="${form.accountAuthority == 'no'}">checked</c:if>>
+						<label class="radio-inline ${HTMLUtils.errorMessage(error,'アカウント')}">
+							<input type="radio" name="accountAuthority" value="no" ${HTMLUtils.writeChecked('no',form.accountAuthority)}>
 							権限なし
 						</label>
-						<label class="radio-inline">
-							<input type="radio" name="accountAuthority" value="yes" <c:if test="${form.accountAuthority == 'yes'}">checked</c:if>>
+						<label class="radio-inline ${HTMLUtils.errorMessage(error,'アカウント')}">
+							<input type="radio" name="accountAuthority" value="yes" ${HTMLUtils.writeChecked('yes',form.accountAuthority)}>
 							権限あり
 						</label>
 				</div>

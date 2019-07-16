@@ -52,7 +52,7 @@
 				</label>
 				<div class="col-xs-5">&nbsp;
 					<c:forEach var="category" items="${form.categoryMap}">
-						<label class="radio-inline">
+						<label class="radio-inline ${HTMLUtils.errorMessage(error,'カテゴリー')}">
 							<input type="radio" name="categoryId" value="${category.key}" ${HTMLUtils.writeChecked(category.key,form.categoryId)}>
 							${HTMLUtils.XSS(category.value)}
 						</label>

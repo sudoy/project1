@@ -4,18 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.abc.asms.forms.S0042Form;
+import com.abc.asms.forms.AccountEditForm;
 import com.abc.asms.utils.DBUtils;
 
 public class S0042Service {
 
-	public S0042Form findAccount(String accountId) {
+	public AccountEditForm findAccount(String accountId) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		S0042Form form = null;
+		AccountEditForm form = null;
 
 		try{
 			//データベース接続
@@ -30,7 +30,7 @@ public class S0042Service {
 			rs.next();
 
 			//jspに渡すform用意、値をセット
-			form = new S0042Form();
+			form = new AccountEditForm();
 			form.setAccountId(rs.getString("account_id"));
 			form.setName(rs.getString("name"));
 			form.setMail(rs.getString("mail"));

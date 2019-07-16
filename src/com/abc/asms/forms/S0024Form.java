@@ -18,10 +18,6 @@ public class S0024Form {
 	private String subtotal;
 	private Map<Integer,String> categoryMap;
 
-	public S0024Form() {
-		super();
-	}
-
 	public String getSaleId() {
 		return saleId;
 	}

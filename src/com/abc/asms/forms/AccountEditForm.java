@@ -1,6 +1,6 @@
 package com.abc.asms.forms;
 
-public class S0042Form {
+public class AccountEditForm {
 
 	private String accountId;
 	private String name;
@@ -9,10 +9,6 @@ public class S0042Form {
 	private String inputPass2;
 	private String salesAuthority;
 	private String accountAuthority;
-
-	public S0042Form() {
-		super();
-	}
 
 	public String getAccountId() {
 		return accountId;

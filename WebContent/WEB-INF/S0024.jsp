@@ -13,9 +13,6 @@
 	<div class="container">
 		<h1 class="bold check bm20">売上を編集してよろしいですか？</h1>
 
-		<!-- メッセージ -->
-		<jsp:include page="_message.jsp" />
-
 		<!-- form -->
 		<form class="form-horizontal" action="S0024.html" method="post">
 			<%--更新時の確認用で渡すsaleId --%>

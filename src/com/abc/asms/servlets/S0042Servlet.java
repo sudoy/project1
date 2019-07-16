@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.AccountEditForm;
 import com.abc.asms.forms.AccountForm;
-import com.abc.asms.forms.S0042Form;
 import com.abc.asms.services.S0042Service;
 
 @WebServlet("/S0042.html")
@@ -33,14 +33,17 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 			return;
 		}
 
-		//キャンセルで戻ってきた場合
-
-		//S0041からaccount_idを取得
-		String accountId = req.getParameter("accountId");
-		accountId = "3"; //あとで消す
-
-		//アカウント情報取得
-		S0042Form form = new S0042Service().findAccount(accountId);
+		AccountEditForm form = new AccountEditForm();
+		if(req.getParameter("cancel") != null && req.getParameter("accountId") == null) {
+			//キャンセルで戻ってきた場合
+			form = (AccountEditForm) session.getAttribute("AccountEditForm");
+			session.setAttribute("AccountEditForm", "");
+		}else {
+			//S0041からaccount_idを取得
+			String accountId = req.getParameter("accountId");
+			//アカウント情報取得
+			form = new S0042Service().findAccount(accountId);
+		}
 
 		//jspへformを渡す
 		req.setAttribute("form", form);
@@ -64,7 +67,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		}
 
 		//入力情報取得
-		S0042Form form = new S0042Form();
+		AccountEditForm form = new AccountEditForm();
 		form.setAccountId(req.getParameter("accountId"));
 		form.setName(req.getParameter("name"));
 		form.setMail(req.getParameter("mail"));
@@ -78,8 +81,8 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 
 		if(error.isEmpty()) {
 			//アカウント編集確認画面へ値を渡して移動
-			String input = null;
-			resp.sendRedirect("S0043.html?" + input);
+			session.setAttribute("AccountEditForm", form);
+			resp.sendRedirect("S0043.html");
 		}else {
 			//エラー時入力情報formとメッセージを表示、S0042.jspへ
 			req.setAttribute("form", form);
@@ -89,7 +92,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 
 	}
 
-	public List<String> validation(S0042Form form){
+	public List<String> validation(AccountEditForm form){
 
 		List<String> error = new ArrayList<>();
 
@@ -107,7 +110,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 				error.add("メールアドレスを入力して下さい。");
 			}else if(101 <= form.getMail().getBytes("UTF-8").length) {
 				error.add("メールアドレスが長すぎます。");
-			}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\\\.[a-zA-Z0-9._-]*$")) {
+			}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
 				error.add("メールアドレスの形式が誤っています。");
 			}
 
@@ -120,12 +123,24 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 				}
 			}
 
+			//売上登録権限必須入力、値チェック
+			if(form.getSalesAuthority() == null || form.getSalesAuthority().isEmpty()) {
+				error.add("売上登録権限を入力して下さい。");
+			}else if(!form.getSalesAuthority().equals("yes") && !form.getSalesAuthority().equals("no")) {
+				error.add("売上登録権限に正しい値を入力して下さい。");
+			}
+
+			//アカウント登録権限必須入力、値チェック
+			if(form.getAccountAuthority() == null || form.getAccountAuthority().isEmpty()) {
+				error.add("アカウント登録権限を入力して下さい。");
+			}else if(!form.getAccountAuthority().equals("yes") && !form.getAccountAuthority().equals("no")) {
+				error.add("アカウント登録権限に正しい値を入力して下さい。");
+			}
 
 		} catch (Exception e) {
 			error.add("エラーが発生しました。");
 		}
 
-
-		return null;
+		return error;
 	}
 }
