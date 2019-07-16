@@ -49,9 +49,15 @@
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
+
 							<c:if test="${c.categoryId == form.categoryId}">
-								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${HTMLUtils.XSS(c.categoryName)}</label>
+								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" disabled checked>${HTMLUtils.XSS(c.categoryName)}</label>
 							</c:if>
+
+							<c:if test="${c.categoryId != form.categoryId}">
+								<label class="radio-inline"><input type="radio" name="categoryId" value="${c.categoryId}" disabled>${HTMLUtils.XSS(c.categoryName)}</label>
+							</c:if>
+
 						</c:forEach>
 
 					</div>

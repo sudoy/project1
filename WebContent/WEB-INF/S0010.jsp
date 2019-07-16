@@ -10,13 +10,14 @@
 </jsp:include>
 
 
-
-<!-- メッセージ -->
-<jsp:include page="_message.jsp" />
-
 <!-- 売上登録システム表示 -->
 		<div class="container">
+
 			<h1>売上登録</h1>
+
+			<!-- メッセージ -->
+			<jsp:include page="_message.jsp" />
+
 			<!-- form -->
 			<form class="form-horizontal" method="POST" action="S0010.html">
 

@@ -47,27 +47,35 @@
 			</div><!--div class="collapse navbar-collapse"-->
 		</div>
 	</nav><!--ヘッダーここまで-->
-		<!-- メッセージ表示 -->
-		<div class="container">
-			<div class="alert alert-success alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong> 成功しました！</strong><br>
-				<ul>
-					<li>成功メッセージ</li>
-				</ul>
-			</div>
-			<div class="alert alert-warning alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong> エラーが発生しました！</strong><br>
-				<ul>
-					<li>エラーメッセージ</li>
-				</ul>
-			</div>
-		</div>
 
 		<!-- 売上登録システム表示 -->
 		<div class="container">
 			<h1>売上登録</h1>
+
+			<!-- メッセージ表示 -->
+
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="margin-off"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					<strong> 成功しました！</strong><br>
+				</h4><br>
+				<ul>
+					<li>成功メッセージ</li>
+				</ul>
+			</div>
+
+
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" id="alert" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="margin-off"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<strong> エラーが発生しました！</strong>
+				</h4><br>
+				<ul>
+					<li>エラーメッセージ</li>
+				</ul>
+			</div>
+
+
 			<!-- form -->
 			<form class="form-horizontal" action="S0011.html">
 
@@ -89,7 +97,6 @@
 					</div>
 				</div>
 
-				<!--仕様変更箇所-->
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
 					<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー <span class="badge">必須</span></label>
