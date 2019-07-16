@@ -87,7 +87,7 @@ public class S0024Form {
 		+ "&unitPrice=" + getUnitPrice()
 		+ "&saleNumber=" + getSaleNumber()
 		+ "&note=" + getNote()
-		+ "&cancel=";
+		+ "&cancel";
 	}
 
 	public String getCategoryName() {
