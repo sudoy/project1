@@ -119,4 +119,72 @@ public class DBUtils {
 			return "エラー";
 		}
 	}
+
+	/**
+	 * 担当のテーブル存在チェック
+	 * @param AccountId
+	 * @return アカウントテーブルに引数のidがあれば1、なければ0
+	 */
+	public static int countAccount(String AccountId){
+
+		int cnt = 0;
+		Connection con = null;
+		String sql = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//担当テーブル存在チェック
+			sql = "SELECT count(account_id) as cnt FROM accounts WHERE account_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, AccountId);
+			rs = ps.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+
+		return cnt;
+	}
+
+	/**
+	 * カテゴリーのテーブル存在チェック
+	 * @param AccountId
+	 * @return カテゴリーテーブルに引数のidがあれば1、なければ0
+	 */
+	public int countCategory(String categoryId){
+
+		int cnt = 0;
+		Connection con = null;
+		String sql = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//カテゴリーテーブル存在チェック
+			sql = "SELECT count(category_id) as cnt FROM categories WHERE category_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+
+		return cnt;
+	}
 }
