@@ -26,7 +26,7 @@ public class S0010Service {
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "select category_id,category_name,active_flg from categories where active_flg = '1'";
+			sql = "select category_id,category_name,active_flg from categories where active_flg = '1' ORDER BY category_id";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -51,7 +51,7 @@ public class S0010Service {
 		}finally{
 
 			try{
-				com.abc.asms.utils.DBUtils.close(con, ps, rs);
+				DBUtils.close(con, ps, rs);
 			}catch (Exception e){}
 
 		}
@@ -68,7 +68,7 @@ public class S0010Service {
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "select account_id,name from accounts";
+			sql = "select account_id,name from accounts ORDER BY account_id";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -91,7 +91,7 @@ public class S0010Service {
 		}finally{
 
 			try{
-				com.abc.asms.utils.DBUtils.close(con, ps, rs);
+				DBUtils.close(con, ps, rs);
 			}catch (Exception e){}
 
 		}

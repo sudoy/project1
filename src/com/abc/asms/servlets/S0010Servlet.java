@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
-import com.abc.asms.forms.S0010Form;
-import com.abc.asms.services.S0010Service;
+import com.abc.asms.forms.EntrySaleForm;
 import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0010.html")
@@ -52,7 +51,7 @@ public class S0010Servlet extends HttpServlet {
 			String note = req.getParameter("note");
 
 			//前回に入力された値を送信
-			S0010Form form = new S0010Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
+			EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
 			req.setAttribute("form", form);
 
 		//ダッシュボードから入ってきたとき
@@ -63,18 +62,17 @@ public class S0010Servlet extends HttpServlet {
 			String saleDate = DBUtils.dateFormat(date.toString());
 
 			//日付情報のみをformに代入して送信
-			S0010Form form = new S0010Form();
+			EntrySaleForm form = new EntrySaleForm();
 			form.setSaleDate(saleDate);
 			req.setAttribute("form", form);
 		}
 
 		//登録画面に必要な値をServiceから取得
-		List<S0010Form> categoryList = new ArrayList<>();
-		List<S0010Form> accountList = new ArrayList<>();
-		S0010Service service = new S0010Service();
+		List<EntrySaleForm> categoryList = new ArrayList<>();
+		List<EntrySaleForm> accountList = new ArrayList<>();
 
-		categoryList = service.findCategory();
-		accountList = service.findAccount();
+		categoryList = DBUtils.findCategory();
+		accountList = DBUtils.findAccount();
 
 		//jspへ送信して表示
 
@@ -103,13 +101,11 @@ public class S0010Servlet extends HttpServlet {
 
 
 		//formに代入してvalidationメソッドへ通す
-		S0010Form form = new S0010Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
+		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
 		List<String>  error = new ArrayList<>();
 
 
-		//nullチェック
-		//エラーがある場合はダッシュボード
-		if(note == null) {
+		if(isnull(note)) {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0020.html");
@@ -122,10 +118,9 @@ public class S0010Servlet extends HttpServlet {
 		if(error.isEmpty()) {
 
 			//URLと一緒jにformをリダイレクト
-			S0010Service service = new S0010Service();
 			StringBuilder senddata = new StringBuilder();
 
-			senddata = service.sendData(form);
+			senddata = DBUtils.sendData(form);
 
 			resp.sendRedirect("S0011.html?" + senddata);
 
@@ -133,15 +128,14 @@ public class S0010Servlet extends HttpServlet {
 		}else{
 
 			//選択肢のリストと入力した値を再送信
-			List<S0010Form> categoryList = new ArrayList<>();
-			List<S0010Form> accountList = new ArrayList<>();
-			S0010Service service = new S0010Service();
+			List<EntrySaleForm> categoryList = new ArrayList<>();
+			List<EntrySaleForm> accountList = new ArrayList<>();
 
-			categoryList = service.findCategory();
-			accountList = service.findAccount();
+			categoryList = DBUtils.findCategory();
+			accountList = DBUtils.findAccount();
 
+			session.setAttribute("error", error);
 			req.setAttribute("form", form);
-			req.setAttribute("error", error);
 			req.setAttribute("categoryList", categoryList);
 			req.setAttribute("accountList", accountList);
 
@@ -151,10 +145,10 @@ public class S0010Servlet extends HttpServlet {
 
 	}
 
-	public List<String> validation(S0010Form form){
+	public List<String> validation(EntrySaleForm form){
 		List<String> error = new ArrayList<>();
 
-		
+
 
 		//nullチェック、日付必須入力、
 		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
@@ -222,13 +216,25 @@ public class S0010Servlet extends HttpServlet {
 			error.add("個数が長すぎます。");
 		}
 
+
+
 		//nullチェック済み、備考長さ
 		if(401 <= form.getNote().getBytes(Charset.forName("UTF-8")).length) {
 			error.add("備考が長すぎます。");
 		}
-		
+
 		return error;
 
+	}
+
+	public boolean isnull(String note) {
+		//nullチェック
+		//エラーがある場合はダッシュボード
+		if(note == null) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

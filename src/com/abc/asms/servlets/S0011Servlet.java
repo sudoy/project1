@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
-import com.abc.asms.forms.S0011Form;
+import com.abc.asms.forms.EntrySaleForm;
 import com.abc.asms.services.S0011Service;
+import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0011.html")
 public class S0011Servlet extends HttpServlet {
@@ -51,17 +52,17 @@ public class S0011Servlet extends HttpServlet {
 		String subtotal = service.calc(unitPrice,saleNumber);
 
 		//選択肢のリストを抽出
-		List<S0011Form> accountList = new ArrayList<>();
-		List<S0011Form> categoryList = new ArrayList<>();
-		accountList = service.findAccount();
-		categoryList = service.findCategory();
+		List<EntrySaleForm> accountList = new ArrayList<>();
+		List<EntrySaleForm> categoryList = new ArrayList<>();
+		accountList = DBUtils.findAccount();
+		categoryList = DBUtils.findCategory();
 
 
 		//値をformにセット
-		S0011Form form = new S0011Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note,subtotal);
+		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note,subtotal);
 
 		//キャンセルがあったときに送るデータ
-		StringBuilder canceldata = service.cancelData(form);
+		StringBuilder canceldata = DBUtils.sendData(form);
 		form.setCanceldata(canceldata);
 
 		//formをjspへ送信
@@ -90,7 +91,7 @@ public class S0011Servlet extends HttpServlet {
 		String saleNumber = req.getParameter("saleNumber");
 		String note = req.getParameter("note");
 
-		S0011Form form = new S0011Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
+		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
 
 		//insert開始
 		S0011Service service = new S0011Service();

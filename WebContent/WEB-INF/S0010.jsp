@@ -38,13 +38,7 @@
 
 							<c:forEach var="a" items="${accountList}">
 
-								<c:if test="${a.accountId == form.accountId}">
-									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
-								</c:if>
-
-								<c:if test="${a.accountId != form.accountId}">
-									<option value="${a.accountId}">${HTMLUtils.XSS(a.name)}</option>
-								</c:if>
+								<option value="${a.accountId}" ${HTMLUtils.writeSelected(a.accountId , form.accountId)}>${HTMLUtils.XSS(a.name)}</option>
 
 							</c:forEach>
 
@@ -58,12 +52,9 @@
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
-							<c:if test="${c.categoryId == form.categoryId}">
-								<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" checked>${HTMLUtils.XSS(c.categoryName)}</label>
-							</c:if>
-							<c:if test="${c.categoryId != form.categoryId}">
-								<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}">${HTMLUtils.XSS(c.categoryName)}</label>
-							</c:if>
+
+							<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" ${HTMLUtils.writeChecked(c.categoryId , form.categoryId)}>${HTMLUtils.XSS(c.categoryName)}</label>
+
 						</c:forEach>
 
 					</div>

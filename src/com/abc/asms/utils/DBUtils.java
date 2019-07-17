@@ -1,5 +1,7 @@
 package com.abc.asms.utils;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,12 +9,17 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletException;
 import javax.sql.DataSource;
+
+import com.abc.asms.forms.EntrySaleForm;
 
 public class DBUtils {
 
@@ -187,4 +194,124 @@ public class DBUtils {
 
 		return cnt;
 	}
+
+
+	/**
+	 * GETでデータをjspに送るためのメソッドです。
+	 * 売上登録、登録確認で使用します。
+	 * @param form
+	 * @return
+	 * @throws IOException
+	 */
+
+	public static StringBuilder sendData(EntrySaleForm form) throws IOException {
+
+		StringBuilder senddata = new StringBuilder();
+		senddata.append("saleDate=" + form.getSaleDate());
+		senddata.append("&accountId=" + form.getAccountId());
+		senddata.append("&categoryId=" + form.getCategoryId());
+		senddata.append("&tradeName=" + URLEncoder.encode(form.getTradeName(),"UTF-8"));
+		senddata.append("&unitPrice=" + form.getUnitPrice());
+		senddata.append("&saleNumber=" + form.getSaleNumber());
+		senddata.append("&note=" +  URLEncoder.encode(form.getNote(),"UTF-8"));
+
+		return senddata;
+
+	}
+
+
+	/**
+	 * Categoryのリストを抽出するメソッドです。
+	 * 売上登録、登録確認で使用します。
+	 * @return
+	 * @throws ServletException
+	 */
+	public static List<EntrySaleForm> findCategory() throws ServletException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		List<EntrySaleForm> categoryList = new ArrayList<>();
+
+		try{
+
+			//DBと接続する
+			con = DBUtils.getConnection();
+			sql = "select category_id,category_name,active_flg from categories where active_flg = '1' ORDER BY category_id";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			//DBの値の取り出し
+			while(rs.next()) {
+				String categoryId = rs.getString("category_id");
+				String categoryName = rs.getString("category_name");
+				String activeFlg = rs.getString("active_flg");
+
+
+				EntrySaleForm form = new EntrySaleForm(categoryId,categoryName,activeFlg);
+				categoryList.add(form);
+			}
+
+
+			//値をServletに送信
+			return  categoryList;
+
+		}catch(Exception e){
+			throw new ServletException(e);
+
+		}finally{
+
+			try{
+				DBUtils.close(con, ps, rs);
+			}catch (Exception e){}
+
+		}
+	}
+
+	/**
+	 * accountのリストを抽出します。
+	 * 売上登録、登録確認で使用します。
+	 * @return
+	 * @throws ServletException
+	 */
+	public static List<EntrySaleForm> findAccount() throws ServletException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		List<EntrySaleForm> accountList = new ArrayList<>();
+
+		try{
+
+			//DBと接続する
+			con = DBUtils.getConnection();
+			sql = "select account_id,name from accounts ORDER BY account_id";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			//DBの値の取り出し
+			while(rs.next()) {
+				String accountId = rs.getString("account_id");
+				String name = rs.getString("name");
+
+				EntrySaleForm form = new EntrySaleForm(accountId,name);
+				accountList.add(form);
+
+			}
+
+			//値をServletに送信
+			return  accountList;
+
+		}catch(Exception e){
+			throw new ServletException(e);
+
+		}finally{
+
+			try{
+				DBUtils.close(con, ps, rs);
+			}catch (Exception e){}
+
+		}
+	}
+
 }

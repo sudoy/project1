@@ -1,6 +1,6 @@
 package com.abc.asms.forms;
 
-public class S0011Form {
+public class EntrySaleForm {
 	private String saleDate;
 	private String accountId;
 	private String categoryId;
@@ -16,7 +16,7 @@ public class S0011Form {
 
 	private StringBuilder canceldata;
 
-	public S0011Form(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
+	public EntrySaleForm(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
 			String saleNumber, String note, String subtotal) {
 		super();
 		this.saleDate = saleDate;
@@ -30,7 +30,7 @@ public class S0011Form {
 	}
 
 
-	public S0011Form(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
+	public EntrySaleForm(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
 			String saleNumber, String note) {
 		super();
 		this.saleDate = saleDate;
@@ -42,19 +42,24 @@ public class S0011Form {
 		this.note = note;
 	}
 
-	public S0011Form(String accountId, String name) {
+	public EntrySaleForm(String accountId, String name) {
 		super();
 		this.accountId = accountId;
 		this.name = name;
 	}
 
 
-	public S0011Form(String categoryId, String categoryName, String active_flg) {
+	public EntrySaleForm(String categoryId, String categoryName, String active_flg) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.activeFlg = active_flg;
 	}
+
+	public EntrySaleForm() {
+
+	}
+
 
 	public String getSaleDate() {
 		return saleDate;

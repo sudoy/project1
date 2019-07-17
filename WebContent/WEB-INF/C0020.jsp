@@ -15,6 +15,9 @@
 
 	<h1 class="dashtitle">ダッシュボード</h1>
 
+	<!-- メッセージ -->
+			<jsp:include page="_message.jsp" />
+
 	<!--仕様変更箇所-->
 	<nav aria-label="Page navigation">
  		<div class="col-sm-4 left-btn">
