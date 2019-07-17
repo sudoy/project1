@@ -122,10 +122,10 @@ public class DBUtils {
 
 	/**
 	 * 担当のテーブル存在チェック
-	 * @param AccountId
+	 * @param accountId
 	 * @return アカウントテーブルに引数のidがあれば1、なければ0
 	 */
-	public static int countAccount(String AccountId){
+	public static int countAccount(String accountId){
 
 		int cnt = 0;
 		Connection con = null;
@@ -140,7 +140,7 @@ public class DBUtils {
 			//担当テーブル存在チェック
 			sql = "SELECT count(account_id) as cnt FROM accounts WHERE account_id = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, AccountId);
+			ps.setString(1, accountId);
 			rs = ps.executeQuery();
 			rs.next();
 			cnt = rs.getInt("cnt");
