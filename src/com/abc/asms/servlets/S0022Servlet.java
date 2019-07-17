@@ -21,12 +21,13 @@ public class S0022Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//権限チェック 売上登録権限があるかどうか
+		//権限チェック 売上登録権限があればボタン表示
+		String authorityCheck = "";
 		HttpSession session = req.getSession();
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority == 1 || salesAuthority == 11) {
-			req.setAttribute("salesAuthority", "ok");//formに
+			authorityCheck = "ok";
 		}
 
 		//id取得
@@ -43,6 +44,8 @@ public class S0022Servlet extends HttpServlet {
 			resp.sendRedirect("C0020.html");
 			return;
 		}
+
+		form.setSalesAuthority(authorityCheck);
 
 		//formをjspに渡す
 		req.setAttribute("form", form);

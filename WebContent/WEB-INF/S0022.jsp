@@ -85,7 +85,7 @@
 		<!-- Submit -->
 		<div class="form-group">
 			<div class="col-xs-8 col-xs-offset-4">
-			<c:if test="${salesAuthority == 'ok'}">
+			<c:if test="${form.salesAuthority == 'ok'}">
 				<a class="btn btn-primary" href="S0023.html?saleId=${form.saleId}" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編　集</a>
 				<a class="btn btn-danger"  href="S0025.html?saleId=${form.saleId}" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削　除</a>
 			</c:if>
