@@ -48,7 +48,7 @@ public class S0025Service {
 			form.setSubtotal(rs.getString("subtotal"));
 			form.setNote(rs.getString("s.note"));
 
-			//SQL…カテゴリー名とidのリスト
+			//カテゴリー名とidのリスト
 			Map<Integer,String> categoryMap = getCategoryMap(form.getCategoryId());
 			form.setCategoryMap(categoryMap);
 

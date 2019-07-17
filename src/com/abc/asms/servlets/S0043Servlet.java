@@ -36,6 +36,15 @@ public class S0043Servlet extends HttpServlet {
 		//S0042から値を取得 ※セッション
 		AccountEditForm form = (AccountEditForm) session.getAttribute("AccountEditForm");
 
+		//formの中身がない場合ダッシュボードへ
+		if(form == null || form.getAccountId() == null) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
+
 		//jspへ
 		req.setAttribute("form", form);
 
