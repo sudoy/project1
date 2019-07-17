@@ -1,5 +1,7 @@
 package com.abc.asms.services;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -172,7 +174,7 @@ public class S0024Service {
 		return map;
 	}
 
-	public StringBuilder setInput(S0024Form form) {
+	public StringBuilder setInput(S0024Form form) throws UnsupportedEncodingException {
 
 		StringBuilder input = new StringBuilder();
 		input.append("saleId=" + form.getSaleId());
@@ -182,7 +184,7 @@ public class S0024Service {
 		input.append("&tradeName=" + form.getTradeName());
 		input.append("&unitPrice=" + form.getUnitPrice());
 		input.append("&saleNumber=" + form.getSaleNumber());
-		input.append("&note=" +form.getNote());
+		input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
 		input.append("&cancel");
 
 		return input;
