@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
-import com.abc.asms.forms.EntrySaleDataForm;
+import com.abc.asms.forms.S0011Form;
 import com.abc.asms.services.S0011Service;
 
 @WebServlet("/S0011.html")
@@ -37,19 +37,37 @@ public class S0011Servlet extends HttpServlet {
 		}
 
 		//S0010の入力データを取得
-		EntrySaleDataForm form = (EntrySaleDataForm) session.getAttribute("form");
+		String saleDate = req.getParameter("saleDate");
+		String accountId = req.getParameter("accountId");
+		String categoryId = req.getParameter("categoryId");
+		String tradeName = req.getParameter("tradeName");
+		String unitPrice = req.getParameter("unitPrice");
+		String saleNumber = req.getParameter("saleNumber");
+		String note = req.getParameter("note");
 
-		//小計の計算に利用
-		String unitPrice = form.getUnitPrice();
-		String saleNumber = form.getSaleNumber();
 
 		//小計を計算するメソッドの呼び出し
 		S0011Service service = new S0011Service();
 		String subtotal = service.calc(unitPrice,saleNumber);
-		form.setSubtotal(subtotal);
 
-		//計算結果をset
+		//選択肢のリストを抽出
+		List<S0011Form> accountList = new ArrayList<>();
+		List<S0011Form> categoryList = new ArrayList<>();
+		accountList = service.findAccount();
+		categoryList = service.findCategory();
+
+
+		//値をformにセット
+		S0011Form form = new S0011Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note,subtotal);
+
+		//キャンセルがあったときに送るデータ
+		StringBuilder canceldata = service.cancelData(form);
+		form.setCanceldata(canceldata);
+
+		//formをjspへ送信
 		req.setAttribute("form", form);
+		req.setAttribute("accountList", accountList);
+		req.setAttribute("categoryList", categoryList);
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0011.jsp").forward(req, resp);
 
@@ -63,7 +81,16 @@ public class S0011Servlet extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		//S0010で入力された値を取得
-		EntrySaleDataForm form = (EntrySaleDataForm) session.getAttribute("form");
+
+		String saleDate = req.getParameter("saleDate");
+		String accountId = req.getParameter("accountId");
+		String categoryId = req.getParameter("categoryId");
+		String tradeName = req.getParameter("tradeName");
+		String unitPrice = req.getParameter("unitPrice");
+		String saleNumber = req.getParameter("saleNumber");
+		String note = req.getParameter("note");
+
+		S0011Form form = new S0011Form(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
 
 		//insert開始
 		S0011Service service = new S0011Service();

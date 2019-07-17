@@ -21,6 +21,7 @@
 					<label for="saleDate" class="col-xs-3 textright control-label">販売日</label>
 					<div class="col-xs-2">
 						<input type="text" class="form-control" id="saleDate" name="saleDate" value="${form.saleDate}" disabled>
+						<input type="hidden" name="saleDate" value="${form.saleDate}">
 					</div>
 				</div>
 
@@ -34,10 +35,7 @@
 
 								<c:if test="${a.accountId == form.accountId}">
 									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
-								</c:if>
-
-								<c:if test="${a.accountId != form.accountId}">
-									<option value="${a.accountId}">${HTMLUtils.XSS(a.name)}</option>
+									<input type="hidden" name="accountId" value="${a.accountId}">
 								</c:if>
 
 							</c:forEach>
@@ -56,6 +54,7 @@
 
 							<c:if test="${c.categoryId == form.categoryId}">
 								<label class="radio-inline entryradio"><input type="radio" name="categoryId" value="${c.categoryId}" disabled checked>${HTMLUtils.XSS(c.categoryName)}</label>
+								<input type="hidden" name="categoryId" value="${c.categoryId}">
 							</c:if>
 
 							<c:if test="${c.categoryId != form.categoryId}">
@@ -72,6 +71,7 @@
 					<label for="tradeName" class="col-xs-3 textright control-label">商品名</label>
 					<div class="col-xs-5">
 						<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled>
+						<input type="hidden" name="tradeName" value="${form.tradeName}">
 					</div>
 				</div>
 
@@ -80,6 +80,7 @@
 					<label for="unitPrice" class="col-xs-3 textright control-label">単価</label>
 					<div class="col-xs-2">
 						<input type="text" class="form-control textright" id="unitPrice" name="unitPrice" value="<fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/>" placeholder="単価" disabled>
+						<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 					</div>
 				</div>
 
@@ -88,6 +89,7 @@
 					<label for="saleNumber" class="col-xs-3 textright control-label">個数</label>
 					<div class="col-xs-2">
 						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="<fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/>" placeholder="個数" disabled>
+						<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 					</div>
 				</div>
 
@@ -96,6 +98,7 @@
 					<label class="col-xs-3 textright control-label">小計</label>
 					<div class="col-xs-2">
 						<input type="text" class="form-control textright" value="${form.subtotal}" placeholder="小計" disabled>
+
 					</div>
 				</div>
 
@@ -104,6 +107,7 @@
 					<label for="note" class="col-xs-3 textright control-label">備考</label>
 					<div class="col-xs-5">
 						<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細" disabled>${form.note}</textarea>
+						<input type="hidden" name="note" value="${form.note}">
 					</div>
 				</div>
 
@@ -111,7 +115,7 @@
 				<div class="form-group">
 					<div class="col-xs-8 col-xs-offset-4">
 						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ</button>
-						<a class="btn btn-default" href="S0010.html?cancel=1" role="button">キャンセル</a>
+						<a class="btn btn-default" href="S0010.html?cancel=1&${form.canceldata}" role="button">キャンセル</a>
 					</div>
 				</div>
 			</form>

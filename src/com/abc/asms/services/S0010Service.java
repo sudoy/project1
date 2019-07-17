@@ -1,5 +1,7 @@
 package com.abc.asms.services;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,17 +10,17 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
-import com.abc.asms.forms.EntrySaleDataForm;
+import com.abc.asms.forms.S0010Form;
 import com.abc.asms.utils.DBUtils;
 
 public class S0010Service {
 
-	public List<EntrySaleDataForm> findCategory() throws ServletException{
+	public List<S0010Form> findCategory() throws ServletException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		List<EntrySaleDataForm> categoryList = new ArrayList<>();
+		List<S0010Form> categoryList = new ArrayList<>();
 
 		try{
 
@@ -35,7 +37,7 @@ public class S0010Service {
 				String activeFlg = rs.getString("active_flg");
 
 
-				EntrySaleDataForm form = new EntrySaleDataForm(categoryId,categoryName,activeFlg);
+				S0010Form form = new S0010Form(categoryId,categoryName,activeFlg);
 				categoryList.add(form);
 			}
 
@@ -55,12 +57,12 @@ public class S0010Service {
 		}
 	}
 
-	public List<EntrySaleDataForm> findAccount() throws ServletException{
+	public List<S0010Form> findAccount() throws ServletException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		List<EntrySaleDataForm> accountList = new ArrayList<>();
+		List<S0010Form> accountList = new ArrayList<>();
 
 		try{
 
@@ -75,7 +77,7 @@ public class S0010Service {
 				String accountId = rs.getString("account_id");
 				String name = rs.getString("name");
 
-				EntrySaleDataForm form = new EntrySaleDataForm(accountId,name);
+				S0010Form form = new S0010Form(accountId,name);
 				accountList.add(form);
 
 			}
@@ -95,68 +97,18 @@ public class S0010Service {
 		}
 	}
 
-	public String accountCheck(EntrySaleDataForm form){
+	public StringBuilder sendData(S0010Form form) throws IOException {
 
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String error = "";
+		StringBuilder senddata = new StringBuilder();
+		senddata.append("saleDate=" + form.getSaleDate());
+		senddata.append("&accountId=" + form.getAccountId());
+		senddata.append("&categoryId=" + form.getCategoryId());
+		senddata.append("&tradeName=" + URLEncoder.encode(form.getTradeName(),"UTF-8"));
+		senddata.append("&unitPrice=" + form.getUnitPrice());
+		senddata.append("&saleNumber=" + form.getSaleNumber());
+		senddata.append("&note=" +  URLEncoder.encode(form.getNote(),"UTF-8"));
 
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
+		return senddata;
 
-			sql = "SELECT count(account_id) as cnt FROM accounts WHERE account_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, form.getAccountId());
-			rs = ps.executeQuery();
-
-			//アカウントの関連チェック
-			rs.next();
-			if(rs.getInt("cnt") != 1) {
-				error = "アカウントテーブルに存在しません。";
-			}
-
-		} catch (Exception e) {
-
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return error;
-	}
-
-	public String categoryCheck(EntrySaleDataForm form){
-
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String error = "";
-
-		try {
-
-
-			con = DBUtils.getConnection();
-
-			sql = "SELECT count(category_id) as cnt FROM categories WHERE category_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, form.getCategoryId());
-			rs = ps.executeQuery();
-
-			//テーブル存在チェック
-			rs.next();
-			if(rs.getInt("cnt") != 1) {
-				error = "商品カテゴリーテーブルに存在しません。";
-			}
-
-		} catch (Exception e) {
-
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return error;
 	}
 }
