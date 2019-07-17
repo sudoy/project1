@@ -21,8 +21,8 @@ public class S0041Servlet extends HttpServlet {
 
 		// 検索条件のセッションが存在しているか
 		if (session.getAttribute("AccountConditional") == null) {
-			resp.sendRedirect("S0040.html");
-			return;
+			AccountConditionalForm acf = new AccountConditionalForm("", "", "", "");
+			session.setAttribute("AccountConditional", acf);
 		}
 
 		AccountConditionalForm acf = (AccountConditionalForm) session.getAttribute("AccountConditional");

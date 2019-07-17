@@ -1,6 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,14 +60,14 @@ public class C0010Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		if (mail == null || mail.equals("")) {
 			error.add("メールアドレスを入力して下さい。");
-		} else if (100 < mail.length()) {
+		} else if (100 < mail.getBytes(Charset.forName("UTF-8")).length) {
 			error.add("メールアドレスが長すぎます。");
 		} else if (!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
 			error.add("メールアドレスを正しく入力して下さい。");
 		}
 		if (password == null || password.equals("")) {
 			error.add("パスワードが未入力です。");
-		} else if (30 < password.length()) {
+		} else if (30 < password.getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
 		}
 		return error;

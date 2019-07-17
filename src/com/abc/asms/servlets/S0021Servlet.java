@@ -21,8 +21,8 @@ public class S0021Servlet extends HttpServlet {
 
 		// 検索条件のセッションが存在しているか
 		if (session.getAttribute("SaleConditional") == null) {
-			resp.sendRedirect("S0020.html");
-			return;
+			SaleConditionalForm scf = new SaleConditionalForm(new String[]{"",""}, "", null, "", "");
+			session.setAttribute("SaleConditional", scf);
 		}
 
 		SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");

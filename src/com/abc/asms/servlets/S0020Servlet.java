@@ -51,9 +51,18 @@ public class S0020Servlet extends HttpServlet {
 		String tradeName = req.getParameter("tradeName");
 		String note = req.getParameter("note");
 		S0020Service S20S = new S0020Service();
+		List<String> error = new ArrayList<String>();
+
+		// 異常チェック
+		if(abnormalCheck(date1, date2, accountId, tradeName, note)){
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		// 入力チェック
-		List<String> error = validate(date, accountId, tradeName, note);
+		error = validate(date, accountId, tradeName, note);
 		if (error.size() == 0) {
 
 			// エラーがない時
@@ -81,6 +90,25 @@ public class S0020Servlet extends HttpServlet {
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0020.jsp").forward(req, resp);
 	}
+
+	/**
+	 * 異常チェックを行うメソッド
+	 * @param date1 チェック対象
+	 * @param date2 チェック対象
+	 * @param accountId チェック対象
+	 * @param tradeName チェック対象
+	 * @param note チェック対象
+	 * @return 真偽値<br>
+	 * 入力全て正常ならfalse、異常ならばtrue
+	 */
+	public boolean abnormalCheck(String date1,String date2, String accountId, String tradeName, String note) {
+		boolean abnormal = false;
+		if (date1 == null || date2 == null || accountId == null || tradeName == null || note == null) {
+			abnormal = true;
+		}
+		return abnormal;
+	}
+
 	/**
 	 * 入力チェック
 	 * @param date 入力された日付
@@ -93,28 +121,25 @@ public class S0020Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		Date date1 = null;
 		Date date2 = null;
-		if (date == null || date.length != 2 || accountId == null || tradeName == null || note == null) {
-			error.add("バリデーションエラー");
-		} else {
-			DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-			try {
-				if (!date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
-					throw new Exception();
-				}
-				format.setLenient(false);
-				date1 = format.parse(date[0]);
-			} catch (Exception e) {
-				error.add("販売日（検索開始日）を正しく入力して下さい。");
+
+		DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		try {
+			if (!date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+				throw new Exception();
 			}
-			try {
-				if (!date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
-					throw new Exception();
-				}
-				format.setLenient(false);
-				date2 = format.parse(date[1]);
-			} catch (Exception e) {
-				error.add("販売日（検索終了日）を正しく入力して下さい。");
+			format.setLenient(false);
+			date1 = format.parse(date[0]);
+		} catch (Exception e) {
+			error.add("販売日（検索開始日）を正しく入力して下さい。");
+		}
+		try {
+			if (!date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+				throw new Exception();
 			}
+			format.setLenient(false);
+			date2 = format.parse(date[1]);
+		} catch (Exception e) {
+			error.add("販売日（検索終了日）を正しく入力して下さい。");
 		}
 		if (error.size() == 0) {
 			if (date2.before(date1)) {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 
 import com.abc.asms.utils.DBUtils;
 
-public class S0045Service extends HttpServlet {
+public class S0046Service extends HttpServlet {
 	/**
 	 * 入力値がSQL内のデータと一致すればtrue,違えばfalse
 	 * @param mail 入力mail

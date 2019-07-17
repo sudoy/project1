@@ -1,6 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,18 @@ public class S0040Servlet extends HttpServlet {
 		String mail = (String) req.getParameter("mail");
 		String salesAuthority = (String) req.getParameter("salesAuthority");
 		String accountAuthority = (String) req.getParameter("accountAuthority");
-		List<String> error = validate(name, mail, salesAuthority, accountAuthority);
+		List<String> error = new ArrayList<String>();
 		AccountConditionalForm acf = new AccountConditionalForm(name, mail, accountAuthority, salesAuthority);
+		// 異常チェック
+		if(abnormalCheck(name, mail, salesAuthority, accountAuthority)) {
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
+		
+		error = validate(name, mail, salesAuthority, accountAuthority);
+		
 		// 入力チェック
 		if (error.size() == 0) {
 			// エラーなし
@@ -49,6 +60,25 @@ public class S0040Servlet extends HttpServlet {
 	}
 
 	/**
+	 * 異常チェックを行うメソッド
+	 * @param name チェック対象
+	 * @param mail チェック対象
+	 * @param salesAuthority チェック対象
+	 * @param accountAuthority チェック対象
+	 * @return 真偽値<br>
+	 * 入力全て正常ならfalse、異常ならばtrue
+	 */
+	public boolean abnormalCheck(String name, String mail, String salesAuthority, String accountAuthority) {
+		boolean abnormal = false;
+		if (name == null || mail == null || salesAuthority == null || accountAuthority == null) {
+			abnormal = true;
+		} else if(!salesAuthority.matches("(all|no|yes)")||!accountAuthority.matches("(all|no|yes)")){
+			abnormal = true;
+		}
+		return abnormal;
+	}
+
+	/**
 	 * 入力チェックメソッド
 	 * @param name 入力されたname
 	 * @param mail 入力されたmail
@@ -58,21 +88,14 @@ public class S0040Servlet extends HttpServlet {
 	 */
 	public List<String> validate(String name, String mail, String salesAuthority, String accountAuthority) {
 		List<String> error = new ArrayList<>();
-		if (name == null || mail == null || salesAuthority == null || accountAuthority == null) {
-			error.add("バリデーションエラー");
-		} else if(!salesAuthority.matches("(all|no|yes)")||!accountAuthority.matches("(all|no|yes)")){
-			error.add("バリデーションエラー");
-		}else {
-
-			if (20 < name.length()) {
-				error.add("氏名の指定が長すぎます。");
-			}
-			if (100 < mail.length()) {
-				error.add("メールアドレスの指定が長すぎます。");
-			}
-			if (!mail.equals("")&&!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
-				error.add("メールアドレスの形式が誤っています。");
-			}
+		if (20 < name.getBytes(Charset.forName("UTF-8")).length) {
+			error.add("氏名の指定が長すぎます。");
+		}
+		if (100 < mail.getBytes(Charset.forName("UTF-8")).length) {
+			error.add("メールアドレスの指定が長すぎます。");
+		}
+		if (!mail.equals("")&&!mail.matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
+			error.add("メールアドレスの形式が誤っています。");
 		}
 		return error;
 	}

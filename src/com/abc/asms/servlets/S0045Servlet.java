@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.S0045Form;
 import com.abc.asms.services.S0045Service;
 @WebServlet("/S0045.html")
 public class S0045Servlet extends HttpServlet {
@@ -29,9 +30,12 @@ public class S0045Servlet extends HttpServlet {
 				session.setAttribute("success", "パスワード再設定メールを送信しました。");
 				resp.sendRedirect("S0045.html");
 				return;
+			}else {
+				error.add("メールアドレスを正しく入力して下さい。");
 			}
-			error.add("メールアドレスを正しく入力して下さい。");
 		}
+		S0045Form S45F = new S0045Form(mail);
+		req.setAttribute("form", S45F);
 		session.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0045.jsp").forward(req, resp);
 	}
