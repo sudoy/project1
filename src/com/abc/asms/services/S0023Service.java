@@ -1,5 +1,7 @@
 package com.abc.asms.services;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -124,63 +126,19 @@ public class S0023Service {
 		return map;
 	}
 
+	public StringBuilder setInput(S0023Form form) throws IOException {
 
-	public int countAccount(String AccountId){
+		StringBuilder input = new StringBuilder();
+		input.append("saleId=" + form.getSaleId());
+		input.append("&saleDate=" + form.getSaleDate());
+		input.append("&accountId=" + form.getAccountId());
+		input.append("&categoryId=" + form.getCategoryId());
+		input.append("&tradeName=" + URLEncoder.encode(form.getTradeName(), "UTF-8"));
+		input.append("&unitPrice=" + form.getUnitPrice());
+		input.append("&saleNumber=" + form.getSaleNumber());
+		input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
 
-		int cnt = 0;
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//担当テーブル存在チェック
-			sql = "SELECT count(account_id) as cnt FROM accounts WHERE account_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, AccountId);
-			rs = ps.executeQuery();
-			rs.next();
-			cnt = rs.getInt("cnt");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return cnt;
-	}
-
-	public int countCategory(String categoryId){
-
-		int cnt = 0;
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//カテゴリーテーブル存在チェック
-			sql = "SELECT count(category_id) as cnt FROM categories WHERE category_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
-			rs = ps.executeQuery();
-			rs.next();
-			cnt = rs.getInt("cnt");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return cnt;
+		return input;
 	}
 
 }

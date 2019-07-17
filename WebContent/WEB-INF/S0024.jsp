@@ -83,7 +83,7 @@
 			<div class="form-group">
 				<label class="col-xs-3 text-right textdown">小計</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計" disabled>
+					<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.unitPrice * form.saleNumber)}" placeholder="小計" disabled>
 				</div>
 			</div>
 

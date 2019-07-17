@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.S0024Form;
 import com.abc.asms.services.S0024Service;
+import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0024.html")
 public class S0024Servlet extends HttpServlet {
@@ -49,9 +50,8 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
-		form.setInput();
-		form.setSubtotal();//serviceに
 		S0024Service s = new S0024Service();
+		form.setInput(s.setInput(form));
 		form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
 
 		//JSPへ
@@ -111,7 +111,6 @@ public class S0024Servlet extends HttpServlet {
 	public List<String> validation(S0024Form form){
 
 		List<String> error = new ArrayList<>();
-		S0024Service s = new S0024Service();
 
 		//販売日必須入力、形式
 		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
@@ -133,7 +132,7 @@ public class S0024Servlet extends HttpServlet {
 		if(form.getAccountId() == null) {
 			error.add("担当が未選択です。");
 		}else {
-			if(s.countAccount(form.getAccountId()) != 1) {
+			if(DBUtils.countAccount(form.getAccountId()) != 1) {
 				error.add("アカウントテーブルに存在しません。");
 			}
 		}
@@ -142,7 +141,7 @@ public class S0024Servlet extends HttpServlet {
 		if(form.getCategoryId() == null) {
 			error.add("商品カテゴリーが未選択です。");
 		}else {
-			if(s.countCategory(form.getCategoryId()) != 1) {
+			if(DBUtils.countCategory(form.getCategoryId()) != 1) {
 				error.add("商品カテゴリーテーブルに存在しません。");
 			}
 		}

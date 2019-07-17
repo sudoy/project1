@@ -172,61 +172,19 @@ public class S0024Service {
 		return map;
 	}
 
-	public int countAccount(String AccountId){
+	public StringBuilder setInput(S0024Form form) {
 
-		int cnt = 0;
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+		StringBuilder input = new StringBuilder();
+		input.append("saleId=" + form.getSaleId());
+		input.append("&saleDate=" + form.getSaleDate());
+		input.append("&accountId=" + form.getAccountId());
+		input.append("&categoryId=" + form.getCategoryId());
+		input.append("&tradeName=" + form.getTradeName());
+		input.append("&unitPrice=" + form.getUnitPrice());
+		input.append("&saleNumber=" + form.getSaleNumber());
+		input.append("&note=" +form.getNote());
+		input.append("&cancel");
 
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//担当テーブル存在チェック
-			sql = "SELECT count(account_id) as cnt FROM accounts WHERE account_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, AccountId);
-			rs = ps.executeQuery();
-			rs.next();
-			cnt = rs.getInt("cnt");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return cnt;
-	}
-
-	public int countCategory(String categoryId){
-
-		int cnt = 0;
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//カテゴリーテーブル存在チェック
-			sql = "SELECT count(category_id) as cnt FROM categories WHERE category_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
-			rs = ps.executeQuery();
-			rs.next();
-			cnt = rs.getInt("cnt");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return cnt;
+		return input;
 	}
 }

@@ -14,8 +14,7 @@ public class S0024Form {
 	private String unitPrice;
 	private String saleNumber;
 	private String note;
-	private String input;
-	private String subtotal;
+	private StringBuilder input;
 	private Map<Integer,String> categoryMap;
 
 	public String getSaleId() {
@@ -74,22 +73,6 @@ public class S0024Form {
 		this.note = note;
 	}
 
-	public String getInput() {
-		return input;
-	}
-
-	public void setInput() {
-		this.input = "saleId=" + getSaleId()
-		+ "&saleDate=" + getSaleDate()
-		+ "&accountId=" + getAccountId()
-		+ "&categoryId=" + getCategoryId()
-		+ "&tradeName=" + getTradeName()
-		+ "&unitPrice=" + getUnitPrice()
-		+ "&saleNumber=" + getSaleNumber()
-		+ "&note=" + getNote()
-		+ "&cancel";
-	}
-
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -114,21 +97,20 @@ public class S0024Form {
 		this.saleNumber = saleNumber;
 	}
 
-	public String getSubtotal() {
-		return subtotal;
-	}
-
-	public void setSubtotal() {
-		int st = Integer.valueOf(getUnitPrice()) * Integer.valueOf(getSaleNumber());
-		this.subtotal = String.valueOf(st);
-	}
-
 	public Map<Integer,String> getCategoryMap() {
 		return categoryMap;
 	}
 
 	public void setCategoryMap(Map<Integer,String> categoryMap) {
 		this.categoryMap = categoryMap;
+	}
+
+	public StringBuilder getInput() {
+		return input;
+	}
+
+	public void setInput(StringBuilder stringBuilder) {
+		this.input = stringBuilder;
 	}
 
 }

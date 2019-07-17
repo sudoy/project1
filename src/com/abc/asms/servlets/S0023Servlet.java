@@ -1,7 +1,6 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.S0023Form;
 import com.abc.asms.services.S0023Service;
+import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0023.html")
 public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブレット
@@ -60,7 +60,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}
 
 		//formの中身がない場合ダッシュボードへ
-		if(form == null) {
+		if(form == null || form.getSaleId() == null) {
 			List<String> error = new ArrayList<>();
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
@@ -106,15 +106,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 
 		if(error.isEmpty()) {
 			//エラーリストがない→確認画面へ値を渡して移動
-			StringBuilder input = new StringBuilder();
-			input.append("saleId=" + form.getSaleId());
-			input.append("&saleDate=" + form.getSaleDate());
-			input.append("&accountId=" + form.getAccountId());
-			input.append("&categoryId=" + form.getCategoryId());
-			input.append("&tradeName=" + URLEncoder.encode(form.getTradeName(), "UTF-8"));
-			input.append("&unitPrice=" + form.getUnitPrice());
-			input.append("&saleNumber=" + form.getSaleNumber());
-			input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));//最大値チェック　HTMLUtils共通化
+			StringBuilder input = new S0023Service().setInput(form);
 			resp.sendRedirect("S0024.html?" + input);
 		}else {
 			//エラーリストがある→jspへform、エラーメッセージ渡してjspへ移動
@@ -140,7 +132,6 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 	public List<String> validation(S0023Form form){
 
 		List<String> error = new ArrayList<>();
-		S0023Service s = new S0023Service();
 
 		//販売日必須入力、形式
 		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
@@ -162,7 +153,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		if(form.getAccountId() == null) {
 			error.add("担当が未選択です。");
 		}else {
-			if(s.countAccount(form.getAccountId()) != 1) {
+			if(DBUtils.countAccount(form.getAccountId()) != 1) {
 				error.add("アカウントテーブルに存在しません。");
 			}
 		}
@@ -171,7 +162,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		if(form.getCategoryId() == null) {
 			error.add("商品カテゴリーが未選択です。");
 		}else {
-			if(s.countCategory(form.getCategoryId()) != 1) {
+			if(DBUtils.countCategory(form.getCategoryId()) != 1) {
 				error.add("商品カテゴリーテーブルに存在しません。");
 			}
 		}
