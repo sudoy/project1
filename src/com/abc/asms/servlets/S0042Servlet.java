@@ -1,6 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,14 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		}
 		session.setAttribute("AccountEditForm", null);
 
+		//formの中身がない場合ダッシュボードへ
+		if(form == null || form.getAccountId() == null) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//jspへformを渡す
 		req.setAttribute("form", form);
@@ -99,49 +108,44 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 
 		List<String> error = new ArrayList<>();
 
-		try {
 
-			//氏名必須入力、長さ(バイト数)
-			if(form.getName() == null || form.getName().isEmpty()) {
-				error.add("氏名を入力して下さい。");
-			}else if(21 <= form.getName().getBytes("UTF-8").length) {
-				error.add("氏名が長すぎます。");
+		//氏名必須入力、長さ(バイト数)
+		if(form.getName() == null || form.getName().isEmpty()) {
+			error.add("氏名を入力して下さい。");
+		}else if(21 <= form.getName().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("氏名が長すぎます。");
+		}
+
+		//メールアドレス必須入力、長さ(バイト数)、形式
+		if(form.getMail() == null || form.getMail().isEmpty()) {
+			error.add("メールアドレスを入力して下さい。");
+		}else if(101 <= form.getMail().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("メールアドレスが長すぎます。");
+		}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
+			error.add("メールアドレスの形式が誤っています。");
+		}
+
+		//パスワード長さ(バイト数)、一致
+		if(form.getInputPass() != null) {
+			if(31 <= form.getInputPass().getBytes(Charset.forName("UTF-8")).length) {
+				error.add("パスワードが長すぎます。");
+			}else if(!form.getInputPass().equals(form.getInputPass2())) {
+				error.add("パスワードとパスワード（確認）が一致していません。");
 			}
+		}
 
-			//メールアドレス必須入力、長さ(バイト数)、形式
-			if(form.getMail() == null || form.getMail().isEmpty()) {
-				error.add("メールアドレスを入力して下さい。");
-			}else if(101 <= form.getMail().getBytes("UTF-8").length) {
-				error.add("メールアドレスが長すぎます。");
-			}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
-				error.add("メールアドレスの形式が誤っています。");
-			}
+		//売上登録権限必須入力、値チェック
+		if(form.getSalesAuthority() == null || form.getSalesAuthority().isEmpty()) {
+			error.add("売上登録権限を入力して下さい。");
+		}else if(!form.getSalesAuthority().equals("yes") && !form.getSalesAuthority().equals("no")) {
+			error.add("売上登録権限に正しい値を入力して下さい。");
+		}
 
-			//パスワード長さ(バイト数)、一致
-			if(form.getInputPass() != null) {
-				if(31 <= form.getInputPass().getBytes("UTF-8").length) {
-					error.add("パスワードが長すぎます。");
-				}else if(!form.getInputPass().equals(form.getInputPass2())) {
-					error.add("パスワードとパスワード（確認）が一致していません。");
-				}
-			}
-
-			//売上登録権限必須入力、値チェック
-			if(form.getSalesAuthority() == null || form.getSalesAuthority().isEmpty()) {
-				error.add("売上登録権限を入力して下さい。");
-			}else if(!form.getSalesAuthority().equals("yes") && !form.getSalesAuthority().equals("no")) {
-				error.add("売上登録権限に正しい値を入力して下さい。");
-			}
-
-			//アカウント登録権限必須入力、値チェック
-			if(form.getAccountAuthority() == null || form.getAccountAuthority().isEmpty()) {
-				error.add("アカウント登録権限を入力して下さい。");
-			}else if(!form.getAccountAuthority().equals("yes") && !form.getAccountAuthority().equals("no")) {
-				error.add("アカウント登録権限に正しい値を入力して下さい。");
-			}
-
-		} catch (Exception e) {
-			error.add("エラーが発生しました。");
+		//アカウント登録権限必須入力、値チェック
+		if(form.getAccountAuthority() == null || form.getAccountAuthority().isEmpty()) {
+			error.add("アカウント登録権限を入力して下さい。");
+		}else if(!form.getAccountAuthority().equals("yes") && !form.getAccountAuthority().equals("no")) {
+			error.add("アカウント登録権限に正しい値を入力して下さい。");
 		}
 
 		return error;

@@ -50,11 +50,11 @@
 
 			<!-- パスワード(確認) -->
 			<div class="form-group">
-				 <label for="password2" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'(確認)')}">パスワード(確認)
+				 <label for="password2" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'確認')}">パスワード(確認)
 
 	    		 </label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'(確認)')}" id="password2" name="inputPass2" value="${form.inputPass2}" placeholder="パスワード(確認)">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'確認')}" id="password2" name="inputPass2" value="${form.inputPass2}" placeholder="パスワード(確認)">
 				</div>
 			</div>
 
