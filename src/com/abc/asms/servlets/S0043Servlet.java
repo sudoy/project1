@@ -66,13 +66,15 @@ public class S0043Servlet extends HttpServlet {
 			return;
 		}
 
-		//入力情報取得
+		//form取得
 		AccountEditForm form = (AccountEditForm) session.getAttribute("AccountEditForm");
 		session.setAttribute("AccountEditForm", null);
 
+		//更新処理
 		int cnt = new S0043Service().update(form);
+
+		//成功メッセージ
 		if(cnt == 1) {
-			//成功メッセージ
 			List<String> success = new ArrayList<>();
 			success.add("No"+ form.getAccountId() +"のアカウントを更新しました。");
 			session.setAttribute("success", success);

@@ -19,11 +19,11 @@ public class S0043Service {
 	        con = DBUtils.getConnection();
 
 	        //権限を数字に変換
-	        String Authority = "0";
+	        String authority = "0";
 	        if(form.getAccountAuthority().equals("yes")) {
-	        	Authority = form.getSalesAuthority().equals("yes") ? "11" : "10";
+	        	authority = form.getSalesAuthority().equals("yes") ? "11" : "10";
 	        }else if(form.getAccountAuthority().equals("no")) {
-	        	Authority = form.getSalesAuthority().equals("yes") ? "1" : "0";
+	        	authority = form.getSalesAuthority().equals("yes") ? "1" : "0";
 	        }
 
 	        //sql
@@ -32,7 +32,7 @@ public class S0043Service {
 	        	ps = con.prepareStatement(sql);
 	        	ps.setString(1, form.getName());
 	        	ps.setString(2, form.getMail());
-	        	ps.setString(3, Authority);
+	        	ps.setString(3, authority);
 	        	ps.setString(4, form.getAccountId());
 	        }else {
 	        	sql = "UPDATE accounts SET name = ?, mail = ?, password = MD5(?), authority = ? WHERE account_id = ?";
@@ -40,7 +40,7 @@ public class S0043Service {
 	        	ps.setString(1, form.getName());
 	        	ps.setString(2, form.getMail());
 	        	ps.setString(3, form.getInputPass());
-	        	ps.setString(4, Authority);
+	        	ps.setString(4, authority);
 	        	ps.setString(5, form.getAccountId());
 	        }
 

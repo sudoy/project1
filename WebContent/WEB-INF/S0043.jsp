@@ -19,7 +19,6 @@
 				<label for="name" class="col-sm-offset-1 col-sm-2  control-label">氏名</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="name" name="name" value="${form.name}" placeholder="氏名" disabled>
-					<input type="hidden" name="name" value="${form.name}">
 				</div>
 			</div>
 
@@ -28,7 +27,6 @@
 				<label for="mail" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="mail" name="mail" value="${form.mail}" placeholder="メールアドレス" disabled>
-					<input type="hidden" name="mail" value="${form.mail}">
 				</div>
 			</div>
 
@@ -37,7 +35,6 @@
 				<label for="password1" class="col-sm-offset-1 col-sm-2  control-label">パスワード</label>
 				<div class="col-sm-4">
 					<input type="password" class="form-control" id="password1" name="password" value="${form.inputPass}" placeholder="パスワード" disabled>
-					<input type="hidden" name="password" value="${form.inputPass}">
 				</div>
 			</div>
 
@@ -46,7 +43,6 @@
 				<label for="password2" class="col-sm-offset-1 col-sm-2  control-label">パスワード(確認)</label>
 				<div class="col-sm-4">
 					<input type="password" class="form-control" name="password" id="password2" value="${form.inputPass2}" placeholder="パスワード(確認)" disabled>
-					<input type="hidden" name="password" value="${form.inputPass2}">
 				</div>
 			</div>
 
@@ -62,7 +58,6 @@
 							<input type="radio" name="salesAuthority" value="yes" ${HTMLUtils.writeChecked('yes',form.salesAuthority)} disabled>
 							権限あり
 						</label>
-						<input type="hidden" name="salesAuthority" value="${form.salesAuthority}">
 				</div>
 			</div>
 
@@ -78,7 +73,6 @@
 							<input type="radio" name="accountAuthority" value="yes" ${HTMLUtils.writeChecked('yes',form.accountAuthority)} disabled>
 							権限あり
 						</label>
-						<input type="hidden" name="accountAuthority" value="${form.accountAuthority}">
 				</div>
 			</div>
 
