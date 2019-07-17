@@ -2,6 +2,7 @@ package com.abc.asms.servlets;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -58,6 +59,15 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form = new S0023Service().findSaleDetail(saleId);
 		}
 
+		//formの中身がない場合ダッシュボードへ
+		if(form == null) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
+
 		//formをjspに渡す
 		req.setAttribute("form", form);
 
@@ -104,7 +114,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			input.append("&tradeName=" + URLEncoder.encode(form.getTradeName(), "UTF-8"));
 			input.append("&unitPrice=" + form.getUnitPrice());
 			input.append("&saleNumber=" + form.getSaleNumber());
-			input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
+			input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));//最大値チェック　HTMLUtils共通化
 			resp.sendRedirect("S0024.html?" + input);
 		}else {
 			//エラーリストがある→jspへform、エラーメッセージ渡してjspへ移動
@@ -132,75 +142,68 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		List<String> error = new ArrayList<>();
 		S0023Service s = new S0023Service();
 
-		try {
-
-			//販売日必須入力、形式
-			if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
-				error.add("販売日を入力して下さい。");
-			}else {
-				if(form.getSaleDate().matches("^[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}$")) {
-					try {
-						DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu/M/d").withResolverStyle(ResolverStyle.STRICT);
-						LocalDate.parse(form.getSaleDate(),f);
-					} catch (Exception e) {
-						error.add("入力した日付が不正です。");
-					}
-				}else {
+		//販売日必須入力、形式
+		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
+			error.add("販売日を入力して下さい。");
+		}else {
+			if(form.getSaleDate().matches("^[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}$")) {
+				try {
+					DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu/M/d").withResolverStyle(ResolverStyle.STRICT);
+					LocalDate.parse(form.getSaleDate(),f);
+				} catch (Exception e) {
 					error.add("販売日を正しく入力して下さい。");
 				}
-			}
-
-			//担当必須入力、テーブル存在チェック
-			if(form.getAccountId() == null) {
-				error.add("担当が未選択です。");
 			}else {
-				if(s.countAccount(form.getAccountId()) != 1) {
-					error.add("アカウントテーブルに存在しません。");
-				}
+				error.add("販売日を正しく入力して下さい。");
 			}
+		}
 
-			//カテゴリー必須入力、テーブル存在チェック
-			if(form.getCategoryId() == null) {
-				error.add("商品カテゴリーが未選択です。");
-			}else {
-				if(s.countCategory(form.getCategoryId()) != 1) {
-					error.add("商品カテゴリーテーブルに存在しません。");
-				}
+		//担当必須入力、テーブル存在チェック
+		if(form.getAccountId() == null) {
+			error.add("担当が未選択です。");
+		}else {
+			if(s.countAccount(form.getAccountId()) != 1) {
+				error.add("アカウントテーブルに存在しません。");
 			}
+		}
 
-			//商品名必須入力、長さ(バイト数)
-			if(form.getTradeName() == null || form.getTradeName().isEmpty()) {
-				error.add("商品名を入力して下さい。");
-			}else if(101 <= form.getTradeName().getBytes("UTF-8").length) {
-				error.add("商品名が長すぎます。");
+		//カテゴリー必須入力、テーブル存在チェック
+		if(form.getCategoryId() == null) {
+			error.add("商品カテゴリーが未選択です。");
+		}else {
+			if(s.countCategory(form.getCategoryId()) != 1) {
+				error.add("商品カテゴリーテーブルに存在しません。");
 			}
+		}
 
-			//単価必須入力、形式、長さ(バイト数)
-			if(form.getUnitPrice() == null || form.getUnitPrice().isEmpty()) {
-				error.add("単価を入力して下さい。");
-			}else if(!form.getUnitPrice().matches("^[1-9][0-9]*$")) {
-				error.add("単価を正しく入力して下さい。");
-			}else if(10 <= form.getUnitPrice().getBytes("UTF-8").length) {
-				error.add("単価が長すぎます。");
-			}
+		//商品名必須入力、長さ(バイト数)
+		if(form.getTradeName() == null || form.getTradeName().isEmpty()) {
+			error.add("商品名を入力して下さい。");
+		}else if(101 <= form.getTradeName().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("商品名が長すぎます。");
+		}
 
-			//個数必須入力、形式、長さ(バイト数)
-			if(form.getSaleNumber() == null || form.getSaleNumber().isEmpty()) {
-				error.add("個数を入力して下さい。");
-			}else if(!form.getSaleNumber().matches("^[1-9][0-9]*$")) {
-				error.add("個数を正しく入力して下さい。");
-			}else if(10 <= form.getSaleNumber().getBytes("UTF-8").length) {
-				error.add("個数が長すぎます。");
-			}
+		//単価必須入力、形式、長さ(バイト数)
+		if(form.getUnitPrice() == null || form.getUnitPrice().isEmpty()) {
+			error.add("単価を入力して下さい。");
+		}else if(!form.getUnitPrice().matches("^[1-9][0-9]*$")) {
+			error.add("単価を正しく入力して下さい。");
+		}else if(10 <= form.getUnitPrice().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("単価が長すぎます。");
+		}
 
-			//備考長さ
-			if(401 <= form.getNote().getBytes("UTF-8").length) {
-				error.add("備考が長すぎます。");
-			}
+		//個数必須入力、形式、長さ(バイト数)
+		if(form.getSaleNumber() == null || form.getSaleNumber().isEmpty()) {
+			error.add("個数を入力して下さい。");
+		}else if(!form.getSaleNumber().matches("^[1-9][0-9]*$")) {
+			error.add("個数を正しく入力して下さい。");
+		}else if(10 <= form.getSaleNumber().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("個数が長すぎます。");
+		}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			error.add("エラーが発生しました。");
+		//備考長さ
+		if(401 <= form.getNote().getBytes(Charset.forName("UTF-8")).length) {
+			error.add("備考が長すぎます。");
 		}
 
 		return error;

@@ -1,6 +1,8 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,15 +26,23 @@ public class S0022Servlet extends HttpServlet {
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority == 1 || salesAuthority == 11) {
-			req.setAttribute("salesAuthority", "ok");
+			req.setAttribute("salesAuthority", "ok");//formに
 		}
-
 
 		//id取得
 		String saleId = req.getParameter("saleId");
 
 		//idからformを取得
 		S0022Form form = new S0022Service().findSaleDetail(saleId);
+
+		//formの中身がない場合ダッシュボードへ
+		if(form == null) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//formをjspに渡す
 		req.setAttribute("form", form);

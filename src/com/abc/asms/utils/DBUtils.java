@@ -159,7 +159,7 @@ public class DBUtils {
 	 * @param AccountId
 	 * @return カテゴリーテーブルに引数のidがあれば1、なければ0
 	 */
-	public int countCategory(String categoryId){
+	public static int countCategory(String categoryId){
 
 		int cnt = 0;
 		Connection con = null;

@@ -19,7 +19,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">販売日</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${HTMLUtils.dateFormat(form.saleDate)}</label>
+				<label class="textdown normal">${HTMLUtils.XSS(HTMLUtils.dateFormat(form.saleDate))}</label>
 			</div>
 		</div>
 
@@ -27,7 +27,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">担当</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${form.name}</label>
+				<label class="textdown normal">${HTMLUtils.XSS(form.name)}</label>
 			</div>
 		</div>
 
@@ -35,7 +35,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">商品カテゴリー</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${form.categoryName}</label>
+				<label class="textdown normal">${HTMLUtils.XSS(form.categoryName)}</label>
 			</div>
 
 		</div>
@@ -44,7 +44,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">商品名</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${form.tradeName}</label>
+				<label class="textdown normal">${HTMLUtils.XSS(form.tradeName)}</label>
 			</div>
 		</div>
 
@@ -52,7 +52,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">単価</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal"><fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/></label>
+				<label class="text-right textdown normal"><fmt:formatNumber value="${HTMLUtils.XSS(form.unitPrice)}" pattern="#,##0"/></label>
 			</div>
 		</div>
 
@@ -60,7 +60,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">個数</label>
 			<div class="col-xs-2">
-				<label class="text-right textdown normal"><fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/></label>
+				<label class="text-right textdown normal"><fmt:formatNumber value="${HTMLUtils.XSS(form.saleNumber)}" pattern="#,##0"/></label>
 			</div>
 		</div>
 
@@ -69,7 +69,7 @@
 			<label class="col-xs-3 text-right textdown">小計</label>
 			<div class="col-xs-2">
 				<label class="text-right textdown normal">
-					<fmt:formatNumber value="${form.unitPrice * form.saleNumber}" pattern="#,##0"/>
+					<fmt:formatNumber value="${HTMLUtils.XSS(form.unitPrice * form.saleNumber)}" pattern="#,##0"/>
 				</label>
 			</div>
 		</div>
@@ -78,7 +78,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">備考</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${form.note}</label>
+				<label class="textdown normal">${HTMLUtils.XSS(form.note)}</label>
 			</div>
 		</div>
 

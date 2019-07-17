@@ -59,7 +59,7 @@ public class S0043Servlet extends HttpServlet {
 
 		//入力情報取得
 		AccountEditForm form = (AccountEditForm) session.getAttribute("AccountEditForm");
-		session.setAttribute("AccountEditForm", "");
+		session.setAttribute("AccountEditForm", null);
 
 		int cnt = new S0043Service().update(form);
 		if(cnt == 1) {

@@ -33,17 +33,20 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 			return;
 		}
 
+		//S0041からaccount_idを取得
+		String accountId = req.getParameter("accountId");
+
+		//form用意
 		AccountEditForm form = new AccountEditForm();
-		if(req.getParameter("cancel") != null && req.getParameter("accountId") == null) {
+		if(req.getParameter("cancel") != null && session.getAttribute("AccountEditForm") != null) {
 			//キャンセルで戻ってきた場合
 			form = (AccountEditForm) session.getAttribute("AccountEditForm");
-			session.setAttribute("AccountEditForm", "");
 		}else {
-			//S0041からaccount_idを取得
-			String accountId = req.getParameter("accountId");
 			//アカウント情報取得
 			form = new S0042Service().findAccount(accountId);
 		}
+		session.setAttribute("AccountEditForm", null);
+
 
 		//jspへformを渡す
 		req.setAttribute("form", form);

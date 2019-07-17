@@ -76,7 +76,7 @@
 					単価 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}" id="unitPrice" name="unitPrice" value="${form.unitPrice}" placeholder="単価">
 				</div>
 			</div>
 
@@ -86,7 +86,7 @@
 					個数 <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-2">
-					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数">
+					<input type="text" class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}" id="saleNumber" name="saleNumber" value="${form.saleNumber}" placeholder="個数">
 				</div>
 			</div>
 

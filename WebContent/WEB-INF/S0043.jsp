@@ -88,7 +88,7 @@
 					<button type="submit" class="btn btn-primary">
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> O K
 					</button>
-					<a href="S0042.html?cancel=" class="btn btn-default">キャンセル</a>
+					<a href="S0042.html?cancel" class="btn btn-default">キャンセル</a>
 				</div>
 			</div>
 
