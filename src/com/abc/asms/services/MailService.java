@@ -12,7 +12,8 @@ import javax.mail.internet.MimeMessage;
 
 public class MailService {
 
-	public static void sendMail(String address,String url) {
+	public static boolean sendMail(String address,String url) {
+		boolean i = false;
 		try {
 			// GmailのSMTPを使用する
 			Properties property = new Properties();
@@ -45,10 +46,11 @@ public class MailService {
 
 			Transport.send(mimeMessage);
 
-			System.out.println("メールを送信しました。");
+			i = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return i;
 	}
 
 }

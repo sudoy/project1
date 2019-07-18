@@ -30,10 +30,20 @@ public class S0045Servlet extends HttpServlet {
 			if(S45S.checkDB(mail)) {
 				String url = req.getRequestURL().toString();
 				url = url.substring(0,url.length() - 6) + "6.html?user=";
-				MailService.sendMail(mail,url);
-				session.setAttribute("success", "パスワード再設定メールを送信しました。");
-				resp.sendRedirect("S0045.html");
-				return;
+				boolean send = MailService.sendMail(mail,url);
+				if(send) {
+					List<String> success = new ArrayList<String>();
+					success.add("パスワード再設定メールを送信しました。");
+					session.setAttribute("success", success);
+					resp.sendRedirect("S0045.html");
+					return;
+				}else {
+					error.add("予期しないエラーが発生しました。");
+					session.setAttribute("error", error);
+					resp.sendRedirect("S0045.html");
+					return;
+				}
+
 			}else {
 				error.add("メールアドレスを正しく入力して下さい。");
 			}
