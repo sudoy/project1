@@ -53,7 +53,7 @@ public class S0023Service {
 			form.setAccountMap(accountMap);
 
 			//SQL…カテゴリー名とidのリスト
-			Map<Integer,String> categoryMap = getCategoryMap(form.getCategoryId());
+			Map<Integer,String> categoryMap = DBUtils.getCategoryMap(form.getCategoryId());
 			form.setCategoryMap(categoryMap);
 
 		}catch(Exception e){
@@ -85,37 +85,6 @@ public class S0023Service {
 			//Map作成
 			while(rs.next()) {
 				map.put(rs.getInt("account_id"), rs.getString("name"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-		return map;
-	}
-
-	public Map<Integer,String> getCategoryMap(String categoryId){
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = null;
-		ResultSet rs = null;
-		Map<Integer,String> map = new TreeMap<>();
-		try {
-
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//SQL…カテゴリー名とidのリスト
-			sql = "SELECT category_id,category_name FROM categories WHERE active_flg = 1 OR category_id = ? ORDER BY category_id";
-			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
-			rs = ps.executeQuery();
-			//Map作成
-			while(rs.next()) {
-				map.put(rs.getInt("category_id"), rs.getString("category_name"));
 			}
 
 		} catch (Exception e) {

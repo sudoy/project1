@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
-import java.util.TreeMap;
 
 import com.abc.asms.forms.S0025Form;
 import com.abc.asms.utils.DBUtils;
@@ -49,7 +48,7 @@ public class S0025Service {
 			form.setNote(rs.getString("s.note"));
 
 			//カテゴリー名とidのリスト
-			Map<Integer,String> categoryMap = getCategoryMap(form.getCategoryId());
+			Map<Integer,String> categoryMap = DBUtils.getCategoryMap(form.getCategoryId());
 			form.setCategoryMap(categoryMap);
 
 		}catch(Exception e){
@@ -59,37 +58,6 @@ public class S0025Service {
 		}
 
 		return form;
-	}
-
-	public Map<Integer,String> getCategoryMap(String categoryId){
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = null;
-		ResultSet rs = null;
-		Map<Integer,String> map = new TreeMap<>();
-		try {
-
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//SQL…カテゴリー名とidのリスト
-			sql = "SELECT category_id,category_name FROM categories WHERE active_flg = 1 OR category_id = ? ORDER BY category_id";
-			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
-			rs = ps.executeQuery();
-			//Map作成
-			while(rs.next()) {
-				map.put(rs.getInt("category_id"), rs.getString("category_name"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-		return map;
 	}
 
 	public int delete(String saleId) {

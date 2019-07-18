@@ -1,12 +1,10 @@
 package com.abc.asms.services;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Map;
-import java.util.TreeMap;
 
 import com.abc.asms.forms.S0024Form;
 import com.abc.asms.utils.DBUtils;
@@ -113,68 +111,7 @@ public class S0024Service {
 
 	}
 
-	public Map<Integer,String> getAccountMap(){
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = null;
-		ResultSet rs = null;
-		Map<Integer,String> map = new TreeMap<>();
-		try {
-
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//SQL…アカウント名とidのリスト
-			sql = "SELECT account_id,name FROM accounts ORDER BY account_id";
-			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			//Map作成
-			while(rs.next()) {
-				map.put(rs.getInt("account_id"), rs.getString("name"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-		return map;
-	}
-
-	public Map<Integer,String> getCategoryMap(String categoryId){
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = null;
-		ResultSet rs = null;
-		Map<Integer,String> map = new TreeMap<>();
-		try {
-
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//SQL…カテゴリー名とidのリスト
-			sql = "SELECT category_id,category_name FROM categories WHERE active_flg = 1 OR category_id = ? ORDER BY category_id";
-			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
-			rs = ps.executeQuery();
-			//Map作成
-			while(rs.next()) {
-				map.put(rs.getInt("category_id"), rs.getString("category_name"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-		return map;
-	}
-
-	public StringBuilder setInput(S0024Form form) throws UnsupportedEncodingException {
+	public StringBuilder setInput(S0024Form form) throws IOException {
 
 		StringBuilder input = new StringBuilder();
 		input.append("saleId=" + form.getSaleId());
