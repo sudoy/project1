@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -312,6 +314,43 @@ public class DBUtils {
 			}catch (Exception e){}
 
 		}
+	}
+
+	/**
+	 * 引数のidに対応するカテゴリーと、有効フラグ1のカテゴリーを抽出するメソッド
+	 * 売上編集、確認、削除で使用しています。
+	 * @param categoryId
+	 * @return カテゴリーidとカテゴリー名のMap
+	 */
+	public static Map<Integer,String> getCategoryMap(String categoryId){
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		Map<Integer,String> map = new TreeMap<>();
+		try {
+
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "SELECT category_id,category_name FROM categories WHERE active_flg = 1 OR category_id = ? ORDER BY category_id";
+			//SELECT命令の準備・実行
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			//Map作成
+			while(rs.next()) {
+				map.put(rs.getInt("category_id"), rs.getString("category_name"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+		return map;
 	}
 
 }

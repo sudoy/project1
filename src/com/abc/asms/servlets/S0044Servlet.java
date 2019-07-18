@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.AccountEditForm;
 import com.abc.asms.forms.AccountForm;
-import com.abc.asms.forms.S0044Form;
 import com.abc.asms.services.S0044Service;
 
 @WebServlet("/S0044.html")
@@ -37,7 +37,7 @@ public class S0044Servlet extends HttpServlet {
 		String accountId = req.getParameter("accountId");
 
 		//form作成
-		S0044Form form = new S0044Service().findAccount(accountId);
+		AccountEditForm form = new S0044Service().findAccount(accountId);
 
 		//formの中身がない場合ダッシュボードへ
 		if(form == null || form.getAccountId() == null) {

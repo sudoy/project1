@@ -50,9 +50,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form.setUnitPrice(req.getParameter("unitPrice"));
 			form.setSaleNumber(req.getParameter("saleNumber"));
 			form.setNote(req.getParameter("note"));
-			S0023Service s = new S0023Service();
-			form.setAccountMap(s.getAccountMap());
-			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
+			form.setAccountMap(new S0023Service().getAccountMap());
+			form.setCategoryMap(DBUtils.getCategoryMap(form.getCategoryId()));
 		}else {
 			//詳細画面から移動してきたとき…idからformを取得
 			String saleId = req.getParameter("saleId");
@@ -110,9 +109,8 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			resp.sendRedirect("S0024.html?" + input);
 		}else {
 			//エラーリストがある→jspへform、エラーメッセージ渡してjspへ移動
-			S0023Service s = new S0023Service();
-			form.setAccountMap(s.getAccountMap());
-			form.setCategoryMap(s.getCategoryMap(form.getCategoryId()));
+			form.setAccountMap(new S0023Service().getAccountMap());
+			form.setCategoryMap(DBUtils.getCategoryMap(form.getCategoryId()));
 			req.setAttribute("form", form);
 			req.setAttribute("error", error);
 			getServletContext().getRequestDispatcher("/WEB-INF/S0023.jsp").forward(req, resp);
