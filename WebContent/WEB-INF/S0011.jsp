@@ -88,7 +88,7 @@
 				<div class="form-group">
 					<label class="col-xs-3 textright control-label">小計</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計" disabled>
+						<input type="text" class="form-control textright" value="${HTMLUtils.numberFormat(form.subTotal)}" placeholder="小計" disabled>
 
 					</div>
 				</div>

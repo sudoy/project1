@@ -11,31 +11,22 @@ public class C0020Form {
 	private String tradeName;
 	private int unitPrice;
 	private int saleNumber;
-	private int subtotal;
+	private int subTotal;
 
 
 	private LocalDate date;
-	private LocalDate lastmonth;
-	private int salemonth;
-	private int salelastmonth;
+	private LocalDate lastMonth;
+	private int saleMonth;
+	private int saleLastMonth;
 	private double percent;
 	private int total;
 
 
 
-	public C0020Form(LocalDate date, LocalDate lastmonth, int salemonth, int salelastmonth, double percent,
-			int total) {
-		super();
-		this.date = date;
-		this.lastmonth = lastmonth;
-		this.salemonth = salemonth;
-		this.salelastmonth = salelastmonth;
-		this.percent = percent;
-		this.total = total;
-	}
+
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
-			int subtotal) {
+			int subTotal) {
 		super();
 		this.saleId = saleId;
 		this.saleDate = saleDate;
@@ -43,28 +34,109 @@ public class C0020Form {
 		this.tradeName = tradeName;
 		this.unitPrice = unitPrice;
 		this.saleNumber = saleNumber;
-		this.subtotal = subtotal;
+		this.subTotal = subTotal;
+	}
+
+	public C0020Form(LocalDate date, LocalDate lastMonth, int saleMonth, int saleLastMonth, double percent, int total) {
+		super();
+		this.date = date;
+		this.lastMonth = lastMonth;
+		this.saleMonth = saleMonth;
+		this.saleLastMonth = saleLastMonth;
+		this.percent = percent;
+		this.total = total;
 	}
 
 	public C0020Form() {
 
 	}
 
-
-	public int getSalemonth() {
-		return salemonth;
+	public int getSaleId() {
+		return saleId;
 	}
 
-	public void setSalemonth(int salemonth) {
-		this.salemonth = salemonth;
+	public void setSaleId(int saleId) {
+		this.saleId = saleId;
 	}
 
-	public int getSalelastmonth() {
-		return salelastmonth;
+	public String getSaleDate() {
+		return saleDate;
 	}
 
-	public void setSalelastmonth(int salelastmonth) {
-		this.salelastmonth = salelastmonth;
+	public void setSaleDate(String saleDate) {
+		this.saleDate = saleDate;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getTradeName() {
+		return tradeName;
+	}
+
+	public void setTradeName(String tradeName) {
+		this.tradeName = tradeName;
+	}
+
+	public int getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(int unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public int getSaleNumber() {
+		return saleNumber;
+	}
+
+	public void setSaleNumber(int saleNumber) {
+		this.saleNumber = saleNumber;
+	}
+
+	public int getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(int subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalDate getLastMonth() {
+		return lastMonth;
+	}
+
+	public void setLastMonth(LocalDate lastMonth) {
+		this.lastMonth = lastMonth;
+	}
+
+	public int getSaleMonth() {
+		return saleMonth;
+	}
+
+	public void setSaleMonth(int saleMonth) {
+		this.saleMonth = saleMonth;
+	}
+
+	public int getSaleLastMonth() {
+		return saleLastMonth;
+	}
+
+	public void setSaleLastMonth(int saleLastMonth) {
+		this.saleLastMonth = saleLastMonth;
 	}
 
 	public double getPercent() {
@@ -82,92 +154,6 @@ public class C0020Form {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-
-	public int getSaleId() {
-		return saleId;
-	}
-
-
-	public void setSaleId(int saleId) {
-		this.saleId = saleId;
-	}
-
-	public String getSaleDate() {
-		return saleDate;
-	}
-
-
-	public void setSaleDate(String saleDate) {
-		this.saleDate = saleDate;
-	}
-
-
-	public String getCategoryName() {
-		return categoryName;
-	}
-
-
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
-
-
-	public String getTradeName() {
-		return tradeName;
-	}
-
-
-	public void setTradeName(String tradeName) {
-		this.tradeName = tradeName;
-	}
-
-
-	public int getUnitPrice() {
-		return unitPrice;
-	}
-
-
-	public void setUnitPrice(int unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-
-	public int getSaleNumber() {
-		return saleNumber;
-	}
-
-
-	public void setSaleNumber(int saleNumber) {
-		this.saleNumber = saleNumber;
-	}
-
-
-	public int getSubtotal() {
-		return subtotal;
-	}
-
-
-	public void setSubtotal(int subtotal) {
-		this.subtotal = subtotal;
-	}
-
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public LocalDate getLastmonth() {
-		return lastmonth;
-	}
-
-	public void setLastmonth(LocalDate lastmonth) {
-		this.lastmonth = lastmonth;
-	}
-
 
 
 

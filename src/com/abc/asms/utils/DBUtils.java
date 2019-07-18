@@ -201,23 +201,23 @@ public class DBUtils {
 	/**
 	 * GETでデータをjspに送るためのメソッドです。
 	 * 売上登録、登録確認で使用します。
-	 * @param form
-	 * @return
+	 * @param  EntrySaleForm form
+	 * @return StringBuilder
 	 * @throws IOException
 	 */
 
 	public static StringBuilder sendData(EntrySaleForm form) throws IOException {
 
-		StringBuilder senddata = new StringBuilder();
-		senddata.append("saleDate=" + form.getSaleDate());
-		senddata.append("&accountId=" + form.getAccountId());
-		senddata.append("&categoryId=" + form.getCategoryId());
-		senddata.append("&tradeName=" + URLEncoder.encode(form.getTradeName(),"UTF-8"));
-		senddata.append("&unitPrice=" + form.getUnitPrice());
-		senddata.append("&saleNumber=" + form.getSaleNumber());
-		senddata.append("&note=" +  URLEncoder.encode(form.getNote(),"UTF-8"));
+		StringBuilder sendData = new StringBuilder();
+		sendData.append("saleDate=" + form.getSaleDate());
+		sendData.append("&accountId=" + form.getAccountId());
+		sendData.append("&categoryId=" + form.getCategoryId());
+		sendData.append("&tradeName=" + URLEncoder.encode(form.getTradeName(),"UTF-8"));
+		sendData.append("&unitPrice=" + form.getUnitPrice());
+		sendData.append("&saleNumber=" + form.getSaleNumber());
+		sendData.append("&note=" +  URLEncoder.encode(form.getNote(),"UTF-8"));
 
-		return senddata;
+		return sendData;
 
 	}
 
@@ -225,7 +225,7 @@ public class DBUtils {
 	/**
 	 * Categoryのリストを抽出するメソッドです。
 	 * 売上登録、登録確認で使用します。
-	 * @return
+	 * @return category_id,category_name,active_flgのList
 	 * @throws ServletException
 	 */
 	public static List<EntrySaleForm> findCategory() throws ServletException{
@@ -273,7 +273,7 @@ public class DBUtils {
 	/**
 	 * accountのリストを抽出します。
 	 * 売上登録、登録確認で使用します。
-	 * @return
+	 * @return account_id,nameのList
 	 * @throws ServletException
 	 */
 	public static List<EntrySaleForm> findAccount() throws ServletException{

@@ -8,7 +8,7 @@ public class EntrySaleForm {
 	private String unitPrice;
 	private String saleNumber;
 	private String note;
-	private String subtotal;
+	private String subTotal;
 
 	private String categoryName;
 	private String activeFlg;
@@ -17,7 +17,7 @@ public class EntrySaleForm {
 	private StringBuilder canceldata;
 
 	public EntrySaleForm(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
-			String saleNumber, String note, String subtotal) {
+			String saleNumber, String note, String subTotal) {
 		super();
 		this.saleDate = saleDate;
 		this.accountId = accountId;
@@ -26,7 +26,7 @@ public class EntrySaleForm {
 		this.unitPrice = unitPrice;
 		this.saleNumber = saleNumber;
 		this.note = note;
-		this.subtotal = subtotal;
+		this.subTotal = subTotal;
 	}
 
 
@@ -103,11 +103,13 @@ public class EntrySaleForm {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public String getSubtotal() {
-		return subtotal;
+
+	public String getSubTotal() {
+		return subTotal;
 	}
-	public void setSubtotal(String subtotal) {
-		this.subtotal = subtotal;
+
+	public void setSubTotal(String subTotal) {
+		this.subTotal = subTotal;
 	}
 
 	public String getCategoryName() {

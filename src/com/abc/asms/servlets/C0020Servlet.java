@@ -34,37 +34,37 @@ public class C0020Servlet extends HttpServlet {
 		List<C0020Form> findList = new ArrayList<>();
 		C0020Service service = new C0020Service();
 		LocalDate date;
-		LocalDate lastmonth;
+		LocalDate lastMonth;
 
 
 		//ダッシュボードのボタンを押したとき
 		if(req.getParameter("button") != null) {
 
 			String button = req.getParameter("button");
-			String getdate = req.getParameter("date");
+			String getDate = req.getParameter("date");
 
 			//不正な日付がないかチェック
-			if(checkdate(getdate)) {
+			if(checkdate(getDate)) {
 				resp.sendRedirect("C0020.html");
 				return;
 			}
 
-			date = service.date(button, getdate);
-			lastmonth = date.minusMonths(1);
+			date = service.date(button, getDate);
+			lastMonth = date.minusMonths(1);
 
 		//ログイン、ページから遷移してきたとき
 		}else{
 			date = LocalDate.now();
-			lastmonth = date.minusMonths(1);
+			lastMonth = date.minusMonths(1);
 		}
 
 
 		//今月と先月の全体売り上げ
-		int salemonth = service.findAllsale(date);
-		int salelastmonth = service.findAllsale(lastmonth);
+		int saleMonth = service.findAllsale(date);
+		int saleLastMonth = service.findAllsale(lastMonth);
 
 		//今月と先月の売り上げ比率
-		double percent = (double)salemonth / (double)salelastmonth;
+		double percent = (double)saleMonth / (double)saleLastMonth;
 
 		//個人の売上リスト
 		findList = service.find(accountId, date);
@@ -73,7 +73,7 @@ public class C0020Servlet extends HttpServlet {
 		int total = service.findSale(accountId, date);
 
 		//formへ代入
-		C0020Form form = new C0020Form(date,lastmonth,salemonth,salelastmonth,percent,total);
+		C0020Form form = new C0020Form(date,lastMonth,saleMonth,saleLastMonth,percent,total);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);

@@ -35,7 +35,7 @@ public class C0020Service {
 		try{
 
 			//DBと接続する
-			con = com.abc.asms.utils.DBUtils.getConnection();
+			con = DBUtils.getConnection();
 			sql = "SELECT s.sale_id,s.sale_date,c.category_name,s.trade_name,s.unit_price,s.sale_number," +
 					"(s.unit_price * s.sale_number) as subtotal" +
 					" FROM sales s JOIN categories c" +
@@ -60,10 +60,10 @@ public class C0020Service {
 				String tradeName = rs.getString("trade_name");
 				int unitPrice = rs.getInt("unit_price");
 				int saleNumber = rs.getInt("sale_number");
-				int subtotal = rs.getInt("subtotal");
+				int subTotal = rs.getInt("subtotal");
 
 				//DBの値をセットする
-				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subtotal);
+				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subTotal);
 				findList.add(form);
 			}
 
@@ -94,7 +94,7 @@ public class C0020Service {
 		try{
 
 			//DBと接続する
-			con = com.abc.asms.utils.DBUtils.getConnection();
+			con = DBUtils.getConnection();
 			sql = "select sum((unit_price * sale_number)) as total from sales where account_id = ?"+
 					" and sale_date between ? and ?";
 
@@ -138,7 +138,7 @@ public class C0020Service {
 		try{
 
 			//DBと接続する
-			con = com.abc.asms.utils.DBUtils.getConnection();
+			con = DBUtils.getConnection();
 			sql = "select sum((unit_price * sale_number)) as allsale from sales"+
 					" where sale_date between ? and ?";
 
@@ -152,10 +152,10 @@ public class C0020Service {
 
 			//DBの値の取り出し
 			rs.next();
-			int allsale = rs.getInt("allsale");
+			int allSale = rs.getInt("allsale");
 
 			//値をServletに送信
-			return allsale;
+			return allSale;
 
 		}catch(Exception e){
 			throw new ServletException(e);
@@ -167,9 +167,9 @@ public class C0020Service {
 		}
 	}
 
-	public LocalDate date (String button,String getdate) {
+	public LocalDate date (String button,String getDate) {
 
-		LocalDate date = LocalDate.parse(getdate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate date = LocalDate.parse(getDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		try {
 

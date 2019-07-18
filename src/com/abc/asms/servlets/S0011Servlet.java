@@ -46,20 +46,31 @@ public class S0011Servlet extends HttpServlet {
 		String saleNumber = req.getParameter("saleNumber");
 		String note = req.getParameter("note");
 
+		//値をformにセット
+		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
+		List<String> error = new ArrayList<>();
+
+
+		//URLなどで不正な値が入力されていないかチェック
+		if(isnull(form)) {
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//小計を計算するメソッドの呼び出し
 		S0011Service service = new S0011Service();
-		String subtotal = service.calc(unitPrice,saleNumber);
+		String subTotal = service.calc(unitPrice,saleNumber);
+		form.setSubTotal(subTotal);
+
 
 		//選択肢のリストを抽出
 		List<EntrySaleForm> accountList = new ArrayList<>();
 		List<EntrySaleForm> categoryList = new ArrayList<>();
+
 		accountList = DBUtils.findAccount();
 		categoryList = DBUtils.findCategory();
-
-
-		//値をformにセット
-		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note,subtotal);
 
 		//キャンセルがあったときに送るデータ
 		StringBuilder canceldata = DBUtils.sendData(form);
@@ -92,6 +103,16 @@ public class S0011Servlet extends HttpServlet {
 		String note = req.getParameter("note");
 
 		EntrySaleForm form = new EntrySaleForm(saleDate,accountId,categoryId,tradeName,unitPrice,saleNumber,note);
+		List<String> error = new ArrayList<>();
+
+
+		//URLなどで不正な値が入力されていないかチェック
+		if(isnull(form)) {
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//insert開始
 		S0011Service service = new S0011Service();
@@ -101,6 +122,43 @@ public class S0011Servlet extends HttpServlet {
 		session.setAttribute("success", "No" + id + "の売上を登録しました。");
 		resp.sendRedirect("S0010.html");
 
+	}
+
+
+	//nullチェック
+	public boolean isnull(EntrySaleForm form) {
+
+		//エラーがある場合はダッシュボード
+		if(form.getSaleDate() == null) {
+			return true;
+		}
+
+		if(form.getAccountId() == null) {
+			return true;
+		}
+
+		if(form.getCategoryId() == null) {
+			return true;
+		}
+
+		if(form.getTradeName() == null) {
+			return true;
+		}
+
+		if(form.getUnitPrice() == null) {
+			return true;
+		}
+
+		if(form.getSaleNumber() == null) {
+			return true;
+		}
+
+		if(form.getNote() == null) {
+			return true;
+
+		}
+
+		return false;
 	}
 
 

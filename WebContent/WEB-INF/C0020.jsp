@@ -67,15 +67,15 @@ pageEncoding="UTF-8"%>
 	<!--前月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月（${form.lastmonth.getMonthValue()}月）の売上合計</h5></div>
-			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.salelastmonth)}円</div>
+			<div class="panel-heading"><h5>前月（${form.lastMonth.getMonthValue()}月）の売上合計</h5></div>
+			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.saleLastMonth)}円</div>
 		</div>
 	</div>
 	<!--今月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>今月（${form.date.getMonthValue()}月）の売上合計</h5></div>
-			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.salemonth)}円</div>
+			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.saleMonth)}円</div>
 		</div>
 	</div>
 	<!--前月比-->
@@ -83,7 +83,7 @@ pageEncoding="UTF-8"%>
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>前月比</h5></div>
 
-				<c:if test="${1 <= form.percent && form.salelastmonth != 0}">
+				<c:if test="${1 <= form.percent && form.saleLastMonth != 0}">
 					<div class="panel-body text-center up-color">
 						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 						<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
@@ -97,20 +97,18 @@ pageEncoding="UTF-8"%>
 					</div>
 				</c:if>
 
-				<c:if test="${form.salelastmonth == 0 && 1 <= form.salemonth}">
+				<c:if test="${form.saleLastMonth == 0 && 1 <= form.saleMonth}">
 					<div class="panel-body text-center">
 						-
 					</div>
 				</c:if>
 
-				<c:if test="${form.salelastmonth == 0 && 0 == form.salemonth}">
+				<c:if test="${form.saleLastMonth == 0 && 0 == form.saleMonth}">
 					<div class="panel-body text-center up-color">
 						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 						<fmt:formatNumber value="1" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
-
-				<!--前月比下がっているとき→ class="panel-body text-center down-color" class="glyphicon glyphicon-arrow-down"-->
 
 		</div>
 	</div>
@@ -145,7 +143,7 @@ pageEncoding="UTF-8"%>
 
 					<td>${HTMLUtils.numberFormat(f.unitPrice)}</td>
 					<td>${HTMLUtils.numberFormat(f.saleNumber)}</td>
-					<td>${HTMLUtils.numberFormat(f.subtotal)}</td>
+					<td>${HTMLUtils.numberFormat(f.subTotal)}</td>
 
 				</tr>
 			</c:forEach>
