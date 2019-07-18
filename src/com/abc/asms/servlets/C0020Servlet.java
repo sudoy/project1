@@ -2,6 +2,8 @@ package com.abc.asms.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +36,18 @@ public class C0020Servlet extends HttpServlet {
 		LocalDate date;
 		LocalDate beforedate;
 
-		//今日と先月の日付を取得
 
 		//ダッシュボードのボタンを押したとき
 		if(req.getParameter("button") != null) {
+
 			String button = req.getParameter("button");
 			String getdate = req.getParameter("date");
+
+			//不正な日付がないかチェック
+			if(checkdate(getdate)) {
+				resp.sendRedirect("C0020.html");
+				return;
+			}
 
 			date = service.date(button, getdate);
 			beforedate = date.minusMonths(1);
@@ -51,10 +59,6 @@ public class C0020Servlet extends HttpServlet {
 		}
 
 
-		//年、月の情報を取得
-		int lastmonthval = beforedate.getMonthValue();
-
-
 		//今月と先月の全体売り上げ
 		double salemonth = service.findAllsale(date);
 		double salelastmonth = service.findAllsale(beforedate);
@@ -62,15 +66,14 @@ public class C0020Servlet extends HttpServlet {
 		//今月と先月の売り上げ比率
 		double percent = salemonth / salelastmonth;
 
-		//個人の売り上げ合計
-		int total = service.findSale(accountId, date);
-
-
 		//個人の売上リスト
 		findList = service.find(accountId, date);
 
+		//個人の売り上げ合計
+		int total = service.findSale(accountId, date);
+
 		//formへ代入
-		C0020Form form = new C0020Form(date,lastmonthval,salemonth,salelastmonth,percent,total);
+		C0020Form form = new C0020Form(date,beforedate,salemonth,salelastmonth,percent,total);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);
@@ -80,8 +83,21 @@ public class C0020Servlet extends HttpServlet {
 
 		getServletContext().getRequestDispatcher("/WEB-INF/C0020.jsp").forward(req, resp);
 
-		session.setAttribute("success", null);
-		session.setAttribute("error", null);
+	}
+
+
+	//バリデーションチェック
+	public boolean checkdate(String date) {
+		//URLでデータを送信する際に不正な日付がないかチェック
+		boolean b = false;
+		try {
+			DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
+			LocalDate.parse(date,f);
+		} catch (Exception e) {
+			b = true;
+		}
+
+		return b;
 	}
 
 

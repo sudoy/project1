@@ -35,19 +35,19 @@
 
 								<c:if test="${a.accountId == form.accountId}">
 									<option value="${a.accountId}" selected>${HTMLUtils.XSS(a.name)}</option>
-									<input type="hidden" name="accountId" value="${a.accountId}">
 								</c:if>
 
 							</c:forEach>
 
 						</select>
+						<input type="hidden" name="accountId" value="${form.accountId}">
 					</div>
 				</div>
 
 				<!--仕様変更箇所-->
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 textright control-label">商品カテゴリー</label>
+					<label class="col-xs-3 textright control-label">商品カテゴリー</label>
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
