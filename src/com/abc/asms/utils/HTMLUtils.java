@@ -133,7 +133,7 @@ public class HTMLUtils {
 	public static String regexpErrorFrame(List<String> error,String matches) {
 		if(error!=null&&0<error.size()) {
 			for(String text:error) {
-				if(text.indexOf(matches)!=-1) {
+				if(text.matches(matches)) {
 					return "errorFrame";
 				}
 			}
