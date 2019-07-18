@@ -106,7 +106,7 @@
 				<div class="form-group">
 					<div class="col-xs-8 col-xs-offset-4">
 						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ</button>
-						<a class="btn btn-default" href="S0010.html?cancel=1&${form.canceldata}" role="button">キャンセル</a>
+						<a class="btn btn-default" href="S0010.html?cancel=1&${form.cancelData}" role="button">キャンセル</a>
 					</div>
 				</div>
 			</form>

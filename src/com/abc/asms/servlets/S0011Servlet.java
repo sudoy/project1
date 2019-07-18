@@ -73,8 +73,8 @@ public class S0011Servlet extends HttpServlet {
 		categoryList = DBUtils.findCategory();
 
 		//キャンセルがあったときに送るデータ
-		StringBuilder canceldata = DBUtils.sendData(form);
-		form.setCanceldata(canceldata);
+		StringBuilder cancelData = DBUtils.sendData(form);
+		form.setCancelData(cancelData);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);

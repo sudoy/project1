@@ -14,7 +14,7 @@ public class EntrySaleForm {
 	private String activeFlg;
 	private String name;
 
-	private StringBuilder canceldata;
+	private StringBuilder cancelData;
 
 	public EntrySaleForm(String saleDate, String accountId, String categoryId, String tradeName, String unitPrice,
 			String saleNumber, String note, String subTotal) {
@@ -137,12 +137,15 @@ public class EntrySaleForm {
 	}
 
 
-	public StringBuilder getCanceldata() {
-		return canceldata;
+	public StringBuilder getCancelData() {
+		return cancelData;
 	}
 
 
-	public void setCanceldata(StringBuilder canceldata) {
-		this.canceldata = canceldata;
+	public void setCancelData(StringBuilder cancelData) {
+		this.cancelData = cancelData;
 	}
+
+
+
 }

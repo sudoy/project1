@@ -118,10 +118,10 @@ public class S0010Servlet extends HttpServlet {
 		if(error.isEmpty()) {
 
 			//URLと一緒jにformをリダイレクト
-			StringBuilder senddata = new StringBuilder();
-			senddata = DBUtils.sendData(form);
+			StringBuilder sendData = new StringBuilder();
+			sendData = DBUtils.sendData(form);
 
-			resp.sendRedirect("S0011.html?" + senddata);
+			resp.sendRedirect("S0011.html?" + sendData);
 
 		//エラーがあれば同じページへ
 		}else{

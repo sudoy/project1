@@ -19,9 +19,9 @@ public class S0011Service {
 		int number = Integer.parseInt(saleNumber);
 
 		int result = price * number ;
-		String subtotal = String.valueOf(result);
+		String subTotal = String.valueOf(result);
 
-		return subtotal;
+		return subTotal;
 	}
 
 	public int insert(EntrySaleForm form) throws ServletException {
