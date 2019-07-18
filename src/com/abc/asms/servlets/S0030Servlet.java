@@ -43,7 +43,7 @@ public class S0030Servlet extends HttpServlet {
 			//formで渡す
 			req.setAttribute("form", form);
 
-			//セッションリセット
+			//セッションをリセット
 			session.setAttribute("EntryAccountForm", null);
 		}
 
@@ -70,7 +70,7 @@ public class S0030Servlet extends HttpServlet {
 		EntryAccountForm form = new EntryAccountForm();
 		form.setName(req.getParameter("name"));
 		form.setMail(req.getParameter("mail"));
-		form.setPassword(req.getParameter("password"));
+		form.setPassword1(req.getParameter("password1"));
 		form.setPassword2(req.getParameter("password2"));
 		form.setSalesAuthority(req.getParameter("salesAuthority"));
 		form.setAccountAuthority(req.getParameter("accountAuthority"));
@@ -114,16 +114,16 @@ public class S0030Servlet extends HttpServlet {
 		}
 
 		//パスワード必須入力、長さ(バイト数)
-		if(form.getPassword() == null || form.getPassword().isEmpty()) {
+		if(form.getPassword1() == null || form.getPassword1().isEmpty()) {
 			error.add("パスワードを入力して下さい。");
-		}else if(31 <= form.getPassword().getBytes(Charset.forName("UTF-8")).length) {
+		}else if(31 <= form.getPassword1().getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
 		}
 
 		//パスワード（確認）必須入力、等値チェック
 		if(form.getPassword2() == null || form.getPassword2().isEmpty()) {
 			error.add("パスワード（確認）を入力して下さい。");
-		}else if((form.getPassword() != null && !form.getPassword().isEmpty()) && !form.getPassword().equals(form.getPassword2())) {
+		}else if((form.getPassword1() != null && !form.getPassword1().isEmpty()) && !form.getPassword1().equals(form.getPassword2())) {
 			error.add("パスワードとパスワード（確認）が一致していません。");
 		}
 

@@ -37,7 +37,7 @@ public class S0031Service {
 
 			ps1.setString(1, form.getName());
 			ps1.setString(2, form.getMail());
-			ps1.setString(3, form.getPassword());
+			ps1.setString(3, form.getPassword1());
 			ps1.setString(4, authority);
 			ps1.executeUpdate();
 

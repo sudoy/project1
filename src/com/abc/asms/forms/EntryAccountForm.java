@@ -4,7 +4,7 @@ public class EntryAccountForm {
 
 	private String name;
 	private String mail;
-	private String password;
+	private String password1;
 	private String password2;
 	private String salesAuthority;
 	private String accountAuthority;
@@ -33,17 +33,18 @@ public class EntryAccountForm {
 	public void setAccountAuthority(String accountAuthority) {
 		this.accountAuthority = accountAuthority;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 	public String getPassword2() {
 		return password2;
 	}
 	public void setPassword2(String password2) {
 		this.password2 = password2;
+	}
+	public String getPassword1() {
+		return password1;
+	}
+	public void setPassword1(String password1) {
+		this.password1 = password1;
 	}
 
 }

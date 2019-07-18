@@ -66,7 +66,7 @@ public class S0031Servlet extends HttpServlet {
 			return;
 		}
 
-		//form取得、セッションリセット
+		//form取得、セッションをリセット
 		EntryAccountForm form = (EntryAccountForm) session.getAttribute("EntryAccountForm");
 		session.setAttribute("EntryAccountForm", null);
 
@@ -78,8 +78,8 @@ public class S0031Servlet extends HttpServlet {
 		success.add("No"+ accountId +"のアカウントを登録しました。");
 		session.setAttribute("success", success);
 
-		//アカウント検索結果一覧へ戻る
-		resp.sendRedirect("S0041.html");
+		//アカウント登録へ戻る
+		resp.sendRedirect("S0030.html");
 	}
 
 }

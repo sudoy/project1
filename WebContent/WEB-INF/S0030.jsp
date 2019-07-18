@@ -43,7 +43,7 @@
 				 	パスワード <span class="badge">必須</span>
 				 </label>
 				 <div class="col-sm-4">
-					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}" id="password1" name="password" value="${form.password}" placeholder="パスワード">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}" id="password1" name="password1" value="${form.password1}" placeholder="パスワード">
 				 </div>
 			</div>
 

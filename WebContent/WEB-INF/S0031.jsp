@@ -37,7 +37,7 @@
 				 	パスワード <span class="badge">必須</span>
 				 </label>
 				 <div class="col-sm-4">
-					<input type="password" class="form-control" id="password1" name="password" value="${form.password}" placeholder="パスワード" disabled>
+					<input type="password" class="form-control" id="password1" name="password1" value="${form.password1}" placeholder="パスワード" disabled>
 				 </div>
 			</div>
 
