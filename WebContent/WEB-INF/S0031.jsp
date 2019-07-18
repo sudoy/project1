@@ -4,8 +4,8 @@
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
-	<jsp:param name="page" value="" />
-	<jsp:param name="current" value="" />
+	<jsp:param name="page" value="アカウント登録確認" />
+	<jsp:param name="current" value="アカウント登録" />
 </jsp:include>
 
 	<div class="container">
