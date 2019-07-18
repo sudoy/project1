@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
@@ -71,7 +70,7 @@
 				<div class="form-group">
 					<label for="unitPrice" class="col-xs-3 textright control-label">単価</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="unitPrice" name="unitPrice" value="<fmt:formatNumber value="${form.unitPrice}" pattern="#,##0"/>" placeholder="単価" disabled>
+						<input type="text" class="form-control textright" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
 						<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 					</div>
 				</div>
@@ -80,7 +79,7 @@
 				<div class="form-group">
 					<label for="saleNumber" class="col-xs-3 textright control-label">個数</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="<fmt:formatNumber value="${form.saleNumber}" pattern="#,##0"/>" placeholder="個数" disabled>
+						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
 						<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 					</div>
 				</div>
@@ -89,7 +88,7 @@
 				<div class="form-group">
 					<label class="col-xs-3 textright control-label">小計</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" value="${form.subtotal}" placeholder="小計" disabled>
+						<input type="text" class="form-control textright" value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計" disabled>
 
 					</div>
 				</div>

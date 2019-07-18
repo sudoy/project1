@@ -34,7 +34,7 @@ public class C0020Servlet extends HttpServlet {
 		List<C0020Form> findList = new ArrayList<>();
 		C0020Service service = new C0020Service();
 		LocalDate date;
-		LocalDate beforedate;
+		LocalDate lastmonth;
 
 
 		//ダッシュボードのボタンを押したとき
@@ -50,21 +50,21 @@ public class C0020Servlet extends HttpServlet {
 			}
 
 			date = service.date(button, getdate);
-			beforedate = date.minusMonths(1);
+			lastmonth = date.minusMonths(1);
 
-		//ログインしてきたとき(1回目)
+		//ログイン、ページから遷移してきたとき
 		}else{
 			date = LocalDate.now();
-			beforedate = date.minusMonths(1);
+			lastmonth = date.minusMonths(1);
 		}
 
 
 		//今月と先月の全体売り上げ
-		double salemonth = service.findAllsale(date);
-		double salelastmonth = service.findAllsale(beforedate);
+		int salemonth = service.findAllsale(date);
+		int salelastmonth = service.findAllsale(lastmonth);
 
 		//今月と先月の売り上げ比率
-		double percent = salemonth / salelastmonth;
+		double percent = (double)salemonth / (double)salelastmonth;
 
 		//個人の売上リスト
 		findList = service.find(accountId, date);
@@ -73,7 +73,7 @@ public class C0020Servlet extends HttpServlet {
 		int total = service.findSale(accountId, date);
 
 		//formへ代入
-		C0020Form form = new C0020Form(date,beforedate,salemonth,salelastmonth,percent,total);
+		C0020Form form = new C0020Form(date,lastmonth,salemonth,salelastmonth,percent,total);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);
@@ -93,7 +93,7 @@ public class C0020Servlet extends HttpServlet {
 		try {
 			DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);
 			LocalDate.parse(date,f);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			b = true;
 		}
 

@@ -15,19 +15,19 @@ public class C0020Form {
 
 
 	private LocalDate date;
-	private LocalDate beforedate;
-	private double salemonth;
-	private double salelastmonth;
+	private LocalDate lastmonth;
+	private int salemonth;
+	private int salelastmonth;
 	private double percent;
 	private int total;
 
 
 
-	public C0020Form(LocalDate date, LocalDate beforedate, double salemonth, double salelastmonth, double percent,
+	public C0020Form(LocalDate date, LocalDate lastmonth, int salemonth, int salelastmonth, double percent,
 			int total) {
 		super();
 		this.date = date;
-		this.beforedate = beforedate;
+		this.lastmonth = lastmonth;
 		this.salemonth = salemonth;
 		this.salelastmonth = salelastmonth;
 		this.percent = percent;
@@ -51,19 +51,19 @@ public class C0020Form {
 	}
 
 
-	public double getSalemonth() {
+	public int getSalemonth() {
 		return salemonth;
 	}
 
-	public void setSalemonth(double salemonth) {
+	public void setSalemonth(int salemonth) {
 		this.salemonth = salemonth;
 	}
 
-	public double getSalelastmonth() {
+	public int getSalelastmonth() {
 		return salelastmonth;
 	}
 
-	public void setSalelastmonth(double salelastmonth) {
+	public void setSalelastmonth(int salelastmonth) {
 		this.salelastmonth = salelastmonth;
 	}
 
@@ -160,13 +160,15 @@ public class C0020Form {
 		this.date = date;
 	}
 
-	public LocalDate getBeforedate() {
-		return beforedate;
+	public LocalDate getLastmonth() {
+		return lastmonth;
 	}
 
-	public void setBeforedate(LocalDate beforedate) {
-		this.beforedate = beforedate;
+	public void setLastmonth(LocalDate lastmonth) {
+		this.lastmonth = lastmonth;
 	}
+
+
 
 
 

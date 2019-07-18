@@ -36,11 +36,12 @@ public class C0020Service {
 
 			//DBと接続する
 			con = com.abc.asms.utils.DBUtils.getConnection();
-			sql = "SELECT sale_id,s.sale_date,c.category_name,s.trade_name,s.unit_price,s.sale_number," +
+			sql = "SELECT s.sale_id,s.sale_date,c.category_name,s.trade_name,s.unit_price,s.sale_number," +
 					"(s.unit_price * s.sale_number) as subtotal" +
 					" FROM sales s JOIN categories c" +
 					" ON s.category_id = c.category_id" +
-					" WHERE account_id = ? and sale_date between ? and ?";
+					" WHERE account_id = ? and sale_date between ? and ?" +
+					" ORDER BY s.sale_id";
 
 			ps = con.prepareStatement(sql);
 
@@ -123,7 +124,7 @@ public class C0020Service {
 		}
 	}
 
-	public double findAllsale (LocalDate date) throws ServletException{
+	public int findAllsale (LocalDate date) throws ServletException{
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -151,7 +152,7 @@ public class C0020Service {
 
 			//DBの値の取り出し
 			rs.next();
-			double allsale = rs.getDouble("allsale");
+			int allsale = rs.getInt("allsale");
 
 			//値をServletに送信
 			return allsale;
@@ -160,7 +161,7 @@ public class C0020Service {
 			throw new ServletException(e);
 		}finally{
 			try{
-				com.abc.asms.utils.DBUtils.close(con, ps, rs);
+				DBUtils.close(con, ps, rs);
 			}catch (Exception e){}
 
 		}

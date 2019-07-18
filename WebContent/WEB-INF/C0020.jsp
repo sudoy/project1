@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -20,61 +21,61 @@
 
 	<!--仕様変更箇所-->
 	<nav aria-label="Page navigation">
- 		<div class="col-sm-4 left-btn">
-    		<ul class="pagination">
-    			<li>
-     		 		<a href="C0020.html?button=lastyear&date=${form.date}" aria-label="Previous">
-        			<span aria-hidden="true">&laquo;</span>
-        			前年
-      				</a>
-      			</li>
-      			<li>
-     		 		<a href="C0020.html?button=lastmonth&date=${form.date}" aria-label="Previous">
-        			<span aria-hidden="true">&laquo;</span>
-        			前月
-      				</a>
-    			</li>
-    		</ul>
-    	</div>
+		<div class="col-sm-4 left-btn">
+			<ul class="pagination">
+				<li>
+					<a href="C0020.html?button=lastyear&date=${form.date}" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+					前年
+					</a>
+				</li>
+				<li>
+					<a href="C0020.html?button=lastmonth&date=${form.date}" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+					前月
+					</a>
+				</li>
+			</ul>
+		</div>
 
-    	<div class="col-sm-4 center-cal">
+		<div class="col-sm-4 center-cal">
 
-    		<h2>${form.date.getYear()}年${form.date.getMonthValue()}月</h2>
+			<h2>${form.date.getYear()}年${form.date.getMonthValue()}月</h2>
 
-   		</div>
+		</div>
 
-   		<div class="col-sm-4 right-btn">
-   			<ul class="pagination">
-   				<li>
-    				<a href="C0020.html?button=nextmonth&date=${form.date}" aria-label="Next">
-      				翌月
-        			<span aria-hidden="true">&raquo;</span>
-      				</a>
-      			</li>
+		<div class="col-sm-4 right-btn">
+			<ul class="pagination">
+				<li>
+					<a href="C0020.html?button=nextmonth&date=${form.date}" aria-label="Next">
+					翌月
+					<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
 
-      			<li>
-      				<a href="C0020.html?button=nextyear&date=${form.date}" aria-label="Next">
-      				翌年
-        			<span aria-hidden="true">&raquo;</span>
-      				</a>
-      			</li>
-      		</ul>
-      	</div>
+				<li>
+					<a href="C0020.html?button=nextyear&date=${form.date}" aria-label="Next">
+					翌年
+					<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
 
 	<!--合計売上-->
 	<!--前月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月（${form.beforedate.getMonthValue()}月）の売上合計</h5></div>
-			<div class="panel-body text-center"><fmt:formatNumber value="${form.salelastmonth}" pattern="#,##0"/>円</div>
+			<div class="panel-heading"><h5>前月（${form.lastmonth.getMonthValue()}月）の売上合計</h5></div>
+			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.salelastmonth)}円</div>
 		</div>
 	</div>
 	<!--今月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading"><h5>今月（${form.date.getMonthValue()}月）の売上合計</h5></div>
-			<div class="panel-body text-center"><fmt:formatNumber value="${form.salemonth}" pattern="#,##0"/>円</div>
+			<div class="panel-body text-center">${HTMLUtils.numberFormat(form.salemonth)}円</div>
 		</div>
 	</div>
 	<!--前月比-->
@@ -117,7 +118,7 @@
 	<!--個別売上-->
 	<div class="col-sm-12">
 	<div class="panel panel-default">
-		<div class="panel-heading"><h5>今月の${account.name}さんの売上</h5></div>
+		<div class="panel-heading"><h5>今月の${HTMLUtils.XSS(account.name)}さんの売上</h5></div>
 
 		<!-- Table -->
 		<table class="table">
@@ -139,12 +140,12 @@
 
 					<td>${f.saleId}</td>
 					<td>${f.saleDate}</td>
-					<td>${f.categoryName}</td>
-					<td>${f.tradeName}</td>
+					<td>${HTMLUtils.XSS(f.categoryName)}</td>
+					<td>${HTMLUtils.XSS(f.tradeName)}</td>
 
-					<td><fmt:formatNumber value="${f.unitPrice}" pattern="#,##0"/></td>
-					<td><fmt:formatNumber value="${f.saleNumber}" pattern="#,##0"/></td>
-					<td><fmt:formatNumber value="${f.subtotal}" pattern="#,##0"/></td>
+					<td>${HTMLUtils.numberFormat(f.unitPrice)}</td>
+					<td>${HTMLUtils.numberFormat(f.saleNumber)}</td>
+					<td>${HTMLUtils.numberFormat(f.subtotal)}</td>
 
 				</tr>
 			</c:forEach>
@@ -152,7 +153,7 @@
 				<tr>
 					<td colspan="5"></td>
 					<th>合計</th>
-					<td><fmt:formatNumber value="${form.total}" pattern="#,##0"/></td>
+					<td>${HTMLUtils.numberFormat(form.total)}</td>
 				</tr>
 			</tbody>
 		</table>
