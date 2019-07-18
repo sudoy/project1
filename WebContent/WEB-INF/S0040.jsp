@@ -23,7 +23,7 @@
 			</label>
 			<div class="col-xs-5">
 				<input type="text"
-					class="form-control  ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
+					class="form-control ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
 					name="name" placeholder="氏名" value="${acf.name}">
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 				class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'メールアドレス')}">メールアドレス</label>
 			<div class="col-xs-5">
 				<input type="text"
-					class="form-control  ${HTMLUtils.errorFrame(error,'メールアドレス')}"
+					class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
 					id="mail" name="mail" placeholder="メールアドレス" value="${acf.mail}">
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 			<label class="col-xs-3 text-right control-label">売上登録権限</label>
 			<div class="col-sm-5">
 				<label class="radio-inline">
-				<input type="radio"name="salesAuthority" value="all"${HTMLUtils.checkedAuthority('all',acf.salesAuthority)}>全て
+				<input type="radio" name="salesAuthority" value="all" ${HTMLUtils.checkedAuthority('all',acf.salesAuthority)}>全て
 				</label>
 				<label class="radio-inline">
 				<input type="radio" name="salesAuthority" value="no" ${HTMLUtils.checkedAuthority('no',acf.salesAuthority)}>権限なし

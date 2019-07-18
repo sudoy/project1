@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<h2 class="midasi3 topmargin h3">パスワード再設定</h2>
 					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}" name="mail" placeholder="メールアドレス" value="${form.mail}">
-					<button type="submit"class="btn btn-primary btn-lg btn-block topmargin">メール送信</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block topmargin">メール送信</button>
 
 				</div>
 
