@@ -50,8 +50,18 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
+		if(form.getNote() == null) { form.setNote(""); }
 		form.setInput(new S0024Service().setInput(form));
 		form.setCategoryMap(DBUtils.getCategoryMap(form.getCategoryId()));
+
+		//formの中身がない場合ダッシュボードへ
+		if(form == null || form.getSaleId() == null) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//JSPへ
 		req.setAttribute("form", form);
