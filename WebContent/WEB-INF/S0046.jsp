@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.abc.asms.utils.HTMLUtils"%>
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
@@ -25,8 +26,8 @@
 			<div class="col-md-4 col-md-offset-4 widthform">
 				<div class="form-group">
 					<h2 class="midasi3 h3">新パスワード入力</h2>
-					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}" name="password1" placeholder="新パスワード" value="${form.password1}">
-					<input type="password" class="form-control" name="password2" placeholder="新パスワード確認" value="${form.password2}">
+					<input type="password" class="form-control ${HTMLUtils.regexpErrorFrame(error,'^新?パスワード.*$')}" name="password1" placeholder="新パスワード" value="${form.password1}">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'確認')}" name="password2" placeholder="新パスワード確認" value="${form.password2}">
 					<button type="submit" class="btn btn-primary btn-lg btn-block topmargin">変更</button>
 				</div>
 
