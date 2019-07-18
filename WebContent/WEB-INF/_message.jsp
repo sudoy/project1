@@ -14,9 +14,11 @@ error
 				<h4 class="margin-off"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					<strong> 成功しました！</strong><br>
 				</h4><br>
+				<ul>
 				<c:forEach var="suc" items="${success}">
 					<li>${suc}</li>
 				</c:forEach>
+				</ul>
 			</div>
 </c:if>
 <c:if test="${!empty(error)}">
