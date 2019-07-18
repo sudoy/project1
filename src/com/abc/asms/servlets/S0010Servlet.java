@@ -119,7 +119,6 @@ public class S0010Servlet extends HttpServlet {
 
 			//URLと一緒jにformをリダイレクト
 			StringBuilder senddata = new StringBuilder();
-
 			senddata = DBUtils.sendData(form);
 
 			resp.sendRedirect("S0011.html?" + senddata);

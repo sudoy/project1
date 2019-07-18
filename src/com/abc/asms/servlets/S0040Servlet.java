@@ -32,6 +32,7 @@ public class S0040Servlet extends HttpServlet {
 		String accountAuthority = (String) req.getParameter("accountAuthority");
 		List<String> error = new ArrayList<String>();
 		AccountConditionalForm acf = new AccountConditionalForm(name, mail, accountAuthority, salesAuthority);
+
 		// 異常チェック
 		if(abnormalCheck(name, mail, salesAuthority, accountAuthority)) {
 			error.add("不正なアクセスです。");
@@ -39,9 +40,9 @@ public class S0040Servlet extends HttpServlet {
 			resp.sendRedirect("C0020.html");
 			return;
 		}
-		
+
 		error = validate(name, mail, salesAuthority, accountAuthority);
-		
+
 		// 入力チェック
 		if (error.size() == 0) {
 			// エラーなし

@@ -24,12 +24,17 @@ public class S0045Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String mail = req.getParameter("mail");
+
+		// バリデーションチェック
 		List<String> error = validate(mail);
 		S0045Service S45S = new S0045Service();
 		if(error.size()==0) {
+			// メールアドレスチェック
 			if(S45S.checkDB(mail)) {
+				// リンクの生成
 				String url = req.getRequestURL().toString();
 				url = url.substring(0,url.length() - 6) + "6.html?user=";
+				// メールの送信と成否
 				boolean send = MailService.sendMail(mail,url);
 				if(send) {
 					List<String> success = new ArrayList<String>();
@@ -48,6 +53,7 @@ public class S0045Servlet extends HttpServlet {
 				error.add("メールアドレスを正しく入力して下さい。");
 			}
 		}
+		// エラー時処理
 		S0045Form S45F = new S0045Form(mail);
 		req.setAttribute("form", S45F);
 		session.setAttribute("error", error);

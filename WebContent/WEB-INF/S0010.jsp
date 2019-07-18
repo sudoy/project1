@@ -38,7 +38,7 @@
 
 							<c:forEach var="a" items="${accountList}">
 
-								<option value="${a.accountId}" ${HTMLUtils.writeSelected(a.accountId , form.accountId)}>${HTMLUtils.XSS(a.name)}</option>
+								<option value="${a.accountId}" ${HTMLUtils.writeSelected(a.accountId,form.accountId)}>${HTMLUtils.XSS(a.name)}</option>
 
 							</c:forEach>
 
@@ -48,12 +48,12 @@
 
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'商品カテゴリー')}">商品カテゴリー <span class="badge">必須</span></label>
+					<label class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'商品カテゴリー')}">商品カテゴリー <span class="badge">必須</span></label>
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
 
-							<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" ${HTMLUtils.writeChecked(c.categoryId , form.categoryId)}>${HTMLUtils.XSS(c.categoryName)}</label>
+							<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" ${HTMLUtils.writeChecked(c.categoryId,form.categoryId)}>${HTMLUtils.XSS(c.categoryName)}</label>
 
 						</c:forEach>
 

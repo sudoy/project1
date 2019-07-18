@@ -66,14 +66,14 @@
 	<!--前月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月（${form.lastmonthval}月）の売上合計</h5></div>
+			<div class="panel-heading"><h5>前月（${form.beforedate.getMonthValue()}月）の売上合計</h5></div>
 			<div class="panel-body text-center"><fmt:formatNumber value="${form.salelastmonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
 	<!--今月-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading"><h5>今月（${form.monthval}月）の売上合計</h5></div>
+			<div class="panel-heading"><h5>今月（${form.date.getMonthValue()}月）の売上合計</h5></div>
 			<div class="panel-body text-center"><fmt:formatNumber value="${form.salemonth}" pattern="#,##0"/>円</div>
 		</div>
 	</div>
@@ -84,21 +84,28 @@
 
 				<c:if test="${1 <= form.percent && form.salelastmonth != 0}">
 					<div class="panel-body text-center up-color">
-					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-					<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
+						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+						<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
 				<c:if test="${form.percent < 1}">
 					<div class="panel-body text-center down-color">
-					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-					<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
+						<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+						<fmt:formatNumber value="${form.percent}" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 
 				<c:if test="${form.salelastmonth == 0 && 1 <= form.salemonth}">
 					<div class="panel-body text-center">
-					99999.99%
+						-
+					</div>
+				</c:if>
+
+				<c:if test="${form.salelastmonth == 0 && 0 == form.salemonth}">
+					<div class="panel-body text-center up-color">
+						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+						<fmt:formatNumber value="1" type="PERCENT" maxFractionDigits="2"/>
 					</div>
 				</c:if>
 

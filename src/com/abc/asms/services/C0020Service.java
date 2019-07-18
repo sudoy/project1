@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import com.abc.asms.forms.C0020Form;
+import com.abc.asms.utils.DBUtils;
 import com.abc.asms.utils.HTMLUtils;
 
 public class C0020Service {
@@ -26,6 +27,8 @@ public class C0020Service {
 
 		C0020Form form = new C0020Form();
 		List<C0020Form> findList = new ArrayList<>();
+
+		//月初と月末の日付を取得
 		LocalDate start =  date.with(TemporalAdjusters.firstDayOfMonth());
 		LocalDate finish = date.with(TemporalAdjusters.lastDayOfMonth());
 
@@ -41,6 +44,7 @@ public class C0020Service {
 
 			ps = con.prepareStatement(sql);
 
+			//DBから個人の売り上げ情報を取得
 			ps.setInt(1,accountId);
 			ps.setObject(2,start);
 			ps.setObject(3,finish);
@@ -48,7 +52,7 @@ public class C0020Service {
 			rs = ps.executeQuery();
 
 			//DBの値の取り出し
-			while(rs.next()){
+			while(rs.next()) {
 				int saleId = rs.getInt("sale_id");
 				String saleDate = HTMLUtils.dateFormat(rs.getString("sale_date"));
 				String categoryName = rs.getString("category_name");
@@ -57,11 +61,9 @@ public class C0020Service {
 				int saleNumber = rs.getInt("sale_number");
 				int subtotal = rs.getInt("subtotal");
 
-
 				//DBの値をセットする
 				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subtotal);
 				findList.add(form);
-
 			}
 
 			//値をServletに送信
@@ -71,7 +73,7 @@ public class C0020Service {
 			throw new ServletException(e);
 		}finally{
 			try{
-				com.abc.asms.utils.DBUtils.close(con, ps, rs);
+				DBUtils.close(con, ps, rs);
 			}catch (Exception e){}
 
 		}
@@ -84,6 +86,7 @@ public class C0020Service {
 		String sql = null;
 		ResultSet rs = null;
 
+		//月初と月末の日付を取得
 		LocalDate start =  date.with(TemporalAdjusters.firstDayOfMonth());
 		LocalDate finish = date.with(TemporalAdjusters.lastDayOfMonth());
 
@@ -96,6 +99,7 @@ public class C0020Service {
 
 			ps = con.prepareStatement(sql);
 
+			//DBから1か月分の個人売り上げ合計を取得
 			ps.setInt(1,accountId);
 			ps.setObject(2,start);
 			ps.setObject(3,finish);
@@ -113,7 +117,7 @@ public class C0020Service {
 			throw new ServletException(e);
 		}finally{
 			try{
-				com.abc.asms.utils.DBUtils.close(con, ps, rs);
+				DBUtils.close(con, ps, rs);
 			}catch (Exception e){}
 
 		}
@@ -126,6 +130,7 @@ public class C0020Service {
 		String sql = null;
 		ResultSet rs = null;
 
+		//月初と月末の日付を取得
 		LocalDate start =  date.with(TemporalAdjusters.firstDayOfMonth());
 		LocalDate finish = date.with(TemporalAdjusters.lastDayOfMonth());
 
@@ -138,6 +143,7 @@ public class C0020Service {
 
 			ps = con.prepareStatement(sql);
 
+			//DBから1か月分の全体売り上げ合計を取得
 			ps.setObject(1,start);
 			ps.setObject(2,finish);
 
@@ -166,6 +172,8 @@ public class C0020Service {
 
 		try {
 
+			//buttonの値によって処理が変わる
+
 			if(button.equals("lastmonth")) {
 				return date.minusMonths(1);
 
@@ -175,15 +183,15 @@ public class C0020Service {
 			}else if(button.equals("nextmonth")) {
 				return date.plusMonths(1);
 
-			}else {
+			}else if(button.equals("nextyear")){
 				return date.plusYears(1);
-
 			}
 
 		}catch(Exception e) {
-			return LocalDate.now();
-		}
 
+		}
+		//どこにも当てはまらない場合は現在の日付を返す
+		return LocalDate.now();
 	}
 
 

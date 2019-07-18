@@ -13,39 +13,26 @@ public class C0020Form {
 	private int saleNumber;
 	private int subtotal;
 
-	private int monthval;
-	private int yearval;
-	private int lastmonthval;
+
+	private LocalDate date;
+	private LocalDate beforedate;
 	private double salemonth;
 	private double salelastmonth;
 	private double percent;
 	private int total;
-	private LocalDate date;
 
 
-	public C0020Form(LocalDate date, int lastmonthval, double salemonth, double salelastmonth, double percent,
+
+	public C0020Form(LocalDate date, LocalDate beforedate, double salemonth, double salelastmonth, double percent,
 			int total) {
 		super();
 		this.date = date;
-		this.lastmonthval = lastmonthval;
+		this.beforedate = beforedate;
 		this.salemonth = salemonth;
 		this.salelastmonth = salelastmonth;
 		this.percent = percent;
 		this.total = total;
 	}
-
-	public C0020Form(int monthval, int yearval, int lastmonthval, double salemonth, double salelastmonth,
-			double percent, int total) {
-		super();
-		this.monthval = monthval;
-		this.yearval = yearval;
-		this.lastmonthval = lastmonthval;
-		this.salemonth = salemonth;
-		this.salelastmonth = salelastmonth;
-		this.percent = percent;
-		this.total = total;
-	}
-
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
 			int subtotal) {
@@ -63,21 +50,6 @@ public class C0020Form {
 
 	}
 
-	public int getMonthval() {
-		return monthval;
-	}
-
-	public void setMonthval(int monthval) {
-		this.monthval = monthval;
-	}
-
-	public int getLastmonthval() {
-		return lastmonthval;
-	}
-
-	public void setLastmonthval(int lastmonthval) {
-		this.lastmonthval = lastmonthval;
-	}
 
 	public double getSalemonth() {
 		return salemonth;
@@ -179,13 +151,6 @@ public class C0020Form {
 		this.subtotal = subtotal;
 	}
 
-	public int getYearval() {
-		return yearval;
-	}
-
-	public void setYearval(int yearval) {
-		this.yearval = yearval;
-	}
 
 	public LocalDate getDate() {
 		return date;
@@ -193,6 +158,14 @@ public class C0020Form {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public LocalDate getBeforedate() {
+		return beforedate;
+	}
+
+	public void setBeforedate(LocalDate beforedate) {
+		this.beforedate = beforedate;
 	}
 
 
