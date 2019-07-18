@@ -118,10 +118,18 @@ public class S0024Service {
 		input.append("&saleDate=" + form.getSaleDate());
 		input.append("&accountId=" + form.getAccountId());
 		input.append("&categoryId=" + form.getCategoryId());
-		input.append("&tradeName=" + form.getTradeName());
+		if(form.getTradeName() != null) {
+			input.append("&tradeName=" + URLEncoder.encode(form.getTradeName(), "UTF-8"));
+		}else {
+			input.append("&tradeName=" + form.getTradeName());
+		}
 		input.append("&unitPrice=" + form.getUnitPrice());
 		input.append("&saleNumber=" + form.getSaleNumber());
-		input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
+		if(form.getNote() != null) {
+			input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
+		}else {
+			input.append("&note=" + form.getNote());
+		}
 		input.append("&cancel");
 
 		return input;

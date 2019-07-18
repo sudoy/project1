@@ -38,7 +38,7 @@
 
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー</label>
+					<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 					<div class="col-xs-5">
 						<c:forEach var="category" items="${form.categoryMap}">
 						<label class="radio-inline">

@@ -47,7 +47,7 @@
 
 			<!-- 商品カテゴリー -->
 			<div class="form-group">
-				<label for="categoryId" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'カテゴリー')}">
+				<label class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'カテゴリー')}">
 					商品カテゴリー <span class="badge">必須</span>
 				</label>
 				<div class="col-xs-5">&nbsp;

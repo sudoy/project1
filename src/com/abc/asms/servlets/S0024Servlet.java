@@ -50,7 +50,6 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
-		if(form.getNote() == null) { form.setNote(""); }
 		form.setInput(new S0024Service().setInput(form));
 		form.setCategoryMap(DBUtils.getCategoryMap(form.getCategoryId()));
 
