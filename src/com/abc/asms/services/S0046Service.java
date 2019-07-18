@@ -2,44 +2,32 @@ package com.abc.asms.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import com.abc.asms.forms.S0046Form;
 import com.abc.asms.utils.DBUtils;
 
 public class S0046Service extends HttpServlet {
-	/**
-	 * 入力値がSQL内のデータと一致すればtrue,違えばfalse
-	 * @param mail 入力mail
-	 * @return boolean値
-	 * @throws ServletException
-	 */
-	public boolean checkDB(String mail) throws ServletException {
+
+	public void updateDB(S0046Form S46F) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		String sql = null;
-		boolean data = false;
 		try {
 			con = DBUtils.getConnection();
-
 			// select文
-			sql = "SELECT account_id FROM accounts WHERE mail = ?";
-
+			sql = "UPDATE accounts SET password = MD5(?) WHERE mail = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, mail);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				data = true;
-			}
-
+			ps.setString(1, S46F.getPassword1());
+			ps.setString(2, S46F.getMail());
+			ps.executeUpdate();
 		} catch (Exception e) {
 			throw new ServletException(e);
 		} finally {
-			DBUtils.close(con, ps, rs);
+			DBUtils.close(con, ps);
 		}
-		return data;
+		return ;
 	}
 }

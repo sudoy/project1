@@ -51,7 +51,7 @@ public class S0020Service {
 	public int checkListSize(SaleConditionalForm scf) {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = null;
+		StringBuilder sql = new StringBuilder();
 		ResultSet rs = null;
 		int length = 0;
 		String[] date = scf.getDate();
@@ -66,39 +66,39 @@ public class S0020Service {
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT count(sale_id) FROM sales where 1=1 ";
+			sql.append("SELECT count(sale_id) FROM sales where 1=1 ");
 
 			if (!date[0].equals("")) {
-				sql += "AND sale_date >= ? ";
+				sql.append("AND sale_date >= ? ");
 				holder.add(date[0]);
 			}
 			if (!date[1].equals("")) {
-				sql += "AND sale_date <= ? ";
+				sql.append("AND sale_date <= ? ");
 				holder.add(date[1]);
 			}
 			if (!accountId.equals("")) {
-				sql += "AND account_id = ? ";
+				sql.append("AND account_id = ? ");
 				holder.add(accountId);
 			}
 			if (categoryId != null) {
-				sql += "AND category_id in('false'";
+				sql.append("AND category_id in('false'");
 				for (String cId : categoryId) {
-					sql += ",?";
+					sql.append(",?");
 					holder.add(cId);
 				}
-				sql += ") ";
+				sql.append(") ");
 			}
 			if (tradeName != null && !tradeName.equals("")) {
-				sql += "AND trade_name like ? ";
+				sql.append("AND trade_name like ? ");
 				holder.add("%" + tradeName + "%");
 			}
 			if (note != null && !note.equals("")) {
-				sql += "AND note like ? ";
+				sql.append("AND note like ? ");
 				holder.add("%" + note + "%");
 			}
 
 			//SELECT命令の準備・実行
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql.toString());
 			for (int i = 0; i < holder.size(); i++) {
 				ps.setObject(i + 1, holder.get(i));
 			}

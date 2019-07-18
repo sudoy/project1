@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.S0045Form;
+import com.abc.asms.services.MailService;
 import com.abc.asms.services.S0045Service;
 @WebServlet("/S0045.html")
 public class S0045Servlet extends HttpServlet {
@@ -27,6 +28,9 @@ public class S0045Servlet extends HttpServlet {
 		S0045Service S45S = new S0045Service();
 		if(error.size()==0) {
 			if(S45S.checkDB(mail)) {
+				String url = req.getRequestURL().toString();
+				url = url.substring(0,url.length() - 6) + "6.html?user=";
+				MailService.sendMail(mail,url);
 				session.setAttribute("success", "パスワード再設定メールを送信しました。");
 				resp.sendRedirect("S0045.html");
 				return;

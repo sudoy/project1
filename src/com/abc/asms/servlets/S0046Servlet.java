@@ -1,6 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.abc.asms.forms.S0046Form;
 import com.abc.asms.services.S0045Service;
+import com.abc.asms.services.S0046Service;
 @WebServlet("/S0046.html")
 public class S0046Servlet extends HttpServlet {
 	@Override
@@ -21,32 +24,63 @@ public class S0046Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		S0045Service S45S = new S0045Service();
 		HttpSession session = req.getSession();
+		// メールアドレスチェック
 		if(!S45S.checkDB(mail)) {
 			error.add("メールアドレスが存在しません。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0010.html");
 			return;
 		}
-		req.setAttribute("mail", mail);
+		mail = URLEncoder.encode(mail , "UTF-8");
+		S0046Form S46F = new S0046Form(mail, "", "");
+		session.setAttribute("error", error);
+		req.setAttribute("form", S46F);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0046.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<String> error = validate("", "");
+		String mail = req.getParameter("user");
+		String password1 = req.getParameter("password1");
+		String password2 = req.getParameter("password2");
+		List<String> error = new ArrayList<>();
+		HttpSession session = req.getSession();
+		// メールアドレスチェック
+		S0045Service S45S = new S0045Service();
+		if(!S45S.checkDB(mail)) {
+			error.add("メールアドレスが存在しません。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0010.html");
+			return;
+		}
+		S0046Form S46F = new S0046Form(mail, password1, password2);
+		error = validate(password1, password2);
+		if(error.size()==0) {
+			S0046Service S46S = new S0046Service();
+			S46S.updateDB(S46F);
+			List<String> success = new ArrayList<String>();
+			success.add("パスワード再設定しました");
+			session.setAttribute("success", success);
+			resp.sendRedirect("C0010.html");
+			return;
+		}
+		S46F.setMail(mail = URLEncoder.encode(mail , "UTF-8"));
+		session.setAttribute("error", error);
+		req.setAttribute("form", S46F);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0046.jsp").forward(req, resp);
 	}
 
-	private List<String> validate(String password,String newPassword) {
+	private List<String> validate(String password1,String password2) {
 		List<String> error = new ArrayList<>();
-		if (password == null || password.equals("")) {
+		if (password1 == null || password1.equals("")) {
 			error.add("パスワードを入力して下さい。");
-		} else if (30 < password.getBytes(Charset.forName("UTF-8")).length) {
+		} else if (30 < password1.getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
 		}
-		if (newPassword == null || password.equals("")) {
+		if (password2 == null || password1.equals("")) {
 			error.add("確認用パスワードを入力して下さい。");
-		} else if (newPassword.equals(password)) {
+		}
+		if (error.size() == 0 && !password2.equals(password1)) {
 			error.add("新パスワードとパスワード（確認）が一致していません。");
 		}
 		return error;

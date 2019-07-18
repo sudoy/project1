@@ -12,7 +12,7 @@
 
 	<div class="row row-center">
 
-		<form method="post" action="S0046.html">
+		<form method="post" action="S0046.html?user=${form.mail}">
 			<div class="col-md-4 col-md-offset-4 widthform">
 				<div class="form-group headmargin">
 					<h1 class="midasi2 h2">物品売上管理システム</h1>
@@ -25,8 +25,8 @@
 			<div class="col-md-4 col-md-offset-4 widthform">
 				<div class="form-group">
 					<h2 class="midasi3 h3">新パスワード入力</h2>
-					<input type="password" class="form-control" name="password" placeholder="新パスワード" value="">
-					<input type="password" class="form-control" name="password" placeholder="新パスワード確認" value="">
+					<input type="password" class="form-control" name="password1" placeholder="新パスワード" value="${form.password1}">
+					<input type="password" class="form-control" name="password2" placeholder="新パスワード確認" value="${form.password2}">
 					<button type="submit" class="btn btn-primary btn-lg btn-block topmargin">変更</button>
 				</div>
 
