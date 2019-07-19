@@ -94,6 +94,13 @@ public class S0024Servlet extends HttpServlet {
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
 
+		if(isnull(form.getNote())) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+		}
+
 		//最終確認
 		List<String> error = validation(form);
 
@@ -186,4 +193,13 @@ public class S0024Servlet extends HttpServlet {
 
 		return error;
 	}
+
+	public boolean isnull(String note) {
+		//nullチェック
+		if(note == null) {
+			return true;
+		}
+		return false;
+	}
+
 }

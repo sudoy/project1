@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.forms.EntryAccountForm;
-import com.abc.asms.services.S0030Service;
+import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0030.html")
 public class S0030Servlet extends HttpServlet {
@@ -109,7 +109,7 @@ public class S0030Servlet extends HttpServlet {
 			error.add("メールアドレスが長すぎます。");
 		}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
 			error.add("メールアドレスの形式が誤っています。");
-		}else if(new S0030Service().mailCheck(form.getMail())) {
+		}else if(DBUtils.checkMailDB(form.getMail())) {
 			error.add("メールアドレスが既に登録されています。");
 		}
 

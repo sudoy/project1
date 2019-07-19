@@ -98,7 +98,13 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		form.setUnitPrice(replaceC(req.getParameter("unitPrice")));
 		form.setSaleNumber(replaceC(req.getParameter("saleNumber")));
 		form.setNote(req.getParameter("note"));
-		if(form.getNote() == null) { form.setNote(""); }
+
+		if(isnull(form.getNote())) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+		}
 
 		//バリデーションチェック
 		List<String> error = validation(form);
@@ -196,5 +202,13 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}
 
 		return error;
+	}
+
+	public boolean isnull(String note) {
+		//nullチェック
+		if(note == null) {
+			return true;
+		}
+		return false;
 	}
 }
