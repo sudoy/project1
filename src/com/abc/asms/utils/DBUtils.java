@@ -359,7 +359,7 @@ public class DBUtils {
 	 * @return boolean値
 	 * @throws ServletException
 	 */
-	public static boolean checkMailDB(String mail) throws ServletException {
+	public static boolean checkMailDB(String mail) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -374,12 +374,10 @@ public class DBUtils {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, mail);
 			rs = ps.executeQuery();
-			while (rs.next()) {
-				data = true;
-			}
+			data = rs.next();
 
 		} catch (Exception e) {
-			throw new ServletException(e);
+
 		} finally {
 			DBUtils.close(con, ps, rs);
 		}
