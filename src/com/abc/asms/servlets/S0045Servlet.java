@@ -45,8 +45,6 @@ public class S0045Servlet extends HttpServlet {
 				}else {
 					error.add("予期しないエラーが発生しました。");
 					session.setAttribute("error", error);
-					resp.sendRedirect("S0045.html");
-					return;
 				}
 
 			}else {
