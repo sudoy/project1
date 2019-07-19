@@ -169,9 +169,9 @@ public class C0020Service {
 
 	public LocalDate date (String button,String getDate) {
 
-		LocalDate date = LocalDate.parse(getDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
 		try {
+
+			LocalDate date = LocalDate.parse(getDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 			//buttonの値によって処理が変わる
 

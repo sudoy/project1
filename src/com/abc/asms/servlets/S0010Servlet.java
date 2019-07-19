@@ -148,7 +148,6 @@ public class S0010Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 
 
-
 		//nullチェック、日付必須入力、
 		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
 			error.add("販売日を入力して下さい。");

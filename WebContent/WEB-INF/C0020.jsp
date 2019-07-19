@@ -122,13 +122,13 @@ pageEncoding="UTF-8"%>
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-sm-1">No</th>
+					<th class="col-sm-1 text-right">No</th>
 					<th class="col-sm-2">販売日</th>
 					<th class="col-sm-3">商品カテゴリー</th>
 					<th class="col-sm-3">商品名</th>
-					<th class="col-sm-1">単価</th>
-					<th class="col-sm-1">個数</th>
-					<th class="col-sm-1">小計</th>
+					<th class="col-sm-1 text-right">単価</th>
+					<th class="col-sm-1 text-right">個数</th>
+					<th class="col-sm-1 text-right">小計</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -136,22 +136,22 @@ pageEncoding="UTF-8"%>
 			<c:forEach var="f" items="${findList}">
 				<tr>
 
-					<td>${f.saleId}</td>
+					<td class="text-right">${f.saleId}</td>
 					<td>${f.saleDate}</td>
 					<td>${HTMLUtils.XSS(f.categoryName)}</td>
 					<td>${HTMLUtils.XSS(f.tradeName)}</td>
 
-					<td>${HTMLUtils.numberFormat(f.unitPrice)}</td>
-					<td>${HTMLUtils.numberFormat(f.saleNumber)}</td>
-					<td>${HTMLUtils.numberFormat(f.subTotal)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(f.unitPrice)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(f.saleNumber)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(f.subTotal)}</td>
 
 				</tr>
 			</c:forEach>
 
 				<tr>
 					<td colspan="5"></td>
-					<th>合計</th>
-					<td>${HTMLUtils.numberFormat(form.total)}</td>
+					<th class="text-right">合計</th>
+					<td class="text-right">${HTMLUtils.numberFormat(form.total)}</td>
 				</tr>
 			</tbody>
 		</table>

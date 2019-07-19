@@ -1,6 +1,10 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +56,7 @@ public class S0011Servlet extends HttpServlet {
 
 
 		//URLなどで不正な値が入力されていないかチェック
-		if(isnull(form)) {
+		if(validation(form)) {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0020.html");
@@ -107,7 +111,7 @@ public class S0011Servlet extends HttpServlet {
 
 
 		//URLなどで不正な値が入力されていないかチェック
-		if(isnull(form)) {
+		if(validation(form)) {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0020.html");
@@ -124,41 +128,81 @@ public class S0011Servlet extends HttpServlet {
 
 	}
 
+	public boolean validation(EntrySaleForm form){
+		boolean b = false;
 
-	//nullチェック
-	public boolean isnull(EntrySaleForm form) {
-
-		//エラーがある場合はダッシュボード
-		if(form.getSaleDate() == null) {
-			return true;
+		//nullチェック、日付必須入力、
+		if(form.getSaleDate() == null || form.getSaleDate().isEmpty()) {
+			b = true;
+		}else {
+			if(form.getSaleDate().matches("^[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}$")) {
+				try {
+					DateTimeFormatter f = DateTimeFormatter.ofPattern("uuuu/M/d").withResolverStyle(ResolverStyle.STRICT);
+					LocalDate.parse(form.getSaleDate(),f);
+				} catch (Exception e) {
+					e.printStackTrace();
+					b = true;
+				}
+			}else {
+				b = true;
+			}
 		}
 
-		if(form.getAccountId() == null) {
-			return true;
-		}
+		//nullチェック、担当必須入力
+		if(form.getAccountId() == null || form.getAccountId().isEmpty()) {
+			b = true;
+		}else {
 
-		if(form.getCategoryId() == null) {
-			return true;
-		}
-
-		if(form.getTradeName() == null) {
-			return true;
-		}
-
-		if(form.getUnitPrice() == null) {
-			return true;
-		}
-
-		if(form.getSaleNumber() == null) {
-			return true;
-		}
-
-		if(form.getNote() == null) {
-			return true;
+			//関連チェック
+			if(DBUtils.countAccount(form.getAccountId()) != 1) {
+				b = true;
+			}
 
 		}
 
-		return false;
+		//nullチェック、商品カテゴリー必須入力
+		if(form.getCategoryId() == null || form.getCategoryId().isEmpty()) {
+			b = true;
+		}else {
+
+			//関連チェック
+			if(DBUtils.countCategory(form.getCategoryId()) != 1) {
+				b = true;
+			}
+		}
+
+		//nullチェック、商品名必須入力、長さ(バイト数)
+		if(form.getTradeName() == null || form.getTradeName().isEmpty()) {
+			b = true;
+		}else if(101 <= form.getTradeName().getBytes(Charset.forName("UTF-8")).length) {
+			b = true;
+		}
+
+		//nullチェック、単価必須入力、形式、長さ(バイト数)
+		if(form.getUnitPrice() == null || form.getUnitPrice().isEmpty()) {
+			b = true;
+		}else if(!form.getUnitPrice().matches("^[1-9][0-9]*$")) {
+			b = true;
+		}else if(10 <= form.getUnitPrice().getBytes(Charset.forName("UTF-8")).length) {
+			b = true;
+		}
+
+		//nullチェック、個数必須入力、形式、長さ(バイト数)
+		if(form.getSaleNumber() == null || form.getSaleNumber().isEmpty()) {
+			b = true;
+		}else if(!form.getSaleNumber().matches("^[1-9][0-9]*$")) {
+			b = true;
+		}else if(10 <= form.getSaleNumber().getBytes(Charset.forName("UTF-8")).length) {
+			b = true;
+		}
+
+		//nullチェック、備考長さ
+		if(form.getNote() == null || 401 <= form.getNote().getBytes(Charset.forName("UTF-8")).length) {
+			b = true;
+		}
+
+		return b;
+
 	}
 
 

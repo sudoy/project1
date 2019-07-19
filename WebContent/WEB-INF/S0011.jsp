@@ -17,7 +17,7 @@
 
 				<!-- 販売日 -->
 				<div class="form-group">
-					<label for="saleDate" class="col-xs-3 textright control-label">販売日</label>
+					<label for="saleDate" class="col-xs-3 text-right control-label">販売日</label>
 					<div class="col-xs-2">
 						<input type="text" class="form-control" id="saleDate" name="saleDate" value="${form.saleDate}" disabled>
 						<input type="hidden" name="saleDate" value="${form.saleDate}">
@@ -26,7 +26,7 @@
 
 				<!-- 担当 -->
 				<div class="form-group">
-					<label for="accountId" class="col-xs-3 textright control-label">担当</label>
+					<label for="accountId" class="col-xs-3 text-right control-label">担当</label>
 					<div class="col-xs-5">
 						<select class="form-control" id="accountId" name="accountId" disabled>
 
@@ -46,7 +46,7 @@
 				<!--仕様変更箇所-->
 				<!-- 商品カテゴリー -->
 				<div class="form-group">
-					<label class="col-xs-3 textright control-label">商品カテゴリー</label>
+					<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 					<div class="col-xs-5">
 
 						<c:forEach var="c" items="${categoryList}">
@@ -59,7 +59,7 @@
 
 				<!-- 商品名 -->
 				<div class="form-group">
-					<label for="tradeName" class="col-xs-3 textright control-label">商品名</label>
+					<label for="tradeName" class="col-xs-3 text-right control-label">商品名</label>
 					<div class="col-xs-5">
 						<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled>
 						<input type="hidden" name="tradeName" value="${form.tradeName}">
@@ -68,34 +68,34 @@
 
 				<!-- 単価 -->
 				<div class="form-group">
-					<label for="unitPrice" class="col-xs-3 textright control-label">単価</label>
+					<label for="unitPrice" class="col-xs-3 text-right control-label">単価</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
+						<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
 						<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 					</div>
 				</div>
 
 				<!-- 個数 -->
 				<div class="form-group">
-					<label for="saleNumber" class="col-xs-3 textright control-label">個数</label>
+					<label for="saleNumber" class="col-xs-3 text-right control-label">個数</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
+						<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
 						<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 					</div>
 				</div>
 
 				<!-- 小計 -->
 				<div class="form-group">
-					<label class="col-xs-3 textright control-label">小計</label>
+					<label class="col-xs-3 text-right control-label">小計</label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control textright" value="${HTMLUtils.numberFormat(form.subTotal)}" placeholder="小計" disabled>
+						<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.subTotal)}" placeholder="小計" disabled>
 
 					</div>
 				</div>
 
 				<!-- 備考 -->
 				<div class="form-group">
-					<label for="note" class="col-xs-3 textright control-label">備考</label>
+					<label for="note" class="col-xs-3 text-right control-label">備考</label>
 					<div class="col-xs-5">
 						<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細" disabled>${form.note}</textarea>
 						<input type="hidden" name="note" value="${form.note}">
