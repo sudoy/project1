@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import com.abc.asms.forms.AccountEditForm;
 import com.abc.asms.forms.AccountForm;
 import com.abc.asms.services.S0042Service;
-import com.abc.asms.utils.DBUtils;
 
 @WebServlet("/S0042.html")
 public class S0042Servlet extends HttpServlet { //アカウント詳細編集
@@ -108,6 +107,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 	public List<String> validation(AccountEditForm form){
 
 		List<String> error = new ArrayList<>();
+		S0042Service s = new S0042Service();
 
 
 		//氏名必須入力、長さ(バイト数)
@@ -124,7 +124,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 			error.add("メールアドレスが長すぎます。");
 		}else if(!form.getMail().matches("^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9._-]*\\.[a-zA-Z0-9._-]*$")) {
 			error.add("メールアドレスの形式が誤っています。");
-		}else if(DBUtils.checkMailDB(form.getMail())) {
+		}else if(s.checkMail(form.getMail(),form.getAccountId())) {
 			error.add("メールアドレスが既に登録されています。");
 		}
 

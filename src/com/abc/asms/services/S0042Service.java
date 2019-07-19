@@ -56,4 +56,30 @@ public class S0042Service {
 		return form;
 	}
 
+	public boolean checkMail(String mail, String id) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean data = false;
+		try {
+			con = DBUtils.getConnection();
+
+			// select文
+			sql = "SELECT account_id FROM accounts WHERE mail = ? AND NOT account_id = ?";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mail);
+			ps.setString(2, id);
+			rs = ps.executeQuery();
+			data = rs.next();
+
+		} catch (Exception e) {
+
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+		return data;
+	}
+
 }
