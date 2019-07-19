@@ -82,6 +82,8 @@ public class S0043Servlet extends HttpServlet {
 			List<String> error = new ArrayList<>();
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
 		}
 
 		//アカウント検索結果一覧へ戻る

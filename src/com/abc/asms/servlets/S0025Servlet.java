@@ -84,6 +84,8 @@ public class S0025Servlet extends HttpServlet {
 			List<String> error = new ArrayList<>();
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
 		}
 
 		//売上検索結果一覧へ

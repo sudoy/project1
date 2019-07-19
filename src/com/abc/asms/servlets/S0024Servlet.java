@@ -116,6 +116,8 @@ public class S0024Servlet extends HttpServlet {
 			}else {
 				error.add("不正なアクセスです。");
 				session.setAttribute("error", error);
+				resp.sendRedirect("C0020.html");
+				return;
 			}
 		}
 
