@@ -51,26 +51,24 @@
 		<!-- 単価 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">単価</label>
-			<div class="col-xs-2">
-				<label class="text-right textdown normal"><fmt:formatNumber value="${HTMLUtils.XSS(form.unitPrice)}" pattern="#,##0"/></label>
+			<div class="col-xs-2 right-btn">
+				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.unitPrice))}</label>
 			</div>
 		</div>
 
 		<!-- 個数 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">個数</label>
-			<div class="col-xs-2">
-				<label class="text-right textdown normal"><fmt:formatNumber value="${HTMLUtils.XSS(form.saleNumber)}" pattern="#,##0"/></label>
+			<div class="col-xs-2 right-btn">
+				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.saleNumber))}</label>
 			</div>
 		</div>
 
 		<!-- 小計 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">小計</label>
-			<div class="col-xs-2">
-				<label class="text-right textdown normal">
-					<fmt:formatNumber value="${HTMLUtils.XSS(form.unitPrice * form.saleNumber)}" pattern="#,##0"/>
-				</label>
+			<div class="col-xs-2 right-btn">
+				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.unitPrice * form.saleNumber))}</label>
 			</div>
 		</div>
 
