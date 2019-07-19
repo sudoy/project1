@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.S0045Form;
 import com.abc.asms.services.MailService;
-import com.abc.asms.services.S0045Service;
+import com.abc.asms.utils.DBUtils;
 @WebServlet("/S0045.html")
 public class S0045Servlet extends HttpServlet {
 	@Override
@@ -27,10 +27,9 @@ public class S0045Servlet extends HttpServlet {
 
 		// バリデーションチェック
 		List<String> error = validate(mail);
-		S0045Service S45S = new S0045Service();
 		if(error.size()==0) {
 			// メールアドレスチェック
-			if(S45S.checkDB(mail)) {
+			if(DBUtils.checkMailDB(mail)) {
 				// リンクの生成
 				String url = req.getRequestURL().toString();
 				url = url.substring(0,url.length() - 6) + "6.html?user=";

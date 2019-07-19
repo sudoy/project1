@@ -14,19 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.abc.asms.forms.S0046Form;
-import com.abc.asms.services.S0045Service;
 import com.abc.asms.services.S0046Service;
+import com.abc.asms.utils.DBUtils;
 @WebServlet("/S0046.html")
 public class S0046Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mail = req.getParameter("user");
 		List<String> error = new ArrayList<>();
-		S0045Service S45S = new S0045Service();
 		HttpSession session = req.getSession();
 
 		// メールアドレスチェック
-		if(!S45S.checkDB(mail)) {
+		if(!DBUtils.checkMailDB(mail)) {
 			error.add("メールアドレスが存在しません。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0010.html");
@@ -47,8 +46,7 @@ public class S0046Servlet extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		// メールアドレスチェック
-		S0045Service S45S = new S0045Service();
-		if(!S45S.checkDB(mail)) {
+		if(!DBUtils.checkMailDB(mail)) {
 			error.add("メールアドレスが存在しません。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0010.html");
