@@ -37,7 +37,7 @@ public class S0031Servlet extends HttpServlet {
 		EntryAccountForm form = (EntryAccountForm) session.getAttribute("EntryAccountForm");
 
 		//formの中身がない場合ダッシュボードへ
-		if(form == null || form.getName() == null) {
+		if(form == null) {
 			List<String> error = new ArrayList<>();
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
