@@ -78,6 +78,10 @@ public class S0043Servlet extends HttpServlet {
 			List<String> success = new ArrayList<>();
 			success.add("No"+ form.getAccountId() +"のアカウントを更新しました。");
 			session.setAttribute("success", success);
+		}else {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
 		}
 
 		//アカウント検索結果一覧へ戻る

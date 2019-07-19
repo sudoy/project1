@@ -80,6 +80,10 @@ public class S0044Servlet extends HttpServlet {
 			List<String> success = new ArrayList<>();
 			success.add("No"+ accountId +"のアカウントを削除しました。");
 			session.setAttribute("success", success);
+		}else {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
 		}
 
 		//アカウント検索結果一覧へ戻る

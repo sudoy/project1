@@ -99,6 +99,7 @@ public class S0024Servlet extends HttpServlet {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
 			resp.sendRedirect("C0020.html");
+			return;
 		}
 
 		//最終確認
@@ -112,11 +113,10 @@ public class S0024Servlet extends HttpServlet {
 				List<String> success = new ArrayList<>();
 				success.add("No"+ form.getSaleId() +"の売上を更新しました。");
 				session.setAttribute("success", success);
+			}else {
+				error.add("不正なアクセスです。");
+				session.setAttribute("error", error);
 			}
-		}else {
-			//エラーメッセージ
-			error.add("No"+ form.getSaleId() +"の売上の更新ができませんでした。");
-			session.setAttribute("error", error);
 		}
 
 		//検索結果一覧へ戻る
