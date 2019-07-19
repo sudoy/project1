@@ -123,6 +123,24 @@ public class HTMLUtils {
 		}
 		return "";
 	}
+
+	/**
+	 * listの中身の文字列と正規表現文字列が一致したら"errorFrame"を返す
+	 * 一致しなければ""(空文字)を返す。
+	 * @param error	 エラー文
+	 * @param matches 検索する文字列
+	 * @return "errorFrame" 又は ""
+	 */
+	public static String regexpErrorMessage(List<String> error,String matches) {
+		if(error!=null&&0<error.size()) {
+			for(String text:error) {
+				if(text.matches(matches)) {
+					return "errorMessage";
+				}
+			}
+		}
+		return "";
+	}
 	/**
 	 * Authorityのcheck属性の設定メソッドです
 	 * @param now 現在のinputタグの値(all,no,yes)

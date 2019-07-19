@@ -39,7 +39,7 @@
 
 			<!-- パスワード -->
 			<div class="form-group">
-				 <label for="password1" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.errorMessage(error,'パスワード')}">
+				 <label for="password1" class="col-sm-offset-1 col-sm-2  control-label ${HTMLUtils.regexpErrorMessage(error,'^パスワード[^（].*$')}">
 				 	パスワード <span class="badge">必須</span>
 				 </label>
 				 <div class="col-sm-4">
