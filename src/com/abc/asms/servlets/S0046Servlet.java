@@ -34,7 +34,6 @@ public class S0046Servlet extends HttpServlet {
 		}
 		mail = URLEncoder.encode(mail , "UTF-8");
 		S0046Form S46F = new S0046Form(mail, "", "");
-		session.setAttribute("error", error);
 		req.setAttribute("form", S46F);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0046.jsp").forward(req, resp);
 	}
