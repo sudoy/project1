@@ -125,11 +125,11 @@ public class HTMLUtils {
 	}
 
 	/**
-	 * listの中身の文字列と正規表現文字列が一致したら"errorFrame"を返す
+	 * listの中身の文字列と正規表現文字列が一致したら"errorMessage"を返す
 	 * 一致しなければ""(空文字)を返す。
 	 * @param error	 エラー文
 	 * @param matches 検索する文字列
-	 * @return "errorFrame" 又は ""
+	 * @return "errorMessage" 又は ""
 	 */
 	public static String regexpErrorMessage(List<String> error,String matches) {
 		if(error!=null&&0<error.size()) {
