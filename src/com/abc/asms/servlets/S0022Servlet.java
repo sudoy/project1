@@ -50,6 +50,14 @@ public class S0022Servlet extends HttpServlet {
 		//formをjspに渡す
 		req.setAttribute("form", form);
 
+		//結合試験で利用、sessionを表示
+//		Enumeration e = session.getAttributeNames();
+//		while(e.hasMoreElements()) {
+//			String key = (String)e.nextElement();
+//			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
+//		}
+
+
 		getServletContext().getRequestDispatcher("/WEB-INF/S0022.jsp").forward(req, resp);
 	}
 }

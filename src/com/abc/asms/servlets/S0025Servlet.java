@@ -48,6 +48,14 @@ public class S0025Servlet extends HttpServlet {
 			return;
 		}
 
+		//結合試験で利用、sessionを表示
+//		Enumeration e = session.getAttributeNames();
+//		while(e.hasMoreElements()) {
+//			String key = (String)e.nextElement();
+//			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
+//		}
+
+
 		//jspへ渡す
 		req.setAttribute("form", form);
 
