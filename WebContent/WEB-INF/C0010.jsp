@@ -26,7 +26,7 @@
 			<div class="col-md-4 col-md-offset-4 widthform">
 				<div class="form-group">
 					<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}" name="mail" placeholder="メールアドレス" value="${form.mail}">
-					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}" name="password" placeholder="パスワード" value="${form.password}">
+					<input type="password" class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}" name="password" placeholder="パスワード" value="">
 					<button type="submit" class="btn btn-primary btn-lg btn-block topmargin">ログイン</button>
 					<a href="S0045.html">パスワードを忘れた方はこちらから</a>
 				</div>
