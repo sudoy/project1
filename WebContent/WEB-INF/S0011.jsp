@@ -5,8 +5,8 @@
 
 <!-- ヘッダー -->
 <jsp:include page="_header.jsp">
-	<jsp:param name="page" value="" />
-	<jsp:param name="current" value="" />
+	<jsp:param name="page" value="売上登録確認" />
+	<jsp:param name="current" value="売上登録" />
 </jsp:include>
 
 <!-- 売上登録システム表示 -->
@@ -51,9 +51,13 @@
 
 						<c:forEach var="c" items="${categoryList}">
 
-							<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}"><input type="radio" name="categoryId" value="${c.categoryId}" ${HTMLUtils.writeChecked(c.categoryId , form.categoryId)}>${HTMLUtils.XSS(c.categoryName)}</label>
+							<label class="radio-inline entryradio ${HTMLUtils.errorMessage(error,'商品カテゴリー')}">
+								<input type="radio" name="categoryId" value="${c.categoryId}" ${HTMLUtils.writeChecked(c.categoryId , form.categoryId)} disabled>
+								${HTMLUtils.XSS(c.categoryName)}
+							</label>
 
 						</c:forEach>
+						<input type="hidden" name="categoryId" value="${form.categoryId}">
 					</div>
 				</div>
 
