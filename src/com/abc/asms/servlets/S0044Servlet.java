@@ -2,7 +2,6 @@ package com.abc.asms.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -51,15 +50,6 @@ public class S0044Servlet extends HttpServlet {
 
 		//jspへ
 		req.setAttribute("form", form);
-
-
-		//結合試験で利用、sessionを表示
-		Enumeration e = session.getAttributeNames();
-		while(e.hasMoreElements()) {
-			String key = (String)e.nextElement();
-			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
-
-		}
 
 		getServletContext().getRequestDispatcher("/WEB-INF/S0044.jsp").forward(req, resp);
 	}

@@ -162,9 +162,6 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}
 
 		//担当必須入力、テーブル存在チェック
-
-		System.out.println(form.getAccountId());
-		System.out.println("1");
 		if(form.getAccountId() == null) {
 			error.add("担当が未選択です。");
 		}else {
