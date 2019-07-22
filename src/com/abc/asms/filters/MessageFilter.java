@@ -24,11 +24,23 @@ public class MessageFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		chain.doFilter(req, resp);
+
+		HttpSession session = ((HttpServletRequest) req).getSession();
 		if(((HttpServletResponse) resp).getStatus()==200) {
-			HttpSession session = ((HttpServletRequest) req).getSession();
+
 			session.setAttribute("error", null);
 			session.setAttribute("success", null);
+
+			//結合試験で利用、sessionを表示
+//			Enumeration e = session.getAttributeNames();
+//			while(e.hasMoreElements()) {
+//				String key = (String)e.nextElement();
+//				System.out.println( key + "：" + session.getAttribute(key) + "<br>");
+//			}
 		}
+
+
+
 	}
 
 	@Override

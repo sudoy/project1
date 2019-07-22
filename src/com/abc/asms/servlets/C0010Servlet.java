@@ -28,6 +28,7 @@ public class C0010Servlet extends HttpServlet {
 		String mail = req.getParameter("mail");
 		String password = req.getParameter("password");
 		HttpSession session = req.getSession();
+
 		// 入力チェック
 		List<String> error = validate(mail, password);
 		if (error.size() == 0) {
@@ -47,7 +48,10 @@ public class C0010Servlet extends HttpServlet {
 		req.setAttribute("form", C10F);
 		session.setAttribute("error", error);
 		getServletContext().getRequestDispatcher("/WEB-INF/C0010.jsp").forward(req, resp);
+
 	}
+
+
 
 	/**
 	 * 入力チェックメソッド

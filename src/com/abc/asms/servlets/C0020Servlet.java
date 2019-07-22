@@ -30,6 +30,13 @@ public class C0020Servlet extends HttpServlet {
 		AccountForm account = (AccountForm) session.getAttribute("account");
 		int accountId = account.getAccountId();
 
+		//結合試験で利用、sessionを表示
+//		Enumeration e = session.getAttributeNames();
+//		while(e.hasMoreElements()) {
+//			String key = (String)e.nextElement();
+//			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
+//		}
+
 		//変数とServiceを用意
 		List<C0020Form> findList = new ArrayList<>();
 		C0020Service service = new C0020Service();

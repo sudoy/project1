@@ -19,6 +19,7 @@ public class C0030Servlet extends HttpServlet {
 			session = req.getSession();
 			session.setAttribute("success", "ログアウトしました。");
 		}
+
 		resp.sendRedirect("C0010.html");
 	}
 }
