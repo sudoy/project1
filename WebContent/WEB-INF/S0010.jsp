@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="saleDate" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'販売日')}">販売日 <span class="badge">必須</span></label>
 					<div class="col-xs-2">
-						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}" id="saleDate" name="saleDate" value="${form.saleDate}">
+						<input type="text" class="form-control ${HTMLUtils.errorFrame(error,'販売日')}" id="saleDate" name="saleDate" value="${form.saleDate}" placeholder="販売日">
 					</div>
 				</div>
 
@@ -88,7 +88,7 @@
 				<div class="form-group">
 					<label for="note" class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'備考')}">備考</label>
 					<div class="col-xs-5">
-						<textarea class="form-control ${HTMLUtils.errorFrame(error,'備考')}" rows="5" id="note" name="note" placeholder="詳細">${form.note}</textarea>
+						<textarea class="form-control ${HTMLUtils.errorFrame(error,'備考')}" rows="5" id="note" name="note" placeholder="備考">${form.note}</textarea>
 					</div>
 				</div>
 
