@@ -37,9 +37,13 @@
 			<%--押した場所にclass="active"をつける→表示中の機能？を<jsp:param>で--%>
 			<ul class="nav navbar-nav">
 				<li ${HTMLUtils.createHeaderClass('ダッシュボード',param.current)}><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
-				<li ${HTMLUtils.createHeaderClass('売上登録',param.current)}><a href="S0010.html">売上登録</a></li>
+				<c:if test="${account.authority == 1 or account.authority == 11}">
+					<li ${HTMLUtils.createHeaderClass('売上登録',param.current)}><a href="S0010.html">売上登録</a></li>
+				</c:if>
 				<li ${HTMLUtils.createHeaderClass('売上検索',param.current)}><a href="S0020.html">売上検索</a></li>
-				<li ${HTMLUtils.createHeaderClass('アカウント登録',param.current)}><a href="S0030.html">アカウント登録</a></li>
+				<c:if test="${account.authority == 10 or account.authority == 11}">
+					<li ${HTMLUtils.createHeaderClass('アカウント登録',param.current)}><a href="S0030.html">アカウント登録</a></li>
+				</c:if>
 				<li ${HTMLUtils.createHeaderClass('アカウント検索',param.current)}><a href="S0040.html">アカウント検索</a></li>
 			</ul>
 
