@@ -11,22 +11,22 @@ public class C0020Form {
 	private String tradeName;
 	private int unitPrice;
 	private int saleNumber;
-	private int subTotal;
+	private long subTotal;
 
 
 	private LocalDate date;
 	private LocalDate lastMonth;
-	private int saleMonth;
-	private int saleLastMonth;
+	private long saleMonth;
+	private long saleLastMonth;
 	private double percent;
-	private int total;
+	private long total;
 
 
 
 
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
-			int subTotal) {
+			long subTotal) {
 		super();
 		this.saleId = saleId;
 		this.saleDate = saleDate;
@@ -37,7 +37,7 @@ public class C0020Form {
 		this.subTotal = subTotal;
 	}
 
-	public C0020Form(LocalDate date, LocalDate lastMonth, int saleMonth, int saleLastMonth, double percent, int total) {
+	public C0020Form(LocalDate date, LocalDate lastMonth, long saleMonth, long saleLastMonth, double percent, long total) {
 		super();
 		this.date = date;
 		this.lastMonth = lastMonth;
@@ -99,11 +99,11 @@ public class C0020Form {
 		this.saleNumber = saleNumber;
 	}
 
-	public int getSubTotal() {
+	public long getSubTotal() {
 		return subTotal;
 	}
 
-	public void setSubTotal(int subTotal) {
+	public void setSubTotal(long subTotal) {
 		this.subTotal = subTotal;
 	}
 
@@ -123,19 +123,19 @@ public class C0020Form {
 		this.lastMonth = lastMonth;
 	}
 
-	public int getSaleMonth() {
+	public long getSaleMonth() {
 		return saleMonth;
 	}
 
-	public void setSaleMonth(int saleMonth) {
+	public void setSaleMonth(long saleMonth) {
 		this.saleMonth = saleMonth;
 	}
 
-	public int getSaleLastMonth() {
+	public long getSaleLastMonth() {
 		return saleLastMonth;
 	}
 
-	public void setSaleLastMonth(int saleLastMonth) {
+	public void setSaleLastMonth(long saleLastMonth) {
 		this.saleLastMonth = saleLastMonth;
 	}
 
@@ -147,11 +147,11 @@ public class C0020Form {
 		this.percent = percent;
 	}
 
-	public int getTotal() {
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 

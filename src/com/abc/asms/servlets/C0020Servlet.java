@@ -60,8 +60,8 @@ public class C0020Servlet extends HttpServlet {
 
 
 		//今月と先月の全体売り上げ
-		int saleMonth = service.findAllsale(date);
-		int saleLastMonth = service.findAllsale(lastMonth);
+		long saleMonth = service.findAllsale(date);
+		long saleLastMonth = service.findAllsale(lastMonth);
 
 		//今月と先月の売り上げ比率
 		double percent = (double)saleMonth / (double)saleLastMonth;
@@ -70,7 +70,7 @@ public class C0020Servlet extends HttpServlet {
 		findList = service.find(accountId, date);
 
 		//個人の売り上げ合計
-		int total = service.findSale(accountId, date);
+		long total = service.findSale(accountId, date);
 
 		//formへ代入
 		C0020Form form = new C0020Form(date,lastMonth,saleMonth,saleLastMonth,percent,total);

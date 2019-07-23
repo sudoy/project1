@@ -60,7 +60,7 @@ public class C0020Service {
 				String tradeName = rs.getString("trade_name");
 				int unitPrice = rs.getInt("unit_price");
 				int saleNumber = rs.getInt("sale_number");
-				int subTotal = rs.getInt("subtotal");
+				long subTotal = rs.getLong("subtotal");
 
 				//DBの値をセットする
 				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subTotal);
@@ -80,7 +80,7 @@ public class C0020Service {
 		}
 	}
 
-	public int findSale (int accountId, LocalDate date) throws ServletException{
+	public long findSale (int accountId, LocalDate date) throws ServletException{
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -109,7 +109,7 @@ public class C0020Service {
 
 			//DBの値の取り出し
 			rs.next();
-			int total = rs.getInt("total");
+			long total = rs.getLong("total");
 
 			//値をServletに送信
 			return total;
@@ -124,7 +124,7 @@ public class C0020Service {
 		}
 	}
 
-	public int findAllsale (LocalDate date) throws ServletException{
+	public long findAllsale (LocalDate date) throws ServletException{
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -152,7 +152,7 @@ public class C0020Service {
 
 			//DBの値の取り出し
 			rs.next();
-			int allSale = rs.getInt("allsale");
+			long allSale = rs.getLong("allsale");
 
 			//値をServletに送信
 			return allSale;
