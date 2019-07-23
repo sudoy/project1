@@ -32,7 +32,7 @@ public class S0046Servlet extends HttpServlet {
 			return;
 		}
 		mail = URLEncoder.encode(mail , "UTF-8");
-		S0046Form S46F = new S0046Form(mail, "", "");
+		S0046Form S46F = new S0046Form(mail, "");
 		req.setAttribute("form", S46F);
 		getServletContext().getRequestDispatcher("/WEB-INF/S0046.jsp").forward(req, resp);
 	}
@@ -53,7 +53,7 @@ public class S0046Servlet extends HttpServlet {
 			return;
 		}
 
-		S0046Form S46F = new S0046Form(mail, password1, password2);
+		S0046Form S46F = new S0046Form(mail, password1);
 
 		// バリデーションチェック
 		error = validate(password1, password2);
@@ -67,14 +67,6 @@ public class S0046Servlet extends HttpServlet {
 			resp.sendRedirect("C0010.html");
 			return;
 		}
-
-		//エラーが出たパスワード入力は空欄にする
-		if(error.get(0).contains("確認")) {
-			S46F.setPassword2("");
-		}else{
-			S46F.setPassword1("");
-		}
-
 		// URLにエンコード
 		S46F.setMail(mail = URLEncoder.encode(mail , "UTF-8"));
 		session.setAttribute("error", error);
