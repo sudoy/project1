@@ -15,10 +15,10 @@ public class S0011Service {
 
 	public String calc(String unitPrice , String saleNumber) {
 
-		int price = Integer.parseInt(unitPrice);
-		int number = Integer.parseInt(saleNumber);
+		long price = Long.parseLong(unitPrice);
+		long number = Long.parseLong(saleNumber);
 
-		int result = price * number ;
+		long result = price * number ;
 		String subTotal = String.valueOf(result);
 
 		return subTotal;
