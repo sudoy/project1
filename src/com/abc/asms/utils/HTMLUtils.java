@@ -235,7 +235,7 @@ public class HTMLUtils {
 
 
 	/**
-	 * S0024.jspで使用します。
+	 * S0022.jspで使用します。
 	 * 備考の改行をHTMLに反映させます。
 	 * @param text
 	 * @return <br>タグ
