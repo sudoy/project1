@@ -67,6 +67,14 @@ public class S0046Servlet extends HttpServlet {
 			resp.sendRedirect("C0010.html");
 			return;
 		}
+
+		//エラーが出たパスワード入力は空欄にする
+		if(error.get(0).contains("確認")) {
+			S46F.setPassword2("");
+		}else{
+			S46F.setPassword1("");
+		}
+
 		// URLにエンコード
 		S46F.setMail(mail = URLEncoder.encode(mail , "UTF-8"));
 		session.setAttribute("error", error);
@@ -88,7 +96,7 @@ public class S0046Servlet extends HttpServlet {
 		} else if (30 < password1.getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
 		}
-		if (password2 == null || password1.equals("")) {
+		if (password2 == null || password2.equals("")) {
 			error.add("確認用パスワードを入力して下さい。");
 		}
 		if (error.size() == 0 && !password2.equals(password1)) {
