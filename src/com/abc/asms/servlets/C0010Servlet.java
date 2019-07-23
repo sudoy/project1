@@ -37,13 +37,15 @@ public class C0010Servlet extends HttpServlet {
 			// 名前がnullではない→一致している
 			if (!(account.getName()==null)) {
 				// sessionにAccountFormを代入後ダッシュボードにリダイレクト
-				session.setAttribute("account", account);
+				session.setAttribute("accounts", account);
 				resp.sendRedirect("C0020.html");
 				return;
 			}
 			// 名前がnullなら該当データ無し→エラー
 			error.add("メールアドレス、パスワードを正しく入力して下さい。");
 		}
+
+
 		C0010Form C10F = new C0010Form(mail);
 		req.setAttribute("form", C10F);
 		session.setAttribute("error", error);

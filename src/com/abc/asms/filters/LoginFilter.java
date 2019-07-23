@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 		// 飛んできたPathの取得
 		String target = ((HttpServletRequest) req).getServletPath();
 		HttpSession session = ((HttpServletRequest) req).getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 
 		// ログイン状態とpathの関係チェック
 		if(account!=null&&target.equals("/C0010.html")) {
