@@ -24,7 +24,7 @@ public class S0022Servlet extends HttpServlet {
 		//権限チェック 売上登録権限があればボタン表示
 		String authorityCheck = "";
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority == 1 || salesAuthority == 11) {
 			authorityCheck = "ok";

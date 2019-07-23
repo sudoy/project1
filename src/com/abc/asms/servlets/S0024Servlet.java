@@ -28,7 +28,7 @@ public class S0024Servlet extends HttpServlet {
 
 		//権限チェック 売上登録権限がなかったらダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority != 1 && salesAuthority != 11) {
 			List<String> error = new ArrayList<>();
@@ -65,13 +65,6 @@ public class S0024Servlet extends HttpServlet {
 		//JSPへ
 		req.setAttribute("form", form);
 
-//		//結合試験で利用、sessionを表示
-//		Enumeration e = session.getAttributeNames();
-//		while(e.hasMoreElements()) {
-//			String key = (String)e.nextElement();
-//			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
-//		}
-
 		getServletContext().getRequestDispatcher("/WEB-INF/S0024.jsp").forward(req, resp);
 	}
 
@@ -80,7 +73,7 @@ public class S0024Servlet extends HttpServlet {
 
 		//権限チェック 売上登録権限がなかったらダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority != 1 && salesAuthority != 11) {
 			List<String> error = new ArrayList<>();

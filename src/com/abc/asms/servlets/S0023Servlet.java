@@ -28,7 +28,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 
 		//権限チェック 売上登録権限がなかったらダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority != 1 && salesAuthority != 11) {
 			List<String> error = new ArrayList<>();
@@ -78,7 +78,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 
 		//権限チェック 売上登録権限がなかったらダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int salesAuthority = account.getAuthority();
 		if(salesAuthority != 1 && salesAuthority != 11) {
 			List<String> error = new ArrayList<>();
