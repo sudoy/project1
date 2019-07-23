@@ -76,7 +76,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">備考</label>
 			<div class="col-xs-5">
-				<label class="textdown normal">${HTMLUtils.XSS(form.note)}</label>
+				<label class="textdown normal">${HTMLUtils.newLine(HTMLUtils.XSS(form.note))}</label>
 			</div>
 		</div>
 

@@ -232,4 +232,17 @@ public class HTMLUtils {
 		}
 		return "";
 	}
+
+
+	/**
+	 * S0024.jspで使用します。
+	 * 備考の改行をHTMLに反映させます。
+	 * @param text
+	 * @return <br>タグ
+	 */
+	public static String newLine(String text) {
+		text = text.replace("\r\n", "<br>");
+		return text;
+	}
+
 }
