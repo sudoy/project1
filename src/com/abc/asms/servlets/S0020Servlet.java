@@ -121,27 +121,34 @@ public class S0020Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		Date date1 = null;
 		Date date2 = null;
+		boolean blank = false;
 
 		DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		try {
-			if (!date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+			if (date[0].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+				format.setLenient(false);
+				date1 = format.parse(date[0]);
+			}else if(date[0].equals("")){
+				blank = true;
+			}else {
 				throw new Exception();
 			}
-			format.setLenient(false);
-			date1 = format.parse(date[0]);
 		} catch (Exception e) {
 			error.add("販売日（検索開始日）を正しく入力して下さい。");
 		}
 		try {
-			if (!date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+			if (date[1].matches("[0-9]{4}/([0-9]{2}|[0-9])/([0-9]{2}|[0-9])")) {
+				format.setLenient(false);
+				date2 = format.parse(date[1]);
+			}else if(date[1].equals("")){
+				blank = true;
+			}else {
 				throw new Exception();
 			}
-			format.setLenient(false);
-			date2 = format.parse(date[1]);
 		} catch (Exception e) {
 			error.add("販売日（検索終了日）を正しく入力して下さい。");
 		}
-		if (error.size() == 0) {
+		if (error.size() == 0 && blank == false) {
 			if (date2.before(date1)) {
 				error.add("販売日（検索開始日）が販売日（検索終了日）より後の日付となっています。");
 			}
