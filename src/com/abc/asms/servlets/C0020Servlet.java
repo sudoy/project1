@@ -27,7 +27,7 @@ public class C0020Servlet extends HttpServlet {
 
 		//ログインした情報からidを取得
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int accountId = account.getAccountId();
 
 		//結合試験で利用、sessionを表示
