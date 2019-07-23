@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
-public class DeleteConditionFilter implements Filter {
+public class DeleteSessionFilter implements Filter {
 
 	@Override
 	public void destroy() {
