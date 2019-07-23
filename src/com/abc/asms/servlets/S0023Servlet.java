@@ -70,13 +70,6 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		//formをjspに渡す
 		req.setAttribute("form", form);
 
-		//結合試験で利用、sessionを表示
-//		Enumeration e = session.getAttributeNames();
-//		while(e.hasMoreElements()) {
-//			String key = (String)e.nextElement();
-//			System.out.println( key + "：" + session.getAttribute(key) + "<br>");
-//		}
-
 		getServletContext().getRequestDispatcher("/WEB-INF/S0023.jsp").forward(req, resp);
 	}
 
@@ -162,7 +155,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}
 
 		//担当必須入力、テーブル存在チェック
-		if(form.getAccountId() == null) {
+		if(form.getAccountId() == null || form.getAccountId().isEmpty()) {
 			error.add("担当が未選択です。");
 		}else {
 			if(DBUtils.countAccount(form.getAccountId()) != 1) {

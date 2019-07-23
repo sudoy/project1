@@ -85,7 +85,7 @@
 				<div class="form-group">
 					<label for="note" class="col-xs-3 text-right control-label">備考</label>
 					<div class="col-xs-5">
-						<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細" disabled>${form.note}</textarea>
+						<textarea class="form-control" rows="5" id="note" name="note" placeholder="備考" disabled>${form.note}</textarea>
 					</div>
 				</div>
 
