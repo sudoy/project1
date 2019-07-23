@@ -59,7 +59,7 @@ public class S0011Servlet extends HttpServlet {
 		if(validation(form)) {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
+			resp.sendRedirect("S0010.html");
 			return;
 		}
 
@@ -114,7 +114,7 @@ public class S0011Servlet extends HttpServlet {
 		if(validation(form)) {
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
+			resp.sendRedirect("S0010.html");
 			return;
 		}
 
