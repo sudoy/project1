@@ -27,7 +27,7 @@
 <c:forEach var="accountList" items="${list}">
 			<tr class="table-border-top">
 				<td>
-<c:if test="${10 <= account.authority}">
+<c:if test="${10 <= accounts.authority}">
 					<a class="btn btn-primary" href="S0042.html?accountId=${accountList.account_id}">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
 					</a>
