@@ -24,7 +24,7 @@ public class S0030Servlet extends HttpServlet {
 
 		//権限チェック→アカウント登録権限がない場合はダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int authority = account.getAuthority();
 		if(authority != 10 && authority != 11) {
 			List<String> error = new ArrayList<>();
@@ -60,7 +60,7 @@ public class S0030Servlet extends HttpServlet {
 
 		//権限チェック→アカウント登録権限がない場合はダッシュボードへ
 		HttpSession session = req.getSession();
-		AccountForm account = (AccountForm) session.getAttribute("account");
+		AccountForm account = (AccountForm) session.getAttribute("accounts");
 		int authority = account.getAuthority();
 		if(authority != 10 && authority != 11) {
 			List<String> error = new ArrayList<>();
