@@ -30,7 +30,6 @@ public class MessageFilter implements Filter {
 
 			session.setAttribute("error", null);
 			session.setAttribute("success", null);
-
 		}
 
 	}
