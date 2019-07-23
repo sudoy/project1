@@ -1,5 +1,6 @@
 package com.abc.asms.filters;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -32,11 +33,11 @@ public class MessageFilter implements Filter {
 			session.setAttribute("success", null);
 
 			//結合試験で利用、sessionを表示
-//			Enumeration e = session.getAttributeNames();
-//			while(e.hasMoreElements()) {
-//				String key = (String)e.nextElement();
-//				System.out.println( key + "：" + session.getAttribute(key) + "<br>");
-//			}
+			Enumeration e = session.getAttributeNames();
+			while(e.hasMoreElements()) {
+				String key = (String)e.nextElement();
+				System.out.println( key + "：" + session.getAttribute(key) + "<br>");
+			}
 		}
 
 

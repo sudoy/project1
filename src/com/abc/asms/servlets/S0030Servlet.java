@@ -40,6 +40,10 @@ public class S0030Servlet extends HttpServlet {
 			//前回入力した値をセッションから取得
 			EntryAccountForm form = (EntryAccountForm) session.getAttribute("EntryAccountForm");
 
+			//パスワードを消す
+			form.setPassword1(null);
+			form.setPassword2(null);
+
 			//formで渡す
 			req.setAttribute("form", form);
 

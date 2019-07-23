@@ -36,12 +36,12 @@ public class S0031Servlet extends HttpServlet {
 		//セッションから登録画面で入力した値を取得
 		EntryAccountForm form = (EntryAccountForm) session.getAttribute("EntryAccountForm");
 
-		//formの中身がない場合ダッシュボードへ
+		//formの中身がない場合アカウント登録画面へ
 		if(form == null) {
 			List<String> error = new ArrayList<>();
 			error.add("不正なアクセスです。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
+			resp.sendRedirect("S0030.html");
 			return;
 		}
 
