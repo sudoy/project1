@@ -1,89 +1,110 @@
 @charset "utf-8";
 
 /*吉田*/
-.pass{
-	background-color:#eee;
+.pass {
+	background-color: #eee;
 }
 
-.headmargin{
-	margin-top:50px;
-
+.headmargin {
+	margin-top: 50px;
 }
 
-.midasi2{
-	text-align:center;
-
+.midasi2 {
+	text-align: center;
 }
 
-.midasi3{
-	text-align:left;
-	margin-left:10px;
+.midasi3 {
+	text-align: left;
+	margin-left: 10px;
 }
 
-.topmargin{
-	margin-top:10px;
+.topmargin {
+	margin-top: 10px;
 }
 
-.widthform{
-	width:30%;
+.widthform {
+	width: 30%;
 }
 
 /*鈴木*/
-*{
-	font-family: 'メイリオ', Meiryo,sans-serif;
+* {
+	font-family: 'メイリオ', Meiryo, sans-serif;
 }
 
-.padding-off{
+.padding-off {
 	padding: 0;
 }
-.margin-off{
+
+.margin-off {
 	margin: 0;
 }
 
-.up-color{
+.up-color {
 	color: green;
 }
 
-.down-color{
+.down-color {
 	color: red;
 }
 
-.table-border-top{
+.table-border-top {
 	border-top: 2px solid #ddd;
 }
 
-
 /*吉田(仕様変更)*/
-
-.right-btn{
-	text-align:right;
+.right-btn {
+	text-align: right;
 }
 
-.left-btn{
-	text-align:left;
-
+.left-btn {
+	text-align: left;
 }
 
-.center-cal{
-	text-align:center;
+.center-cal {
+	text-align: center;
 }
 
-
-.dashtitle{
-	text-align:center;
+.dashtitle {
+	text-align: center;
 }
 
-.entryradio{
-	margin-left:0px !important;
+.entryradio {
+	margin-left: 0px !important;
 }
 
 /*山本*/
-.bold{font-weight:bold;}
-.textdown{padding:9px 15px 0px 0px;}
-.bm20{margin-bottom:20px;}
-.check{font-size:28px;}
-.normal{font-weight:normal;}
-.errorMessage{color:#a94442;}
-.errorFrame{border:1.5px #a94442 solid;}
-.bgg{background-color:#eee}
-.tmargin{padding-top:7px;}
+.bold {
+	font-weight: bold;
+}
+
+.textdown {
+	padding: 9px 15px 0px 0px;
+}
+
+.bm20 {
+	margin-bottom: 20px;
+}
+
+.check {
+	font-size: 28px;
+}
+
+.normal {
+	font-weight: normal;
+}
+
+.errorMessage {
+	color: #a94442;
+}
+
+.errorFrame {
+	border: 1.5px #a94442 solid;
+}
+
+.bgg {
+	background-color: #eee
+}
+
+.tmargin {
+	padding-top: 7px;
+}

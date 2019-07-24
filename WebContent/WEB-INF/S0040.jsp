@@ -43,14 +43,15 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">売上登録権限</label>
 			<div class="col-sm-5">
-				<label class="radio-inline">
-				<input type="radio" name="salesAuthority" value="all" ${HTMLUtils.checkedAuthority('all',acf.salesAuthority)}>全て
-				</label>
-				<label class="radio-inline">
-				<input type="radio" name="salesAuthority" value="no" ${HTMLUtils.checkedAuthority('no',acf.salesAuthority)}>権限なし
-				</label>
-				<label class="radio-inline">
-				<input type="radio" name="salesAuthority" value="yes" ${HTMLUtils.checkedAuthority('yes',acf.salesAuthority)}>権限あり
+				<label class="radio-inline"> <input type="radio"
+					name="salesAuthority" value="all"
+					${HTMLUtils.checkedAuthority('all',acf.salesAuthority)}>全て
+				</label> <label class="radio-inline"> <input type="radio"
+					name="salesAuthority" value="no"
+					${HTMLUtils.checkedAuthority('no',acf.salesAuthority)}>権限なし
+				</label> <label class="radio-inline"> <input type="radio"
+					name="salesAuthority" value="yes"
+					${HTMLUtils.checkedAuthority('yes',acf.salesAuthority)}>権限あり
 				</label>
 			</div>
 		</div>
@@ -59,14 +60,15 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">アカウント登録権限</label>
 			<div class="col-sm-5">
-				<label class="radio-inline">
-				<input type="radio" name="accountAuthority" value="all" ${HTMLUtils.checkedAuthority('all',acf.accountAuthority)}>全て
-				</label>
-				<label class="radio-inline">
-				<input type="radio" name="accountAuthority" value="no" ${HTMLUtils.checkedAuthority('no',acf.accountAuthority)}>権限なし
-				</label>
-				<label class="radio-inline">
-				<input type="radio" name="accountAuthority" value="yes" ${HTMLUtils.checkedAuthority('yes',acf.accountAuthority)}>権限あり
+				<label class="radio-inline"> <input type="radio"
+					name="accountAuthority" value="all"
+					${HTMLUtils.checkedAuthority('all',acf.accountAuthority)}>全て
+				</label> <label class="radio-inline"> <input type="radio"
+					name="accountAuthority" value="no"
+					${HTMLUtils.checkedAuthority('no',acf.accountAuthority)}>権限なし
+				</label> <label class="radio-inline"> <input type="radio"
+					name="accountAuthority" value="yes"
+					${HTMLUtils.checkedAuthority('yes',acf.accountAuthority)}>権限あり
 				</label>
 			</div>
 		</div>

@@ -1,40 +1,38 @@
 @charset "utf-8";
 
-*{
-	font-family: 'メイリオ', Meiryo,sans-serif;
+* {
+	font-family: 'メイリオ', Meiryo, sans-serif;
 }
 
-.padding-off{
+.padding-off {
 	padding: 0;
 }
 
-.up-color{
+.up-color {
 	color: green;
 }
 
-.down-color{
+.down-color {
 	color: red;
 }
 
-.table-border-top{
+.table-border-top {
 	border-top: 2px solid #ddd;
 }
 
 /*吉田(仕様変更)*/
-.right-btn{
-	text-align:right;
+.right-btn {
+	text-align: right;
 }
 
-.left-btn{
-	text-align:left;
-
+.left-btn {
+	text-align: left;
 }
 
-.center-cal{
-	text-align:center;
+.center-cal {
+	text-align: center;
 }
 
-
-.dashtitle{
-	text-align:center;
+.dashtitle {
+	text-align: center;
 }

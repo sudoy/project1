@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>売上条件検索｜物品売上管理システム</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/yamamoto.css" rel="stylesheet">
-	</head>
-	<body>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>売上条件検索｜物品売上管理システム</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/yamamoto.css" rel="stylesheet">
+</head>
+<body>
 
 	<!--ヘッダー-->
 	<nav class="navbar navbar-default">
 		<div class="container-field">
 
 			<!--画面が小さくなったときのやつ-->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
 			</button>
 
 			<!--システム名-->
@@ -28,7 +29,8 @@
 			</div>
 
 			<!--リンク-->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 
 				<!--押した場所にclass="active"をつける？-->
 				<ul class="nav navbar-nav">
@@ -44,81 +46,102 @@
 					<li><a href="#">ログアウト</a></li>
 				</ul>
 
-			</div><!--div class="collapse navbar-collapse"-->
+			</div>
+			<!--div class="collapse navbar-collapse"-->
 		</div>
-	</nav><!--ヘッダーここまで-->
+	</nav>
+	<!--ヘッダーここまで-->
 
-		<!-- 売上登録システム表示 -->
-		<div class="container">
-			<h1>売上検索条件入力</h1>
-			<!-- form -->
-			<form class="form-horizontal" action="S0021.html">
+	<!-- 売上登録システム表示 -->
+	<div class="container">
+		<h1>売上検索条件入力</h1>
+		<!-- form -->
+		<form class="form-horizontal" action="S0021.html">
 
-				<!-- 販売日 -->
-				<div class="form-group">
-					<label class="col-xs-3 text-right control-label">販売日</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control" id="startsaleDate" name="saleDate" value="2015/1/15">
-					</div>
-					<div class="col-xs-1 text-center tmargin">～</div>
-					<div class="col-xs-2">
-						<input type="text" class="form-control" id="endsaleDate" name="saleDate" value="2015/1/15">
-					</div>
+			<!-- 販売日 -->
+			<div class="form-group">
+				<label class="col-xs-3 text-right control-label">販売日</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="startsaleDate"
+						name="saleDate" value="2015/1/15">
 				</div>
-
-				<!-- 担当 -->
-				<div class="form-group">
-					<label for="accountId" class="col-xs-3 text-right control-label">担当</label>
-					<div class="col-xs-5">
-						<select class="form-control" id="accountId" name="accountId">
-							<option value="">選択してください</option>
-						</select>
-					</div>
+				<div class="col-xs-1 text-center tmargin">～</div>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="endsaleDate"
+						name="saleDate" value="2015/1/15">
 				</div>
+			</div>
 
-				<!-- 商品カテゴリー -->
-				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー</label>
-					<div class="col-xs-5">
-						<label class="normal  control-label"><input type="checkbox" name="categoryId" value="">食料品　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">飲料　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">書籍・雑誌　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">冷凍食品　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">衣類　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">ゲーム　</label>
-						<label class="normal control-label"><input type="checkbox" name="categoryId" value="">その他　</label>
-					</div>
+			<!-- 担当 -->
+			<div class="form-group">
+				<label for="accountId" class="col-xs-3 text-right control-label">担当</label>
+				<div class="col-xs-5">
+					<select class="form-control" id="accountId" name="accountId">
+						<option value="">選択してください</option>
+					</select>
 				</div>
+			</div>
 
-				<!-- 商品名 -->
-				<div class="form-group">
-					<label for="tradeName" class="col-xs-3 text-right control-label">商品名 <span class="badge">部分一致</span></label>
-					<div class="col-xs-5">
-						<input type="text" class="form-control" id="tradeName" name="tradeName" value="" placeholder="商品名">
-					</div>
+			<!-- 商品カテゴリー -->
+			<div class="form-group">
+				<label for="categoryId" class="col-xs-3 text-right control-label">商品カテゴリー</label>
+				<div class="col-xs-5">
+					<label class="normal  control-label"><input type="checkbox"
+						name="categoryId" value="">食料品 </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">飲料 </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">書籍・雑誌 </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">冷凍食品 </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">衣類 </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">ゲーム </label> <label
+						class="normal control-label"><input type="checkbox"
+						name="categoryId" value="">その他 </label>
 				</div>
+			</div>
 
-				<!-- 備考 -->
-				<div class="form-group">
-					<label for="note" class="col-xs-3 text-right control-label">備考 <span class="badge">部分一致</span></label>
-					<div class="col-xs-5">
-						<input type="text" class="form-control" id="note" name="note" value="" placeholder="備考">
-					</div>
+			<!-- 商品名 -->
+			<div class="form-group">
+				<label for="tradeName" class="col-xs-3 text-right control-label">商品名
+					<span class="badge">部分一致</span>
+				</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="tradeName"
+						name="tradeName" value="" placeholder="商品名">
 				</div>
+			</div>
 
-				<!-- Submit -->
-				<div class="form-group">
-					<div class="col-xs-8 col-xs-offset-4">
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 検　索</button>
-						<button type="submit" class="btn btn-default">クリア</button>
-					</div>
+			<!-- 備考 -->
+			<div class="form-group">
+				<label for="note" class="col-xs-3 text-right control-label">備考
+					<span class="badge">部分一致</span>
+				</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="note" name="note"
+						value="" placeholder="備考">
 				</div>
-			</form>
-		</div>
-		<!--/container-fluid-->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-	</body>
+			</div>
+
+			<!-- Submit -->
+			<div class="form-group">
+				<div class="col-xs-8 col-xs-offset-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						検 索
+					</button>
+					<button type="submit" class="btn btn-default">クリア</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--/container-fluid-->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
 </html>

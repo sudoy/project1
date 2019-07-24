@@ -1,107 +1,127 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>アカウント検索｜物品売上管理システム</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/suzuki.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アカウント検索｜物品売上管理システム</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/suzuki.css">
 </head>
 <body>
 
-<!--ヘッダー-->
-<nav class="navbar navbar-default">
-	<div class="container-field">
+	<!--ヘッダー-->
+	<nav class="navbar navbar-default">
+		<div class="container-field">
 
-		<!--画面が小さくなったときのやつ-->
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+			<!--画面が小さくなったときのやつ-->
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 
-		<!--システム名-->
-		<div class="navbar-header">
-			<a class="navbar-brand">物品売上管理システム</a>
-		</div>
-
-		<!--リンク-->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-			<!--押した場所にclass="active"をつける？-->
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
-				<li><a href="S0010.html">売上登録</a></li>
-				<li><a href="S0020.html">売上検索</a></li>
-				<li><a href="S0030.html">アカウント登録</a></li>
-				<li><a href="S0040.html">アカウント検索</a></li>
-			</ul>
-
-			<!--ログアウト-->
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">ログアウト</a></li>
-			</ul>
-
-		</div><!--div class="collapse navbar-collapse"-->
-
-	</div><!--class="container-field"-->
-</nav><!--ヘッダーここまで-->
-
-<!--アカウント検索条件入力-->
-<div class="container">
-	<h1>アカウント検索</h1>
-
-	<form class="form-horizontal" action="#">
-
-		<!-- 氏名 -->
-		<div class="form-group">
-			<label for="name" class="col-xs-3 text-right control-label">氏名 <span class="badge">部分一致</span></label>
-			<div class="col-xs-5">
-				<input type="text" class="form-control" id="name" name="name" placeholder="氏名">
+			<!--システム名-->
+			<div class="navbar-header">
+				<a class="navbar-brand">物品売上管理システム</a>
 			</div>
-		</div>
 
-		<!-- メールアドレス -->
-		<div class="form-group">
-			<label for="mail" class="col-xs-3 text-right control-label">メールアドレス</label>
-			<div class="col-xs-5">
-				<input type="text" class="form-control" id="mail" name="mail" placeholder="メールアドレス">
+			<!--リンク-->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+
+				<!--押した場所にclass="active"をつける？-->
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="C0020.html">ダッシュボード<span
+							class="sr-only">(current)</span></a></li>
+					<li><a href="S0010.html">売上登録</a></li>
+					<li><a href="S0020.html">売上検索</a></li>
+					<li><a href="S0030.html">アカウント登録</a></li>
+					<li><a href="S0040.html">アカウント検索</a></li>
+				</ul>
+
+				<!--ログアウト-->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">ログアウト</a></li>
+				</ul>
+
 			</div>
-		</div>
+			<!--div class="collapse navbar-collapse"-->
 
-		<!-- 売上登録権限 -->
-		<div class="form-group">
-			<label class="col-xs-3 text-right control-label">売上登録権限</label>
-			<div class="col-sm-5">
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="all" checked>全て</label>
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="no">権限なし</label>
-					<label class="radio-inline"><input type="radio" name="salesAuthority" value="yes">権限あり</label>
+		</div>
+		<!--class="container-field"-->
+	</nav>
+	<!--ヘッダーここまで-->
+
+	<!--アカウント検索条件入力-->
+	<div class="container">
+		<h1>アカウント検索</h1>
+
+		<form class="form-horizontal" action="#">
+
+			<!-- 氏名 -->
+			<div class="form-group">
+				<label for="name" class="col-xs-3 text-right control-label">氏名
+					<span class="badge">部分一致</span>
+				</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="name" name="name"
+						placeholder="氏名">
+				</div>
 			</div>
-		</div>
 
-		<!-- アカウント登録権限 -->
-		<div class="form-group">
-			<label class="col-xs-3 text-right control-label">アカウント登録権限</label>
-			<div class="col-sm-5">
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="all" checked>全て</label>
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="no">権限なし</label>
-					<label class="radio-inline"><input type="radio" name="accountAuthority" value="yes">権限あり</label>
+			<!-- メールアドレス -->
+			<div class="form-group">
+				<label for="mail" class="col-xs-3 text-right control-label">メールアドレス</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="mail" name="mail"
+						placeholder="メールアドレス">
+				</div>
 			</div>
-		</div>
 
-		<!-- Submit -->
-		<div class="form-group">
-			<div class="col-xs-8 col-xs-offset-4">
-				<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 検　索</button>
-				<button type="submit" class="btn btn-default">クリア</button>
+			<!-- 売上登録権限 -->
+			<div class="form-group">
+				<label class="col-xs-3 text-right control-label">売上登録権限</label>
+				<div class="col-sm-5">
+					<label class="radio-inline"><input type="radio"
+						name="salesAuthority" value="all" checked>全て</label> <label
+						class="radio-inline"><input type="radio"
+						name="salesAuthority" value="no">権限なし</label> <label
+						class="radio-inline"><input type="radio"
+						name="salesAuthority" value="yes">権限あり</label>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+			<!-- アカウント登録権限 -->
+			<div class="form-group">
+				<label class="col-xs-3 text-right control-label">アカウント登録権限</label>
+				<div class="col-sm-5">
+					<label class="radio-inline"><input type="radio"
+						name="accountAuthority" value="all" checked>全て</label> <label
+						class="radio-inline"><input type="radio"
+						name="accountAuthority" value="no">権限なし</label> <label
+						class="radio-inline"><input type="radio"
+						name="accountAuthority" value="yes">権限あり</label>
+				</div>
+			</div>
+
+			<!-- Submit -->
+			<div class="form-group">
+				<div class="col-xs-8 col-xs-offset-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						検 索
+					</button>
+					<button type="submit" class="btn btn-default">クリア</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

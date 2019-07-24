@@ -1,188 +1,192 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ダッシュボード｜物品売上管理システム</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/suzuki.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ダッシュボード｜物品売上管理システム</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/suzuki.css">
 </head>
 <body>
 
-<!--ヘッダー-->
-<nav class="navbar navbar-default">
-	<div class="container-field">
+	<!--ヘッダー-->
+	<nav class="navbar navbar-default">
+		<div class="container-field">
 
-		<!--画面が小さくなったときのやつ-->
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+			<!--画面が小さくなったときのやつ-->
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
 
-		<!--システム名-->
-		<div class="navbar-header">
-			<a class="navbar-brand">物品売上管理システム</a>
+			<!--システム名-->
+			<div class="navbar-header">
+				<a class="navbar-brand">物品売上管理システム</a>
+			</div>
+
+			<!--リンク-->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+
+				<!--押した場所にclass="active"をつける？-->
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="C0020.html">ダッシュボード<span
+							class="sr-only">(current)</span></a></li>
+					<li><a href="S0010.html">売上登録</a></li>
+					<li><a href="S0020.html">売上検索</a></li>
+					<li><a href="S0030.html">アカウント登録</a></li>
+					<li><a href="S0040.html">アカウント検索</a></li>
+				</ul>
+
+				<!--ログアウト-->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">ログアウト</a></li>
+				</ul>
+
+			</div>
+			<!--div class="collapse navbar-collapse"-->
 		</div>
-
-		<!--リンク-->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-			<!--押した場所にclass="active"をつける？-->
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="C0020.html">ダッシュボード<span class="sr-only">(current)</span></a></li>
-				<li><a href="S0010.html">売上登録</a></li>
-				<li><a href="S0020.html">売上検索</a></li>
-				<li><a href="S0030.html">アカウント登録</a></li>
-				<li><a href="S0040.html">アカウント検索</a></li>
-			</ul>
-
-			<!--ログアウト-->
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">ログアウト</a></li>
-			</ul>
-
-		</div><!--div class="collapse navbar-collapse"-->
-	</div>
-</nav><!--ヘッダーここまで-->
-
-
-<!--ダッシュボード-->
-<div class="container">
-	<h1 class="dashtitle">ダッシュボード</h1>
-
-	<!--仕様変更箇所-->
-	<nav aria-label="Page navigation">
- 		<div class="col-sm-4 left-btn">
-    		<ul class="pagination">
-    			<li>
-     		 		<a href="#" aria-label="Previous">
-        			<span aria-hidden="true">&laquo;</span>
-        			前年
-      				</a>
-      			</li>
-      			<li>
-     		 		<a href="#" aria-label="Previous">
-        			<span aria-hidden="true">&laquo;</span>
-        			前月
-      				</a>
-    			</li>
-    		</ul>
-    	</div>
-
-    	<div class="col-sm-4 center-cal">
-
-    		<h2>2018年5月</h2>
-
-   		</div>
-
-   		<div class="col-sm-4 right-btn">
-   			<ul class="pagination">
-   				<li>
-    				<a href="#" aria-label="Next">
-      				翌月
-        			<span aria-hidden="true">&raquo;</span>
-      				</a>
-      			</li>
-
-      			<li>
-      				<a href="#" aria-label="Next">
-      				翌年
-        			<span aria-hidden="true">&raquo;</span>
-      				</a>
-      			</li>
-      		</ul>
-      	</div>
 	</nav>
+	<!--ヘッダーここまで-->
 
-	<!--合計売上-->
-	<!--前月-->
-	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月（5月）の売上合計</h5></div>
-			<div class="panel-body text-center">1,000,000円</div>
-		</div>
-	</div>
-	<!--今月-->
-	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading"><h5>今月（6月）の売上合計</h5></div>
-			<div class="panel-body text-center">1,200,000円</div>
-		</div>
-	</div>
-	<!--前月比-->
-	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading"><h5>前月比</h5></div>
-			<div class="panel-body text-center up-color">
-				<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>120.00％
-				<!--前月比下がっているとき→ class="panel-body text-center down-color" class="glyphicon glyphicon-arrow-down"-->
+
+	<!--ダッシュボード-->
+	<div class="container">
+		<h1 class="dashtitle">ダッシュボード</h1>
+
+		<!--仕様変更箇所-->
+		<nav aria-label="Page navigation">
+			<div class="col-sm-4 left-btn">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span> 前年
+					</a></li>
+					<li><a href="#" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span> 前月
+					</a></li>
+				</ul>
+			</div>
+
+			<div class="col-sm-4 center-cal">
+
+				<h2>2018年5月</h2>
+
+			</div>
+
+			<div class="col-sm-4 right-btn">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Next"> 翌月 <span
+							aria-hidden="true">&raquo;</span>
+					</a></li>
+
+					<li><a href="#" aria-label="Next"> 翌年 <span
+							aria-hidden="true">&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!--合計売上-->
+		<!--前月-->
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h5>前月（5月）の売上合計</h5>
+				</div>
+				<div class="panel-body text-center">1,000,000円</div>
 			</div>
 		</div>
-	</div>
-
-	<!--個別売上-->
-	<div class="col-sm-12">
-	<div class="panel panel-default">
-		<div class="panel-heading"><h5>今月のイチローさんの売上</h5></div>
-
-		<!-- Table -->
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="col-sm-1">No</th>
-					<th class="col-sm-2">販売日</th>
-					<th class="col-sm-3">商品カテゴリー</th>
-					<th class="col-sm-3">商品名</th>
-					<th class="col-sm-1">単価</th>
-					<th class="col-sm-1">個数</th>
-					<th class="col-sm-1">小計</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>2015/1/15</td>
-					<td>食料品</td>
-					<td>からあげ弁当</td>
-					<td>450</td>
-					<td>3</td>
-					<td>1,350</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>2015/1/15</td>
-					<td>食料品</td>
-					<td>あんぱん</td>
-					<td>120</td>
-					<td>10</td>
-					<td>1,200</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>2015/1/15</td>
-					<td>飲料</td>
-					<td>コカコーラ 500ml</td>
-					<td>130</td>
-					<td>5</td>
-					<td>650</td>
-				</tr>
-				<tr>
-					<td colspan="5"></td>
-					<th>合計</th>
-					<td>3,200</td>
-				</tr>
-			</tbody>
-		</table>
-
+		<!--今月-->
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h5>今月（6月）の売上合計</h5>
+				</div>
+				<div class="panel-body text-center">1,200,000円</div>
+			</div>
 		</div>
-	</div><!--個別売上ここまで-->
+		<!--前月比-->
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h5>前月比</h5>
+				</div>
+				<div class="panel-body text-center up-color">
+					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>120.00％
+					<!--前月比下がっているとき→ class="panel-body text-center down-color" class="glyphicon glyphicon-arrow-down"-->
+				</div>
+			</div>
+		</div>
 
-</div><!--class="container"-->
+		<!--個別売上-->
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h5>今月のイチローさんの売上</h5>
+				</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+				<!-- Table -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col-sm-1">No</th>
+							<th class="col-sm-2">販売日</th>
+							<th class="col-sm-3">商品カテゴリー</th>
+							<th class="col-sm-3">商品名</th>
+							<th class="col-sm-1">単価</th>
+							<th class="col-sm-1">個数</th>
+							<th class="col-sm-1">小計</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>2015/1/15</td>
+							<td>食料品</td>
+							<td>からあげ弁当</td>
+							<td>450</td>
+							<td>3</td>
+							<td>1,350</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>2015/1/15</td>
+							<td>食料品</td>
+							<td>あんぱん</td>
+							<td>120</td>
+							<td>10</td>
+							<td>1,200</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>2015/1/15</td>
+							<td>飲料</td>
+							<td>コカコーラ 500ml</td>
+							<td>130</td>
+							<td>5</td>
+							<td>650</td>
+						</tr>
+						<tr>
+							<td colspan="5"></td>
+							<th>合計</th>
+							<td>3,200</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		<!--個別売上ここまで-->
+
+	</div>
+	<!--class="container"-->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

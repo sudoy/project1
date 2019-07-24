@@ -24,24 +24,24 @@
 			</tr>
 		</thead>
 		<tbody>
-<c:forEach var="accountList" items="${list}">
-			<tr class="table-border-top">
-				<td>
-<c:if test="${10 <= accounts.authority}">
-					<a class="btn btn-primary" href="S0042.html?accountId=${accountList.account_id}">
-					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
-					</a>
-					<a class="btn btn-danger" href="S0044.html?accountId=${accountList.account_id}">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
-					</a>
-</c:if>
-				</td>
-				<td class="text-right">${accountList.account_id}</td>
-				<td>${HTMLUtils.XSS(accountList.name)}</td>
-				<td>${HTMLUtils.XSS(accountList.mail)}</td>
-				<td>${accountList.authority}</td>
-			</tr>
-</c:forEach>
+			<c:forEach var="accountList" items="${list}">
+				<tr class="table-border-top">
+					<td><c:if test="${10 <= accounts.authority}">
+							<a class="btn btn-primary"
+								href="S0042.html?accountId=${accountList.account_id}"> <span
+								class="glyphicon glyphicon-ok" aria-hidden="true"></span> 編集
+							</a>
+							<a class="btn btn-danger"
+								href="S0044.html?accountId=${accountList.account_id}"> <span
+								class="glyphicon glyphicon-remove" aria-hidden="true"></span> 削除
+							</a>
+						</c:if></td>
+					<td class="text-right">${accountList.account_id}</td>
+					<td>${HTMLUtils.XSS(accountList.name)}</td>
+					<td>${HTMLUtils.XSS(accountList.mail)}</td>
+					<td>${accountList.authority}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 

@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>売上登録確認｜物品売上管理システム</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/yamamoto.css" rel="stylesheet">
-	</head>
-	<body>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>売上登録確認｜物品売上管理システム</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/yamamoto.css" rel="stylesheet">
+</head>
+<body>
 
 	<!--ヘッダー-->
 	<nav class="navbar navbar-default">
 		<div class="container-field">
 
 			<!--画面が小さくなったときのやつ-->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
 			</button>
 
 			<!--システム名-->
@@ -28,7 +29,8 @@
 			</div>
 
 			<!--リンク-->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 
 				<!--押した場所にclass="active"をつける？-->
 				<ul class="nav navbar-nav">
@@ -44,99 +46,115 @@
 					<li><a href="#">ログアウト</a></li>
 				</ul>
 
-			</div><!--div class="collapse navbar-collapse"-->
+			</div>
+			<!--div class="collapse navbar-collapse"-->
 		</div>
-	</nav><!--ヘッダーここまで-->
+	</nav>
+	<!--ヘッダーここまで-->
 
-		<!-- 売上登録システム表示 -->
-		<div class="container">
-			<h1 class="bold check bm20">売上を登録してよろしいですか？</h1>
-			<!-- form -->
-			<form class="form-horizontal" action="S0010.html">
+	<!-- 売上登録システム表示 -->
+	<div class="container">
+		<h1 class="bold check bm20">売上を登録してよろしいですか？</h1>
+		<!-- form -->
+		<form class="form-horizontal" action="S0010.html">
 
-				<!-- 販売日 -->
-				<div class="form-group">
-					<label for="saleDate" class="col-xs-3 textright control-label">販売日</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control" id="saleDate" name="saleDate" value="2015/1/15" disabled>
-					</div>
+			<!-- 販売日 -->
+			<div class="form-group">
+				<label for="saleDate" class="col-xs-3 textright control-label">販売日</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="saleDate"
+						name="saleDate" value="2015/1/15" disabled>
 				</div>
+			</div>
 
-				<!-- 担当 -->
-				<div class="form-group">
-					<label for="accountId" class="col-xs-3 textright control-label">担当</label>
-					<div class="col-xs-5">
-						<select class="form-control" id="accountId" name="accountId" disabled>
-							<option value="">イチロー</option>
-						</select>
-					</div>
+			<!-- 担当 -->
+			<div class="form-group">
+				<label for="accountId" class="col-xs-3 textright control-label">担当</label>
+				<div class="col-xs-5">
+					<select class="form-control" id="accountId" name="accountId"
+						disabled>
+						<option value="">イチロー</option>
+					</select>
 				</div>
+			</div>
 
-				<!-- 商品カテゴリー -->
-				<div class="form-group">
-					<label for="categoryId" class="col-xs-3 textright control-label">商品カテゴリー</label>
-					<div class="col-xs-5">
-						<label class="radio-inline"><input type="radio" name="categoryId" value="" disabled checked>食料品</label>
-						<label class="radio-inline"><input type="radio" name="categoryId" value="" disabled>飲料</label>
-						<label class="radio-inline"><input type="radio" name="categoryId" value="" disabled>本・雑誌</label><br>
-						<label class="radio-inline"><input type="radio" name="categoryId" value="" disabled>ギフトカード</label>
-						<label class="radio-inline"><input type="radio" name="categoryId" value="" disabled>その他</label>
-					</div>
+			<!-- 商品カテゴリー -->
+			<div class="form-group">
+				<label for="categoryId" class="col-xs-3 textright control-label">商品カテゴリー</label>
+				<div class="col-xs-5">
+					<label class="radio-inline"><input type="radio"
+						name="categoryId" value="" disabled checked>食料品</label> <label
+						class="radio-inline"><input type="radio" name="categoryId"
+						value="" disabled>飲料</label> <label class="radio-inline"><input
+						type="radio" name="categoryId" value="" disabled>本・雑誌</label><br>
+					<label class="radio-inline"><input type="radio"
+						name="categoryId" value="" disabled>ギフトカード</label> <label
+						class="radio-inline"><input type="radio" name="categoryId"
+						value="" disabled>その他</label>
 				</div>
+			</div>
 
-				<!-- 商品名 -->
-				<div class="form-group">
-					<label for="tradeName" class="col-xs-3 textright control-label">商品名</label>
-					<div class="col-xs-5">
-						<input type="text" class="form-control" id="tradeName" name="tradeName" value="からあげ弁当" placeholder="商品名" disabled>
-					</div>
+			<!-- 商品名 -->
+			<div class="form-group">
+				<label for="tradeName" class="col-xs-3 textright control-label">商品名</label>
+				<div class="col-xs-5">
+					<input type="text" class="form-control" id="tradeName"
+						name="tradeName" value="からあげ弁当" placeholder="商品名" disabled>
 				</div>
+			</div>
 
-				<!-- 単価 -->
-				<div class="form-group">
-					<label for="unitPrice" class="col-xs-3 textright control-label">単価</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="unitPrice" name="unitPrice" value="540" placeholder="単価" disabled>
-					</div>
+			<!-- 単価 -->
+			<div class="form-group">
+				<label for="unitPrice" class="col-xs-3 textright control-label">単価</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control textright" id="unitPrice"
+						name="unitPrice" value="540" placeholder="単価" disabled>
 				</div>
+			</div>
 
-				<!-- 個数 -->
-				<div class="form-group">
-					<label for="saleNumber" class="col-xs-3 textright control-label">個数</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control textright" id="saleNumber" name="saleNumber" value="3" placeholder="個数" disabled>
-					</div>
+			<!-- 個数 -->
+			<div class="form-group">
+				<label for="saleNumber" class="col-xs-3 textright control-label">個数</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control textright" id="saleNumber"
+						name="saleNumber" value="3" placeholder="個数" disabled>
 				</div>
+			</div>
 
-				<!-- 小計 -->
-				<div class="form-group">
-					<label class="col-xs-3 textright control-label">小計</label>
-					<div class="col-xs-2">
-						<input type="text" class="form-control textright" value="1,620" placeholder="小計" disabled>
-					</div>
+			<!-- 小計 -->
+			<div class="form-group">
+				<label class="col-xs-3 textright control-label">小計</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control textright" value="1,620"
+						placeholder="小計" disabled>
 				</div>
+			</div>
 
-				<!-- 備考 -->
-				<div class="form-group">
-					<label for="note" class="col-xs-3 textright control-label">備考</label>
-					<div class="col-xs-5">
-						<textarea class="form-control" rows="5" id="note" name="note" placeholder="詳細" disabled></textarea>
-					</div>
+			<!-- 備考 -->
+			<div class="form-group">
+				<label for="note" class="col-xs-3 textright control-label">備考</label>
+				<div class="col-xs-5">
+					<textarea class="form-control" rows="5" id="note" name="note"
+						placeholder="詳細" disabled></textarea>
 				</div>
+			</div>
 
-				<!-- Submit -->
-				<div class="form-group">
-					<div class="col-xs-8 col-xs-offset-4">
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ</button>
-						<a class="btn btn-default" href="S0010.html" role="button">キャンセル</a>
-					</div>
+			<!-- Submit -->
+			<div class="form-group">
+				<div class="col-xs-8 col-xs-offset-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ
+					</button>
+					<a class="btn btn-default" href="S0010.html" role="button">キャンセル</a>
 				</div>
-			</form>
-		</div>
-		<!--/container-fluid-->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-	</body>
+			</div>
+		</form>
+	</div>
+	<!--/container-fluid-->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
 </html>

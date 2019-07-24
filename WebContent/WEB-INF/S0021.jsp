@@ -30,22 +30,22 @@
 			</tr>
 		</thead>
 		<tbody>
-<c:forEach var="saleData" items="${list}">
-			<tr class="table-border-top">
-				<td><a class="btn btn-primary"
-					href="S0022.html?saleId=${saleData.saleId}"> <span
-						class="glyphicon glyphicon-ok" aria-hidden="true"></span> 詳細
-				</a></td>
-				<td class="text-right">${saleData.saleId}</td>
-				<td>${saleData.date}</td>
-				<td>${HTMLUtils.XSS(saleData.accountName)}</td>
-				<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
-				<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
-				<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice)}</td>
-				<td class="text-right">${HTMLUtils.numberFormat(saleData.saleNumber)}</td>
-				<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice * saleData.saleNumber)}</td>
-			</tr>
-</c:forEach>
+			<c:forEach var="saleData" items="${list}">
+				<tr class="table-border-top">
+					<td><a class="btn btn-primary"
+						href="S0022.html?saleId=${saleData.saleId}"> <span
+							class="glyphicon glyphicon-ok" aria-hidden="true"></span> 詳細
+					</a></td>
+					<td class="text-right">${saleData.saleId}</td>
+					<td>${saleData.date}</td>
+					<td>${HTMLUtils.XSS(saleData.accountName)}</td>
+					<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
+					<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(saleData.saleNumber)}</td>
+					<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice * saleData.saleNumber)}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 

@@ -25,13 +25,15 @@
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'開始日')}"
-					id="startsaleDate" name="saleDate1" value="${form.saleDate1}" placeholder="販売日（検索開始日）">
+					id="startsaleDate" name="saleDate1" value="${form.saleDate1}"
+					placeholder="販売日（検索開始日）">
 			</div>
 			<div class="col-xs-1 text-center tmargin">～</div>
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'終了日')}"
-					id="endsaleDate" name="saleDate2" value="${form.saleDate2}" placeholder="販売日（検索終了日）">
+					id="endsaleDate" name="saleDate2" value="${form.saleDate2}"
+					placeholder="販売日（検索終了日）">
 			</div>
 		</div>
 
@@ -41,10 +43,11 @@
 			<div class="col-xs-5">
 				<select class="form-control" id="accountId" name="accountId">
 					<option value="">選択してください</option>
-<c:forEach var="account" items="${form.accountMap}">
-						<option value="${account.key}" ${HTMLUtils.writeSelected(account.key,form.accountId)}>${HTMLUtils.XSS(account.value)}
+					<c:forEach var="account" items="${form.accountMap}">
+						<option value="${account.key}"
+							${HTMLUtils.writeSelected(account.key,form.accountId)}>${HTMLUtils.XSS(account.value)}
 						</option>
-</c:forEach>
+					</c:forEach>
 				</select>
 			</div>
 		</div>
@@ -53,9 +56,10 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 			<div class="col-xs-5">
-<c:forEach var="category" items="${form.categoryMap}">
+				<c:forEach var="category" items="${form.categoryMap}">
 					<label class="normal control-label"> <input type="checkbox"
-						name="categoryId" value="${category.key}" ${HTMLUtils.writtenChecked(category.key,form.categoryId)}>${HTMLUtils.XSS(category.value)}
+						name="categoryId" value="${category.key}"
+						${HTMLUtils.writtenChecked(category.key,form.categoryId)}>${HTMLUtils.XSS(category.value)}
 					</label>&nbsp;
 </c:forEach>
 			</div>

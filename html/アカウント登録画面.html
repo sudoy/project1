@@ -10,78 +10,92 @@
 <link rel="stylesheet" href="#">
 </head>
 <body>
-	
- 	<div class="container">
- 	
+
+	<div class="container">
+
 		<h1>アカウント登録</h1>
-		
-		
+
+
 		<form class="form-horizontal">
-	 		 <div class="form-group">
-	   			 <label for="name" class="col-sm-offset-1 col-sm-2  control-label">氏名
-	   			 <span class="badge">必須</span>
-	    		 </label>
-	    		 <div class="col-sm-4">
-	      			<input type="text" class="form-control" id="name" name="name" value="" placeholder="氏名">
-	    		 </div>
-	  		</div>
-	  		
-	  		<div class="form-group">
-	   			 <label for="mail" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス
-	   			 <span class="badge">必須</span>
-	    		 </label>
-	    		 <div class="col-sm-4">
-	      			<input type="text" class="form-control" id="mail" name="mail" value="" placeholder="メールアドレス">
-	    		 </div>
-	  		</div>
-	  		
-	  		<div class="form-group">
-	   			 <label for="password1" class="col-sm-offset-1 col-sm-2  control-label">パスワード
-	   			 <span class="badge">必須</span>
-	    		 </label>
-	    		 <div class="col-sm-4">
-	      			<input type="password" class="form-control" id="password1" name="password" value="" placeholder="パスワード">
-	    		 </div>
-	  		</div>
-	  		
-	  		<div class="form-group">
-	   			 <label for="password2" class="col-sm-offset-1 col-sm-2  control-label">パスワード(確認)
-	   			 <span class="badge">必須</span>
-	    		 </label>
-	    		 <div class="col-sm-4">
-	      			<input type="password" class="form-control" name="password" id="password2" value="" placeholder="パスワード(確認)">
-	    		 </div>
-	  		</div>
-	  
-	  		
-	  		<div class="form-group">
-				<label class="col-xs-3 text-right control-label">売上登録権限 <span class="badge">必須</span></label>
-				<div class="col-sm-3">
-						<label class="radio-inline"><input type="radio" name="salesAuthority" value="no" checked>権限なし</label>
-						<label class="radio-inline"><input type="radio" name="salesAuthority" value="yes">権限あり</label>
+			<div class="form-group">
+				<label for="name" class="col-sm-offset-1 col-sm-2  control-label">氏名
+					<span class="badge">必須</span>
+				</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="name" name="name"
+						value="" placeholder="氏名">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-xs-3 text-right control-label">アカウント登録権限 <span class="badge">必須</span></label>
-				<div class="col-sm-3">
-						<label class="radio-inline"><input type="radio" name="accountAuthority" value="no" checked>権限なし</label>
-						<label class="radio-inline"><input type="radio" name="accountAuthority" value="yes">権限あり</label>
+				<label for="mail" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス
+					<span class="badge">必須</span>
+				</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="mail" name="mail"
+						value="" placeholder="メールアドレス">
 				</div>
 			</div>
-	  		
+
 			<div class="form-group">
-	    		<div class="col-sm-offset-4 col-sm-4">
-	    			<button type="submit" class="btn btn-primary">
-	    			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-	    			登録</button>
+				<label for="password1"
+					class="col-sm-offset-1 col-sm-2  control-label">パスワード <span
+					class="badge">必須</span>
+				</label>
+				<div class="col-sm-4">
+					<input type="password" class="form-control" id="password1"
+						name="password" value="" placeholder="パスワード">
 				</div>
 			</div>
-	  
-	  	</form>
-	
-	</div><!--container-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+			<div class="form-group">
+				<label for="password2"
+					class="col-sm-offset-1 col-sm-2  control-label">パスワード(確認) <span
+					class="badge">必須</span>
+				</label>
+				<div class="col-sm-4">
+					<input type="password" class="form-control" name="password"
+						id="password2" value="" placeholder="パスワード(確認)">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-xs-3 text-right control-label">売上登録権限 <span
+					class="badge">必須</span></label>
+				<div class="col-sm-3">
+					<label class="radio-inline"><input type="radio"
+						name="salesAuthority" value="no" checked>権限なし</label> <label
+						class="radio-inline"><input type="radio"
+						name="salesAuthority" value="yes">権限あり</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-3 text-right control-label">アカウント登録権限 <span
+					class="badge">必須</span></label>
+				<div class="col-sm-3">
+					<label class="radio-inline"><input type="radio"
+						name="accountAuthority" value="no" checked>権限なし</label> <label
+						class="radio-inline"><input type="radio"
+						name="accountAuthority" value="yes">権限あり</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 登録
+					</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+	<!--container-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
