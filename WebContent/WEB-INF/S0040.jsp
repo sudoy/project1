@@ -24,7 +24,7 @@
 			<div class="col-xs-5">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
-					name="name" placeholder="氏名" value="${acf.name}">
+					name="name" placeholder="氏名" value="${HTMLUtils.XSS(acf.name)}">
 			</div>
 		</div>
 
@@ -35,7 +35,7 @@
 			<div class="col-xs-5">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
-					id="mail" name="mail" placeholder="メールアドレス" value="${acf.mail}">
+					id="mail" name="mail" placeholder="メールアドレス" value="${HTMLUtils.XSS(acf.mail)}">
 			</div>
 		</div>
 

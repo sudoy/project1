@@ -27,7 +27,7 @@
 			<div class="col-sm-4">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
-					name="name" value="${form.name}" placeholder="氏名">
+					name="name" value="${HTMLUtils.XSS(form.name)}" placeholder="氏名">
 			</div>
 		</div>
 
@@ -40,7 +40,7 @@
 			<div class="col-sm-4">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
-					id="mail" name="mail" value="${form.mail}" placeholder="メールアドレス">
+					id="mail" name="mail" value="${HTMLUtils.XSS(form.mail)}" placeholder="メールアドレス">
 			</div>
 		</div>
 
@@ -52,7 +52,7 @@
 			<div class="col-sm-4">
 				<input type="password"
 					class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}"
-					id="password1" name="inputPass" value="${form.inputPass}"
+					id="password1" name="inputPass" value=""
 					placeholder="パスワード">
 			</div>
 		</div>
@@ -65,7 +65,7 @@
 			<div class="col-sm-4">
 				<input type="password"
 					class="form-control ${HTMLUtils.errorFrame(error,'確認')}"
-					id="password2" name="inputPass2" value="${form.inputPass2}"
+					id="password2" name="inputPass2" value=""
 					placeholder="パスワード(確認)">
 			</div>
 		</div>

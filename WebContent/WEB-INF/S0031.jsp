@@ -20,7 +20,7 @@
 			</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="name" name="name"
-					value="${form.name}" placeholder="氏名" disabled>
+					value="${HTMLUtils.XSS(form.name)}" placeholder="氏名" disabled>
 			</div>
 		</div>
 
@@ -30,7 +30,7 @@
 			</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="mail" name="mail"
-					value="${form.mail}" placeholder="メールアドレス" disabled>
+					value="${HTMLUtils.XSS(form.mail)}" placeholder="メールアドレス" disabled>
 			</div>
 		</div>
 
@@ -41,7 +41,7 @@
 			</label>
 			<div class="col-sm-4">
 				<input type="password" class="form-control" id="password1"
-					name="password1" value="${form.password1}" placeholder="パスワード"
+					name="password1" value="${HTMLUtils.XSS(form.password1)}" placeholder="パスワード"
 					disabled>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 			</label>
 			<div class="col-sm-4">
 				<input type="password" class="form-control" name="password2"
-					id="password2" value="${form.password2}" placeholder="パスワード(確認)"
+					id="password2" value="${HTMLUtils.XSS(form.password2)}" placeholder="パスワード(確認)"
 					disabled>
 			</div>
 		</div>

@@ -31,7 +31,7 @@
 					<h2 class="midasi3 topmargin h3">パスワード再設定</h2>
 					<input type="text"
 						class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
-						name="mail" placeholder="メールアドレス" value="${form.mail}">
+						name="mail" placeholder="メールアドレス" value="${HTMLUtils.XSS(form.mail)}">
 					<button type="submit"
 						class="btn btn-primary btn-lg btn-block topmargin">メール送信</button>
 

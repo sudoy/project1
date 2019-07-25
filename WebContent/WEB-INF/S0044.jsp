@@ -19,7 +19,7 @@
 			<label for="name" class="col-sm-offset-1 col-sm-2  control-label">氏名</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="name" name="name"
-					value="${form.name}" placeholder="氏名" disabled>
+					value="${HTMLUtils.XSS(form.name)}" placeholder="氏名" disabled>
 			</div>
 		</div>
 
@@ -28,7 +28,7 @@
 			<label for="mail" class="col-sm-offset-1 col-sm-2  control-label">メールアドレス</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="mail" name="mail"
-					value="${form.mail}" placeholder="メールアドレス" disabled>
+					value="${HTMLUtils.XSS(form.mail)}" placeholder="メールアドレス" disabled>
 			</div>
 		</div>
 

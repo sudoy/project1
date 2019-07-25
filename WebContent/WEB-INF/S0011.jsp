@@ -69,9 +69,9 @@
 			<label for="tradeName" class="col-xs-3 text-right control-label">商品名</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="tradeName"
-					name="tradeName" value="${form.tradeName}" placeholder="商品名"
+					name="tradeName" value="${HTMLUtils.XSS(form.tradeName)}" placeholder="商品名"
 					disabled> <input type="hidden" name="tradeName"
-					value="${form.tradeName}">
+					value="${HTMLUtils.XSS(form.tradeName)}">
 			</div>
 		</div>
 
@@ -114,8 +114,8 @@
 			<label for="note" class="col-xs-3 text-right control-label">備考</label>
 			<div class="col-xs-5">
 				<textarea class="form-control" rows="5" id="note" name="note"
-					placeholder="備考" disabled>${form.note}</textarea>
-				<input type="hidden" name="note" value="${form.note}">
+					placeholder="備考" disabled>${HTMLUtils.XSS(form.note)}</textarea>
+				<input type="hidden" name="note" value="${HTMLUtils.XSS(form.note)}">
 			</div>
 		</div>
 

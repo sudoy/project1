@@ -27,7 +27,7 @@
 				<div class="form-group">
 					<input type="text"
 						class="form-control ${HTMLUtils.errorFrame(error,'メールアドレス')}"
-						name="mail" placeholder="メールアドレス" value="${form.mail}"> <input
+						name="mail" placeholder="メールアドレス" value="${HTMLUtils.XSS(form.mail)}"> <input
 						type="password"
 						class="form-control ${HTMLUtils.errorFrame(error,'パスワード')}"
 						name="password" placeholder="パスワード" value="">
