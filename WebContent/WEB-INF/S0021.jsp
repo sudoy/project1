@@ -19,9 +19,9 @@
 		<thead>
 			<tr>
 				<th class="col-sm-1">操作</th>
-				<th class="text-right">No</th>
+				<th class="text-right col-xs-1">No</th>
 				<th class="col-sm-1">販売日</th>
-				<th class="col-sm">担当</th>
+				<th class="col-sm-1">担当</th>
 				<th class="col-sm-2">商品カテゴリー</th>
 				<th class="col-sm-3">商品名</th>
 				<th class="col-sm-1 text-right">単価</th>
@@ -38,7 +38,7 @@
 					</a></td>
 					<td class="text-right">${saleData.saleId}</td>
 					<td>${saleData.date}</td>
-					<td>${HTMLUtils.XSS(saleData.accountName)}</td>
+					<td ${HTMLUtils.notNewLine(saleData.accountName)}>${HTMLUtils.newLine(HTMLUtils.XSS(HTMLUtils.setNewLine(saleData.accountName)))}</td>
 					<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
 					<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
 					<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice)}</td>

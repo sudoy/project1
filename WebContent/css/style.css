@@ -51,6 +51,10 @@
 	border-top: 2px solid #ddd;
 }
 
+.text-nowrap{
+	white-space: nowrap;
+}
+
 /*吉田(仕様変更)*/
 .right-btn {
 	text-align: right;

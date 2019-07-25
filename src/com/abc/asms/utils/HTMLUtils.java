@@ -1,6 +1,7 @@
 package com.abc.asms.utils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HTMLUtils {
@@ -243,6 +244,33 @@ public class HTMLUtils {
 	public static String newLine(String text) {
 		text = text.replace("\r\n", "<br>");
 		return text;
+	}
+
+	public static String setNewLine(String name) {
+
+		if(name.length() <= 7) {
+			return name;
+		}
+		List<String> list = new ArrayList<>();
+		for(int i = 0; i <= name.length(); i += 7) {
+			if(i + 7 <= name.length()) {
+				list.add(name.substring(i, i + 7));
+			}else {
+				list.add(name.substring(i));
+			}
+		}
+		String name2 = "";
+		for(String s : list) {
+			name2 += (s + "\r\n");
+		}
+		return name2;
+	}
+
+	public static String notNewLine(String name) {
+		if(name.length() <= 7) {
+			return "class=\"text-nowrap\"";
+		}
+		return null;
 	}
 
 }
