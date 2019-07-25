@@ -103,7 +103,7 @@ public class S0030Servlet extends HttpServlet {
 
 		List<String> error = new ArrayList<>();
 
-		//氏名必須入力、長さ(バイト数)
+		//氏名必須入力、スペース、長さ(バイト数)
 		if(form.getName() == null || form.getName().isEmpty() || form.getName().replaceAll("\\h", "").isEmpty()) {
 			error.add("氏名を入力して下さい。");
 		}else if(21 <= form.getName().getBytes(Charset.forName("UTF-8")).length) {
@@ -121,11 +121,15 @@ public class S0030Servlet extends HttpServlet {
 			error.add("メールアドレスが既に登録されています。");
 		}
 
-		//パスワード必須入力、長さ(バイト数)
+		//パスワード必須入力、長さ(バイト数)、形式
 		if(form.getPassword1() == null || form.getPassword1().isEmpty()) {
 			error.add("パスワードを入力して下さい。");
 		}else if(31 <= form.getPassword1().getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
+		}else if(form.getPassword1().getBytes(Charset.forName("UTF-8")).length < 4) {
+			error.add("パスワードが短すぎます。");
+		}else if(!(form.getPassword1().matches(".*[0-9].*") && form.getPassword1().matches(".*[a-z].*") && form.getPassword1().matches(".*[0-9].*"))) {
+			error.add("パスワードは数字,大文字,小文字がそれぞれ1文字以上必須です。");
 		}
 
 		//パスワード（確認）必須入力、等値チェック
