@@ -138,7 +138,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 				error.add("パスワードが長すぎます。");
 			}else if(!form.getInputPass().equals("") && form.getInputPass().getBytes(Charset.forName("UTF-8")).length < 4) {
 				error.add("パスワードが短すぎます。");
-			}else if(!form.getInputPass().equals("") && !(form.getInputPass().matches(".*[0-9].*") && form.getInputPass().matches(".*[a-z].*") && form.getInputPass().matches(".*[0-9].*"))) {
+			}else if(!form.getInputPass().equals("") && !(form.getInputPass().matches(".*[0-9].*") && form.getInputPass().matches(".*[a-z].*") && form.getInputPass().matches(".*[A-Z].*"))) {
 				error.add("パスワードは数字,大文字,小文字がそれぞれ1文字以上必須です。");
 			}else if(!form.getInputPass().equals(form.getInputPass2())) {
 				error.add("パスワードとパスワード（確認）が一致していません。");

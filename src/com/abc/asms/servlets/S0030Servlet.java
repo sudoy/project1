@@ -128,7 +128,7 @@ public class S0030Servlet extends HttpServlet {
 			error.add("パスワードが長すぎます。");
 		}else if(form.getPassword1().getBytes(Charset.forName("UTF-8")).length < 4) {
 			error.add("パスワードが短すぎます。");
-		}else if(!(form.getPassword1().matches(".*[0-9].*") && form.getPassword1().matches(".*[a-z].*") && form.getPassword1().matches(".*[0-9].*"))) {
+		}else if(!(form.getPassword1().matches(".*[0-9].*") && form.getPassword1().matches(".*[a-z].*") && form.getPassword1().matches(".*[A-Z].*"))) {
 			error.add("パスワードは数字,大文字,小文字がそれぞれ1文字以上必須です。");
 		}
 
