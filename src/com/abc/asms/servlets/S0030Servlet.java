@@ -88,7 +88,7 @@ public class S0030Servlet extends HttpServlet {
 			resp.sendRedirect("S0031.html");
 		}else {
 			// 名前がスペースの時にスペースを消す
-			if(form.getName().matches("^\\h+$")) {
+			if(form.getName() != null && form.getName().matches("^\\h+$")) {
 				form.setName(form.getName().replaceAll("\\h", ""));
 			}
 			//エラー時はformとメッセージを渡してjspへ
