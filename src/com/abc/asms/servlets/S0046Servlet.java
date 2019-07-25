@@ -85,13 +85,15 @@ public class S0046Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 		if (password1 == null || password1.equals("")) {
 			error.add("パスワードを入力して下さい。");
-		} else if (30 < password1.getBytes(Charset.forName("UTF-8")).length) {
+		}else if (30 < password1.getBytes(Charset.forName("UTF-8")).length) {
 			error.add("パスワードが長すぎます。");
-		}
-		if (password2 == null || password2.equals("")) {
+		}else if(password1.getBytes(Charset.forName("UTF-8")).length < 4) {
+			error.add("パスワードが短すぎます。");
+		}else if(!(password1.matches(".*[0-9].*") && password1.matches(".*[a-z].*") && password1.matches(".*[0-9].*"))) {
+			error.add("パスワードは数字,大文字,小文字がそれぞれ1文字以上必須です。");
+		}else if (password2 == null || password2.equals("")) {
 			error.add("確認用パスワードを入力して下さい。");
-		}
-		if (error.size() == 0 && !password2.equals(password1)) {
+		}else if (!password2.equals(password1)) {
 			error.add("新パスワードとパスワード（確認）が一致していません。");
 		}
 		return error;
