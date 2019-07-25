@@ -56,12 +56,16 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 			<div class="col-xs-5">
-				<c:forEach var="category" items="${form.categoryMap}">
-					<label class="normal control-label"> <input type="checkbox"
-						name="categoryId" value="${category.key}"
-						${HTMLUtils.writtenChecked(category.key,form.categoryId)}>${HTMLUtils.XSS(category.value)}
-					</label>&nbsp;
+<c:forEach var="category" items="${form.categoryMap}">
+				<label class="normal control-label"> <input type="checkbox"
+					name="categoryId" value="${category.key}"
+					${HTMLUtils.writtenChecked(category.key,form.categoryId)}>${HTMLUtils.XSS(category.value)}
+				</label>&nbsp;
 </c:forEach>
+				<div  class="text-right tmargin">
+					<input type="button" class="btn btn-success" id="allcheck" value="オールチェック">
+					<input type="button" class="btn btn-default" id="alluncheck" value="オールクリア">
+				</div>
 			</div>
 		</div>
 

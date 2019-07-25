@@ -87,6 +87,10 @@ public class S0030Servlet extends HttpServlet {
 			session.setAttribute("EntryAccountForm", form);
 			resp.sendRedirect("S0031.html");
 		}else {
+			// 名前がスペースの時にスペースを消す
+			if(form.getName().matches("^\\h+$")) {
+				form.setName(form.getName().replaceAll("\\h", ""));
+			}
 			//エラー時はformとメッセージを渡してjspへ
 			req.setAttribute("form", form);
 			req.setAttribute("error", error);
@@ -100,7 +104,7 @@ public class S0030Servlet extends HttpServlet {
 		List<String> error = new ArrayList<>();
 
 		//氏名必須入力、長さ(バイト数)
-		if(form.getName() == null || form.getName().isEmpty()) {
+		if(form.getName() == null || form.getName().isEmpty() || form.getName().replaceAll("\\h", "").isEmpty()) {
 			error.add("氏名を入力して下さい。");
 		}else if(21 <= form.getName().getBytes(Charset.forName("UTF-8")).length) {
 			error.add("氏名が長すぎます。");
