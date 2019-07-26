@@ -22,7 +22,7 @@
 		<div class="form-group">
 			<label for="saleDate" class="col-xs-3 text-right control-label">販売日</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control" id="saleDate" name="saleDate" value="${HTMLUtils.dateFormat(form.saleDate)}" disabled>
+				<input type="text" class="form-control" id="saleDate" name="saleDate" value="${HTMLUtils.XSS(HTMLUtils.dateFormat(form.saleDate))}" disabled>
 			</div>
 		</div>
 
@@ -51,7 +51,7 @@
 		<div class="form-group">
 			<label for="tradeName" class="col-xs-3 text-right control-label">商品名</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled>
+				<input type="text" class="form-control" id="tradeName" name="tradeName" value="${HTMLUtils.XSS(form.tradeName)}" placeholder="商品名" disabled>
 			</div>
 		</div>
 
@@ -83,7 +83,7 @@
 		<div class="form-group">
 			<label for="note" class="col-xs-3 text-right control-label">備考</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" rows="5" id="note" name="note" placeholder="備考" disabled>${form.note}</textarea>
+				<textarea class="form-control" rows="5" id="note" name="note" placeholder="備考" disabled>${HTMLUtils.XSS(form.note)}</textarea>
 			</div>
 		</div>
 

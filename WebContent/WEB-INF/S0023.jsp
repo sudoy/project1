@@ -31,7 +31,7 @@
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'販売日')}"
 					id="saleDate" name="saleDate"
-					value="${HTMLUtils.dateFormat(form.saleDate)}" placeholder="販売日">
+					value="${HTMLUtils.XSS(HTMLUtils.dateFormat(form.saleDate))}" placeholder="販売日">
 			</div>
 		</div>
 
@@ -81,7 +81,7 @@
 			<div class="col-xs-5">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'商品名')}"
-					id="tradeName" name="tradeName" value="${form.tradeName}"
+					id="tradeName" name="tradeName" value="${HTMLUtils.XSS(form.tradeName)}"
 					placeholder="商品名">
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 				class="col-xs-3 text-right control-label ${HTMLUtils.errorMessage(error,'備考')}">備考</label>
 			<div class="col-xs-5">
 				<textarea class="form-control ${HTMLUtils.errorFrame(error,'備考')}"
-					rows="5" id="note" name="note" placeholder="備考">${form.note}</textarea>
+					rows="5" id="note" name="note" placeholder="備考">${HTMLUtils.XSS(form.note)}</textarea>
 			</div>
 		</div>
 

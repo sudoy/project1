@@ -25,14 +25,14 @@
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'開始日')}"
-					id="startsaleDate" name="saleDate1" value="${form.saleDate1}"
+					id="startsaleDate" name="saleDate1" value="${HTMLUtils.XSS(form.saleDate1)}"
 					placeholder="販売日（検索開始日）">
 			</div>
 			<div class="col-xs-1 text-center tmargin">～</div>
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'終了日')}"
-					id="endsaleDate" name="saleDate2" value="${form.saleDate2}"
+					id="endsaleDate" name="saleDate2" value="${HTMLUtils.XSS(form.saleDate2)}"
 					placeholder="販売日（検索終了日）">
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 			</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="tradeName"
-					name="tradeName" value="${form.tradeName}" placeholder="商品名">
+					name="tradeName" value="${HTMLUtils.XSS(form.tradeName)}" placeholder="商品名">
 			</div>
 		</div>
 
@@ -87,7 +87,7 @@
 			</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="note" name="note"
-					value="${form.note}" placeholder="備考">
+					value="${HTMLUtils.XSS(form.note)}" placeholder="備考">
 			</div>
 		</div>
 
