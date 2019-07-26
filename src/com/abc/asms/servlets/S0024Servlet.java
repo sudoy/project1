@@ -61,6 +61,15 @@ public class S0024Servlet extends HttpServlet {
 			return;
 		}
 
+		List<String> error = validation(form);
+		if(!error.isEmpty()) {
+			error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
+
 		//JSPへ
 		req.setAttribute("form", form);
 
@@ -118,6 +127,12 @@ public class S0024Servlet extends HttpServlet {
 				resp.sendRedirect("C0020.html");
 				return;
 			}
+		}else {
+			error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
 		}
 
 		//検索結果一覧へ戻る
