@@ -22,8 +22,7 @@
 		<div class="form-group">
 			<label for="saleDate" class="col-xs-3 text-right control-label">販売日</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control" id="saleDate"
-					name="saleDate" value="${form.saleDate}" disabled>
+				<input type="text" class="form-control" id="saleDate" name="saleDate" value="${HTMLUtils.dateFormat(form.saleDate)}" disabled>
 			</div>
 		</div>
 
@@ -31,8 +30,7 @@
 		<div class="form-group">
 			<label for="accountId" class="col-xs-3 text-right control-label">担当</label>
 			<div class="col-xs-5">
-				<select class="form-control" id="accountId" name="accountId"
-					disabled>
+				<select class="form-control" id="accountId" name="accountId" disabled>
 					<option value="">${HTMLUtils.XSS(form.name)}</option>
 				</select>
 			</div>
@@ -42,13 +40,10 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">商品カテゴリー</label>
 			<div class="col-xs-5">
-				<c:forEach var="category" items="${form.categoryMap}">
-					<label class="radio-inline"> <input type="radio"
-						name="categoryId" value="${category.key}"
-						${HTMLUtils.writeChecked(category.key,form.categoryId)} disabled>
-						${HTMLUtils.XSS(category.value)}
-					</label>
-				</c:forEach>
+				<label class="radio-inline">
+					<input type="radio" name="categoryId" value="${form.categoryId}" checked disabled>
+					${HTMLUtils.XSS(form.categoryName)}
+				</label>
 			</div>
 		</div>
 
@@ -56,9 +51,7 @@
 		<div class="form-group">
 			<label for="tradeName" class="col-xs-3 text-right control-label">商品名</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="tradeName"
-					name="tradeName" value="${form.tradeName}" placeholder="商品名"
-					disabled>
+				<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled>
 			</div>
 		</div>
 
@@ -66,9 +59,7 @@
 		<div class="form-group">
 			<label for="unitPrice" class="col-xs-3 text-right control-label">単価</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right" id="unitPrice"
-					name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}"
-					placeholder="単価" disabled>
+				<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}" placeholder="単価" disabled>
 			</div>
 		</div>
 
@@ -76,10 +67,7 @@
 		<div class="form-group">
 			<label for="saleNumber" class="col-xs-3 text-right control-label">個数</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right" id="saleNumber"
-					name="saleNumber"
-					value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数"
-					disabled>
+				<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
 			</div>
 		</div>
 
@@ -87,9 +75,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right control-label">小計</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right"
-					value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計"
-					disabled>
+				<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.subtotal)}" placeholder="小計" disabled>
 			</div>
 		</div>
 
@@ -97,8 +83,7 @@
 		<div class="form-group">
 			<label for="note" class="col-xs-3 text-right control-label">備考</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" rows="5" id="note" name="note"
-					placeholder="備考" disabled>${form.note}</textarea>
+				<textarea class="form-control" rows="5" id="note" name="note" placeholder="備考" disabled>${form.note}</textarea>
 			</div>
 		</div>
 
@@ -109,8 +94,7 @@
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					ＯＫ
 				</button>
-				<a class="btn btn-default" href="S0022.html?saleId=${form.saleId}"
-					role="button">キャンセル</a>
+				<a class="btn btn-default" href="S0022.html?saleId=${form.saleId}" role="button">キャンセル</a>
 				<!-- 売上詳細表示画面へ -->
 			</div>
 		</div>

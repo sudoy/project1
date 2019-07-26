@@ -3,7 +3,6 @@ package com.abc.asms.services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Map;
 
 import com.abc.asms.forms.S0025Form;
 import com.abc.asms.utils.DBUtils;
@@ -46,10 +45,6 @@ public class S0025Service {
 			form.setSaleNumber(rs.getString("s.sale_number"));
 			form.setSubtotal(rs.getString("subtotal"));
 			form.setNote(rs.getString("s.note"));
-
-			//カテゴリー名とidのリスト
-			Map<Integer,String> categoryMap = DBUtils.getCategoryMap(form.getCategoryId());
-			form.setCategoryMap(categoryMap);
 
 		}catch(Exception e){
 			e.printStackTrace();

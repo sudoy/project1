@@ -53,10 +53,7 @@
 		<div class="form-group">
 			<label for="tradeName" class="col-xs-3 text-right textdown">商品名</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="tradeName"
-					name="tradeName" value="${form.tradeName}" placeholder="商品名"
-					disabled> <input type="hidden" name="tradeName"
-					value="${form.tradeName}">
+				<input type="text" class="form-control" id="tradeName" name="tradeName" value="${form.tradeName}" placeholder="商品名" disabled> <input type="hidden" name="tradeName" value="${form.tradeName}">
 			</div>
 		</div>
 
@@ -64,10 +61,8 @@
 		<div class="form-group">
 			<label for="unitPrice" class="col-xs-3 text-right textdown">単価</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right" id="unitPrice"
-					name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}"
-					placeholder="単価" disabled> <input type="hidden"
-					name="unitPrice" value="${form.unitPrice}">
+				<input type="text" class="form-control text-right" id="unitPrice" name="unitPrice" value="${HTMLUtils.numberFormat(form.unitPrice)}"placeholder="単価" disabled>
+				<input type="hidden" name="unitPrice" value="${form.unitPrice}">
 			</div>
 		</div>
 
@@ -75,11 +70,8 @@
 		<div class="form-group">
 			<label for="saleNumber" class="col-xs-3 text-right textdown">個数</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right" id="saleNumber"
-					name="saleNumber"
-					value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数"
-					disabled> <input type="hidden" name="saleNumber"
-					value="${form.saleNumber}">
+				<input type="text" class="form-control text-right" id="saleNumber" name="saleNumber" value="${HTMLUtils.numberFormat(form.saleNumber)}" placeholder="個数" disabled>
+				<input type="hidden" name="saleNumber" value="${form.saleNumber}">
 			</div>
 		</div>
 
@@ -87,9 +79,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">小計</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control text-right"
-					value="${HTMLUtils.numberFormat(form.unitPrice * form.saleNumber)}"
-					placeholder="小計" disabled>
+				<input type="text" class="form-control text-right" value="${HTMLUtils.numberFormat(form.unitPrice * form.saleNumber)}" placeholder="小計" disabled>
 			</div>
 		</div>
 
@@ -97,8 +87,7 @@
 		<div class="form-group">
 			<label for="note" class="col-xs-3 text-right textdown">備考</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" rows="5" id="note" name="note"
-					placeholder="備考" disabled>${form.note}</textarea>
+				<textarea class="form-control" rows="5" id="note" name="note" placeholder="備考" disabled>${form.note}</textarea>
 				<input type="hidden" name="note" value="${form.note}">
 			</div>
 		</div>
@@ -109,8 +98,7 @@
 				<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ
 				</button>
-				<a class="btn btn-default" href="S0023.html?${form.input}"
-					role="button">キャンセル</a>
+				<a class="btn btn-default" href="S0023.html?${form.input}" role="button">キャンセル</a>
 			</div>
 		</div>
 	</form>
