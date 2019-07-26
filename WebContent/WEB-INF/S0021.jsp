@@ -19,11 +19,11 @@
 		<thead>
 			<tr>
 				<th class="col-sm-1">操作</th>
-				<th class="text-right col-xs-1">No</th>
+				<th class="text-right">No</th>
 				<th class="col-sm-1">販売日</th>
-				<th class="col-sm-1">担当</th>
+				<th class="">担当</th>
 				<th class="col-sm-2">商品カテゴリー</th>
-				<th class="col-sm-3">商品名</th>
+				<th class="col-sm-4">商品名</th>
 				<th class="col-sm-1 text-right">単価</th>
 				<th class="col-sm-1 text-right">個数</th>
 				<th class="col-sm-1 text-right">小計</th>
