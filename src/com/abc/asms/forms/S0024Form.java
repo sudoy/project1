@@ -1,7 +1,5 @@
 package com.abc.asms.forms;
 
-import java.util.Map;
-
 public class S0024Form {
 
 	private String saleId;
@@ -15,7 +13,6 @@ public class S0024Form {
 	private String saleNumber;
 	private String note;
 	private StringBuilder input;
-	private Map<Integer,String> categoryMap;
 
 	public String getSaleId() {
 		return saleId;
@@ -95,14 +92,6 @@ public class S0024Form {
 
 	public void setSaleNumber(String saleNumber) {
 		this.saleNumber = saleNumber;
-	}
-
-	public Map<Integer,String> getCategoryMap() {
-		return categoryMap;
-	}
-
-	public void setCategoryMap(Map<Integer,String> categoryMap) {
-		this.categoryMap = categoryMap;
 	}
 
 	public StringBuilder getInput() {

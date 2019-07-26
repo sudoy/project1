@@ -22,9 +22,8 @@
 		<div class="form-group">
 			<label for="saleDate" class="col-xs-3 text-right textdown">販売日</label>
 			<div class="col-xs-2">
-				<input type="text" class="form-control" id="saleDate"
-					name="saleDate" value="${form.saleDate}" disabled> <input
-					type="hidden" name="saleDate" value="${form.saleDate}">
+				<input type="text" class="form-control" id="saleDate" name="saleDate" value="${form.saleDate}" disabled>
+				<input type="hidden" name="saleDate" value="${form.saleDate}">
 			</div>
 		</div>
 
@@ -32,10 +31,10 @@
 		<div class="form-group">
 			<label for="accountId" class="col-xs-3 text-right textdown">担当</label>
 			<div class="col-xs-5">
-				<select class="form-control" id="accountId" name="accountId"
-					disabled>
+				<select class="form-control" id="accountId" name="accountId" disabled>
 					<option value="${form.accountId}">${HTMLUtils.XSS(form.name)}</option>
-				</select> <input type="hidden" name="accountId" value="${form.accountId}">
+				</select>
+				<input type="hidden" name="accountId" value="${form.accountId}">
 			</div>
 		</div>
 
@@ -43,14 +42,9 @@
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">商品カテゴリー</label>
 			<div class="col-xs-5">
-				&nbsp;
-				<c:forEach var="category" items="${form.categoryMap}">
-					<label class="radio-inline"> <input type="radio"
-						name="categoryId" value="${category.key}"
-						${HTMLUtils.writeChecked(category.key,form.categoryId)} disabled>
-						${HTMLUtils.XSS(category.value)}
-					</label>
-				</c:forEach>
+				<label class="radio-inline">
+					<input type="radio" name="categoryId" value="${form.categoryId}" checked disabled>${HTMLUtils.XSS(form.categoryName)}
+				</label>
 				<input type="hidden" name="categoryId" value="${form.categoryId}">
 			</div>
 		</div>
