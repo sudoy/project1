@@ -252,8 +252,8 @@ public class HTMLUtils {
 			return name;
 		}
 		List<String> list = new ArrayList<>();
-		for(int i = 0; i <= name.length(); i += 7) {
-			if(i + 7 <= name.length()) {
+		for(int i = 0; i < name.length(); i += 7) {
+			if(i + 7 < name.length()) {
 				list.add(name.substring(i, i + 7));
 			}else {
 				list.add(name.substring(i));
