@@ -40,6 +40,14 @@ public class S0030Servlet extends HttpServlet {
 			//前回入力した値をセッションから取得
 			EntryAccountForm form = (EntryAccountForm) session.getAttribute("EntryAccountForm");
 
+			// sessionの存在確認
+			if(form==null) {
+				List<String> error = new ArrayList<>();
+				error.add("不正なアクセスです。");
+				resp.sendRedirect("C0020.html");
+				return;
+			}
+
 			//パスワードを消す
 			form.setPassword1(null);
 			form.setPassword2(null);
