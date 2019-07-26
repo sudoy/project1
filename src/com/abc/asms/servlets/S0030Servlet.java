@@ -44,6 +44,7 @@ public class S0030Servlet extends HttpServlet {
 			if(form==null) {
 				List<String> error = new ArrayList<>();
 				error.add("不正なアクセスです。");
+				session.setAttribute("error", error);
 				resp.sendRedirect("C0020.html");
 				return;
 			}
