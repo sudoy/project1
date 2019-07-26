@@ -95,7 +95,7 @@
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control text-right ${HTMLUtils.errorFrame(error,'単価')}"
-					id="unitPrice" name="unitPrice" value="${form.unitPrice}"
+					id="unitPrice" name="unitPrice" value="${HTMLUtils.XSS(form.unitPrice)}"
 					placeholder="単価">
 			</div>
 		</div>
@@ -109,7 +109,7 @@
 			<div class="col-xs-2">
 				<input type="text"
 					class="form-control text-right ${HTMLUtils.errorFrame(error,'個数')}"
-					id="saleNumber" name="saleNumber" value="${form.saleNumber}"
+					id="saleNumber" name="saleNumber" value="${HTMLUtils.XSS(form.saleNumber)}"
 					placeholder="個数">
 			</div>
 		</div>
