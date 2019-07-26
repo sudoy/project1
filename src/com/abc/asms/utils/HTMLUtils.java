@@ -266,11 +266,4 @@ public class HTMLUtils {
 		return name2;
 	}
 
-	public static String notNewLine(String name) {
-		if(name.length() <= 7) {
-			return "class=\"text-nowrap\"";
-		}
-		return null;
-	}
-
 }

@@ -38,7 +38,7 @@
 					</a></td>
 					<td class="text-right">${saleData.saleId}</td>
 					<td>${saleData.date}</td>
-					<td ${HTMLUtils.notNewLine(saleData.accountName)}>${HTMLUtils.newLine(HTMLUtils.XSS(HTMLUtils.setNewLine(saleData.accountName)))}</td>
+					<td class="text-nowrap">${HTMLUtils.newLine(HTMLUtils.XSS(HTMLUtils.setNewLine(saleData.accountName)))}</td>
 					<td>${HTMLUtils.XSS(saleData.categoryName)}</td>
 					<td>${HTMLUtils.XSS(saleData.tradeName)}</td>
 					<td class="text-right">${HTMLUtils.numberFormat(saleData.unitPrice)}</td>
