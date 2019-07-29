@@ -7,6 +7,7 @@ public class EntrySaleForm {
 	private String tradeName;
 	private String unitPrice;
 	private String saleNumber;
+	private String rate;
 	private String note;
 	private String subTotal;
 
@@ -96,6 +97,12 @@ public class EntrySaleForm {
 	}
 	public void setSaleNumber(String saleNumber) {
 		this.saleNumber = saleNumber;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	public String getNote() {
 		return note;

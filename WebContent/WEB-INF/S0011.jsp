@@ -105,7 +105,7 @@
 			<label for="tax" class="col-xs-3 text-right control-label">税率</label>
 			<div class="col-xs-2">
 				<input type="text" class="form-control text-right" id="tax"
-					name="tax" value="8" placeholder="税率" disabled>
+					name="tax" value="${HTMLUtils.numberFormat(form.rate)}" placeholder="税率" disabled>
 			</div>
 			<label for="tax" class="col-xs-1 text-left textdown">％</label>
 		</div>

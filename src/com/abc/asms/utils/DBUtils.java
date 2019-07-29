@@ -383,5 +383,38 @@ public class DBUtils {
 		}
 		return data;
 	}
+	/**
+	 * S11、S22、S24、S25で使用
+	 * 税率を取得するメソッド
+	 * @param saleDate 販売日
+	 * @param categoryId 商品カテゴリー
+	 * @return String の税率
+	 */
+	public static String getRate(String saleDate,String categoryId) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = null;
+		String rate = "0";
+		try {
+			con = DBUtils.getConnection();
 
+			// select文
+			sql = "SELECT rate FROM taxes "
+					+ "WHERE start_date <= ? AND category_id = ? "
+					+ "ORDER BY start_date desc LIMIT 1";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, saleDate);
+			ps.setString(2, categoryId);
+			rs = ps.executeQuery();
+			rs.next();
+			rate = rs.getString("rate");
+		} catch (Exception e) {
+
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+		return rate;
+	}
 }
