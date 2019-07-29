@@ -117,8 +117,8 @@
 				<input type="text" class="form-control text-right"
 					value="${HTMLUtils.numberFormat(form.subTotal)}" placeholder="小計"
 					disabled>
-
 			</div>
+			<label for="tax" class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- 備考 -->
@@ -129,7 +129,6 @@
 					placeholder="備考" disabled>${HTMLUtils.XSS(form.note)}</textarea>
 				<input type="hidden" name="note" value="${HTMLUtils.XSS(form.note)}">
 			</div>
-			<label for="tax" class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- Submit -->
