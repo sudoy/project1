@@ -21,8 +21,9 @@ public class C0020Form {
 	private double percent;
 	private long total;
 
-
-
+	private StringBuilder thisYearList;
+	private StringBuilder lastYearList;
+	private long maxSale;
 
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
@@ -155,7 +156,27 @@ public class C0020Form {
 		this.total = total;
 	}
 
+	public StringBuilder getThisYearList() {
+		return thisYearList;
+	}
 
+	public void setThisYearList(StringBuilder thisYearList) {
+		this.thisYearList = thisYearList;
+	}
 
+	public StringBuilder getLastYearList() {
+		return lastYearList;
+	}
 
+	public void setLastYearList(StringBuilder lastYearList) {
+		this.lastYearList = lastYearList;
+	}
+
+	public long getMaxSale() {
+		return maxSale;
+	}
+
+	public void setMaxSale(long maxSale) {
+		this.maxSale = maxSale;
+	}
 }

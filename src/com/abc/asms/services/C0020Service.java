@@ -3,6 +3,7 @@ package com.abc.asms.services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
@@ -195,5 +196,46 @@ public class C0020Service {
 		return LocalDate.now();
 	}
 
+	//グラフで使用
+	public StringBuilder findAllSalesList(int year) throws ServletException{
+
+		//引数の年の月ごとの売上リスト
+		List<Long> list = new ArrayList<>();
+		for(int i = 1; i <= 12; i++) {
+			LocalDate monthOfYear = LocalDate.of(year, i, 1);
+			list.add(findAllsale(monthOfYear));
+		}
+
+		//万で割り、小数点第二位で四捨五入して文字列に追加
+		StringBuilder sb = new StringBuilder("[");
+		DecimalFormat df = new DecimalFormat("#.#");
+		for(long l : list) {
+			sb.append(df.format((double)l / 10000) + ",");
+		}
+		sb.deleteCharAt(sb.length() - 1);//最後のカンマ消す
+		sb.append("]");
+
+		return sb;
+	}
+
+	//グラフで使用
+	public long getMaxSale(int thisYear, int lastYear) throws ServletException {
+
+		long max = 0;//最大値
+		for(int i = 1; i <= 12; i++) {
+
+			//今年（基準年）の月ごとの売上
+			LocalDate monthOfThisYear = LocalDate.of(thisYear, i, 1);
+			long thisYearSum = findAllsale(monthOfThisYear);
+			//前年の月ごとの売上
+			LocalDate monthOfLastYear = LocalDate.of(lastYear, i, 1);
+			long lastYearSum = findAllsale(monthOfLastYear);
+
+			//比較
+			long bigger = thisYearSum <= lastYearSum ? lastYearSum : thisYearSum;
+			max = bigger <= max ? max : bigger;
+		}
+		return (long) Math.ceil((double) max / 10000);//切り上げ
+	}
 
 }

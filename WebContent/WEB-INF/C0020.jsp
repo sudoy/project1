@@ -53,6 +53,16 @@
 		</div>
 	</nav>
 
+	<!-- グラフ -->
+	<div class="col-sm-12 bm20">
+		<div class="col-sm-6">
+			<canvas id="graph1LastYear"></canvas>
+		</div>
+		<div class="col-sm-6">
+			<canvas id="graph2ThisYear"></canvas>
+		</div>
+	</div>
+
 	<!--合計売上-->
 	<!--前月-->
 	<div class="col-sm-4">
@@ -161,8 +171,14 @@
 </div>
 <!--class="container"-->
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+<%-- グラフに渡す値 --%>
+<script>
+var thisYear = ${form.date.getYear()}
+var lastYear = ${form.date.getYear() - 1}
+var thisYearList = ${form.thisYearList}
+var lastYearList = ${form.lastYearList}
+var maxSale = ${form.maxSale}
+</script>
+
+<!--フッター-->
+<jsp:include page="_footer.jsp" />
