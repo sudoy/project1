@@ -1,5 +1,6 @@
 package com.abc.asms.utils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -266,4 +267,7 @@ public class HTMLUtils {
 		return name2;
 	}
 
+	public static String rounding(String num) {
+		return new BigDecimal(num).setScale(0, ConstantUtils.ROUNDING_MODE).toString();
+	}
 }

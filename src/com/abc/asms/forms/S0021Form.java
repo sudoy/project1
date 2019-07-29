@@ -8,8 +8,10 @@ public class S0021Form {
 	String tradeName;
 	int unitPrice;
 	int saleNumber;
+	int rate;
+
 	public S0021Form(int saleId, String date, String accountName, String categoryName, String tradeName, int unitPrice,
-			int saleNumber) {
+			int saleNumber, int rate) {
 		super();
 		this.saleId = saleId;
 		this.date = date;
@@ -18,7 +20,9 @@ public class S0021Form {
 		this.tradeName = tradeName;
 		this.unitPrice = unitPrice;
 		this.saleNumber = saleNumber;
+		this.rate = rate;
 	}
+
 	public int getSaleId() {
 		return saleId;
 	}
@@ -60,6 +64,12 @@ public class S0021Form {
 	}
 	public void setSaleNumber(int saleNumber) {
 		this.saleNumber = saleNumber;
+	}
+	public int getRate() {
+		return rate;
+	}
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 }

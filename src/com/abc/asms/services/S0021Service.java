@@ -36,6 +36,7 @@ public class S0021Service {
 			sql.append(",(SELECT a.name FROM accounts a WHERE s.account_id = a.account_id) AS name");
 			sql.append(",(SELECT c.category_name FROM categories c WHERE s.category_id = c.category_id) AS category_name");
 			sql.append(",s.trade_name,s.unit_price,s.sale_number ");
+			sql.append(",(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1) AS rate ");
 			sql.append("FROM sales s WHERE 1=1 ");
 
 			if (!date[0].equals("")) {
@@ -83,8 +84,10 @@ public class S0021Service {
 				String getTtradeName = rs.getString("s.trade_name");
 				int unitPrice = rs.getInt("s.unit_price");
 				int saleNumber = rs.getInt("s.sale_number");
-				list.add(new S0021Form(saleId, getDate, accountName, categoryName, getTtradeName, unitPrice,
-						saleNumber));
+				int rate = rs.getInt("rate");
+				list.add(new S0021Form(
+						saleId, getDate, accountName, categoryName, getTtradeName, unitPrice,saleNumber,rate
+						));
 			}
 
 		} catch (Exception e) {
