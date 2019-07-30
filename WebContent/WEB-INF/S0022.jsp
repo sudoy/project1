@@ -54,6 +54,7 @@
 			<div class="col-xs-2 right-btn">
 				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.unitPrice))}</label>
 			</div>
+			<label class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- 個数 -->
@@ -62,14 +63,28 @@
 			<div class="col-xs-2 right-btn">
 				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.saleNumber))}</label>
 			</div>
+			<label class="col-xs-1 text-left textdown">個</label>
+		</div>
+
+		<!-- 税率 -->
+		<div class="form-group">
+			<label for="tax" class="col-xs-3 text-right control-label">税率</label>
+			<div class="col-xs-2 right-btn">
+				<label class="text-right textdown normal">${HTMLUtils.numberFormat(form.rate)}</label>
+			</div>
+			<label class="col-xs-1 text-left textdown">％</label>
 		</div>
 
 		<!-- 小計 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">小計</label>
 			<div class="col-xs-2 right-btn">
-				<label class="text-right textdown normal">${HTMLUtils.numberFormat(HTMLUtils.XSS(form.unitPrice * form.saleNumber))}</label>
+				<label class="text-right textdown normal">${
+					HTMLUtils.numberFormat(HTMLUtils.rounding(
+					form.unitPrice * form.saleNumber * (1 + form.rate / 100)
+					))}</label>
 			</div>
+			<label class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- 備考 -->

@@ -9,11 +9,12 @@ public class S0022Form { //売上詳細表示のフォーム
 	private String tradeName;
 	private int unitPrice;
 	private int saleNumber;
+	private int rate;
 	private String note;
 	private String salesAuthority;
 
 	public S0022Form(String saleId, String saleDate, String name, String categoryName, String tradeName, int unitPrice,
-			int saleNumber, String note) {
+			int saleNumber, int rate, String note) {
 		super();
 		this.saleId = saleId;
 		this.saleDate = saleDate;
@@ -22,6 +23,7 @@ public class S0022Form { //売上詳細表示のフォーム
 		this.tradeName = tradeName;
 		this.unitPrice = unitPrice;
 		this.saleNumber = saleNumber;
+		this.rate = rate;
 		this.note = note;
 	}
 
@@ -81,5 +83,10 @@ public class S0022Form { //売上詳細表示のフォーム
 	public void setSalesAuthority(String salesAuthority) {
 		this.salesAuthority = salesAuthority;
 	}
-
+	public int getRate() {
+		return rate;
+	}
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
 }

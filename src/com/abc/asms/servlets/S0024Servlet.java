@@ -70,6 +70,10 @@ public class S0024Servlet extends HttpServlet {
 			return;
 		}
 
+		// 税率の取得
+		String rate = DBUtils.getRate(form.getSaleDate(), form.getCategoryId());
+		form.setRate(rate);
+
 		//JSPへ
 		req.setAttribute("form", form);
 

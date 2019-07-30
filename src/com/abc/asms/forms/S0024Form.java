@@ -11,6 +11,7 @@ public class S0024Form {
 	private String tradeName;
 	private String unitPrice;
 	private String saleNumber;
+	private String rate;
 	private String note;
 	private StringBuilder input;
 
@@ -100,6 +101,14 @@ public class S0024Form {
 
 	public void setInput(StringBuilder stringBuilder) {
 		this.input = stringBuilder;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 
 }

@@ -10,6 +10,7 @@ public class S0025Form {
 	private String tradeName;
 	private String unitPrice;
 	private String saleNumber;
+	private String rate;
 	private String subtotal;
 	private String note;
 
@@ -72,6 +73,12 @@ public class S0025Form {
 	}
 	public void setSubtotal(String subtotal) {
 		this.subtotal = subtotal;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setTax(String rate) {
+		this.rate = rate;
 	}
 
 }

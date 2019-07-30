@@ -63,6 +63,10 @@ public class S0011Servlet extends HttpServlet {
 			return;
 		}
 
+		// 税率の取得
+		String rate = DBUtils.getRate(saleDate, categoryId);
+		form.setRate(rate);
+
 		//小計を計算するメソッドの呼び出し
 		S0011Service service = new S0011Service();
 		String subTotal = service.calc(unitPrice,saleNumber);

@@ -24,7 +24,8 @@ public class S0022Service { //売上詳細表示のサービス
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT s.sale_id,s.sale_date,a.name,c.category_name,s.trade_name,s.unit_price,s.sale_number,s.note "
+			sql = "SELECT s.sale_id,s.sale_date,a.name,c.category_name,s.trade_name,s.unit_price,s.sale_number,s.note"
+					+ ",(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1) AS rate "
 					+ "FROM sales s "
 					+ "LEFT JOIN accounts a ON s.account_id = a.account_id "
 					+ "LEFT JOIN categories c ON s.category_id = c.category_id "
@@ -42,9 +43,10 @@ public class S0022Service { //売上詳細表示のサービス
 			String tradeName = rs.getString("s.trade_name");
 			int unitPrice = rs.getInt("s.unit_price");
 			int saleNumber = rs.getInt("s.sale_number");
+			int rate = rs.getInt("rate");
 			String note = rs.getString("s.note");
 
-			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber, note);
+			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber,rate, note);
 
 		}catch(Exception e){
 			e.printStackTrace();

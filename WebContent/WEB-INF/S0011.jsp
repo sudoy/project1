@@ -84,7 +84,7 @@
 					placeholder="単価" disabled> <input type="hidden"
 					name="unitPrice" value="${form.unitPrice}">
 			</div>
-			<label for="tax" class="col-xs-1 text-left textdown">円</label>
+			<label class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- 個数 -->
@@ -97,7 +97,7 @@
 					disabled> <input type="hidden" name="saleNumber"
 					value="${form.saleNumber}">
 			</div>
-			<label for="tax" class="col-xs-1 text-left textdown">個</label>
+			<label class="col-xs-1 text-left textdown">個</label>
 		</div>
 
 		<!-- 税率 -->
@@ -107,7 +107,7 @@
 				<input type="text" class="form-control text-right" id="tax"
 					name="tax" value="${HTMLUtils.numberFormat(form.rate)}" placeholder="税率" disabled>
 			</div>
-			<label for="tax" class="col-xs-1 text-left textdown">％</label>
+			<label class="col-xs-1 text-left textdown">％</label>
 		</div>
 
 		<!-- 小計 -->
@@ -115,10 +115,12 @@
 			<label class="col-xs-3 text-right control-label">小計</label>
 			<div class="col-xs-2">
 				<input type="text" class="form-control text-right"
-					value="${HTMLUtils.numberFormat(form.subTotal)}" placeholder="小計"
+					value="${HTMLUtils.numberFormat(HTMLUtils.rounding(
+					form.subTotal * (1 + form.rate / 100)
+					))}" placeholder="小計"
 					disabled>
 			</div>
-			<label for="tax" class="col-xs-1 text-left textdown">円</label>
+			<label class="col-xs-1 text-left textdown">円</label>
 		</div>
 
 		<!-- 備考 -->

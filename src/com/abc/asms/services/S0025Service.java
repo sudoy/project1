@@ -22,7 +22,8 @@ public class S0025Service {
 			con = DBUtils.getConnection();
 
 			//SQL…売上登録情報取得
-			sql = "SELECT s.sale_id,s.sale_date,a.name,s.category_id,c.category_name,s.trade_name,s.unit_price,s.sale_number,(s.unit_price * s.sale_number) as subtotal,s.note "
+			sql = "SELECT s.sale_id,s.sale_date,a.name,s.category_id,c.category_name,s.trade_name,s.unit_price,s.sale_number,(s.unit_price * s.sale_number) as subtotal,s.note"
+					+ ",(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1) AS rate "
 					+ "FROM sales s "
 					+ "LEFT JOIN accounts a ON s.account_id = a.account_id "
 					+ "LEFT JOIN categories c ON s.category_id = c.category_id "
@@ -45,6 +46,7 @@ public class S0025Service {
 			form.setSaleNumber(rs.getString("s.sale_number"));
 			form.setSubtotal(rs.getString("subtotal"));
 			form.setNote(rs.getString("s.note"));
+			form.setTax(rs.getString("rate"));
 
 		}catch(Exception e){
 			e.printStackTrace();
