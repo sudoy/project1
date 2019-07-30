@@ -76,6 +76,20 @@
 	margin-left: 0px !important;
 }
 
+/*吉田(追加仕様)*/
+.page{
+	text-align:center;
+}
+
+.pagemove{
+	padding-left: 0;
+}
+
+.sort{
+	text-align:right;
+	padding-right: 0;
+}
+
 /*山本*/
 .bold {
 	font-weight: bold;

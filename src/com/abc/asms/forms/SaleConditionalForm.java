@@ -7,6 +7,10 @@ public class SaleConditionalForm {
 	String tradeName;
 	String note;
 
+	String item;
+	String sort;
+	int page;
+
 	public SaleConditionalForm(String[] date, String accountId, String[] categoryId, String tradeName, String note) {
 		super();
 		this.date = date;
@@ -46,5 +50,31 @@ public class SaleConditionalForm {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+
 
 }
