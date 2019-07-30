@@ -212,13 +212,6 @@ public class S0024Servlet extends HttpServlet {
 			error.add("備考が長すぎます。");
 		}
 
-		//売上idチェック
-		if(form.getSaleId() == null || form.getSaleId().equals("")) {
-			error.add("");
-		}else if(!new S0024Service().findSaleId(form.getSaleId())) {
-			error.add("");
-		}
-
 		return error;
 	}
 
