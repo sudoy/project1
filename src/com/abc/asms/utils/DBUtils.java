@@ -417,6 +417,11 @@ public class DBUtils {
 		}
 		return rate;
 	}
+
+	/**
+	 * 定数「ROUNDING_MODE」によって、SQLでの関数を変化させるメソッド
+	 * @return FLOOR,CEILING,ROUNDのいずれか
+	 */
 	public static String setRounding() {
 		switch (ConstantUtils.ROUNDING_MODE.toString()) {
 		case "DOWN":return "FLOOR";
