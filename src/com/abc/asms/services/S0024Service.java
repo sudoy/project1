@@ -136,33 +136,4 @@ public class S0024Service {
 
 		return input;
 	}
-
-	//売上のid存在チェック
-	public boolean findSaleId(String saleId){
-
-		boolean idIs = false;
-		Connection con = null;
-		String sql = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			//データベース接続
-			con = DBUtils.getConnection();
-
-			//テーブル存在チェック
-			sql = "SELECT count(sale_id) as cnt FROM sales WHERE sale_id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, saleId);
-			rs = ps.executeQuery();
-			idIs = rs.next();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			DBUtils.close(con, ps, rs);
-		}
-
-		return idIs;
-	}
 }

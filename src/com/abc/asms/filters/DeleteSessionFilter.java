@@ -34,14 +34,17 @@ public class DeleteSessionFilter implements Filter {
 		if(!target.matches("/S004[0-4]\\.html") && session.getAttribute("AccountConditional") != null) {
 			session.setAttribute("AccountConditional", null);
 		}
-		if(!target.matches("/S004[23]\\.html") && session.getAttribute("AccountEditForm") != null) {
+		if(!target.matches("/S004[1-3]\\.html") && session.getAttribute("AccountEditForm") != null) {
 			session.setAttribute("AccountEditForm", null);
 		}
 		if(!target.matches("/S003[01]\\.html") && session.getAttribute("EntryAccountForm") != null) {
 			session.setAttribute("EntryAccountForm", null);
 		}
-		if(!target.matches("/S002[34]\\.html") && session.getAttribute("EntryAccountForm") != null) {
+		if(!target.matches("/S002[34]\\.html") && session.getAttribute("verOfsale") != null) {
 			session.setAttribute("verOfsale", null);
+		}
+		if(!target.matches("/S004[1-3]\\.html") && session.getAttribute("verOfaccount") != null) {
+			session.setAttribute("verOfaccount", null);
 		}
 		chain.doFilter(req, resp);
 	}

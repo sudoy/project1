@@ -9,6 +9,7 @@ public class AccountEditForm {
 	private String inputPass2;
 	private String salesAuthority;
 	private String accountAuthority;
+	private int version;
 
 	public String getAccountId() {
 		return accountId;
@@ -64,6 +65,14 @@ public class AccountEditForm {
 
 	public void setInputPass2(String inputPass2) {
 		this.inputPass2 = inputPass2;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }

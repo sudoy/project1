@@ -28,20 +28,24 @@ public class S0043Service {
 
 	        //sql
 	        if(form.getInputPass() == null || form.getInputPass().isEmpty()) { //パスワード入力無い場合
-	        	sql = "UPDATE accounts SET name = ?, mail = ?, authority = ? WHERE account_id = ?";
+	        	sql = "UPDATE accounts SET name = ?, mail = ?, authority = ?, version = ? WHERE account_id = ? AND version = ?";
 	        	ps = con.prepareStatement(sql);
 	        	ps.setString(1, form.getName());
 	        	ps.setString(2, form.getMail());
 	        	ps.setString(3, authority);
-	        	ps.setString(4, form.getAccountId());
+	        	ps.setInt(4, form.getVersion() + 1);
+	        	ps.setString(5, form.getAccountId());
+	        	ps.setInt(6, form.getVersion());
 	        }else {
-	        	sql = "UPDATE accounts SET name = ?, mail = ?, password = MD5(?), authority = ? WHERE account_id = ?";
+	        	sql = "UPDATE accounts SET name = ?, mail = ?, password = MD5(?), authority = ?, version = ? WHERE account_id = ? AND version = ?";
 	        	ps = con.prepareStatement(sql);
 	        	ps.setString(1, form.getName());
 	        	ps.setString(2, form.getMail());
 	        	ps.setString(3, form.getInputPass());
 	        	ps.setString(4, authority);
-	        	ps.setString(5, form.getAccountId());
+	        	ps.setInt(5, form.getVersion() + 1);
+	        	ps.setString(6, form.getAccountId());
+	        	ps.setInt(7, form.getVersion());
 	        }
 
 			//UPDATE命令を実行

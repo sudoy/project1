@@ -22,7 +22,7 @@ public class S0042Service {
 			con = DBUtils.getConnection();
 
 			//SQL…アカウント情報取得
-			sql = "SELECT account_id,name,mail,authority FROM accounts WHERE account_id = ?";
+			sql = "SELECT account_id,name,mail,authority,version FROM accounts WHERE account_id = ?";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			ps.setString(1, accountId);
@@ -46,6 +46,7 @@ public class S0042Service {
 			}else {
 				form.setAccountAuthority("no");
 			}
+			form.setVersion(rs.getInt("version"));
 
 		}catch(Exception e){
 			e.printStackTrace();

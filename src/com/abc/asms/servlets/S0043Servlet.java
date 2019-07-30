@@ -67,8 +67,23 @@ public class S0043Servlet extends HttpServlet {
 		}
 
 		//form取得
-		AccountEditForm form = (AccountEditForm) session.getAttribute("AccountEditForm");
-		session.setAttribute("AccountEditForm", null);
+		AccountEditForm form = new AccountEditForm();
+		form.setAccountId(req.getParameter("accountId"));
+		form.setName(req.getParameter("name"));
+		form.setMail(req.getParameter("mail"));
+		form.setInputPass(req.getParameter("password"));
+		form.setSalesAuthority(req.getParameter("salesAuthority"));
+		form.setAccountAuthority(req.getParameter("accountAuthority"));
+		form.setVersion((int) session.getAttribute("verOfaccount"));
+
+		//nullチェック
+		if(isnull(form)) {
+			List<String> error = new ArrayList<>();
+			error.add("不正なアクセスです。");
+			session.setAttribute("error", error);
+			resp.sendRedirect("C0020.html");
+			return;
+		}
 
 		//更新処理
 		int cnt = new S0043Service().update(form);
@@ -80,13 +95,20 @@ public class S0043Servlet extends HttpServlet {
 			session.setAttribute("success", success);
 		}else {
 			List<String> error = new ArrayList<>();
-			error.add("不正なアクセスです。");
+			error.add("No"+ form.getAccountId() +"の更新に失敗しました。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
-			return;
 		}
 
 		//アカウント検索結果一覧へ戻る
 		resp.sendRedirect("S0041.html");
+	}
+
+	private boolean isnull(AccountEditForm form) {
+		if(form.getAccountId() == null || form.getName() == null ||
+				form.getMail() == null || form.getInputPass() == null ||
+				form.getSalesAuthority() == null || form.getAccountAuthority() == null) {
+			return true;
+		}
+		return false;
 	}
 }

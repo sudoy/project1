@@ -45,6 +45,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		}else {
 			//アカウント情報取得
 			form = new S0042Service().findAccount(accountId);
+			session.setAttribute("verOfaccount", form.getVersion());//バージョン番号保存
 		}
 		session.setAttribute("AccountEditForm", null);
 
