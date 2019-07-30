@@ -429,4 +429,7 @@ public class DBUtils {
 			default:return "ROUND";
 		}
 	}
+	public static String formatCSV(String str) {
+		return str.replaceAll("\"", "\"\"");
+	}
 }

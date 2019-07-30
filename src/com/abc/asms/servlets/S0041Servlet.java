@@ -1,6 +1,7 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,5 +29,26 @@ public class S0041Servlet extends HttpServlet {
 		AccountConditionalForm acf = (AccountConditionalForm) session.getAttribute("AccountConditional");
 		req.setAttribute("list", S41S.getDB(acf));
 		getServletContext().getRequestDispatcher("/WEB-INF/S0041.jsp").forward(req, resp);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		S0041Service S41S = new S0041Service();
+		HttpSession session = req.getSession();
+
+		// 検索条件のセッションが存在しているか
+		if (session.getAttribute("AccountConditional") == null) {
+			resp.sendRedirect("S0041.html");
+			return;
+		}
+
+		AccountConditionalForm acf = (AccountConditionalForm) session.getAttribute("AccountConditional");
+		// 文字コード設定
+		resp.setContentType("text/html; charset=SJIS");
+		// ファイル名設定（ファイル名を設定しないと、htmlとして画面に表示されてしまいます
+		resp.setHeader("Content-Disposition", "attachment; filename=\"dynamic.csv\"");
+		// レスポンスにCSV出力
+		PrintWriter w = resp.getWriter();
+		w.print(S41S.getCSV(acf));
+		w.flush();
 	}
 }
