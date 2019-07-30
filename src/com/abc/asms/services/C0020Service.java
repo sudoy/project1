@@ -200,22 +200,12 @@ public class C0020Service {
 	public StringBuilder findAllSalesList(int year) throws ServletException{
 
 		//引数の年の月ごとの売上リスト
-		List<Long> list = new ArrayList<>();
+		long[] list = new long[12];
 		for(int i = 1; i <= 12; i++) {
 			LocalDate monthOfYear = LocalDate.of(year, i, 1);
-			list.add(findAllsale(monthOfYear));
+			list[i] = (findAllsale(monthOfYear));
 		}
-
-		//万で割り、小数点第二位で四捨五入して文字列に追加
-		StringBuilder sb = new StringBuilder("[");
-		DecimalFormat df = new DecimalFormat("#.#");
-		for(long l : list) {
-			sb.append(df.format((double)l / 10000) + ",");
-		}
-		sb.deleteCharAt(sb.length() - 1);//最後のカンマ消す
-		sb.append("]");
-
-		return sb;
+		return createDataOfjs(list);
 	}
 
 	//グラフで使用
@@ -236,6 +226,75 @@ public class C0020Service {
 			max = bigger <= max ? max : bigger;
 		}
 		return (long) Math.ceil((double) max / 10000);//切り上げ
+	}
+
+	//グラフ用　まとめ
+	public C0020Form getGraphData(int thisYear, C0020Form form) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+
+		try {
+			//DB接続
+			con = DBUtils.getConnection();
+
+			//SQL作成、実行
+			sql = "SELECT DATE_FORMAT(sale_date, '%Y-%m') AS sale_date, SUM(unit_price * sale_number) AS sum "
+					+ "FROM sales "
+					+ "WHERE sale_date BETWEEN ? AND ? "
+					+ "GROUP BY DATE_FORMAT(sale_date, '%Y%m')";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, (thisYear - 1) + "/1/1");
+			ps.setString(2, thisYear + "/12/31");
+			rs = ps.executeQuery();
+
+			//月別売上リストと最大値取得
+			long[] thisYearlist = new long[12];
+			long[] lastYearlist = new long[12];
+			long maxSale = 0;
+			while(rs.next()) {
+				//今年の売上
+				if(rs.getString("sale_date").contains(thisYear + "-")) {
+					int index = Integer.valueOf(rs.getString("sale_date").substring(rs.getString("sale_date").indexOf("-") + 1)) - 1;
+					thisYearlist[index] = rs.getLong("sum");
+				}
+				//前年の売上
+				if(rs.getString("sale_date").contains((thisYear - 1) + "-")) {
+					int index = Integer.valueOf(rs.getString("sale_date").substring(rs.getString("sale_date").indexOf("-") + 1)) - 1;
+					lastYearlist[index] = rs.getLong("sum");
+				}
+				//最大値
+				maxSale = maxSale <= rs.getLong("sum") ? rs.getLong("sum") : maxSale;
+			}
+
+			//formにセット
+			form.setThisYearList(createDataOfjs(thisYearlist));
+			form.setLastYearList(createDataOfjs(lastYearlist));
+			form.setMaxSale((long) Math.ceil((double) maxSale / 10000));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+		return form;
+	}
+
+	//グラフ用　文字列作成
+	public StringBuilder createDataOfjs(long[] list) {
+
+		//万で割り、小数点第二位で四捨五入して文字列に追加
+		StringBuilder sb = new StringBuilder("[");
+		DecimalFormat df = new DecimalFormat("#.#");
+		for(long l : list) {
+			sb.append(df.format((double)l / 10000) + ",");
+		}
+		sb.deleteCharAt(sb.length() - 1);//最後のカンマ消す
+		sb.append("]");
+
+		return sb;
 	}
 
 }

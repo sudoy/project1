@@ -59,9 +59,9 @@ public class C0020Servlet extends HttpServlet {
 		}
 
 		//今年と前年の月別売上リスト、売上最大値
-		StringBuilder thisYearList = service.findAllSalesList(date.getYear());
-		StringBuilder lastYearList = service.findAllSalesList(date.getYear() - 1);
-		long  maxSale = service.getMaxSale(date.getYear(), date.getYear() - 1);
+//		StringBuilder thisYearList = service.findAllSalesList(date.getYear());
+//		StringBuilder lastYearList = service.findAllSalesList(date.getYear() - 1);
+//		long  maxSale = service.getMaxSale(date.getYear(), date.getYear() - 1);
 
 		//今月と先月の全体売り上げ
 		long saleMonth = service.findAllsale(date);
@@ -78,9 +78,10 @@ public class C0020Servlet extends HttpServlet {
 
 		//formへ代入
 		C0020Form form = new C0020Form(date,lastMonth,saleMonth,saleLastMonth,percent,total);
-		form.setThisYearList(thisYearList);
-		form.setLastYearList(lastYearList);
-		form.setMaxSale(maxSale);
+		form = service.getGraphData(date.getYear(), form);//sqlひとつver
+//		form.setThisYearList(thisYearList);
+//		form.setLastYearList(lastYearList);
+//		form.setMaxSale(maxSale);
 
 		//formをjspへ送信
 		req.setAttribute("form", form);
