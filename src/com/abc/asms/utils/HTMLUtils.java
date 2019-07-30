@@ -267,6 +267,10 @@ public class HTMLUtils {
 		return name2;
 	}
 
+	/**
+	 * 定数「ROUNDING_MODE」によって、丸め方を切り替えるメソッド
+	 * @return 丸め後の数字
+	 */
 	public static String rounding(String num) {
 		return new BigDecimal(num).setScale(0, ConstantUtils.ROUNDING_MODE).toString();
 	}
