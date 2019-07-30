@@ -119,10 +119,10 @@ public class S0041Service {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				csv.append("\""+rs.getString("account_id")+"\",\"");
-				csv.append(rs.getString("name")+"\",\"");
-				csv.append(rs.getString("mail")+"\",\"");
-				csv.append(DBUtils.setAuthority(rs.getString("authority"))+"\"\n");
+				csv.append("\""+DBUtils.formatCSV(rs.getString("account_id"))+"\",\"");
+				csv.append(DBUtils.formatCSV(rs.getString("name"))+"\",\"");
+				csv.append(DBUtils.formatCSV(rs.getString("mail"))+"\",\"");
+				csv.append(DBUtils.formatCSV(DBUtils.setAuthority(rs.getString("authority")))+"\"\n");
 			}
 
 		} catch (Exception e) {
