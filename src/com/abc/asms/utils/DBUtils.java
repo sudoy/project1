@@ -424,9 +424,9 @@ public class DBUtils {
 	 */
 	public static String setRounding() {
 		switch (ConstantUtils.ROUNDING_MODE.toString()) {
-		case "DOWN":return "FLOOR";
-		case "UP":return "CEILING";
-		default:return "ROUND";
+			case "DOWN":return "FLOOR";
+			case "UP":return "CEILING";
+			default:return "ROUND";
 		}
 	}
 }
