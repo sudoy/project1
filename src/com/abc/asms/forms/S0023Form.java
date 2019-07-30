@@ -14,6 +14,7 @@ public class S0023Form {
 	private String note;
 	private Map<Integer,String> accountMap;
 	private Map<Integer,String> categoryMap;
+	private int version;
 
 	public S0023Form(String saleId, String saleDate, String accountId, String categoryId, String tradeName,
 			String unitPrice, String saleNumber, String note) {
@@ -95,6 +96,14 @@ public class S0023Form {
 
 	public void setCategoryMap(Map<Integer,String> categoryMap) {
 		this.categoryMap = categoryMap;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }

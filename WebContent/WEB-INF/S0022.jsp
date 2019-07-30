@@ -12,6 +12,10 @@
 <!-- 売上登録システム表示 -->
 <div class="container">
 	<h1>売上詳細表示</h1>
+
+	<!-- メッセージ -->
+	<jsp:include page="_message.jsp" />
+
 	<!-- form -->
 	<form class="form-horizontal" action="S0023.html" method="post">
 

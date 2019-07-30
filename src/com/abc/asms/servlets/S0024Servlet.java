@@ -105,6 +105,7 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
+		form.setVersion((int) session.getAttribute("verOfsale"));
 
 		if(isnull(form.getNote())) {
 			List<String> error = new ArrayList<>();
@@ -126,9 +127,9 @@ public class S0024Servlet extends HttpServlet {
 				success.add("No"+ form.getSaleId() +"の売上を更新しました。");
 				session.setAttribute("success", success);
 			}else {
-				error.add("不正なアクセスです。");
+				error.add("No"+ form.getSaleId() +"の更新に失敗しました。");
 				session.setAttribute("error", error);
-				resp.sendRedirect("C0020.html");
+				resp.sendRedirect("S0022.html?saleId=" + form.getSaleId());
 				return;
 			}
 		}else {
@@ -209,6 +210,13 @@ public class S0024Servlet extends HttpServlet {
 		//備考長さ
 		if(401 <= form.getNote().getBytes(Charset.forName("UTF-8")).length) {
 			error.add("備考が長すぎます。");
+		}
+
+		//売上idチェック
+		if(form.getSaleId() == null || form.getSaleId().equals("")) {
+			error.add("");
+		}else if(!new S0024Service().findSaleId(form.getSaleId())) {
+			error.add("");
 		}
 
 		return error;

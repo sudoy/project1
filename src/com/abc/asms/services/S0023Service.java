@@ -28,7 +28,7 @@ public class S0023Service {
 			con = DBUtils.getConnection();
 
 			//SQL…売上登録情報取得
-			sql = "SELECT sale_id,sale_date,account_id,category_id,trade_name,unit_price,sale_number,note "
+			sql = "SELECT sale_id,sale_date,account_id,category_id,trade_name,unit_price,sale_number,note,version "
 					+ "FROM sales "
 					+ "WHERE sale_id = ?";
 			//SELECT命令の準備・実行
@@ -47,6 +47,7 @@ public class S0023Service {
 			form.setUnitPrice(rs.getString("unit_price"));
 			form.setSaleNumber(rs.getString("sale_number"));
 			form.setNote(rs.getString("note"));
+			form.setVersion(rs.getInt("version"));
 
 			//SQL…アカウント名とidのリスト
 			Map<Integer,String> accountMap = getAccountMap();

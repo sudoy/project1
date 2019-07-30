@@ -80,8 +80,8 @@ public class S0024Service {
 	        con = DBUtils.getConnection();
 
 	        //sql
-			sql = "UPDATE sales SET sale_date = ?, account_id = ?, category_id = ?, trade_name = ?, unit_price = ?, sale_number = ?, note = ? "
-					+ "WHERE sale_id = ?";
+			sql = "UPDATE sales SET sale_date = ?, account_id = ?, category_id = ?, trade_name = ?, unit_price = ?, sale_number = ?, note = ?, version = ? "
+					+ "WHERE sale_id = ? AND version = ?";
 			ps = con.prepareStatement(sql);
 
 			//ポストデータの内容をセット
@@ -97,7 +97,9 @@ public class S0024Service {
 				note = null;
 			}
 			ps.setString(7, note);
-			ps.setString(8, form.getSaleId());
+			ps.setInt(8, form.getVersion() + 1);
+			ps.setString(9, form.getSaleId());
+			ps.setInt(10, form.getVersion());
 
 			//UPDATE命令を実行
 			cnt = ps.executeUpdate();
@@ -133,5 +135,34 @@ public class S0024Service {
 		input.append("&cancel");
 
 		return input;
+	}
+
+	//売上のid存在チェック
+	public boolean findSaleId(String saleId){
+
+		boolean idIs = false;
+		Connection con = null;
+		String sql = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//テーブル存在チェック
+			sql = "SELECT count(sale_id) as cnt FROM sales WHERE sale_id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, saleId);
+			rs = ps.executeQuery();
+			idIs = rs.next();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+
+		return idIs;
 	}
 }

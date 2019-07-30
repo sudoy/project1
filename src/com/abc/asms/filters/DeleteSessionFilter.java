@@ -40,6 +40,9 @@ public class DeleteSessionFilter implements Filter {
 		if(!target.matches("/S003[01]\\.html") && session.getAttribute("EntryAccountForm") != null) {
 			session.setAttribute("EntryAccountForm", null);
 		}
+		if(!target.matches("/S002[34]\\.html") && session.getAttribute("EntryAccountForm") != null) {
+			session.setAttribute("verOfsale", null);
+		}
 		chain.doFilter(req, resp);
 	}
 

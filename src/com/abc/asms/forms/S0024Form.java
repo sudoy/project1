@@ -14,6 +14,7 @@ public class S0024Form {
 	private String rate;
 	private String note;
 	private StringBuilder input;
+	private int version;
 
 	public String getSaleId() {
 		return saleId;
@@ -109,6 +110,14 @@ public class S0024Form {
 
 	public void setRate(String rate) {
 		this.rate = rate;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }
