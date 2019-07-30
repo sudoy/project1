@@ -2,6 +2,7 @@ package com.abc.asms.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,7 @@ public class S0041Servlet extends HttpServlet {
 		// 文字コード設定
 		resp.setContentType("text/html; charset=SJIS");
 		// ファイル名設定（ファイル名を設定しないと、htmlとして画面に表示されてしまいます
-		resp.setHeader("Content-Disposition", "attachment; filename=\"dynamic.csv\"");
+		resp.setHeader("Content-Disposition", "attachment; filename=\""+ URLEncoder.encode("アカウント検索結果一覧.csv","UTF-8") +"\"");
 		// レスポンスにCSV出力
 		PrintWriter w = resp.getWriter();
 		w.print(S41S.getCSV(acf));
