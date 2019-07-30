@@ -15,7 +15,9 @@
 		<div class="col-xs-2 text-right"><input type="submit" class="btn btn-info" name="DL" value="CSVダウンロード"></div>
 	</form>
 	<!-- メッセージ -->
+	<div class="col-xs-12 padding-off">
 	<jsp:include page="_message.jsp" />
+	</div>
 	<table class="table table-hover table-border-top">
 		<thead>
 			<tr>
