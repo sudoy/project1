@@ -38,7 +38,8 @@ public class C0020Service {
 			//DBと接続する
 			con = DBUtils.getConnection();
 			sql = "SELECT s.sale_id,s.sale_date,c.category_name,s.trade_name,s.unit_price,s.sale_number," +
-					"(s.unit_price * s.sale_number) as subtotal" +
+					"(s.unit_price * s.sale_number) as subtotal," +
+					"(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1) AS rate " +
 					" FROM sales s JOIN categories c" +
 					" ON s.category_id = c.category_id" +
 					" WHERE account_id = ? and sale_date between ? and ?" +
@@ -62,9 +63,10 @@ public class C0020Service {
 				int unitPrice = rs.getInt("unit_price");
 				int saleNumber = rs.getInt("sale_number");
 				long subTotal = rs.getLong("subtotal");
+				String rate = rs.getString("rate");
 
 				//DBの値をセットする
-				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subTotal);
+				form = new C0020Form(saleId,saleDate,categoryName,tradeName,unitPrice,saleNumber,subTotal,rate);
 				findList.add(form);
 			}
 
@@ -87,6 +89,7 @@ public class C0020Service {
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
+		String calc = DBUtils.setRounding();
 
 		//月初と月末の日付を取得
 		LocalDate start =  date.with(TemporalAdjusters.firstDayOfMonth());
@@ -96,7 +99,11 @@ public class C0020Service {
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "select sum((unit_price * sale_number)) as total from sales where account_id = ?"+
+			sql = "select sum("
+					+ calc
+					+ "(unit_price * sale_number * "
+					+ "(1+(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1)/100)"
+					+ ")) as total from sales s where account_id = ?"+
 					" and sale_date between ? and ?";
 
 			ps = con.prepareStatement(sql);
@@ -105,7 +112,6 @@ public class C0020Service {
 			ps.setInt(1,accountId);
 			ps.setObject(2,start);
 			ps.setObject(3,finish);
-
 			rs = ps.executeQuery();
 
 			//DBの値の取り出し
@@ -136,11 +142,18 @@ public class C0020Service {
 		LocalDate start =  date.with(TemporalAdjusters.firstDayOfMonth());
 		LocalDate finish = date.with(TemporalAdjusters.lastDayOfMonth());
 
+		String calc = DBUtils.setRounding();
+
+
 		try{
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "select sum((unit_price * sale_number)) as allsale from sales"+
+			sql = "select sum("
+					+ calc
+					+ "(unit_price * sale_number * "
+					+ "(1+(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1)/100)"
+					+ ")) as allsale from sales s"+
 					" where sale_date between ? and ?";
 
 			ps = con.prepareStatement(sql);
@@ -196,6 +209,7 @@ public class C0020Service {
 		return LocalDate.now();
 	}
 
+/* 現在使用していません
 	//グラフで使用
 	public StringBuilder findAllSalesList(int year) throws ServletException{
 
@@ -227,6 +241,7 @@ public class C0020Service {
 		}
 		return (long) Math.ceil((double) max / 10000);//切り上げ
 	}
+*/
 
 	//グラフ用　まとめ
 	public C0020Form getGraphData(int thisYear, C0020Form form) {
@@ -235,14 +250,19 @@ public class C0020Service {
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
+		String calc = DBUtils.setRounding();
 
 		try {
 			//DB接続
 			con = DBUtils.getConnection();
 
 			//SQL作成、実行
-			sql = "SELECT DATE_FORMAT(sale_date, '%Y-%m') AS sale_date, SUM(unit_price * sale_number) AS sum "
-					+ "FROM sales "
+			sql = "SELECT DATE_FORMAT(sale_date, '%Y-%m') AS sale_date, SUM("
+					+ calc
+					+ "(unit_price * sale_number * "
+					+ "(1+(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1)/100)"
+					+ ")) AS sum "
+					+ "FROM sales s "
 					+ "WHERE sale_date BETWEEN ? AND ? "
 					+ "GROUP BY DATE_FORMAT(sale_date, '%Y%m')";
 			ps = con.prepareStatement(sql);

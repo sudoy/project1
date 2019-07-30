@@ -130,12 +130,13 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="col-sm-1 text-right">No</th>
+						<th class="text-right">No</th>
 						<th class="col-sm-2">販売日</th>
 						<th class="col-sm-3">商品カテゴリー</th>
 						<th class="col-sm-3">商品名</th>
 						<th class="col-sm-1 text-right">単価</th>
 						<th class="col-sm-1 text-right">個数</th>
+						<th class="text-right">税率</th>
 						<th class="col-sm-1 text-right">小計</th>
 					</tr>
 				</thead>
@@ -151,13 +152,17 @@
 
 							<td class="text-right">${HTMLUtils.numberFormat(f.unitPrice)}</td>
 							<td class="text-right">${HTMLUtils.numberFormat(f.saleNumber)}</td>
-							<td class="text-right">${HTMLUtils.numberFormat(f.subTotal)}</td>
+							<td class="text-right">${HTMLUtils.numberFormat(f.rate)}％</td>
+							<td class="text-right">${
+							HTMLUtils.numberFormat(HTMLUtils.rounding(
+							f.subTotal * (1 + f.rate/100)
+							))}</td>
 
 						</tr>
 					</c:forEach>
 
 					<tr>
-						<td colspan="5"></td>
+						<td colspan="6"></td>
 						<th class="text-right">合計</th>
 						<td class="text-right">${HTMLUtils.numberFormat(form.total)}</td>
 					</tr>

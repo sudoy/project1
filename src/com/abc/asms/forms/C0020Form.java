@@ -11,6 +11,7 @@ public class C0020Form {
 	private String tradeName;
 	private int unitPrice;
 	private int saleNumber;
+	private String rate;
 	private long subTotal;
 
 
@@ -27,7 +28,7 @@ public class C0020Form {
 
 
 	public C0020Form(int saleId, String saleDate, String categoryName, String tradeName, int unitPrice, int saleNumber,
-			long subTotal) {
+			long subTotal,String rate) {
 		super();
 		this.saleId = saleId;
 		this.saleDate = saleDate;
@@ -36,6 +37,7 @@ public class C0020Form {
 		this.unitPrice = unitPrice;
 		this.saleNumber = saleNumber;
 		this.subTotal = subTotal;
+		this.rate = rate;
 	}
 
 	public C0020Form(LocalDate date, LocalDate lastMonth, long saleMonth, long saleLastMonth, double percent, long total) {
@@ -178,5 +180,13 @@ public class C0020Form {
 
 	public void setMaxSale(long maxSale) {
 		this.maxSale = maxSale;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 }
