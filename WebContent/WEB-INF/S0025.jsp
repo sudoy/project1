@@ -17,6 +17,7 @@
 	<form class="form-horizontal" method="post" action="S0025.html">
 		<%-- 削除処理用saleId --%>
 		<input type="hidden" name="saleId" value="${form.saleId}">
+		<input type="hidden" name="version" value="${form.version}">
 
 		<!-- 販売日 -->
 		<div class="form-group">

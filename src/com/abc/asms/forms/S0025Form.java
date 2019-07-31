@@ -13,6 +13,7 @@ public class S0025Form {
 	private String rate;
 	private String subtotal;
 	private String note;
+	private int version;
 
 	public String getSaleId() {
 		return saleId;
@@ -79,6 +80,12 @@ public class S0025Form {
 	}
 	public void setTax(String rate) {
 		this.rate = rate;
+	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }
