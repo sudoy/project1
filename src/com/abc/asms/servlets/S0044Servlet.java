@@ -71,9 +71,10 @@ public class S0044Servlet extends HttpServlet {
 
 		//id取得
 		String accountId = req.getParameter("accountId");
+		int version = numCheck(req.getParameter("version"));
 
 		//削除処理
-		int cnt = new S0044Service().delete(accountId);
+		int cnt = new S0044Service().delete(accountId, version);
 
 		//成功メッセージ
 		if(cnt == 1) {
@@ -82,13 +83,18 @@ public class S0044Servlet extends HttpServlet {
 			session.setAttribute("success", success);
 		}else {
 			List<String> error = new ArrayList<>();
-			error.add("不正なアクセスです。");
+			error.add("No"+ accountId +"の削除に失敗しました。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
-			return;
 		}
 
 		//アカウント検索結果一覧へ戻る
 		resp.sendRedirect("S0041.html");
+	}
+
+	private int numCheck(String num) {
+		if(num.matches("^[1-9][0-9]*$")) {
+			return Integer.valueOf(num);
+		}
+		return 0;
 	}
 }

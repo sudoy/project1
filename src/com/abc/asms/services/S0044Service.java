@@ -8,7 +8,7 @@ import com.abc.asms.utils.DBUtils;
 
 public class S0044Service extends S0042Service {
 
-	public int delete(String accountId) {
+	public int delete(String accountId, int version) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -22,9 +22,10 @@ public class S0044Service extends S0042Service {
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "DELETE FROM accounts WHERE account_id = ?";
+			sql = "DELETE FROM accounts WHERE account_id = ? AND version = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, accountId);
+			ps.setInt(2, version);
 			cnt = ps.executeUpdate();
 
 		} catch (Exception e) {
