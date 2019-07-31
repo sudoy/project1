@@ -86,5 +86,33 @@ public class S0025Service {
 
 		return cnt;
 	}
+	public void updateHistory(int deletedBy,String saleId) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		int cnt = 0;
+
+		try {
+
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "UPDATE histories SET deleted_by = ? WHERE sale_id = ? ORDER BY history_id DESC LIMIT 1";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, deletedBy);
+			ps.setString(2, saleId);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+
+		return;
+	}
 
 }

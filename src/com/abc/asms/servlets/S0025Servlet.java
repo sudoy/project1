@@ -78,6 +78,7 @@ public class S0025Servlet extends HttpServlet {
 
 		//成功メッセージ
 		if(cnt == 1) {
+			new S0025Service().updateHistory(account.getAccountId(), saleId);
 			List<String> success = new ArrayList<>();
 			success.add("No"+ saleId +"の売上を削除しました。");
 			session.setAttribute("success", success);
