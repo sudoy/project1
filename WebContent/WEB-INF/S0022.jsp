@@ -11,35 +11,30 @@
 
 <!-- 売上登録システム表示 -->
 <div class="container">
-	<div class="col-xs-8"><h1>売上詳細表示</h1></div>
-	<form method="post">
-	<div class="col-xs-4 text-right">変更履歴<br>
-		<div class="btn-group" role="group" aria-label="...">
-			<div class="floatr">
-				<input type="submit" class="btn btn-info" value="参照">
-			</div>
-			<div class="floatr">
-				<select class="form-control" id="履歴" name="履歴">
+	<div class="padding-off col-xs-12">
+		<div class="col-xs-8"><h1>売上詳細表示</h1></div>
+		<form method="post">
+			<div class="col-xs-4 text-right topmargin">変更履歴<br>
+				<div class="btn-group" role="group" aria-label="...">
+					<div class="floatr">
+						<input type="submit" class="btn btn-info" value="参照">
+					</div>
+					<div class="floatr">
+						<select class="form-control" id="履歴" name="履歴">
 <c:forEach var="history" items="${form.histories}" varStatus="i">
-<c:if test="${i.index==0}">
-					<option value="">最新</option>
-</c:if>
-<c:if test="${i.index!=0}">
-					<option value="${history.key}">${history.value}</option>
-</c:if>
+							<option value="${history.key}">${history.value}</option>
 </c:forEach>
-				</select>
+						</select>
+					</div>
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
-	</form>
-
 	<!-- メッセージ -->
 	<jsp:include page="_message.jsp" />
 
 	<!-- form -->
 	<form class="form-horizontal" action="S0023.html" method="post">
-
 		<!-- 販売日 -->
 		<div class="form-group">
 			<label class="col-xs-3 text-right textdown">販売日</label>

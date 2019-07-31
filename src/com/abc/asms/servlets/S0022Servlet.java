@@ -44,7 +44,7 @@ public class S0022Servlet extends HttpServlet {
 			resp.sendRedirect("C0020.html");
 			return;
 		}
-
+		form.setHistories(new S0022Service().getHistories(saleId));
 		form.setSalesAuthority(authorityCheck);
 
 		//formをjspに渡す

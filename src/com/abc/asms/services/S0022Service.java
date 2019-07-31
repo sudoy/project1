@@ -65,6 +65,7 @@ public class S0022Service { //売上詳細表示のサービス
 		String sql = null;
 		ResultSet rs = null;
 		Map<Integer, String> histories = new HashMap<>();
+		int count = 0;
 
 		try{
 			//データベース接続
@@ -77,8 +78,14 @@ public class S0022Service { //売上詳細表示のサービス
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				int historyId = rs.getInt("history_id");
-				String updatedAt =  rs.getString("updated_at");
+				String updatedAt;
+				if(count==0) {
+					updatedAt = "最新";
+				}else {
+					updatedAt = "履歴" + count + "-" + rs.getString("updated_at").replaceAll("-", "/");
+				}
 				histories.put(historyId,updatedAt);
+				count++;
 			}
 		}catch(Exception e){
 			e.printStackTrace();

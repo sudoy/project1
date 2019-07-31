@@ -125,6 +125,7 @@ public class S0024Servlet extends HttpServlet {
 			//更新
 			int cnt = new S0024Service().update(form);
 			if(cnt == 1) {
+				new S0024Service().insertHistory(form);
 				//成功メッセージ
 				List<String> success = new ArrayList<>();
 				success.add("No"+ form.getSaleId() +"の売上を更新しました。");
