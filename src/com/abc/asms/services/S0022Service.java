@@ -25,12 +25,13 @@ public class S0022Service { //売上詳細表示のサービス
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "SELECT s.sale_id,s.sale_date,a.name,c.category_name,s.trade_name,s.unit_price,s.sale_number,s.note"
+			sql = "SELECT s.updated_at,aa.name,s.sale_id,s.sale_date,a.name,c.category_name,s.trade_name,s.unit_price,s.sale_number,s.note,s.history_id"
 					+ ",(SELECT t.rate FROM taxes t WHERE t.start_date <= s.sale_date AND t.category_id = s.category_id ORDER BY t.start_date desc LIMIT 1) AS rate "
-					+ "FROM sales s "
+					+ "FROM histories s "
 					+ "LEFT JOIN accounts a ON s.account_id = a.account_id "
+					+ "LEFT JOIN accounts aa ON s.updated_by = aa.account_id "
 					+ "LEFT JOIN categories c ON s.category_id = c.category_id "
-					+ "WHERE s.sale_id = ?";
+					+ "WHERE s.sale_id = ? ORDER BY s.history_id DESC LIMIT 1";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			ps.setString(1, saleId);
@@ -46,9 +47,11 @@ public class S0022Service { //売上詳細表示のサービス
 			int saleNumber = rs.getInt("s.sale_number");
 			int rate = rs.getInt("rate");
 			String note = rs.getString("s.note");
+			String updateAt = rs.getString("s.updated_at").replaceAll("-", "/");
+			String updateBy = rs.getString("aa.name");
+			String historyId = rs.getString("s.history_id");
 
-			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber,rate, note);
-
+			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber,rate, note,updateAt,updateBy,historyId);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

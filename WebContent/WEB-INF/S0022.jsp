@@ -34,11 +34,11 @@
 	<jsp:include page="_message.jsp" />
 <c:if test="${not empty form.updateAt}">
 	<div class="form-group  border-bt col-xs-12">
-		<label class="col-xs-1 text-right textdown">変更日</label>
+		<label class="col-xs-1 text-right textdown">${HTMLUtils.S0022_1(form.historyId,form.histories)}日</label>
 		<div class="col-xs-5">
 			<label class="textdown normal">${form.updateAt}</label>
 		</div>
-		<label class="col-xs-1 text-right textdown">修正者</label>
+		<label class="col-xs-1 text-right textdown">${HTMLUtils.S0022_1(form.historyId,form.histories)}者</label>
 		<div class="col-xs-5">
 			<label class="textdown normal">${form.updateBy}</label>
 		</div>

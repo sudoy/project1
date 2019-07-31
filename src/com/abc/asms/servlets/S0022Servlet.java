@@ -46,7 +46,6 @@ public class S0022Servlet extends HttpServlet {
 		}
 		form.setHistories(new S0022Service().getHistories(saleId));
 		form.setSalesAuthority(authorityCheck);
-
 		//formをjspに渡す
 		req.setAttribute("form", form);
 

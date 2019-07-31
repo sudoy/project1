@@ -50,6 +50,23 @@ public class S0022Form { //売上詳細表示のフォーム
 	}
 
 
+	public S0022Form(String saleId, String saleDate, String name, String categoryName, String tradeName, int unitPrice,
+			int saleNumber, int rate, String note, String updateAt, String updateBy, String historyId) {
+		super();
+		this.saleId = saleId;
+		this.saleDate = saleDate;
+		this.name = name;
+		this.categoryName = categoryName;
+		this.tradeName = tradeName;
+		this.unitPrice = unitPrice;
+		this.saleNumber = saleNumber;
+		this.rate = rate;
+		this.note = note;
+		this.updateAt = updateAt;
+		this.updateBy = updateBy;
+		this.historyId = historyId;
+	}
+
 	public String getSaleId() {
 		return saleId;
 	}

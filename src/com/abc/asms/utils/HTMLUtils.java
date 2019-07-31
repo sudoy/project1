@@ -3,6 +3,7 @@ package com.abc.asms.utils;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class HTMLUtils {
@@ -273,5 +274,14 @@ public class HTMLUtils {
 	 */
 	public static String rounding(String num) {
 		return new BigDecimal(num).setScale(0, ConstantUtils.ROUNDING_MODE).toString();
+	}
+
+	public static String S0022_1(String historyId,LinkedHashMap<Integer, String> histories) {
+		List<Integer> list = new ArrayList<>(histories.keySet());
+		int i = list.size()-1;
+		if(historyId.equals(list.get(i).toString())) {
+			return "作成";
+		}
+		return "編集";
 	}
 }
