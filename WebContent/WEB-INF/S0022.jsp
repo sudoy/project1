@@ -11,7 +11,28 @@
 
 <!-- 売上登録システム表示 -->
 <div class="container">
-	<h1>売上詳細表示</h1>
+	<div class="col-xs-8"><h1>売上詳細表示</h1></div>
+	<form method="post">
+	<div class="col-xs-4 text-right">変更履歴<br>
+		<div class="btn-group" role="group" aria-label="...">
+			<div class="floatr">
+				<input type="submit" class="btn btn-info" value="参照">
+			</div>
+			<div class="floatr">
+				<select class="form-control" id="履歴" name="履歴">
+<c:forEach var="history" items="${form.histories}" varStatus="i">
+<c:if test="${i.index==0}">
+					<option value="">最新</option>
+</c:if>
+<c:if test="${i.index!=0}">
+					<option value="${history.key}">${history.value}</option>
+</c:if>
+</c:forEach>
+				</select>
+			</div>
+		</div>
+	</div>
+	</form>
 
 	<!-- メッセージ -->
 	<jsp:include page="_message.jsp" />

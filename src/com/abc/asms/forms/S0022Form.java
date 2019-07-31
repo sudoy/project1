@@ -1,5 +1,7 @@
 package com.abc.asms.forms;
 
+import java.util.Map;
+
 public class S0022Form { //売上詳細表示のフォーム
 
 	private String saleId;
@@ -12,6 +14,7 @@ public class S0022Form { //売上詳細表示のフォーム
 	private int rate;
 	private String note;
 	private String salesAuthority;
+	private Map<Integer, String> histories;
 
 	public S0022Form(String saleId, String saleDate, String name, String categoryName, String tradeName, int unitPrice,
 			int saleNumber, int rate, String note) {
@@ -89,4 +92,13 @@ public class S0022Form { //売上詳細表示のフォーム
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
+
+	public Map<Integer, String> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(Map<Integer, String> histories) {
+		this.histories = histories;
+	}
+
 }

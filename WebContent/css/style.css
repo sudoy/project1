@@ -126,3 +126,11 @@
 .tmargin {
 	padding-top: 7px;
 }
+
+.floatr {
+	float: right;
+}
+
+.border-bt {
+	border-bottom: 2px solid #ddd;
+}

@@ -3,6 +3,8 @@ package com.abc.asms.services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 
@@ -55,5 +57,35 @@ public class S0022Service { //売上詳細表示のサービス
 		}
 
 		return form;
+	}
+	public Map<Integer, String> getHistories(String saleId){
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		Map<Integer, String> histories = new HashMap<>();
+
+		try{
+			//データベース接続
+			con = DBUtils.getConnection();
+			//SQL
+			sql = "SELECT history_id,updated_at FROM histories WHERE sale_id = ? ORDER BY updated_at";
+			//SELECT命令の準備・実行
+			ps = con.prepareStatement(sql);
+			ps.setString(1, saleId);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				int historyId = rs.getInt("history_id");
+				String updatedAt =  rs.getString("updated_at");
+				histories.put(historyId,updatedAt);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBUtils.close(con, ps, rs);
+		}
+
+		return histories;
 	}
 }
