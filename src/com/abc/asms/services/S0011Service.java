@@ -81,7 +81,7 @@ public class S0011Service {
 					" VALUES (?,?,?,?,?,?,?,?)";
 
 			ps = con.prepareStatement(sql);
-			ps.setString(1, form.getSaleDate());
+			ps.setInt(1, sale_id);
 			ps.setString(2, form.getSaleDate());
 			ps.setString(3, form.getAccountId());
 			ps.setString(4, form.getCategoryId());
