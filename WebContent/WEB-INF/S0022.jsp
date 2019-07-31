@@ -13,16 +13,16 @@
 <div class="container">
 	<div class="padding-off col-xs-12">
 		<div class="col-xs-8"><h1>売上詳細表示</h1></div>
-		<form method="post">
+		<form method="post" action="S0022.html?saleId=${form.saleId}">
 			<div class="col-xs-4 text-right topmargin">変更履歴<br>
 				<div class="btn-group" role="group" aria-label="...">
 					<div class="floatr">
 						<input type="submit" class="btn btn-info" value="参照">
 					</div>
 					<div class="floatr">
-						<select class="form-control" id="履歴" name="履歴">
+						<select class="form-control" id="history" name="history">
 <c:forEach var="history" items="${form.histories}" varStatus="i">
-							<option value="${history.key}">${history.value}</option>
+							<option value="${history.key}" ${HTMLUtils.writeSelected(history.key,form.historyId)}>${history.value}</option>
 </c:forEach>
 						</select>
 					</div>
@@ -32,7 +32,18 @@
 	</div>
 	<!-- メッセージ -->
 	<jsp:include page="_message.jsp" />
-
+<c:if test="${not empty form.updateAt}">
+	<div class="form-group  border-bt col-xs-12">
+		<label class="col-xs-1 text-right textdown">変更日</label>
+		<div class="col-xs-5">
+			<label class="textdown normal">${form.updateAt}</label>
+		</div>
+		<label class="col-xs-1 text-right textdown">修正者</label>
+		<div class="col-xs-5">
+			<label class="textdown normal">${form.updateBy}</label>
+		</div>
+	</div>
+</c:if>
 	<!-- form -->
 	<form class="form-horizontal" action="S0023.html" method="post">
 		<!-- 販売日 -->

@@ -66,7 +66,7 @@ public class S0011Service {
 		}
 		return id;
 	}
-	public void insertHistory(EntrySaleForm form,int sale_id) throws ServletException {
+	public void insertHistory(EntrySaleForm form,int sale_id,int accountId) throws ServletException {
 
 		//EntryServletで使用
 		Connection con = null;
@@ -77,18 +77,19 @@ public class S0011Service {
 		try{
 			//DBへinsert
 			con = DBUtils.getConnection();
-			sql = "INSERT INTO histories(sale_id,sale_date,account_id,category_id,trade_name,unit_price,sale_number,note)"+
-					" VALUES (?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO histories(updated_by,sale_id,sale_date,account_id,category_id,trade_name,unit_price,sale_number,note)"+
+					" VALUES (?,?,?,?,?,?,?,?,?)";
 
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, sale_id);
-			ps.setString(2, form.getSaleDate());
-			ps.setString(3, form.getAccountId());
-			ps.setString(4, form.getCategoryId());
-			ps.setString(5, form.getTradeName());
-			ps.setString(6, form.getUnitPrice());
-			ps.setString(7, form.getSaleNumber());
-			ps.setString(8, form.getNote());
+			ps.setInt(1, accountId);
+			ps.setInt(2, sale_id);
+			ps.setString(3, form.getSaleDate());
+			ps.setString(4, form.getAccountId());
+			ps.setString(5, form.getCategoryId());
+			ps.setString(6, form.getTradeName());
+			ps.setString(7, form.getUnitPrice());
+			ps.setString(8, form.getSaleNumber());
+			ps.setString(9, form.getNote());
 			ps.executeUpdate();
 
 		}catch(Exception e){

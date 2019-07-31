@@ -1,6 +1,6 @@
 package com.abc.asms.forms;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class S0022Form { //売上詳細表示のフォーム
 
@@ -14,7 +14,10 @@ public class S0022Form { //売上詳細表示のフォーム
 	private int rate;
 	private String note;
 	private String salesAuthority;
-	private Map<Integer, String> histories;
+	private LinkedHashMap<Integer, String> histories;
+	private String updateAt;
+	private String updateBy;
+	private String historyId;
 
 	public S0022Form(String saleId, String saleDate, String name, String categoryName, String tradeName, int unitPrice,
 			int saleNumber, int rate, String note) {
@@ -29,6 +32,23 @@ public class S0022Form { //売上詳細表示のフォーム
 		this.rate = rate;
 		this.note = note;
 	}
+
+	public S0022Form(String saleId, String saleDate, String name, String categoryName, String tradeName, int unitPrice,
+			int saleNumber, int rate, String note,String updateAt, String updateBy) {
+		super();
+		this.saleId = saleId;
+		this.saleDate = saleDate;
+		this.name = name;
+		this.categoryName = categoryName;
+		this.tradeName = tradeName;
+		this.unitPrice = unitPrice;
+		this.saleNumber = saleNumber;
+		this.rate = rate;
+		this.note = note;
+		this.updateAt = updateAt;
+		this.updateBy = updateBy;
+	}
+
 
 	public String getSaleId() {
 		return saleId;
@@ -93,12 +113,40 @@ public class S0022Form { //売上詳細表示のフォーム
 		this.rate = rate;
 	}
 
-	public Map<Integer, String> getHistories() {
+	public LinkedHashMap<Integer, String> getHistories() {
 		return histories;
 	}
 
-	public void setHistories(Map<Integer, String> histories) {
+	public void setHistories(LinkedHashMap<Integer, String> histories) {
 		this.histories = histories;
+	}
+
+
+	public String getUpdateAt() {
+		return updateAt;
+	}
+
+
+	public void setUpdateAt(String updateAt) {
+		this.updateAt = updateAt;
+	}
+
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public String getHistoryId() {
+		return historyId;
+	}
+
+	public void setHistoryId(String historyId) {
+		this.historyId = historyId;
 	}
 
 }
