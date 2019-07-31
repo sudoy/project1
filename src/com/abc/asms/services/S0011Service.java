@@ -66,5 +66,40 @@ public class S0011Service {
 		}
 		return id;
 	}
+	public void insertHistory(EntrySaleForm form,int sale_id) throws ServletException {
 
+		//EntryServletで使用
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = null;
+
+		try{
+			//DBへinsert
+			con = DBUtils.getConnection();
+			sql = "INSERT INTO histories(sale_id,sale_date,account_id,category_id,trade_name,unit_price,sale_number,note)"+
+					" VALUES (?,?,?,?,?,?,?,?)";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, form.getSaleDate());
+			ps.setString(2, form.getSaleDate());
+			ps.setString(3, form.getAccountId());
+			ps.setString(4, form.getCategoryId());
+			ps.setString(5, form.getTradeName());
+			ps.setString(6, form.getUnitPrice());
+			ps.setString(7, form.getSaleNumber());
+			ps.setString(8, form.getNote());
+			ps.executeUpdate();
+
+		}catch(Exception e){
+			throw new ServletException(e);
+
+		}finally{
+
+			try{
+				DBUtils.close(con, ps, rs);
+			}catch(Exception e){}
+		}
+		return;
+	}
 }

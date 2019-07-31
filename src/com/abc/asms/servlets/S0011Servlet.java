@@ -125,6 +125,8 @@ public class S0011Servlet extends HttpServlet {
 		//insert開始
 		S0011Service service = new S0011Service();
 		int id = service.insert(form);
+		// historyiesにinsert
+		service.insertHistory(form, id);
 
 		//成功メッセージ
 		session.setAttribute("success", "No" + id + "の売上を登録しました。");
