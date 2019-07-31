@@ -56,7 +56,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			//詳細画面から移動してきたとき…idからformを取得
 			String saleId = req.getParameter("saleId");
 			form = new S0023Service().findSaleDetail(saleId);
-			session.setAttribute("verOfsale", form.getVersion());
+			session.setAttribute("verOfsale", form.getVersion());//バージョン番号保存
 		}
 
 		//formの中身がない場合ダッシュボードへ

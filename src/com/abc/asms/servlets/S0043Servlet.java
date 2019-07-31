@@ -34,7 +34,10 @@ public class S0043Servlet extends HttpServlet {
 		}
 
 		//S0042から値を取得 ※セッション
-		AccountEditForm form = (AccountEditForm) session.getAttribute("AccountEditForm");
+		AccountEditForm form = null;
+		if(session.getAttribute("AccountEditForm") != null) {
+			form = (AccountEditForm) session.getAttribute("AccountEditForm");
+		}
 
 		//formの中身がない場合ダッシュボードへ
 		if(form == null || form.getAccountId() == null) {
@@ -68,21 +71,11 @@ public class S0043Servlet extends HttpServlet {
 
 		//form取得
 		AccountEditForm form = new AccountEditForm();
-		form.setAccountId(req.getParameter("accountId"));
-		form.setName(req.getParameter("name"));
-		form.setMail(req.getParameter("mail"));
-		form.setInputPass(req.getParameter("password"));
-		form.setSalesAuthority(req.getParameter("salesAuthority"));
-		form.setAccountAuthority(req.getParameter("accountAuthority"));
-		form.setVersion((int) session.getAttribute("verOfaccount"));
-
-		//nullチェック
-		if(isnull(form)) {
-			List<String> error = new ArrayList<>();
-			error.add("不正なアクセスです。");
-			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
-			return;
+		if(session.getAttribute("AccountEditForm") != null) {
+			form = (AccountEditForm) session.getAttribute("AccountEditForm");
+		}
+		if(session.getAttribute("verOfaccount") != null) {
+			form.setVersion((int) session.getAttribute("verOfaccount"));
 		}
 
 		//更新処理
@@ -102,13 +95,5 @@ public class S0043Servlet extends HttpServlet {
 		//アカウント検索結果一覧へ戻る
 		resp.sendRedirect("S0041.html");
 	}
-
-	private boolean isnull(AccountEditForm form) {
-		if(form.getAccountId() == null || form.getName() == null ||
-				form.getMail() == null || form.getInputPass() == null ||
-				form.getSalesAuthority() == null || form.getAccountAuthority() == null) {
-			return true;
-		}
-		return false;
-	}
 }
+

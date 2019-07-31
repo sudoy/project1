@@ -105,7 +105,9 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
-		form.setVersion((int) session.getAttribute("verOfsale"));
+		if(session.getAttribute("verOfsale") != null) {
+			form.setVersion((int) session.getAttribute("verOfsale"));
+		}
 
 		if(isnull(form.getNote())) {
 			List<String> error = new ArrayList<>();

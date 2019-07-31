@@ -13,7 +13,6 @@
 	<h1>アカウントを編集してよろしいですか？</h1>
 
 	<form class="form-horizontal" method="post" action="S0043.html">
-		<input type="hidden" name="accountId" value="${HTMLUtils.XSS(form.accountId)}">
 
 		<!-- 氏名 -->
 		<div class="form-group">
@@ -21,7 +20,6 @@
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="name" name="name"
 					value="${HTMLUtils.XSS(form.name)}" placeholder="氏名" disabled>
-				<input type="hidden" name="name" value="${HTMLUtils.XSS(form.name)}">
 			</div>
 		</div>
 
@@ -31,7 +29,6 @@
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="mail" name="mail"
 					value="${HTMLUtils.XSS(form.mail)}" placeholder="メールアドレス" disabled>
-				<input type="hidden" name="mail" value="${HTMLUtils.XSS(form.mail)}">
 			</div>
 		</div>
 
@@ -43,7 +40,6 @@
 				<input type="password" class="form-control" id="password1"
 					name="password" value="${HTMLUtils.XSS(form.inputPass)}" placeholder="パスワード"
 					disabled>
-				<input type="hidden" name="password" value="${HTMLUtils.XSS(form.inputPass)}">
 			</div>
 		</div>
 
@@ -71,7 +67,6 @@
 					${HTMLUtils.writeChecked('yes',form.salesAuthority)} disabled>
 					権限あり
 				</label>
-				<input type="hidden" name="salesAuthority" value="${HTMLUtils.XSS(form.salesAuthority)}">
 			</div>
 		</div>
 
@@ -88,7 +83,6 @@
 					${HTMLUtils.writeChecked('yes',form.accountAuthority)} disabled>
 					権限あり
 				</label>
-				<input type="hidden" name="accountAuthority" value="${HTMLUtils.XSS(form.accountAuthority)}">
 			</div>
 		</div>
 
