@@ -71,9 +71,10 @@ public class S0025Servlet extends HttpServlet {
 
 		//id取得
 		String saleId = req.getParameter("saleId");
+		int version = numCheck(req.getParameter("version"));
 
 		//削除処理
-		int cnt = new S0025Service().delete(saleId);
+		int cnt = new S0025Service().delete(saleId,version);
 
 		//成功メッセージ
 		if(cnt == 1) {
@@ -82,13 +83,20 @@ public class S0025Servlet extends HttpServlet {
 			session.setAttribute("success", success);
 		}else {
 			List<String> error = new ArrayList<>();
-			error.add("不正なアクセスです。");
+			error.add("No"+ saleId +"の削除に失敗しました。");
 			session.setAttribute("error", error);
-			resp.sendRedirect("C0020.html");
+			resp.sendRedirect("S0022.html?saleId=" + saleId);
 			return;
 		}
 
 		//売上検索結果一覧へ
 		resp.sendRedirect("S0021.html");
+	}
+
+	private int numCheck(String num) {
+		if(num.matches("^[1-9][0-9]*$")) {
+			return Integer.valueOf(num);
+		}
+		return 0;
 	}
 }
