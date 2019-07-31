@@ -20,6 +20,7 @@
 	<form class="form-horizontal" action="S0023.html" method="post">
 		<%--更新時の確認用で渡すsaleId --%>
 		<input type="hidden" name="saleId" value="${form.saleId}">
+		<input type="hidden" name="version" value="${form.version}">
 
 		<!-- 販売日 -->
 		<div class="form-group">

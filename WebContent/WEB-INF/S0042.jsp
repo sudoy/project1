@@ -17,6 +17,7 @@
 
 	<form class="form-horizontal" method="post" action="S0042.html">
 		<input type="hidden" name="accountId" value="${form.accountId}">
+		<input type="hidden" name="version" value="${form.version}">
 
 		<!-- 氏名 -->
 		<div class="form-group">

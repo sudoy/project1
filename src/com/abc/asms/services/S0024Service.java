@@ -132,6 +132,7 @@ public class S0024Service {
 		}else {
 			input.append("&note=" + form.getNote());
 		}
+		input.append("&version=" + form.getVersion());
 		input.append("&cancel");
 
 		return input;

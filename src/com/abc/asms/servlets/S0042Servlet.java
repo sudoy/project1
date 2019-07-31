@@ -45,7 +45,6 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		}else {
 			//アカウント情報取得
 			form = new S0042Service().findAccount(accountId);
-			session.setAttribute("verOfaccount", form.getVersion());//バージョン番号保存
 		}
 		session.setAttribute("AccountEditForm", null);
 
@@ -88,6 +87,7 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		form.setInputPass2(req.getParameter("inputPass2"));
 		form.setSalesAuthority(req.getParameter("salesAuthority"));
 		form.setAccountAuthority(req.getParameter("accountAuthority"));
+		form.setVersion(numCheck(req.getParameter("version")));
 
 		//バリデーション
 		List<String> error = validation(form);
@@ -161,5 +161,12 @@ public class S0042Servlet extends HttpServlet { //アカウント詳細編集
 		}
 
 		return error;
+	}
+
+	private int numCheck(String num) {
+		if(num.matches("^[1-9][0-9]*$")) {
+			return Integer.valueOf(num);
+		}
+		return 0;
 	}
 }

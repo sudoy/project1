@@ -107,6 +107,7 @@ public class S0023Service {
 		input.append("&unitPrice=" + form.getUnitPrice());
 		input.append("&saleNumber=" + form.getSaleNumber());
 		input.append("&note=" + URLEncoder.encode(form.getNote(), "UTF-8"));
+		input.append("&version=" + form.getVersion());
 
 		return input;
 	}

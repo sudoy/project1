@@ -56,7 +56,6 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			//詳細画面から移動してきたとき…idからformを取得
 			String saleId = req.getParameter("saleId");
 			form = new S0023Service().findSaleDetail(saleId);
-			session.setAttribute("verOfsale", form.getVersion());//バージョン番号保存
 		}
 
 		//formの中身がない場合ダッシュボードへ
@@ -99,6 +98,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		form.setUnitPrice(replaceC(req.getParameter("unitPrice")));
 		form.setSaleNumber(replaceC(req.getParameter("saleNumber")));
 		form.setNote(req.getParameter("note"));
+		form.setVersion(numCheck(req.getParameter("version")));
 
 		if(isnull(form.getNote())) {
 			List<String> error = new ArrayList<>();
@@ -126,7 +126,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 
 	}
 
-	public String replaceC(String num) {
+	private String replaceC(String num) {
 
 		if(num != null && num.matches("^[0-9]+(,[0-9]+)*$")) {
 			return num.replace(",", "");
@@ -134,8 +134,15 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		return num;
 	}
 
+	private int numCheck(String num) {
+		if(num.matches("^[1-9][0-9]*$")) {
+			return Integer.valueOf(num);
+		}
+		return 0;
+	}
+
 	//バリデーションチェック
-	public List<String> validation(S0023Form form){
+	private List<String> validation(S0023Form form){
 
 		List<String> error = new ArrayList<>();
 

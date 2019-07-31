@@ -50,7 +50,9 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
+		form.setVersion(numCheck(req.getParameter("version")));
 		form.setInput(new S0024Service().setInput(form));
+
 
 		//formの中身がない場合ダッシュボードへ
 		if(form == null || form.getSaleId() == null) {
@@ -105,9 +107,8 @@ public class S0024Servlet extends HttpServlet {
 		form.setUnitPrice(req.getParameter("unitPrice"));
 		form.setSaleNumber(req.getParameter("saleNumber"));
 		form.setNote(req.getParameter("note"));
-		if(session.getAttribute("verOfsale") != null) {
-			form.setVersion((int) session.getAttribute("verOfsale"));
-		}
+		form.setVersion(numCheck(req.getParameter("version")));
+
 
 		if(isnull(form.getNote())) {
 			List<String> error = new ArrayList<>();
@@ -146,7 +147,7 @@ public class S0024Servlet extends HttpServlet {
 		resp.sendRedirect("S0021.html");
 	}
 
-	public List<String> validation(S0024Form form){
+	private List<String> validation(S0024Form form){
 
 		List<String> error = new ArrayList<>();
 
@@ -217,12 +218,19 @@ public class S0024Servlet extends HttpServlet {
 		return error;
 	}
 
-	public boolean isnull(String note) {
+	private boolean isnull(String note) {
 		//nullチェック
 		if(note == null) {
 			return true;
 		}
 		return false;
+	}
+
+	private int numCheck(String num) {
+		if(num.matches("^[1-9][0-9]*$")) {
+			return Integer.valueOf(num);
+		}
+		return 0;
 	}
 
 }

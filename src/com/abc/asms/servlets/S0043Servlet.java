@@ -74,9 +74,6 @@ public class S0043Servlet extends HttpServlet {
 		if(session.getAttribute("AccountEditForm") != null) {
 			form = (AccountEditForm) session.getAttribute("AccountEditForm");
 		}
-		if(session.getAttribute("verOfaccount") != null) {
-			form.setVersion((int) session.getAttribute("verOfaccount"));
-		}
 
 		//更新処理
 		int cnt = new S0043Service().update(form);
