@@ -92,7 +92,6 @@ public class S0025Service {
 		PreparedStatement ps = null;
 		String sql = null;
 		ResultSet rs = null;
-		int cnt = 0;
 
 		try {
 
