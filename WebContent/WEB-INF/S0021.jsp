@@ -18,20 +18,19 @@
 	<jsp:include page="_message.jsp" />
 
 	<!--仕様変更-->
+	<form method="POST" action="S0021.html">
 	<!--ページ移動-->
-
 	<div class="col-sm-3  pagemove">
 
 		<div class="input-group">
 			<input type="text" class="form-control" value="${form.page}" placeholder="ページ数" name="page">
 			<span class="input-group-btn">
-			<a class="btn btn-info" href="S0021.html?page=${form.page}" role="button">ページ移動</a>
+			<button type="submit" class="btn btn-info" name="button" value="transition">ページ移動</button>
 			</span>
 
 		</div><!-- /input-group -->
 	</div><!--ページ移動-->
-
-
+	</form>
 
 	<!--ソート-->
 
@@ -55,7 +54,7 @@
 					<option value="desc" ${HTMLUtils.writeSelected('desc',form.sort)}>降順</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-success">ソート</button>
+			<button type="submit" class="btn btn-success" name="button" value="sort">ソート</button>
 		</form>
 	</div><!---->
 	<!--ソート-->
@@ -103,231 +102,88 @@
 	</table>
 
 
-
-	<!--仕様変更-->
-
 	<!--ページング-->
 	<div class="col-sm-offset-2 col-sm-8 page">
 		<div class="col-sm-offset-2">
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
 
+					<c:if test="${form.page == 1}">
 					<li class="disabled">
-						<a href="#" aria-label="Previous">
+						<a aria-label="Previous">
 						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
 						</a>
 					</li>
+					</c:if>
 
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
+					<c:if test="${form.page != 1}">
 					<li>
-						<a href="#" aria-label="Next">
+						<a href="S0021.html?page=${form.page - 1}" aria-label="Previous">
+						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+					</li>
+					</c:if>
+
+					<c:if test="${form.pageList.size() <= 9}">
+					<c:forEach var="pagenumber" items="${form.pageList}">
+					<li ${HTMLUtils.createHeaderClass(form.page,pagenumber)}><a href="S0021.html?page=${pagenumber}">${pagenumber}<span class="sr-only">(current)</span></a></li>
+					</c:forEach>
+					</c:if>
+
+					<c:if test="${10 <= form.pageList.size()}">
+
+						<c:if test="${form.page <= 5}">
+						<c:forEach var="pagenumber" items="${form.pageList}" end="7">
+						<li ${HTMLUtils.createHeaderClass(form.page,pagenumber)}><a href="S0021.html?page=${pagenumber}">${pagenumber}<span class="sr-only">(current)</span></a></li>
+						</c:forEach>
+						<li class="disabled"><a>…</a></li>
+						</c:if>
+
+
+						<c:if test="${6 <= form.page && (form.page + 5) <= form.pageList.size()}">
+						<li><a class="disabled">…</a></li>
+
+						<c:forEach var="pagenumber" items="${form.pageList}" begin="${form.page - 4}" end="${form.page + 2}">
+						<li ${HTMLUtils.createHeaderClass(form.page,pagenumber)}><a href="S0021.html?page=${pagenumber}">${pagenumber}<span class="sr-only">(current)</span></a></li>
+						</c:forEach>
+
+						<li><a class="disabled">…</a></li>
+						</c:if>
+
+
+						<c:if test="${6 <= form.page && form.pageList.size() < (form.page + 5)}">
+						<li class="disabled"><a>…</a></li>
+
+
+						<c:forEach var="pagenumber" items="${form.pageList}" begin="${form.pageList.size() - 8}">
+						<li ${HTMLUtils.createHeaderClass(form.page,pagenumber)}><a href="S0021.html?page=${pagenumber}">${pagenumber}<span class="sr-only">(current)</span></a></li>
+						</c:forEach>
+
+
+						</c:if>
+
+					</c:if>
+
+
+					<c:if test="${form.pageList.size() != form.page}">
+					<li>
+						<a href="S0021.html?page=${form.page + 1}" aria-label="Next">
 						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
 						</a>
 					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
+					</c:if>
 
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li class="active"><a href="#">9<span class="sr-only">(current)</span></a></li>
+					<c:if test="${form.pageList.size() == form.page}">
 					<li class="disabled">
-						<a href="#" aria-label="Next">
+						<a aria-label="Next">
 						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
 						</a>
 					</li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>
 	</div><!--ページング-->
-
-
-
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-
-					<li class="disabled">
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li class="disabled"><a href="#">…</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
-
-
-
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li class="active"><a href="#">5<span class="sr-only">(current)</span></a></li><!--現在ページ-->
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#" class="disabled">…</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
-
-
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li class="disabled"><a href="#">…</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li class="active"><a href="#">6<span class="sr-only">(current)</span></a></li><!--現在ページ-->
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
-
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li class="disabled"><a href="#">…</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li class="active"><a href="#">8<span class="sr-only">(current)</span></a></li><!--現在ページ-->
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
-
-
-
-	<!--ページング-->
-	<div class="col-sm-offset-2 col-sm-8 page">
-		<div class="col-sm-offset-2">
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-					</li>
-
-					<li class="disabled"><a href="#">…</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li class="active"><a href="#">10<span class="sr-only">(current)</span></a></li><!--現在ページ-->
-					<li class="disabled">
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div><!--ページング-->
-
-
-
 
 
 </div>

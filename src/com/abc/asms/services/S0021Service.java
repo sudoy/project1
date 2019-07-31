@@ -90,13 +90,16 @@ public class S0021Service {
 				sql.append("ASC ");
 
 			}else {
-				sql.append(sort);
+				sql.append(sort + " ");
 
 			}
 
-			//表示件数、何ページ目を表示するか
+
+
+//			テストのためコメントアウト
 			sql.append("limit " + ConstantUtils.DISPLAY_COUNT + " ");
 			sql.append("offset " + ((page - 1) * ConstantUtils.DISPLAY_COUNT));
+
 
 
 
@@ -105,7 +108,6 @@ public class S0021Service {
 			for (int i = 0; i < holder.size(); i++) {
 				ps.setObject(i + 1, holder.get(i));
 			}
-
 
 			rs = ps.executeQuery();
 
@@ -134,7 +136,7 @@ public class S0021Service {
 
 
 	//検索結果の件数を取得するメソッド
-	public int getResult(SaleConditionalForm scf) throws ServletException {
+	public List<Integer> getResult(SaleConditionalForm scf) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -146,6 +148,7 @@ public class S0021Service {
 		List<Object> holder = new ArrayList<>();
 		StringBuilder sql = new StringBuilder();
 		int result = 0;
+		List<Integer> pageList = new ArrayList<>();
 		try {
 
 			//データベース接続
@@ -196,6 +199,18 @@ public class S0021Service {
 			//検索結果件数をカウント
 			result = rs.getInt("result");
 
+			//一の位が0の場合
+			if(result % ConstantUtils.DISPLAY_COUNT == 0) {
+				result = result / ConstantUtils.DISPLAY_COUNT;
+
+			}else {
+				result = result / ConstantUtils.DISPLAY_COUNT + 1;
+			}
+
+			//jspで件数に応じたページ数を表示する
+			for(int i = 1 ; i <= result ; i++) {
+				pageList.add(i);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,11 +218,8 @@ public class S0021Service {
 			DBUtils.close(con, ps, rs);
 		}
 
-		return result;
+		return pageList;
 
 	}
-
-
-
 
 }

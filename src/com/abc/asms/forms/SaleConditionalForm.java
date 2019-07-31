@@ -1,5 +1,7 @@
 package com.abc.asms.forms;
 
+import java.util.List;
+
 public class SaleConditionalForm {
 	String[] date;
 	String accountId;
@@ -10,6 +12,7 @@ public class SaleConditionalForm {
 	String item;
 	String sort;
 	int page;
+	List<Integer> pageList;
 
 	public SaleConditionalForm(String[] date, String accountId, String[] categoryId, String tradeName, String note) {
 		super();
@@ -74,6 +77,16 @@ public class SaleConditionalForm {
 	public void setPage(int page) {
 		this.page = page;
 	}
+
+	public List<Integer> getPageList() {
+		return pageList;
+	}
+
+	public void setPageList(List<Integer> pageList) {
+		this.pageList = pageList;
+	}
+
+
 
 
 
