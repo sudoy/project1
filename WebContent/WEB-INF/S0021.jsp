@@ -12,12 +12,14 @@
 
 
 <div class="container">
-	<div class="col-xs-10"><h1>売上検索結果表示</h1></div>
+	<div class="col-xs-10 padding-off"><h1>売上検索結果表示</h1></div>
 	<form class="form-horizontal" method="post" action="S0021.html">
-		<div class="col-xs-2 text-right"><button type="submit" class="btn btn-info" name="button" value="dl">CSVダウンロード</button></div>
+		<div class="col-xs-2 text-right padding-off"><button type="submit" class="btn btn-info" name="button" value="dl">CSVダウンロード</button></div>
 	</form>
 	<!-- メッセージ -->
-	<jsp:include page="_message.jsp" />
+	<div class="col-xs-12 padding-off">
+		<jsp:include page="_message.jsp" />
+	</div>
 
 	<!--仕様変更-->
 	<form method="POST" action="S0021.html">

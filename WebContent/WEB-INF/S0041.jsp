@@ -10,9 +10,9 @@
 </jsp:include>
 
 <div class="container">
-	<div class="col-xs-10"><h1>アカウント検索結果一覧</h1></div>
+	<div class="col-xs-10 padding-off"><h1>アカウント検索結果一覧</h1></div>
 	<form class="form-horizontal" method="post" action="S0041.html">
-		<div class="col-xs-2 text-right"><input type="submit" class="btn btn-info" name="DL" value="CSVダウンロード"></div>
+		<div class="col-xs-2 text-right padding-off"><input type="submit" class="btn btn-info" name="DL" value="CSVダウンロード"></div>
 	</form>
 	<!-- メッセージ -->
 	<div class="col-xs-12 padding-off">
