@@ -12,8 +12,10 @@
 
 
 <div class="container">
-	<h1>売上検索結果表示</h1>
-
+	<div class="col-xs-10"><h1>売上検索結果表示</h1></div>
+	<form class="form-horizontal" method="post" action="S0021.html">
+		<div class="col-xs-2 text-right"><button type="submit" class="btn btn-info" name="button" value="dl">CSVダウンロード</button></div>
+	</form>
 	<!-- メッセージ -->
 	<jsp:include page="_message.jsp" />
 

@@ -430,6 +430,9 @@ public class DBUtils {
 		}
 	}
 	public static String formatCSV(String str) {
-		return str.replaceAll("\"", "\"\"");
+		if(str!=null) {
+			return str.replaceAll("\"", "\"\"");
+		}
+		return "";
 	}
 }

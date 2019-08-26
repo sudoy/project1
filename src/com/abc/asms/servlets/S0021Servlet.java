@@ -1,6 +1,8 @@
 package com.abc.asms.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,12 +73,24 @@ public class S0021Servlet extends HttpServlet {
 			session.setAttribute("SaleConditional", scf);
 		}
 
+
 		SaleConditionalForm scf = (SaleConditionalForm) session.getAttribute("SaleConditional");
 		String item = "";
 		String sort = "";
 		int page = 0;
 
-		if(req.getParameter("button").equals("sort")) {
+		//CSVファイルダウンロード
+		if(req.getParameter("button").equals("dl")) {
+			// 文字コード設定
+			resp.setContentType("text/html; charset=SJIS");
+			// ファイル名設定（ファイル名を設定しないと、htmlとして画面に表示されてしまいます
+			resp.setHeader("Content-Disposition", "attachment; filename=\""+ URLEncoder.encode("売上検索結果一覧.csv","UTF-8") +"\"");
+			// レスポンスにCSV出力
+			PrintWriter w = resp.getWriter();
+			w.print(S21S.getCSV(scf));
+			w.flush();
+			return;
+		}else if(req.getParameter("button").equals("sort")) {
 
 			//ソートボタンが押された時
 			//ソートの情報を取得
