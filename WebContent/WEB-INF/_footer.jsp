@@ -6,7 +6,5 @@
 <script src="bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
 <script src="bootstrap-datepicker-1.9.0-dist/js/mydatepicker.js"></script>
-<script src="js/Chart.min.js"></script>
-<script src="js/graph.js"></script>
 </body>
 </html>

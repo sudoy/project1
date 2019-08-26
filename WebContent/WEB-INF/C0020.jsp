@@ -54,6 +54,7 @@
 	</nav>
 
 	<!-- グラフ -->
+	<input type="hidden" id="graphDate" value="${form.date.getYear()}">
 	<div class="col-sm-12 bm20">
 		<div class="col-sm-6">
 			<canvas id="graph1LastYear"></canvas>
@@ -176,14 +177,24 @@
 </div>
 <!--class="container"-->
 
-<%-- グラフに渡す値 --%>
+<%-- グラフに渡す値
 <script>
 var thisYear = ${form.date.getYear()}
 var lastYear = ${form.date.getYear() - 1}
 var thisYearList = ${form.thisYearList}
 var lastYearList = ${form.lastYearList}
 var maxSale = ${form.maxSale}
-</script>
+</script>--%>
 
 <!--フッター-->
-<jsp:include page="_footer.jsp" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/myScript.js"></script>
+<link rel="stylesheet" href="bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker3.min.css">
+<script src="bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js"></script>
+<script src="bootstrap-datepicker-1.9.0-dist/js/mydatepicker.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/graph2.js"></script>
+</body>
+</html>
