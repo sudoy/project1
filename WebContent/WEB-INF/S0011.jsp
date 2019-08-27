@@ -136,7 +136,7 @@
 		<!-- Submit -->
 		<div class="form-group">
 			<div class="col-xs-8 col-xs-offset-4">
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary" autofocus>
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ＯＫ
 				</button>
 				<a class="btn btn-default"

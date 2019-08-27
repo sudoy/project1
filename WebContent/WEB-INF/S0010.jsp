@@ -31,7 +31,7 @@
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'販売日')}"
 					id="saleDate" name="saleDate" value="${HTMLUtils.XSS(form.saleDate)}"
-					placeholder="販売日">
+					placeholder="販売日" autofocus>
 			</div>
 		</div>
 

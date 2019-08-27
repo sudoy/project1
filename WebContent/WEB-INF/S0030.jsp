@@ -26,7 +26,7 @@
 			<div class="col-sm-4">
 				<input type="text"
 					class="form-control ${HTMLUtils.errorFrame(error,'氏名')}" id="name"
-					name="name" value="${HTMLUtils.XSS(form.name)}" placeholder="氏名">
+					name="name" value="${HTMLUtils.XSS(form.name)}" placeholder="氏名" autofocus>
 			</div>
 		</div>
 

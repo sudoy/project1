@@ -87,7 +87,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-4">
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary" autofocus>
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> O K
 				</button>
 				<a href="S0030.html?cancel" class="btn btn-default">キャンセル</a>
