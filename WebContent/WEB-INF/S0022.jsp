@@ -31,7 +31,9 @@
 		</form>
 	</div>
 	<!-- メッセージ -->
-	<jsp:include page="_message.jsp" />
+	<div class="col-xs-12 padding-off">
+		<jsp:include page="_message.jsp" />
+	</div>
 <c:if test="${not empty form.updateAt}">
 	<div class="form-group  border-bt col-xs-12">
 		<label class="col-xs-1 text-right textdown">${HTMLUtils.S0022_1(form.historyId,form.histories)}日</label>
