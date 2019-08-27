@@ -52,6 +52,7 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 			form.setNote(req.getParameter("note"));
 			form.setAccountMap(new S0023Service().getAccountMap());
 			form.setCategoryMap(DBUtils.getCategoryMap(form.getCategoryId()));
+			form.setVersion(numCheck(req.getParameter("version")));
 		}else {
 			//詳細画面から移動してきたとき…idからformを取得
 			String saleId = req.getParameter("saleId");
@@ -220,4 +221,5 @@ public class S0023Servlet extends HttpServlet { //売上詳細編集のサーブ
 		}
 		return false;
 	}
+
 }
