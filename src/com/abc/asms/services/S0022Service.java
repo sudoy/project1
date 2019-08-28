@@ -86,23 +86,22 @@ public class S0022Service { //売上詳細表示のサービス
 			ps.setString(1, historyId);
 			ps.setString(2, saledId);
 			rs = ps.executeQuery();
-			rs.next();
 
 			//jspに渡すform用意
-			String saleId = rs.getString("s.sale_id");
-			String saleDate = rs.getString("s.sale_date");
-			String name = rs.getString("a.name");
-			String categoryName = rs.getString("c.category_name");
-			String tradeName = rs.getString("s.trade_name");
-			int unitPrice = rs.getInt("s.unit_price");
-			int saleNumber = rs.getInt("s.sale_number");
-			int rate = rs.getInt("rate");
-			String note = rs.getString("s.note");
-			String updateAt = rs.getString("s.updated_at").replaceAll("-", "/");
-			String updateBy = rs.getString("aa.name");
-
-			form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber,rate, note,updateAt,updateBy);
-
+			while(rs.next()) {
+				String saleId = rs.getString("s.sale_id");
+				String saleDate = rs.getString("s.sale_date");
+				String name = rs.getString("a.name");
+				String categoryName = rs.getString("c.category_name");
+				String tradeName = rs.getString("s.trade_name");
+				int unitPrice = rs.getInt("s.unit_price");
+				int saleNumber = rs.getInt("s.sale_number");
+				int rate = rs.getInt("rate");
+				String note = rs.getString("s.note");
+				String updateAt = rs.getString("s.updated_at").replaceAll("-", "/");
+				String updateBy = rs.getString("aa.name");
+				form = new S0022Form(saleId, saleDate, name, categoryName, tradeName, unitPrice, saleNumber,rate, note,updateAt,updateBy);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
