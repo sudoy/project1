@@ -67,7 +67,7 @@ public class S0022Servlet extends HttpServlet {
 				String history = req.getParameter("history");
 
 				//idからformを取得
-				S0022Form form = new S0022Service().findHistory(history);
+				S0022Form form = new S0022Service().findHistory(history,saleId);
 
 				//formの中身がない場合ダッシュボードへ
 				if(form == null) {

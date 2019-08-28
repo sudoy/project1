@@ -61,7 +61,7 @@ public class S0022Service { //売上詳細表示のサービス
 		return form;
 	}
 
-	public S0022Form findHistory(String historyId) throws ServletException {
+	public S0022Form findHistory(String historyId,String saledId) throws ServletException {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -80,10 +80,11 @@ public class S0022Service { //売上詳細表示のサービス
 					+ "LEFT JOIN accounts a ON s.account_id = a.account_id "
 					+ "LEFT JOIN accounts aa ON s.updated_by = aa.account_id "
 					+ "LEFT JOIN categories c ON s.category_id = c.category_id "
-					+ "WHERE s.history_id = ?";
+					+ "WHERE s.history_id = ? and s.sale_id = ?";
 			//SELECT命令の準備・実行
 			ps = con.prepareStatement(sql);
 			ps.setString(1, historyId);
+			ps.setString(2, saledId);
 			rs = ps.executeQuery();
 			rs.next();
 
