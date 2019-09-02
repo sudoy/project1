@@ -76,7 +76,7 @@
 				<th class="col-sm-4">商品名</th>
 				<th class="col-sm-1 text-right">単価</th>
 				<th class="col-sm-1 text-right">個数</th>
-				<th class="text-right">税率</th>
+				<th class="text-right text-nowrap">税率</th>
 				<th class="col-sm-1 text-right">小計</th>
 			</tr>
 		</thead>
